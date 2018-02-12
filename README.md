@@ -1,5 +1,7 @@
 # terraform-aws-secure-baseline
 
+[![CircleCI](https://circleci.com/gh/nozaq/terraform-aws-secure-baseline.svg?style=svg)](https://circleci.com/gh/nozaq/terraform-aws-secure-baseline)
+
 [Terraform Module Registry](https://registry.terraform.io/modules/nozaq/secure-baseline/aws)
 
 A terraform module to set up your AWS account with the reasonably secure configuration baseline.
