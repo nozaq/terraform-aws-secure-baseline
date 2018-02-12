@@ -4,3 +4,5 @@
 
 # Module directory
 .terraform/
+
+*.tfvars
