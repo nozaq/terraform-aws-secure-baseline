@@ -1,0 +1,18 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: hashicorp/terraform:light
+    working_directory: ~/repo/examples/root-example
+    steps:
+      - checkout:
+          path: ~/repo
+      - run:
+          name: Initialize a root module.
+          command: terraform init
+      - run:
+          name: Make sure the syntax is correct.
+          command: terraform validate -var access_key=DUMMY -var secret_key=DUMMY
+      - run:
+          name: Make sure format wouldn't produce any diffs.
+          command: terraform fmt -check=true
