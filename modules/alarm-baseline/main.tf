@@ -2,7 +2,7 @@ resource "aws_sns_topic" "alarms" {
   name = "${var.sns_topic_name}"
 }
 
-resource "aws_cloudwatch_log_metric_filter" "unauthorized-api-calls" {
+resource "aws_cloudwatch_log_metric_filter" "unauthorized_api_calls" {
   name           = "UnauthorizedAPICalls"
   pattern        = "{ ($.errorCode = \"*UnauthorizedOperation\") || ($.errorCode = \"AccessDenied*\") }"
   log_group_name = "${var.cloudtrail_log_group_name}"
@@ -14,11 +14,11 @@ resource "aws_cloudwatch_log_metric_filter" "unauthorized-api-calls" {
   }
 }
 
-resource "aws_cloudwatch_metric_alarm" "unauthorized-api-calls" {
+resource "aws_cloudwatch_metric_alarm" "unauthorized_api_calls" {
   alarm_name                = "UnauthorizedAPICalls"
   comparison_operator       = "GreaterThanOrEqualToThreshold"
   evaluation_periods        = "1"
-  metric_name               = "${aws_cloudwatch_log_metric_filter.unauthorized-api-calls.id}"
+  metric_name               = "${aws_cloudwatch_log_metric_filter.unauthorized_api_calls.id}"
   namespace                 = "${var.alarm_namespace}"
   period                    = "300"
   statistic                 = "Sum"
@@ -28,7 +28,7 @@ resource "aws_cloudwatch_metric_alarm" "unauthorized-api-calls" {
   insufficient_data_actions = []
 }
 
-resource "aws_cloudwatch_log_metric_filter" "no-mfa-console-signin" {
+resource "aws_cloudwatch_log_metric_filter" "no_mfa_console_signin" {
   name           = "NoMFAConsoleSignin"
   pattern        = "{ ($.eventName = \"ConsoleLogin\") && ($.additionalEventData.MFAUsed != \"Yes\") }"
   log_group_name = "${var.cloudtrail_log_group_name}"
@@ -40,11 +40,11 @@ resource "aws_cloudwatch_log_metric_filter" "no-mfa-console-signin" {
   }
 }
 
-resource "aws_cloudwatch_metric_alarm" "no-mfa-console-signin" {
+resource "aws_cloudwatch_metric_alarm" "no_mfa_console_signin" {
   alarm_name                = "NoMFAConsoleSignin"
   comparison_operator       = "GreaterThanOrEqualToThreshold"
   evaluation_periods        = "1"
-  metric_name               = "${aws_cloudwatch_log_metric_filter.no-mfa-console-signin.id}"
+  metric_name               = "${aws_cloudwatch_log_metric_filter.no_mfa_console_signin.id}"
   namespace                 = "${var.alarm_namespace}"
   period                    = "300"
   statistic                 = "Sum"
@@ -54,7 +54,7 @@ resource "aws_cloudwatch_metric_alarm" "no-mfa-console-signin" {
   insufficient_data_actions = []
 }
 
-resource "aws_cloudwatch_log_metric_filter" "root-usage" {
+resource "aws_cloudwatch_log_metric_filter" "root_usage" {
   name           = "RootUsage"
   pattern        = "{ $.userIdentity.type = \"Root\" && $.userIdentity.invokedBy NOT EXISTS && $.eventType != \"AwsServiceEvent\" }"
   log_group_name = "${var.cloudtrail_log_group_name}"
@@ -66,11 +66,11 @@ resource "aws_cloudwatch_log_metric_filter" "root-usage" {
   }
 }
 
-resource "aws_cloudwatch_metric_alarm" "root-usage" {
+resource "aws_cloudwatch_metric_alarm" "root_usage" {
   alarm_name                = "RootUsage"
   comparison_operator       = "GreaterThanOrEqualToThreshold"
   evaluation_periods        = "1"
-  metric_name               = "${aws_cloudwatch_log_metric_filter.root-usage.id}"
+  metric_name               = "${aws_cloudwatch_log_metric_filter.root_usage.id}"
   namespace                 = "${var.alarm_namespace}"
   period                    = "300"
   statistic                 = "Sum"
@@ -80,7 +80,7 @@ resource "aws_cloudwatch_metric_alarm" "root-usage" {
   insufficient_data_actions = []
 }
 
-resource "aws_cloudwatch_log_metric_filter" "iam-changes" {
+resource "aws_cloudwatch_log_metric_filter" "iam_changes" {
   name           = "IAMChanges"
   pattern        = "{($.eventName=DeleteGroupPolicy)||($.eventName=DeleteRolePolicy)||($.eventName=DeleteUserPolicy)||($.eventName=PutGroupPolicy)||($.eventName=PutRolePolicy)||($.eventName=PutUserPolicy)||($.eventName=CreatePolicy)||($.eventName=DeletePolicy)||($.eventName=CreatePolicyVersion)||($.eventName=DeletePolicyVersion)||($.eventName=AttachRolePolicy)||($.eventName=DetachRolePolicy)||($.eventName=AttachUserPolicy)||($.eventName=DetachUserPolicy)||($.eventName=AttachGroupPolicy)||($.eventName=DetachGroupPolicy)}"
   log_group_name = "${var.cloudtrail_log_group_name}"
@@ -92,11 +92,11 @@ resource "aws_cloudwatch_log_metric_filter" "iam-changes" {
   }
 }
 
-resource "aws_cloudwatch_metric_alarm" "iam-changes" {
+resource "aws_cloudwatch_metric_alarm" "iam_changes" {
   alarm_name                = "IAMChanges"
   comparison_operator       = "GreaterThanOrEqualToThreshold"
   evaluation_periods        = "1"
-  metric_name               = "${aws_cloudwatch_log_metric_filter.iam-changes.id}"
+  metric_name               = "${aws_cloudwatch_log_metric_filter.iam_changes.id}"
   namespace                 = "${var.alarm_namespace}"
   period                    = "300"
   statistic                 = "Sum"
@@ -106,7 +106,7 @@ resource "aws_cloudwatch_metric_alarm" "iam-changes" {
   insufficient_data_actions = []
 }
 
-resource "aws_cloudwatch_log_metric_filter" "cloudtrail-cfg-changes" {
+resource "aws_cloudwatch_log_metric_filter" "cloudtrail_cfg_changes" {
   name           = "CloudTrailCfgChanges"
   pattern        = "{ ($.eventName = CreateTrail) || ($.eventName = UpdateTrail) || ($.eventName = DeleteTrail) || ($.eventName = StartLogging) || ($.eventName = StopLogging) }"
   log_group_name = "${var.cloudtrail_log_group_name}"
@@ -118,11 +118,11 @@ resource "aws_cloudwatch_log_metric_filter" "cloudtrail-cfg-changes" {
   }
 }
 
-resource "aws_cloudwatch_metric_alarm" "cloudtrail-cfg-changes" {
+resource "aws_cloudwatch_metric_alarm" "cloudtrail_cfg_changes" {
   alarm_name                = "CloudTrailCfgChanges"
   comparison_operator       = "GreaterThanOrEqualToThreshold"
   evaluation_periods        = "1"
-  metric_name               = "${aws_cloudwatch_log_metric_filter.cloudtrail-cfg-changes.id}"
+  metric_name               = "${aws_cloudwatch_log_metric_filter.cloudtrail_cfg_changes.id}"
   namespace                 = "${var.alarm_namespace}"
   period                    = "300"
   statistic                 = "Sum"
@@ -132,7 +132,7 @@ resource "aws_cloudwatch_metric_alarm" "cloudtrail-cfg-changes" {
   insufficient_data_actions = []
 }
 
-resource "aws_cloudwatch_log_metric_filter" "console-signin-failures" {
+resource "aws_cloudwatch_log_metric_filter" "console_signin_failures" {
   name           = "ConsoleSigninFailures"
   pattern        = "{ ($.eventName = ConsoleLogin) && ($.errorMessage = \"Failed authentication\") }"
   log_group_name = "${var.cloudtrail_log_group_name}"
@@ -144,11 +144,11 @@ resource "aws_cloudwatch_log_metric_filter" "console-signin-failures" {
   }
 }
 
-resource "aws_cloudwatch_metric_alarm" "console-signin-failures" {
+resource "aws_cloudwatch_metric_alarm" "console_signin_failures" {
   alarm_name                = "ConsoleSigninFailures"
   comparison_operator       = "GreaterThanOrEqualToThreshold"
   evaluation_periods        = "1"
-  metric_name               = "${aws_cloudwatch_log_metric_filter.console-signin-failures.id}"
+  metric_name               = "${aws_cloudwatch_log_metric_filter.console_signin_failures.id}"
   namespace                 = "${var.alarm_namespace}"
   period                    = "300"
   statistic                 = "Sum"
@@ -158,7 +158,7 @@ resource "aws_cloudwatch_metric_alarm" "console-signin-failures" {
   insufficient_data_actions = []
 }
 
-resource "aws_cloudwatch_log_metric_filter" "disable-or-delete-cmk" {
+resource "aws_cloudwatch_log_metric_filter" "disable_or_delete_cmk" {
   name           = "DisableOrDeleteCMK"
   pattern        = "{ ($.eventSource = kms.amazonaws.com) && (($.eventName = DisableKey) || ($.eventName = ScheduleKeyDeletion)) }"
   log_group_name = "${var.cloudtrail_log_group_name}"
@@ -170,11 +170,11 @@ resource "aws_cloudwatch_log_metric_filter" "disable-or-delete-cmk" {
   }
 }
 
-resource "aws_cloudwatch_metric_alarm" "disable-or-delete-cmk" {
+resource "aws_cloudwatch_metric_alarm" "disable_or_delete_cmk" {
   alarm_name                = "DisableOrDeleteCMK"
   comparison_operator       = "GreaterThanOrEqualToThreshold"
   evaluation_periods        = "1"
-  metric_name               = "${aws_cloudwatch_log_metric_filter.disable-or-delete-cmk.id}"
+  metric_name               = "${aws_cloudwatch_log_metric_filter.disable_or_delete_cmk.id}"
   namespace                 = "${var.alarm_namespace}"
   period                    = "300"
   statistic                 = "Sum"
@@ -184,7 +184,7 @@ resource "aws_cloudwatch_metric_alarm" "disable-or-delete-cmk" {
   insufficient_data_actions = []
 }
 
-resource "aws_cloudwatch_log_metric_filter" "s3-bucket-policy-changes" {
+resource "aws_cloudwatch_log_metric_filter" "s3_bucket_policy_changes" {
   name           = "S3BucketPolicyChanges"
   pattern        = "{ ($.eventSource = s3.amazonaws.com) && (($.eventName = PutBucketAcl) || ($.eventName = PutBucketPolicy) || ($.eventName = PutBucketCors) || ($.eventName = PutBucketLifecycle) || ($.eventName = PutBucketReplication) || ($.eventName = DeleteBucketPolicy) || ($.eventName = DeleteBucketCors) || ($.eventName = DeleteBucketLifecycle) || ($.eventName = DeleteBucketReplication)) }"
   log_group_name = "${var.cloudtrail_log_group_name}"
@@ -196,11 +196,11 @@ resource "aws_cloudwatch_log_metric_filter" "s3-bucket-policy-changes" {
   }
 }
 
-resource "aws_cloudwatch_metric_alarm" "s3-bucket-policy-changes" {
+resource "aws_cloudwatch_metric_alarm" "s3_bucket_policy_changes" {
   alarm_name                = "S3BucketPolicyChanges"
   comparison_operator       = "GreaterThanOrEqualToThreshold"
   evaluation_periods        = "1"
-  metric_name               = "${aws_cloudwatch_log_metric_filter.s3-bucket-policy-changes.id}"
+  metric_name               = "${aws_cloudwatch_log_metric_filter.s3_bucket_policy_changes.id}"
   namespace                 = "${var.alarm_namespace}"
   period                    = "300"
   statistic                 = "Sum"
@@ -210,7 +210,7 @@ resource "aws_cloudwatch_metric_alarm" "s3-bucket-policy-changes" {
   insufficient_data_actions = []
 }
 
-resource "aws_cloudwatch_log_metric_filter" "aws-config-changes" {
+resource "aws_cloudwatch_log_metric_filter" "aws_config_changes" {
   name           = "AWSConfigChanges"
   pattern        = "{ ($.eventSource = config.amazonaws.com) && (($.eventName=StopConfigurationRecorder)||($.eventName=DeleteDeliveryChannel)||($.eventName=PutDeliveryChannel)||($.eventName=PutConfigurationRecorder)) }"
   log_group_name = "${var.cloudtrail_log_group_name}"
@@ -222,11 +222,11 @@ resource "aws_cloudwatch_log_metric_filter" "aws-config-changes" {
   }
 }
 
-resource "aws_cloudwatch_metric_alarm" "aws-config-changes" {
+resource "aws_cloudwatch_metric_alarm" "aws_config_changes" {
   alarm_name                = "AWSConfigChanges"
   comparison_operator       = "GreaterThanOrEqualToThreshold"
   evaluation_periods        = "1"
-  metric_name               = "${aws_cloudwatch_log_metric_filter.aws-config-changes.id}"
+  metric_name               = "${aws_cloudwatch_log_metric_filter.aws_config_changes.id}"
   namespace                 = "${var.alarm_namespace}"
   period                    = "300"
   statistic                 = "Sum"
@@ -236,7 +236,7 @@ resource "aws_cloudwatch_metric_alarm" "aws-config-changes" {
   insufficient_data_actions = []
 }
 
-resource "aws_cloudwatch_log_metric_filter" "security-group-changes" {
+resource "aws_cloudwatch_log_metric_filter" "security_group_changes" {
   name           = "SecurityGroupChanges"
   pattern        = "{ ($.eventName = AuthorizeSecurityGroupIngress) || ($.eventName = AuthorizeSecurityGroupEgress) || ($.eventName = RevokeSecurityGroupIngress) || ($.eventName = RevokeSecurityGroupEgress) || ($.eventName = CreateSecurityGroup) || ($.eventName = DeleteSecurityGroup)}"
   log_group_name = "${var.cloudtrail_log_group_name}"
@@ -248,11 +248,11 @@ resource "aws_cloudwatch_log_metric_filter" "security-group-changes" {
   }
 }
 
-resource "aws_cloudwatch_metric_alarm" "security-group-changes" {
+resource "aws_cloudwatch_metric_alarm" "security_group_changes" {
   alarm_name                = "SecurityGroupChanges"
   comparison_operator       = "GreaterThanOrEqualToThreshold"
   evaluation_periods        = "1"
-  metric_name               = "${aws_cloudwatch_log_metric_filter.security-group-changes.id}"
+  metric_name               = "${aws_cloudwatch_log_metric_filter.security_group_changes.id}"
   namespace                 = "${var.alarm_namespace}"
   period                    = "300"
   statistic                 = "Sum"
@@ -262,7 +262,7 @@ resource "aws_cloudwatch_metric_alarm" "security-group-changes" {
   insufficient_data_actions = []
 }
 
-resource "aws_cloudwatch_log_metric_filter" "nacl-changes" {
+resource "aws_cloudwatch_log_metric_filter" "nacl_changes" {
   name           = "NACLChanges"
   pattern        = "{ ($.eventName = CreateNetworkAcl) || ($.eventName = CreateNetworkAclEntry) || ($.eventName = DeleteNetworkAcl) || ($.eventName = DeleteNetworkAclEntry) || ($.eventName = ReplaceNetworkAclEntry) || ($.eventName = ReplaceNetworkAclAssociation) }"
   log_group_name = "${var.cloudtrail_log_group_name}"
@@ -274,11 +274,11 @@ resource "aws_cloudwatch_log_metric_filter" "nacl-changes" {
   }
 }
 
-resource "aws_cloudwatch_metric_alarm" "nacl-changes" {
+resource "aws_cloudwatch_metric_alarm" "nacl_changes" {
   alarm_name                = "NACLChanges"
   comparison_operator       = "GreaterThanOrEqualToThreshold"
   evaluation_periods        = "1"
-  metric_name               = "${aws_cloudwatch_log_metric_filter.nacl-changes.id}"
+  metric_name               = "${aws_cloudwatch_log_metric_filter.nacl_changes.id}"
   namespace                 = "${var.alarm_namespace}"
   period                    = "300"
   statistic                 = "Sum"
@@ -288,7 +288,7 @@ resource "aws_cloudwatch_metric_alarm" "nacl-changes" {
   insufficient_data_actions = []
 }
 
-resource "aws_cloudwatch_log_metric_filter" "network-gw-changes" {
+resource "aws_cloudwatch_log_metric_filter" "network_gw_changes" {
   name           = "NetworkGWChanges"
   pattern        = "{ ($.eventName = CreateCustomerGateway) || ($.eventName = DeleteCustomerGateway) || ($.eventName = AttachInternetGateway) || ($.eventName = CreateInternetGateway) || ($.eventName = DeleteInternetGateway) || ($.eventName = DetachInternetGateway) }"
   log_group_name = "${var.cloudtrail_log_group_name}"
@@ -300,11 +300,11 @@ resource "aws_cloudwatch_log_metric_filter" "network-gw-changes" {
   }
 }
 
-resource "aws_cloudwatch_metric_alarm" "network-gw-changes" {
+resource "aws_cloudwatch_metric_alarm" "network_gw_changes" {
   alarm_name                = "NetworkGWChanges"
   comparison_operator       = "GreaterThanOrEqualToThreshold"
   evaluation_periods        = "1"
-  metric_name               = "${aws_cloudwatch_log_metric_filter.network-gw-changes.id}"
+  metric_name               = "${aws_cloudwatch_log_metric_filter.network_gw_changes.id}"
   namespace                 = "${var.alarm_namespace}"
   period                    = "300"
   statistic                 = "Sum"
@@ -314,7 +314,7 @@ resource "aws_cloudwatch_metric_alarm" "network-gw-changes" {
   insufficient_data_actions = []
 }
 
-resource "aws_cloudwatch_log_metric_filter" "route-table-changes" {
+resource "aws_cloudwatch_log_metric_filter" "route_table_changes" {
   name           = "RouteTableChanges"
   pattern        = "{ ($.eventName = CreateRoute) || ($.eventName = CreateRouteTable) || ($.eventName = ReplaceRoute) || ($.eventName = ReplaceRouteTableAssociation) || ($.eventName = DeleteRouteTable) || ($.eventName = DeleteRoute) || ($.eventName = DisassociateRouteTable) }"
   log_group_name = "${var.cloudtrail_log_group_name}"
@@ -326,11 +326,11 @@ resource "aws_cloudwatch_log_metric_filter" "route-table-changes" {
   }
 }
 
-resource "aws_cloudwatch_metric_alarm" "route-table-changes" {
+resource "aws_cloudwatch_metric_alarm" "route_table_changes" {
   alarm_name                = "RouteTableChanges"
   comparison_operator       = "GreaterThanOrEqualToThreshold"
   evaluation_periods        = "1"
-  metric_name               = "${aws_cloudwatch_log_metric_filter.route-table-changes.id}"
+  metric_name               = "${aws_cloudwatch_log_metric_filter.route_table_changes.id}"
   namespace                 = "${var.alarm_namespace}"
   period                    = "300"
   statistic                 = "Sum"
@@ -340,7 +340,7 @@ resource "aws_cloudwatch_metric_alarm" "route-table-changes" {
   insufficient_data_actions = []
 }
 
-resource "aws_cloudwatch_log_metric_filter" "vpc-changes" {
+resource "aws_cloudwatch_log_metric_filter" "vpc_changes" {
   name           = "VPCChanges"
   pattern        = "{ ($.eventName = CreateVpc) || ($.eventName = DeleteVpc) || ($.eventName = ModifyVpcAttribute) || ($.eventName = AcceptVpcPeeringConnection) || ($.eventName = CreateVpcPeeringConnection) || ($.eventName = DeleteVpcPeeringConnection) || ($.eventName = RejectVpcPeeringConnection) || ($.eventName = AttachClassicLinkVpc) || ($.eventName = DetachClassicLinkVpc) || ($.eventName = DisableVpcClassicLink) || ($.eventName = EnableVpcClassicLink) }"
   log_group_name = "${var.cloudtrail_log_group_name}"
@@ -352,11 +352,11 @@ resource "aws_cloudwatch_log_metric_filter" "vpc-changes" {
   }
 }
 
-resource "aws_cloudwatch_metric_alarm" "vpc-changes" {
+resource "aws_cloudwatch_metric_alarm" "vpc_changes" {
   alarm_name                = "VPCChanges"
   comparison_operator       = "GreaterThanOrEqualToThreshold"
   evaluation_periods        = "1"
-  metric_name               = "${aws_cloudwatch_log_metric_filter.vpc-changes.id}"
+  metric_name               = "${aws_cloudwatch_log_metric_filter.vpc_changes.id}"
   namespace                 = "${var.alarm_namespace}"
   period                    = "300"
   statistic                 = "Sum"
