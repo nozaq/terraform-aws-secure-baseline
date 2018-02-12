@@ -15,6 +15,7 @@ Most configurations are based on [CIS Amazon web Services Foundations].
 - Set up CloudWatch alarms to notify you when critical changes happen in your AWS account.
 - Enable VPC Flow Logs with the default VPC in all regions.
 - Remove all rules associated with default route tables, default network ACLs and default security groups in the default VPC in all regions.
+- Enable GuardDuty in all regions.
 
 ## Usage
 
