@@ -9,7 +9,7 @@ data "aws_caller_identity" "current" {}
 module "root_example" {
   source = "../../"
 
-  audit_log_bucket_name = "terraform-test-audit-logs"
+  audit_log_bucket_name = "${var.audit_s3_bucket_name}"
   aws_account_id        = "${data.aws_caller_identity.current.account_id}"
   region                = "${var.region}"
 
