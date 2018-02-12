@@ -67,7 +67,7 @@ END_OF_POLICY
 # IAM Password Policy
 # --------------------------------------------------------------------------------------------------
 
-resource "aws_iam_account_password_policy" "cis" {
+resource "aws_iam_account_password_policy" "default" {
   minimum_password_length        = 14
   password_reuse_prevention      = 24
   require_lowercase_characters   = true
