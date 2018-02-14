@@ -64,18 +64,28 @@ END_OF_POLICY
 }
 
 # --------------------------------------------------------------------------------------------------
-# IAM Password Policy
+# IAM Baseline
 # --------------------------------------------------------------------------------------------------
 
-resource "aws_iam_account_password_policy" "default" {
-  minimum_password_length        = 14
-  password_reuse_prevention      = 24
-  require_lowercase_characters   = true
-  require_numbers                = true
-  require_uppercase_characters   = true
-  require_symbols                = true
-  allow_users_to_change_password = true
-  max_password_age               = 90
+module "iam_baseline" {
+  source = "./modules/iam-baseline"
+
+  aws_account_id                 = "${var.aws_account_id}"
+  iam_master_role_name           = "${var.iam_master_role_name}"
+  iam_master_role_policy_name    = "${var.iam_master_role_policy_name}"
+  iam_manager_role_name          = "${var.iam_manager_role_name}"
+  iam_manager_role_policy_name   = "${var.iam_manager_role_policy_name}"
+  iam_support_role_name          = "${var.iam_support_role_name}"
+  iam_support_role_policy_name   = "${var.iam_support_role_policy_name}"
+  iam_support_role_principal_arn = "${var.iam_support_role_principal_arn}"
+  minimum_password_length        = "${var.minimum_password_length}"
+  password_reuse_prevention      = "${var.password_reuse_prevention}"
+  require_lowercase_characters   = "${var.require_lowercase_characters}"
+  require_numbers                = "${var.require_numbers}"
+  require_uppercase_characters   = "${var.require_uppercase_characters}"
+  require_symbols                = "${var.require_symbols}"
+  allow_users_to_change_password = "${var.allow_users_to_change_password}"
+  max_password_age               = "${var.max_password_age}"
 }
 
 # --------------------------------------------------------------------------------------------------
