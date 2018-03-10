@@ -18,37 +18,37 @@ variable "region" {
 # Variables for iam-baseline module.
 # --------------------------------------------------------------------------------------------------
 
-variable "iam_master_role_name" {
+variable "master_iam_role_name" {
   description = "The name of the IAM Master role."
   default     = "IAM-Master"
 }
 
-variable "iam_master_role_policy_name" {
+variable "master_iam_role_policy_name" {
   description = "The name of the IAM Master role policy."
   default     = "IAM-Master-Policy"
 }
 
-variable "iam_manager_role_name" {
+variable "manager_iam_role_name" {
   description = "The name of the IAM Manager role."
   default     = "IAM-Manager"
 }
 
-variable "iam_manager_role_policy_name" {
+variable "manager_iam_role_policy_name" {
   description = "The name of the IAM Manager role policy."
   default     = "IAM-Manager-Policy"
 }
 
-variable "iam_support_role_name" {
+variable "support_iam_role_name" {
   description = "The name of the the support role."
   default     = "IAM-Support"
 }
 
-variable "iam_support_role_policy_name" {
+variable "support_iam_role_policy_name" {
   description = "The name of the support role policy."
   default     = "IAM-Support-Role"
 }
 
-variable "iam_support_role_principal_arn" {
+variable "support_iam_role_principal_arn" {
   description = "The ARN of the IAM principal element by which the support role could be assumed."
 }
 

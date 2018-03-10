@@ -18,7 +18,7 @@ resource "aws_iam_account_password_policy" "default" {
 # --------------------------------------------------------------------------------------------------
 
 resource "aws_iam_role" "master" {
-  name = "${var.iam_master_role_name}"
+  name = "${var.master_iam_role_name}"
 
   assume_role_policy = <<END_OF_POLICY
 {
@@ -37,7 +37,7 @@ END_OF_POLICY
 }
 
 resource "aws_iam_role_policy" "master_policy" {
-  name = "${var.iam_master_role_policy_name}"
+  name = "${var.master_iam_role_policy_name}"
 
   role = "${aws_iam_role.master.id}"
 
@@ -78,7 +78,7 @@ END_OF_POLICY
 }
 
 resource "aws_iam_role" "manager" {
-  name = "${var.iam_manager_role_name}"
+  name = "${var.manager_iam_role_name}"
 
   assume_role_policy = <<END_OF_POLICY
 {
@@ -97,7 +97,7 @@ END_OF_POLICY
 }
 
 resource "aws_iam_role_policy" "manager_policy" {
-  name = "${var.iam_manager_role_policy_name}"
+  name = "${var.manager_iam_role_policy_name}"
 
   role = "${aws_iam_role.manager.id}"
 
@@ -142,7 +142,7 @@ END_OF_POLICY
 # --------------------------------------------------------------------------------------------------
 
 resource "aws_iam_role" "support" {
-  name = "${var.iam_support_role_name}"
+  name = "${var.support_iam_role_name}"
 
   assume_role_policy = <<END_OF_POLICY
 {
@@ -152,7 +152,7 @@ resource "aws_iam_role" "support" {
       "Effect": "Allow",
       "Action": "sts:AssumeRole",
       "Principal": {
-        "AWS": "${var.iam_support_role_principal_arn}"
+        "AWS": "${var.support_iam_role_principal_arn}"
       }
     }
   ]
