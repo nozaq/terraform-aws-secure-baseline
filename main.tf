@@ -14,7 +14,7 @@ module "audit_log_bucket" {
 }
 
 resource "aws_s3_bucket_policy" "audit_log_bucket_policy" {
-  bucket = "${module.audit_log_bucket.bucket_id}"
+  bucket = "${module.audit_log_bucket.this_bucket_id}"
 
   policy = <<END_OF_POLICY
 {
@@ -25,14 +25,14 @@ resource "aws_s3_bucket_policy" "audit_log_bucket_policy" {
       "Effect": "Allow",
       "Principal": {"Service": "config.amazonaws.com"},
       "Action": "s3:GetBucketAcl",
-      "Resource": "${module.audit_log_bucket.bucket_arn}"
+      "Resource": "${module.audit_log_bucket.this_bucket_arn}"
     },
     {
       "Sid": " AWSCloudTrailWriteForConfig",
       "Effect": "Allow",
       "Principal": {"Service": "config.amazonaws.com"},
       "Action": "s3:PutObject",
-      "Resource": "${module.audit_log_bucket.bucket_arn}/config/AWSLogs/${var.aws_account_id}/Config/*",
+      "Resource": "${module.audit_log_bucket.this_bucket_arn}/config/AWSLogs/${var.aws_account_id}/Config/*",
       "Condition": {"StringEquals": {"s3:x-amz-acl": "bucket-owner-full-control"}}
     },
     {
@@ -42,7 +42,7 @@ resource "aws_s3_bucket_policy" "audit_log_bucket_policy" {
             "Service": "cloudtrail.amazonaws.com"
         },
         "Action": "s3:GetBucketAcl",
-        "Resource": "${module.audit_log_bucket.bucket_arn}"
+        "Resource": "${module.audit_log_bucket.this_bucket_arn}"
     },
     {
         "Sid": "AWSCloudTrailWriteForCloudTrail",
@@ -51,7 +51,7 @@ resource "aws_s3_bucket_policy" "audit_log_bucket_policy" {
             "Service": "cloudtrail.amazonaws.com"
         },
         "Action": "s3:PutObject",
-        "Resource": "${module.audit_log_bucket.bucket_arn}/cloudtrail/AWSLogs/${var.aws_account_id}/*",
+        "Resource": "${module.audit_log_bucket.this_bucket_arn}/cloudtrail/AWSLogs/${var.aws_account_id}/*",
         "Condition": {
             "StringEquals": {
                 "s3:x-amz-acl": "bucket-owner-full-control"
@@ -71,13 +71,13 @@ module "iam_baseline" {
   source = "./modules/iam-baseline"
 
   aws_account_id                 = "${var.aws_account_id}"
-  iam_master_role_name           = "${var.iam_master_role_name}"
-  iam_master_role_policy_name    = "${var.iam_master_role_policy_name}"
-  iam_manager_role_name          = "${var.iam_manager_role_name}"
-  iam_manager_role_policy_name   = "${var.iam_manager_role_policy_name}"
-  iam_support_role_name          = "${var.iam_support_role_name}"
-  iam_support_role_policy_name   = "${var.iam_support_role_policy_name}"
-  iam_support_role_principal_arn = "${var.iam_support_role_principal_arn}"
+  master_iam_role_name           = "${var.master_iam_role_name}"
+  master_iam_role_policy_name    = "${var.master_iam_role_policy_name}"
+  manager_iam_role_name          = "${var.manager_iam_role_name}"
+  manager_iam_role_policy_name   = "${var.manager_iam_role_policy_name}"
+  support_iam_role_name          = "${var.support_iam_role_name}"
+  support_iam_role_policy_name   = "${var.support_iam_role_policy_name}"
+  support_iam_role_principal_arn = "${var.support_iam_role_principal_arn}"
   minimum_password_length        = "${var.minimum_password_length}"
   password_reuse_prevention      = "${var.password_reuse_prevention}"
   require_lowercase_characters   = "${var.require_lowercase_characters}"
@@ -102,7 +102,7 @@ module "cloudtrail_baseline" {
   iam_role_policy_name        = "${var.cloudtrail_iam_role_policy_name}"
   key_deletion_window_in_days = "${var.cloudtrail_key_deletion_window_in_days}"
   region                      = "${var.region}"
-  s3_bucket_name              = "${module.audit_log_bucket.bucket_id}"
+  s3_bucket_name              = "${module.audit_log_bucket.this_bucket_id}"
   s3_key_prefix               = "${var.cloudtrail_s3_key_prefix}"
 }
 

@@ -36,7 +36,7 @@ resource "aws_iam_role_policy" "recoder_publish_policy" {
      {
        "Effect": "Allow",
        "Action": ["s3:PutObject"],
-       "Resource": ["${module.audit_log_bucket.bucket_arn}/config/AWSLogs/${var.aws_account_id}/*"],
+       "Resource": ["${module.audit_log_bucket.this_bucket_arn}/config/AWSLogs/${var.aws_account_id}/*"],
        "Condition":
         {
           "StringLike":
@@ -48,7 +48,7 @@ resource "aws_iam_role_policy" "recoder_publish_policy" {
      {
        "Effect": "Allow",
        "Action": ["s3:GetBucketAcl"],
-       "Resource": "${module.audit_log_bucket.bucket_arn}"
+       "Resource": "${module.audit_log_bucket.this_bucket_arn}"
      }
   ]
 }
@@ -67,7 +67,7 @@ resource "aws_iam_role_policy_attachment" "recoder_read_policy" {
 module "config_baseline_ap-northeast-1" {
   source             = "./modules/config-baseline"
   iam_role_arn       = "${aws_iam_role.recorder.arn}"
-  s3_bucket_name     = "${module.audit_log_bucket.bucket_id}"
+  s3_bucket_name     = "${module.audit_log_bucket.this_bucket_id}"
   s3_key_prefix      = "${var.config_s3_bucket_key_prefix}"
   delivery_frequency = "${var.config_delivery_frequency}"
   sns_topic_name     = "${var.config_sns_topic_name}"
@@ -80,7 +80,7 @@ module "config_baseline_ap-northeast-1" {
 module "config_baseline_ap-northeast-2" {
   source             = "./modules/config-baseline"
   iam_role_arn       = "${aws_iam_role.recorder.arn}"
-  s3_bucket_name     = "${module.audit_log_bucket.bucket_id}"
+  s3_bucket_name     = "${module.audit_log_bucket.this_bucket_id}"
   s3_key_prefix      = "${var.config_s3_bucket_key_prefix}"
   delivery_frequency = "${var.config_delivery_frequency}"
   sns_topic_name     = "${var.config_sns_topic_name}"
@@ -93,7 +93,7 @@ module "config_baseline_ap-northeast-2" {
 module "config_baseline_ap-south-1" {
   source             = "./modules/config-baseline"
   iam_role_arn       = "${aws_iam_role.recorder.arn}"
-  s3_bucket_name     = "${module.audit_log_bucket.bucket_id}"
+  s3_bucket_name     = "${module.audit_log_bucket.this_bucket_id}"
   s3_key_prefix      = "${var.config_s3_bucket_key_prefix}"
   delivery_frequency = "${var.config_delivery_frequency}"
   sns_topic_name     = "${var.config_sns_topic_name}"
@@ -106,7 +106,7 @@ module "config_baseline_ap-south-1" {
 module "config_baseline_ap-southeast-1" {
   source             = "./modules/config-baseline"
   iam_role_arn       = "${aws_iam_role.recorder.arn}"
-  s3_bucket_name     = "${module.audit_log_bucket.bucket_id}"
+  s3_bucket_name     = "${module.audit_log_bucket.this_bucket_id}"
   s3_key_prefix      = "${var.config_s3_bucket_key_prefix}"
   delivery_frequency = "${var.config_delivery_frequency}"
   sns_topic_name     = "${var.config_sns_topic_name}"
@@ -119,7 +119,7 @@ module "config_baseline_ap-southeast-1" {
 module "config_baseline_ap-southeast-2" {
   source             = "./modules/config-baseline"
   iam_role_arn       = "${aws_iam_role.recorder.arn}"
-  s3_bucket_name     = "${module.audit_log_bucket.bucket_id}"
+  s3_bucket_name     = "${module.audit_log_bucket.this_bucket_id}"
   s3_key_prefix      = "${var.config_s3_bucket_key_prefix}"
   delivery_frequency = "${var.config_delivery_frequency}"
   sns_topic_name     = "${var.config_sns_topic_name}"
@@ -132,7 +132,7 @@ module "config_baseline_ap-southeast-2" {
 module "config_baseline_ca-central-1" {
   source             = "./modules/config-baseline"
   iam_role_arn       = "${aws_iam_role.recorder.arn}"
-  s3_bucket_name     = "${module.audit_log_bucket.bucket_id}"
+  s3_bucket_name     = "${module.audit_log_bucket.this_bucket_id}"
   s3_key_prefix      = "${var.config_s3_bucket_key_prefix}"
   delivery_frequency = "${var.config_delivery_frequency}"
   sns_topic_name     = "${var.config_sns_topic_name}"
@@ -145,7 +145,7 @@ module "config_baseline_ca-central-1" {
 module "config_baseline_eu-central-1" {
   source             = "./modules/config-baseline"
   iam_role_arn       = "${aws_iam_role.recorder.arn}"
-  s3_bucket_name     = "${module.audit_log_bucket.bucket_id}"
+  s3_bucket_name     = "${module.audit_log_bucket.this_bucket_id}"
   s3_key_prefix      = "${var.config_s3_bucket_key_prefix}"
   delivery_frequency = "${var.config_delivery_frequency}"
   sns_topic_name     = "${var.config_sns_topic_name}"
@@ -158,7 +158,7 @@ module "config_baseline_eu-central-1" {
 module "config_baseline_eu-west-1" {
   source             = "./modules/config-baseline"
   iam_role_arn       = "${aws_iam_role.recorder.arn}"
-  s3_bucket_name     = "${module.audit_log_bucket.bucket_id}"
+  s3_bucket_name     = "${module.audit_log_bucket.this_bucket_id}"
   s3_key_prefix      = "${var.config_s3_bucket_key_prefix}"
   delivery_frequency = "${var.config_delivery_frequency}"
   sns_topic_name     = "${var.config_sns_topic_name}"
@@ -171,7 +171,7 @@ module "config_baseline_eu-west-1" {
 module "config_baseline_eu-west-2" {
   source             = "./modules/config-baseline"
   iam_role_arn       = "${aws_iam_role.recorder.arn}"
-  s3_bucket_name     = "${module.audit_log_bucket.bucket_id}"
+  s3_bucket_name     = "${module.audit_log_bucket.this_bucket_id}"
   s3_key_prefix      = "${var.config_s3_bucket_key_prefix}"
   delivery_frequency = "${var.config_delivery_frequency}"
   sns_topic_name     = "${var.config_sns_topic_name}"
@@ -184,7 +184,7 @@ module "config_baseline_eu-west-2" {
 module "config_baseline_eu-west-3" {
   source             = "./modules/config-baseline"
   iam_role_arn       = "${aws_iam_role.recorder.arn}"
-  s3_bucket_name     = "${module.audit_log_bucket.bucket_id}"
+  s3_bucket_name     = "${module.audit_log_bucket.this_bucket_id}"
   s3_key_prefix      = "${var.config_s3_bucket_key_prefix}"
   delivery_frequency = "${var.config_delivery_frequency}"
   sns_topic_name     = "${var.config_sns_topic_name}"
@@ -197,7 +197,7 @@ module "config_baseline_eu-west-3" {
 module "config_baseline_sa-east-1" {
   source             = "./modules/config-baseline"
   iam_role_arn       = "${aws_iam_role.recorder.arn}"
-  s3_bucket_name     = "${module.audit_log_bucket.bucket_id}"
+  s3_bucket_name     = "${module.audit_log_bucket.this_bucket_id}"
   s3_key_prefix      = "${var.config_s3_bucket_key_prefix}"
   delivery_frequency = "${var.config_delivery_frequency}"
   sns_topic_name     = "${var.config_sns_topic_name}"
@@ -210,7 +210,7 @@ module "config_baseline_sa-east-1" {
 module "config_baseline_us-east-1" {
   source             = "./modules/config-baseline"
   iam_role_arn       = "${aws_iam_role.recorder.arn}"
-  s3_bucket_name     = "${module.audit_log_bucket.bucket_id}"
+  s3_bucket_name     = "${module.audit_log_bucket.this_bucket_id}"
   s3_key_prefix      = "${var.config_s3_bucket_key_prefix}"
   delivery_frequency = "${var.config_delivery_frequency}"
   sns_topic_name     = "${var.config_sns_topic_name}"
@@ -223,7 +223,7 @@ module "config_baseline_us-east-1" {
 module "config_baseline_us-east-2" {
   source             = "./modules/config-baseline"
   iam_role_arn       = "${aws_iam_role.recorder.arn}"
-  s3_bucket_name     = "${module.audit_log_bucket.bucket_id}"
+  s3_bucket_name     = "${module.audit_log_bucket.this_bucket_id}"
   s3_key_prefix      = "${var.config_s3_bucket_key_prefix}"
   delivery_frequency = "${var.config_delivery_frequency}"
   sns_topic_name     = "${var.config_sns_topic_name}"
@@ -236,7 +236,7 @@ module "config_baseline_us-east-2" {
 module "config_baseline_us-west-1" {
   source             = "./modules/config-baseline"
   iam_role_arn       = "${aws_iam_role.recorder.arn}"
-  s3_bucket_name     = "${module.audit_log_bucket.bucket_id}"
+  s3_bucket_name     = "${module.audit_log_bucket.this_bucket_id}"
   s3_key_prefix      = "${var.config_s3_bucket_key_prefix}"
   delivery_frequency = "${var.config_delivery_frequency}"
   sns_topic_name     = "${var.config_sns_topic_name}"
@@ -249,7 +249,7 @@ module "config_baseline_us-west-1" {
 module "config_baseline_us-west-2" {
   source             = "./modules/config-baseline"
   iam_role_arn       = "${aws_iam_role.recorder.arn}"
-  s3_bucket_name     = "${module.audit_log_bucket.bucket_id}"
+  s3_bucket_name     = "${module.audit_log_bucket.this_bucket_id}"
   s3_key_prefix      = "${var.config_s3_bucket_key_prefix}"
   delivery_frequency = "${var.config_delivery_frequency}"
   sns_topic_name     = "${var.config_sns_topic_name}"
