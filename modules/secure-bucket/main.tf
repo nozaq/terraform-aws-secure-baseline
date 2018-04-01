@@ -14,7 +14,10 @@ resource "aws_s3_bucket" "content" {
   }
 
   versioning = {
-    enabled    = true
-    mfa_delete = true
+    enabled = true
+
+    # Temporarily disabled due to Terraform issue.
+    # https://github.com/terraform-providers/terraform-provider-aws/issues/629
+    # mfa_delete = true
   }
 }
