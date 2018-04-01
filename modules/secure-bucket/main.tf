@@ -12,4 +12,9 @@ resource "aws_s3_bucket" "content" {
   logging = {
     target_bucket = "${aws_s3_bucket.access_log.id}"
   }
+
+  versioning = {
+    enabled    = true
+    mfa_delete = true
+  }
 }
