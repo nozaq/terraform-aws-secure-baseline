@@ -9,14 +9,25 @@ Most configurations are based on [CIS Amazon web Services Foundations].
 
 ## Features
 
+### Identity and Access Management
+
 - Set up IAM Password Policy.
+- Creates separated IAM roles for defining privileges and assigning them to entities such as IAM users and groups.
+- Creates an IAM role for contacting AWS support for incident handling.
+
+### Logging & Monitoring
+
 - Enable CloudTrail in all regions and deliver events to CloudWatch Logs.
 - CloudTrail logs are encrypted using AWS Key Management Service.
-- Enable AWS Config in all regions to automatically take configuration snapshots.
 - All logs are stored in the S3 bucket with access logging enabled.
+- Logs are automatically archived into Amazon Glacier after the given period(defaults to 90 days).
 - Set up CloudWatch alarms to notify you when critical changes happen in your AWS account.
-- Enable VPC Flow Logs with the default VPC in all regions.
+- Enable AWS Config in all regions to automatically take configuration snapshots.
+
+### Networking
+
 - Remove all rules associated with default route tables, default network ACLs and default security groups in the default VPC in all regions.
+- Enable VPC Flow Logs with the default VPC in all regions.
 - Enable GuardDuty in all regions.
 
 ## Usage
@@ -55,8 +66,8 @@ module "secure-baseline" {
 }
 ```
 
-Note that you need to define a provider for each AWS region and pass them to the module.
-Currently this is the recommended way to handle multiple regions in one module.
+Check [the example](./examples/root-example/regions.tf) to understand how these providers are defined. 
+Note that you need to define a provider for each AWS region and pass them to the module. Currently this is the recommended way to handle multiple regions in one module.
 Detailed information can be found at [Providers within Modules - Terraform Docs].
 
 ## Submodules
@@ -70,6 +81,7 @@ This module is composed of several submodules and each of which can be used inde
 - [vpc-baseline](./modules/vpc-baseline)
 - [secure-bucket](./modules/secure-bucket)
 
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
@@ -78,6 +90,7 @@ This module is composed of several submodules and each of which can be used inde
 | alarm_sns_topic_name | The name of the SNS Topic which will be notified when any alarm is performed. | string | `CISAlarm` | no |
 | allow_users_to_change_password | Whether to allow users to change their own password. | string | `true` | no |
 | audit_log_bucket_name | The name of the S3 bucket to store various audit logs. | string | - | yes |
+| audit_log_lifecycle_glacier_transition_days | The number of days after log creation when the log file is archived into Glacier. | string | `90` | no |
 | aws_account_id | The AWS Account ID number of the account. | string | - | yes |
 | cloudtrail_cloudwatch_logs_group_name | The name of CloudWatch Logs group to which CloudTrail events are delivered. | string | `cloudtrail-multi-region` | no |
 | cloudtrail_iam_role_name | The name of the IAM Role to be used by CloudTrail to delivery logs to CloudWatch Logs group. | string | `CloudTrail-CloudWatch-Delivery-Role` | no |
