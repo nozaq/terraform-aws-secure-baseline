@@ -10,6 +10,11 @@ variable "audit_log_bucket_name" {
   description = "The name of the S3 bucket to store various audit logs."
 }
 
+variable "audit_log_lifecycle_glacier_transition_days" {
+  description = "The number of days after log creation when the log file is archived into Glacier."
+  default     = 90
+}
+
 variable "region" {
   description = "The AWS region in which global resources are set up."
 }
