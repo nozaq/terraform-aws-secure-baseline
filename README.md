@@ -5,7 +5,9 @@
 [Terraform Module Registry](https://registry.terraform.io/modules/nozaq/secure-baseline/aws)
 
 A terraform module to set up your AWS account with the reasonably secure configuration baseline.
-Most configurations are based on [CIS Amazon web Services Foundations].
+Most configurations are based on [CIS Amazon Web Services Foundations] v1.2.0.
+
+See [Benchmark Compliance](./compliance.md) to check which items in CIS benchmark are covered.
 
 ## Features
 
@@ -80,7 +82,6 @@ This module is composed of several submodules and each of which can be used inde
 - [iam-baseline](./modules/iam-baseline)
 - [vpc-baseline](./modules/vpc-baseline)
 - [secure-bucket](./modules/secure-bucket)
-
 
 ## Inputs
 
@@ -157,5 +158,5 @@ This module is composed of several submodules and each of which can be used inde
 | vpc_flow_logs_iam_role_arn | The ARN of the IAM role used for delivering VPC Flow Logs to CloudWatch Logs. |
 | vpc_flow_logs_iam_role_name | The name of the IAM role used for delivering VPC Flow Logs to CloudWatch Logs. |
 
-[CIS Amazon Web Services Foundations]: https://d0.awsstatic.com/whitepapers/compliance/AWS_CIS_Foundations_Benchmark.pdf
+[CIS Amazon Web Services Foundations]: https://www.cisecurity.org/benchmark/amazon_web_services/
 [Providers within Modules - Terraform Docs]: https://www.terraform.io/docs/modules/usage.html#providers-within-modules
