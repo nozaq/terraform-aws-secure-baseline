@@ -16,6 +16,7 @@ See [Benchmark Compliance](./compliance.md) to check which items in CIS benchmar
 - Set up IAM Password Policy.
 - Creates separated IAM roles for defining privileges and assigning them to entities such as IAM users and groups.
 - Creates an IAM role for contacting AWS support for incident handling.
+- Enable AWS Config rules to audit root account status.
 
 ### Logging & Monitoring
 
@@ -29,6 +30,7 @@ See [Benchmark Compliance](./compliance.md) to check which items in CIS benchmar
 ### Networking
 
 - Remove all rules associated with default route tables, default network ACLs and default security groups in the default VPC in all regions.
+- Enable AWS Config rules to audit unrestricted common ports in Security Group rules.
 - Enable VPC Flow Logs with the default VPC in all regions.
 - Enable GuardDuty in all regions.
 

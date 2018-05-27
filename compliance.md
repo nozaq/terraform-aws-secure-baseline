@@ -27,7 +27,7 @@ Implementation status for each item is categorized as follows.
 | 1.10 | Ensure IAM password policy prevents password reuse | OK | |
 | 1.11 | Ensure IAM password policy expires passwords within 90 days or less | OK | |
 | 1.12 | Ensure no root account access key exists | N/A | | |
-| 1.13 | Ensure MFA is enabled for the "root" account | N/A | |
+| 1.13 | Ensure MFA is enabled for the "root" account | OK | Although this module does not enforce the use of MFA, it enables a AWS Config rule to monitor that the MFA is enabled for root account. |
 | 1.14 | Ensure hardware MFA is enabled for the "root" account | N/A | |
 | 1.15 | Ensure security questions are registered in the AWS account | N/A | |
 | 1.16 | Ensure IAM policies are attached only to groups or roles | N/A | |
@@ -60,8 +60,8 @@ Implementation status for each item is categorized as follows.
 | 3.12 | Ensure a log metric filter and alarm exist for changes to network gateways | OK | |
 | 3.13 | Ensure a log metric filter and alarm exist for route table changes | OK | |
 | 3.14 | Ensure a log metric filter and alarm exist for VPC changes | OK | |
-| 4.1  | Ensure no security groups allow ingress from 0.0.0.0/0 to port 22 | N/A | |
-| 4.2  | Ensure no security groups allow ingress from 0.0.0.0/0 to port 3389 | N/A | |
+| 4.1  | Ensure no security groups allow ingress from 0.0.0.0/0 to port 22 | OK | Monitored by the AWS Config rule. |
+| 4.2  | Ensure no security groups allow ingress from 0.0.0.0/0 to port 3389 | OK | Monitored by the AWS Config rule. |
 | 4.3  | Ensure the default security group of every VPC restricts all traffic | OK | |
 | 4.4  | Ensure routing tables for VPC peering are "least access" | N/A | |
 

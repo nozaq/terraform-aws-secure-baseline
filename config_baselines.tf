@@ -258,3 +258,16 @@ module "config_baseline_us-west-2" {
     aws = "aws.us-west-2"
   }
 }
+
+# --------------------------------------------------------------------------------------------------
+# Global Config Rules
+# --------------------------------------------------------------------------------------------------
+
+resource "aws_config_config_rule" "root_mfa" {
+  name = "RootAccountMFAEnabled"
+
+  source {
+    owner             = "AWS"
+    source_identifier = "ROOT_ACCOUNT_MFA_ENABLED"
+  }
+}
