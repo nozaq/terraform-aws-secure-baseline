@@ -115,6 +115,11 @@ variable "vpc_log_group_name" {
   default     = "default-vpc-flow-logs"
 }
 
+variable "vpc_log_retention_in_days" {
+  description = "Number of days to retain logs for. CIS recommends 365 days.  Possible values are: 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1827, and 3653. Set to `null` in Terraform > 0.12 to keep logs indefinitely."
+  default     = 365
+}
+
 # --------------------------------------------------------------------------------------------------
 # Variables for config-baseline module.
 # --------------------------------------------------------------------------------------------------
