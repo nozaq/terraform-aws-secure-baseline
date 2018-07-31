@@ -96,15 +96,16 @@ module "iam_baseline" {
 module "cloudtrail_baseline" {
   source = "./modules/cloudtrail-baseline"
 
-  aws_account_id              = "${var.aws_account_id}"
-  cloudtrail_name             = "${var.cloudtrail_name}"
-  cloudwatch_logs_group_name  = "${var.cloudtrail_cloudwatch_logs_group_name}"
-  iam_role_name               = "${var.cloudtrail_iam_role_name}"
-  iam_role_policy_name        = "${var.cloudtrail_iam_role_policy_name}"
-  key_deletion_window_in_days = "${var.cloudtrail_key_deletion_window_in_days}"
-  region                      = "${var.region}"
-  s3_bucket_name              = "${module.audit_log_bucket.this_bucket_id}"
-  s3_key_prefix               = "${var.cloudtrail_s3_key_prefix}"
+  aws_account_id                    = "${var.aws_account_id}"
+  cloudtrail_name                   = "${var.cloudtrail_name}"
+  cloudwatch_logs_group_name        = "${var.cloudtrail_cloudwatch_logs_group_name}"
+  cloudwatch_logs_retention_in_days = "${var.cloudwatch_logs_retention_in_days}"
+  iam_role_name                     = "${var.cloudtrail_iam_role_name}"
+  iam_role_policy_name              = "${var.cloudtrail_iam_role_policy_name}"
+  key_deletion_window_in_days       = "${var.cloudtrail_key_deletion_window_in_days}"
+  region                            = "${var.region}"
+  s3_bucket_name                    = "${module.audit_log_bucket.this_bucket_id}"
+  s3_key_prefix                     = "${var.cloudtrail_s3_key_prefix}"
 }
 
 # --------------------------------------------------------------------------------------------------

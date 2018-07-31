@@ -153,6 +153,11 @@ variable "cloudtrail_cloudwatch_logs_group_name" {
   default     = "cloudtrail-multi-region"
 }
 
+variable "cloudwatch_logs_retention_in_days" {
+  description = "Number of days to retain logs for. CIS recommends 365 days.  Possible values are: 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1827, and 3653. Set to `null` in Terraform > 0.12 to keep logs indefinitely."
+  default     = 365
+}
+
 variable "cloudtrail_iam_role_name" {
   description = "The name of the IAM Role to be used by CloudTrail to delivery logs to CloudWatch Logs group."
   default     = "CloudTrail-CloudWatch-Delivery-Role"
