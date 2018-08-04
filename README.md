@@ -70,7 +70,7 @@ module "secure-baseline" {
 }
 ```
 
-Check [the example](./examples/root-example/regions.tf) to understand how these providers are defined. 
+Check [the example](./examples/root-example/regions.tf) to understand how these providers are defined.
 Note that you need to define a provider for each AWS region and pass them to the module. Currently this is the recommended way to handle multiple regions in one module.
 Detailed information can be found at [Providers within Modules - Terraform Docs].
 
@@ -101,6 +101,7 @@ This module is composed of several submodules and each of which can be used inde
 | cloudtrail_key_deletion_window_in_days | Duration in days after which the key is deleted after destruction of the resource, must be between 7 and 30 days. Defaults to 30 days. | string | `10` | no |
 | cloudtrail_name | The name of the trail. | string | `cloudtrail-multi-region` | no |
 | cloudtrail_s3_key_prefix | The prefix used when CloudTrail delivers events to the S3 bucket. | string | `cloudtrail` | no |
+| cloudwatch_logs_retention_in_days | Number of days to retain logs for. CIS recommends 365 days.  Possible values are: 0, 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1827, and 3653. Set to 0 to keep logs indefinitely. | string | `365` | no |
 | config_delivery_frequency | The frequency which AWS Config sends a snapshot into the S3 bucket. | string | `One_Hour` | no |
 | config_iam_role_name | The name of the IAM Role which AWS Config will use. | string | `Config-Recorder` | no |
 | config_iam_role_policy_name | The name of the IAM Role Policy which AWS Config will use. | string | `Config-Recorder-Policy` | no |
@@ -124,6 +125,7 @@ This module is composed of several submodules and each of which can be used inde
 | vpc_iam_role_name | The name of the IAM Role which VPC Flow Logs will use. | string | `VPC-Flow-Logs-Publisher` | no |
 | vpc_iam_role_policy_name | The name of the IAM Role Policy which VPC Flow Logs will use. | string | `VPC-Flow-Logs-Publish-Policy` | no |
 | vpc_log_group_name | The name of CloudWatch Logs group to which VPC Flow Logs are delivered. | string | `default-vpc-flow-logs` | no |
+| vpc_log_retention_in_days | Number of days to retain logs for. CIS recommends 365 days.  Possible values are: 0, 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1827, and 3653. Set to 0 to keep logs indefinitely. | string | `365` | no |
 
 ## Outputs
 

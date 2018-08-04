@@ -115,6 +115,11 @@ variable "vpc_log_group_name" {
   default     = "default-vpc-flow-logs"
 }
 
+variable "vpc_log_retention_in_days" {
+  description = "Number of days to retain logs for. CIS recommends 365 days.  Possible values are: 0, 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1827, and 3653. Set to 0 to keep logs indefinitely."
+  default     = 365
+}
+
 # --------------------------------------------------------------------------------------------------
 # Variables for config-baseline module.
 # --------------------------------------------------------------------------------------------------
@@ -151,6 +156,11 @@ variable "config_sns_topic_name" {
 variable "cloudtrail_cloudwatch_logs_group_name" {
   description = "The name of CloudWatch Logs group to which CloudTrail events are delivered."
   default     = "cloudtrail-multi-region"
+}
+
+variable "cloudwatch_logs_retention_in_days" {
+  description = "Number of days to retain logs for. CIS recommends 365 days.  Possible values are: 0, 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1827, and 3653. Set to 0 to keep logs indefinitely."
+  default     = 365
 }
 
 variable "cloudtrail_iam_role_name" {

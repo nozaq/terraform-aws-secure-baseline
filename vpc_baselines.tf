@@ -48,7 +48,8 @@ END_OF_POLICY
 }
 
 resource "aws_cloudwatch_log_group" "default_vpc_flow_logs" {
-  name = "${var.vpc_log_group_name}"
+  name              = "${var.vpc_log_group_name}"
+  retention_in_days = "${var.vpc_log_retention_in_days}"
 }
 
 # --------------------------------------------------------------------------------------------------
