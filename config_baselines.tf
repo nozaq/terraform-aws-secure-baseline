@@ -23,36 +23,50 @@ resource "aws_iam_role" "recorder" {
 POLICY
 }
 
+# See https://docs.aws.amazon.com/config/latest/developerguide/iamrole-permissions.html
+data "aws_iam_policy_document" "recoder_publish_policy" {
+  statement {
+    actions = ["s3:PutObject"]
+    resources = ["${module.audit_log_bucket.this_bucket_arn}/config/AWSLogs/${var.aws_account_id}/*"]
+
+    condition {
+      test = "StringLike"
+      variable = "s3:x-amz-acl"
+      values = ["bucket-owner-full-control"]
+    }
+  }
+
+  statement {
+    actions = ["s3:GetBucketAcl"]
+    resources = ["${module.audit_log_bucket.this_bucket_arn}"]
+  }
+
+  statement {
+    actions = ["sns:Publish"]
+    resources = [
+      "${module.config_baseline_ap-northeast-1.config_topic_arn}",
+      "${module.config_baseline_ap-northeast-2.config_topic_arn}",
+      "${module.config_baseline_ap-south-1.config_topic_arn}",
+      "${module.config_baseline_ap-southeast-1.config_topic_arn}",
+      "${module.config_baseline_ap-southeast-2.config_topic_arn}",
+      "${module.config_baseline_ca-central-1.config_topic_arn}",
+      "${module.config_baseline_eu-central-1.config_topic_arn}",
+      "${module.config_baseline_eu-west-1.config_topic_arn}",
+      "${module.config_baseline_eu-west-2.config_topic_arn}",
+      "${module.config_baseline_eu-west-3.config_topic_arn}",
+      "${module.config_baseline_sa-east-1.config_topic_arn}",
+      "${module.config_baseline_us-east-1.config_topic_arn}",
+      "${module.config_baseline_us-east-2.config_topic_arn}",
+      "${module.config_baseline_us-west-1.config_topic_arn}",
+      "${module.config_baseline_us-west-2.config_topic_arn}",
+    ]
+  }
+}
+
 resource "aws_iam_role_policy" "recoder_publish_policy" {
   name = "${var.config_iam_role_policy_name}"
   role = "${aws_iam_role.recorder.id}"
-
-  // https://docs.aws.amazon.com/config/latest/developerguide/iamrole-permissions.html
-  policy = <<END_OF_POLICY
-{
-  "Version": "2012-10-17",
-  "Statement":
-   [
-     {
-       "Effect": "Allow",
-       "Action": ["s3:PutObject"],
-       "Resource": ["${module.audit_log_bucket.this_bucket_arn}/config/AWSLogs/${var.aws_account_id}/*"],
-       "Condition":
-        {
-          "StringLike":
-            {
-              "s3:x-amz-acl": "bucket-owner-full-control"
-            }
-        }
-     },
-     {
-       "Effect": "Allow",
-       "Action": ["s3:GetBucketAcl"],
-       "Resource": "${module.audit_log_bucket.this_bucket_arn}"
-     }
-  ]
-}
-END_OF_POLICY
+  policy = "${data.aws_iam_policy_document.recoder_publish_policy.json}"
 }
 
 resource "aws_iam_role_policy_attachment" "recoder_read_policy" {
