@@ -70,15 +70,13 @@ module "guardduty_baseline_eu-west-2" {
   }
 }
 
-# GuardDuty is not supported in eu-west-3(Paris) region.
-# https://aws.amazon.com/about-aws/global-infrastructure/regional-product-services/
-# module "guardduty_baseline_eu-west-3" {
-#   source = "./modules/guardduty-baseline"
-#
-#   providers = {
-#     aws = "aws.eu-west-3"
-#   }
-# }
+module "guardduty_baseline_eu-west-3" {
+  source = "./modules/guardduty-baseline"
+
+  providers = {
+    aws = "aws.eu-west-3"
+  }
+}
 
 module "guardduty_baseline_sa-east-1" {
   source = "./modules/guardduty-baseline"
