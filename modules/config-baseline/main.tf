@@ -1,3 +1,7 @@
+# --------------------------------------------------------------------------------------------------
+# Set up AWS Config recorder and let it publish results and send notifications.
+# --------------------------------------------------------------------------------------------------
+
 resource "aws_sns_topic" "config" {
   name = "${var.sns_topic_name}"
 }
@@ -33,6 +37,10 @@ resource "aws_config_configuration_recorder_status" "recorder" {
   is_enabled = true
   depends_on = ["aws_config_delivery_channel.bucket"]
 }
+
+# --------------------------------------------------------------------------------------------------
+# A config rule to monitor open known ports.
+# --------------------------------------------------------------------------------------------------
 
 resource "aws_config_config_rule" "restricted_ports" {
   name = "RestrictedIncomingTraffic"

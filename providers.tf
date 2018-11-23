@@ -1,6 +1,6 @@
 # --------------------------------------------------------------------------------------------------
 # A list of providers for all AWS regions.
-# See also: https://docs.aws.amazon.com/general/latest/gr/rande.html
+# Reference: https://docs.aws.amazon.com/general/latest/gr/rande.html
 # --------------------------------------------------------------------------------------------------
 
 provider "aws" {}

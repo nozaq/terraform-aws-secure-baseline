@@ -1,3 +1,9 @@
+# --------------------------------------------------------------------------------------------------
+# GuardDuty Baseline
+# Needs to be set up in each region.
+# This is an extra configuration which is not included in CIS benchmark.
+# --------------------------------------------------------------------------------------------------
+
 module "guardduty_baseline_ap-northeast-1" {
   source = "./modules/guardduty-baseline"
 

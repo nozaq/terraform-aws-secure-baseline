@@ -36,4 +36,3 @@
 | master_iam_role_name | The name of the IAM role used for the master user. |
 | support_iam_role_arn | The ARN of the IAM role used for the support user. |
 | support_iam_role_name | The name of the IAM role used for the support user. |
-

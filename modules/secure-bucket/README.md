@@ -17,4 +17,3 @@ Creates a S3 bucket with access logging enabled.
 | log_bucket_id | The ID of the S3 bucket used for storing access logs of this bucket. |
 | this_bucket_arn | The ARN of this S3 bucket. |
 | this_bucket_id | The ID of this S3 bucket. |
-

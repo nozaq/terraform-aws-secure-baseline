@@ -1,6 +1,6 @@
 # vpc-baseline
 
-## Features 
+## Features
 
 - Enable VPC Flow Logs with the default VPC in all regions.
 - Remove all rules associated with default route tables, default network ACLs and default security groups in the default VPC in all regions.
@@ -20,4 +20,3 @@
 | default_route_table_id | The ID of the default route table. |
 | default_security_group_id | The ID of the default security group. |
 | default_vpc_id | The ID of the default VPC. |
-
