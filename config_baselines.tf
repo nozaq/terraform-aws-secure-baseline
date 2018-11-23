@@ -1,6 +1,6 @@
 # --------------------------------------------------------------------------------------------------
-# Create an IAM Role for publishing VPC Flow Logs into CloudWatch Logs group.
-# Reference: https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/flow-logs.html#flow-logs-iam
+# Create an IAM Role for AWS Config recorder to publish results and send notifications.
+# Reference: https://docs.aws.amazon.com/config/latest/developerguide/gs-cli-prereq.html#gs-cli-create-iamrole
 # --------------------------------------------------------------------------------------------------
 
 resource "aws_iam_role" "recorder" {
@@ -26,23 +26,24 @@ POLICY
 # See https://docs.aws.amazon.com/config/latest/developerguide/iamrole-permissions.html
 data "aws_iam_policy_document" "recoder_publish_policy" {
   statement {
-    actions = ["s3:PutObject"]
+    actions   = ["s3:PutObject"]
     resources = ["${module.audit_log_bucket.this_bucket_arn}/config/AWSLogs/${var.aws_account_id}/*"]
 
     condition {
-      test = "StringLike"
+      test     = "StringLike"
       variable = "s3:x-amz-acl"
-      values = ["bucket-owner-full-control"]
+      values   = ["bucket-owner-full-control"]
     }
   }
 
   statement {
-    actions = ["s3:GetBucketAcl"]
+    actions   = ["s3:GetBucketAcl"]
     resources = ["${module.audit_log_bucket.this_bucket_arn}"]
   }
 
   statement {
     actions = ["sns:Publish"]
+
     resources = [
       "${module.config_baseline_ap-northeast-1.config_topic_arn}",
       "${module.config_baseline_ap-northeast-2.config_topic_arn}",
@@ -64,8 +65,8 @@ data "aws_iam_policy_document" "recoder_publish_policy" {
 }
 
 resource "aws_iam_role_policy" "recoder_publish_policy" {
-  name = "${var.config_iam_role_policy_name}"
-  role = "${aws_iam_role.recorder.id}"
+  name   = "${var.config_iam_role_policy_name}"
+  role   = "${aws_iam_role.recorder.id}"
   policy = "${data.aws_iam_policy_document.recoder_publish_policy.json}"
 }
 
@@ -75,7 +76,8 @@ resource "aws_iam_role_policy_attachment" "recoder_read_policy" {
 }
 
 # --------------------------------------------------------------------------------------------------
-# Apply VPC baseline for each region.
+# AWS Config Baseline
+# Needs to be set up in each region.
 # --------------------------------------------------------------------------------------------------
 
 module "config_baseline_ap-northeast-1" {
@@ -285,7 +287,7 @@ resource "aws_config_config_rule" "root_mfa" {
     source_identifier = "ROOT_ACCOUNT_MFA_ENABLED"
   }
 
-  # Ensure this rule is created after the configuration recorder.
+  # Ensure this rule is created after all configuration recorders.
   depends_on = [
     "module.config_baseline_ap-northeast-1",
     "module.config_baseline_ap-northeast-2",

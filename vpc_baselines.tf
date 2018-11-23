@@ -53,7 +53,8 @@ resource "aws_cloudwatch_log_group" "default_vpc_flow_logs" {
 }
 
 # --------------------------------------------------------------------------------------------------
-# Apply VPC baseline for each region.
+# VPC Baseline
+# Needs to be set up in each region.
 # --------------------------------------------------------------------------------------------------
 
 module "vpc_baseline_ap-northeast-1" {

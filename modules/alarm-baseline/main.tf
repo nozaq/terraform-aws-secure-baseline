@@ -1,6 +1,14 @@
+# --------------------------------------------------------------------------------------------------
+# The SNS topic to which CloudWatch alarms send events.
+# --------------------------------------------------------------------------------------------------
+
 resource "aws_sns_topic" "alarms" {
   name = "${var.sns_topic_name}"
 }
+
+# --------------------------------------------------------------------------------------------------
+# CloudWatch metrics and alamrs defined in the CIS benchmark.
+# --------------------------------------------------------------------------------------------------
 
 resource "aws_cloudwatch_log_metric_filter" "unauthorized_api_calls" {
   name           = "UnauthorizedAPICalls"

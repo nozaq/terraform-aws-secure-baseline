@@ -1,5 +1,9 @@
 data "aws_availability_zones" "available" {}
 
+# --------------------------------------------------------------------------------------------------
+# Clears rules associated with default resources.
+# --------------------------------------------------------------------------------------------------
+
 resource "aws_default_vpc" "default" {
   tags {
     Name = "Default VPC"
@@ -42,6 +46,10 @@ resource "aws_default_security_group" "default" {
     Name = "Default Security Group"
   }
 }
+
+# --------------------------------------------------------------------------------------------------
+# Enable VPC Flow Logs for the default VPC.
+# --------------------------------------------------------------------------------------------------
 
 resource "aws_flow_log" "default_vpc_flow_logs" {
   log_group_name = "${var.vpc_flow_logs_group_name}"
