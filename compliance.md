@@ -16,9 +16,9 @@ Implementation status for each item is categorized as follows.
 | No. | Item | Status | Notes |
 | ---:| ---- | ------ | ----- |
 | 1.1  | Avoid the use of the "root" account | N/A | |
-| 1.2  | Ensure multi-factor authentication (MFA) is enabled for all IAM users that have a console password | N/A | |
-| 1.3  | Ensure credentials unused for 90 days or greater are disabled | N/A | |
-| 1.4  | Ensure access keys are rotated every 90 days or less | N/A | |
+| 1.2  | Ensure multi-factor authentication (MFA) is enabled for all IAM users that have a console password | OK | Monitored by the AWS Config rule. |
+| 1.3  | Ensure credentials unused for 90 days or greater are disabled | OK | Monitored by the AWS Config rule. |
+| 1.4  | Ensure access keys are rotated every 90 days or less | OK | Monitored by the AWS Config rule. |
 | 1.5  | Ensure IAM password policy requires at least one uppercase letter | OK | |
 | 1.6  | Ensure IAM password policy require at least one lowercase letter | OK | |
 | 1.7  | Ensure IAM password policy require at least one symbol | OK | |
@@ -26,17 +26,17 @@ Implementation status for each item is categorized as follows.
 | 1.9  | Ensure IAM password policy requires minimum length of 14 or greater | OK | |
 | 1.10 | Ensure IAM password policy prevents password reuse | OK | |
 | 1.11 | Ensure IAM password policy expires passwords within 90 days or less | OK | |
-| 1.12 | Ensure no root account access key exists | N/A | | |
-| 1.13 | Ensure MFA is enabled for the "root" account | OK | Although this module does not enforce the use of MFA, it enables a AWS Config rule to monitor that the MFA is enabled for root account. |
-| 1.14 | Ensure hardware MFA is enabled for the "root" account | N/A | |
+| 1.12 | Ensure no root account access key exists | OK | Monitored by the AWS Config rule. |
+| 1.13 | Ensure MFA is enabled for the "root" account | OK | Monitored by the AWS Config rule. |
+| 1.14 | Ensure hardware MFA is enabled for the "root" account | OK | Monitored by the AWS Config rule. |
 | 1.15 | Ensure security questions are registered in the AWS account | N/A | |
-| 1.16 | Ensure IAM policies are attached only to groups or roles | N/A | |
+| 1.16 | Ensure IAM policies are attached only to groups or roles | OK | Monitored by the AWS Config rule. |
 | 1.17 | Maintain current contact details | N/A | |
 | 1.18 | Ensure security contact information is registered | N/A | |
 | 1.19 | Ensure IAM instance roles are used for AWS resource access from instances | N/A | |
 | 1.20 | Ensure a support role has been created to manage incidents with AWS Support | OK | |
 | 1.21 | Do not setup access keys during initial user setup for all IAM users that have a console password | N/A | |
-| 1.22 | Ensure IAM policies that allow full "*:*" administrative privileges are not created | N/A | |
+| 1.22 | Ensure IAM policies that allow full "\*:\*" administrative privileges are not created | OK | Monitored by the AWS Config rule. |
 | 2.1  | Ensure CloudTrail is enabled in all regions | OK | |
 | 2.2  | Ensure CloudTrail log file validation is enabled | OK | |
 | 2.3  | Ensure the S3 bucket used to store CloudTrail logs is not publicly accessible | OK | |
