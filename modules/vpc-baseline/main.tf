@@ -52,8 +52,8 @@ resource "aws_default_security_group" "default" {
 # --------------------------------------------------------------------------------------------------
 
 resource "aws_flow_log" "default_vpc_flow_logs" {
-  log_group_name = "${var.vpc_flow_logs_group_name}"
-  iam_role_arn   = "${var.vpc_flow_logs_iam_role_arn}"
-  vpc_id         = "${aws_default_vpc.default.id}"
-  traffic_type   = "ALL"
+  log_destination = "${var.vpc_flow_logs_group_arn}"
+  iam_role_arn    = "${var.vpc_flow_logs_iam_role_arn}"
+  vpc_id          = "${aws_default_vpc.default.id}"
+  traffic_type    = "ALL"
 }

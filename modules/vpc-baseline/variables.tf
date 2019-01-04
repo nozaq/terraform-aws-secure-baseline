@@ -1,5 +1,5 @@
-variable "vpc_flow_logs_group_name" {
-  description = "The name of the CloudWatch Logs group to which VPC Flow Logs will be written."
+variable "vpc_flow_logs_group_arn" {
+  description = "The arn of the CloudWatch Logs group to which VPC Flow Logs will be written."
 }
 
 variable "vpc_flow_logs_iam_role_arn" {

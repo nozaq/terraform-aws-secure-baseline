@@ -9,7 +9,7 @@
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| vpc_flow_logs_group_name | The name of the CloudWatch Logs group to which VPC Flow Logs will be written. | string | - | yes |
+| vpc_flow_logs_group_arn | The arn of the CloudWatch Logs group to which VPC Flow Logs will be written. | string | - | yes |
 | vpc_flow_logs_iam_role_arn | The ARN of the IAM Role which will be used by VPC Flow Logs. | string | - | yes |
 
 ## Outputs
