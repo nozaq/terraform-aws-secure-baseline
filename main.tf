@@ -33,7 +33,7 @@ resource "aws_s3_bucket_policy" "audit_log_bucket_policy" {
       "Effect": "Allow",
       "Principal": {"Service": "config.amazonaws.com"},
       "Action": "s3:PutObject",
-      "Resource": "${module.audit_log_bucket.this_bucket_arn}/config/AWSLogs/${var.aws_account_id}/Config/*",
+      "Resource": "${module.audit_log_bucket.this_bucket_arn}/${var.config_s3_bucket_key_prefix}/AWSLogs/${var.aws_account_id}/Config/*",
       "Condition": {"StringEquals": {"s3:x-amz-acl": "bucket-owner-full-control"}}
     },
     {
@@ -52,7 +52,7 @@ resource "aws_s3_bucket_policy" "audit_log_bucket_policy" {
             "Service": "cloudtrail.amazonaws.com"
         },
         "Action": "s3:PutObject",
-        "Resource": "${module.audit_log_bucket.this_bucket_arn}/cloudtrail/AWSLogs/${var.aws_account_id}/*",
+        "Resource": "${module.audit_log_bucket.this_bucket_arn}/${var.cloudtrail_s3_key_prefix}/AWSLogs/${var.aws_account_id}/CloudTrail/*",
         "Condition": {
             "StringEquals": {
                 "s3:x-amz-acl": "bucket-owner-full-control"
