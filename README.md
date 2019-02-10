@@ -165,3 +165,4 @@ This module is composed of several submodules and each of which can be used inde
 
 [CIS Amazon Web Services Foundations]: https://www.cisecurity.org/benchmark/amazon_web_services/
 [Providers within Modules - Terraform Docs]: https://www.terraform.io/docs/modules/usage.html#providers-within-modules
+[Modules in Package Sub-directories - Terraform]: https://www.terraform.io/docs/modules/sources.html#modules-in-package-sub-directories
