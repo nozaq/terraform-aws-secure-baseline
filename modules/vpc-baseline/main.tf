@@ -1,6 +1,15 @@
 data "aws_availability_zones" "available" {}
 
 # --------------------------------------------------------------------------------------------------
+# Creates a log group for VPC Flow Logs
+# --------------------------------------------------------------------------------------------------
+
+resource "aws_cloudwatch_log_group" "default_vpc_flow_logs" {
+  name              = "${var.vpc_log_group_name}"
+  retention_in_days = "${var.vpc_log_retention_in_days}"
+}
+
+# --------------------------------------------------------------------------------------------------
 # Clears rules associated with default resources.
 # --------------------------------------------------------------------------------------------------
 
@@ -52,7 +61,7 @@ resource "aws_default_security_group" "default" {
 # --------------------------------------------------------------------------------------------------
 
 resource "aws_flow_log" "default_vpc_flow_logs" {
-  log_destination = "${var.vpc_flow_logs_group_arn}"
+  log_destination = "${aws_cloudwatch_log_group.default_vpc_flow_logs.arn}"
   iam_role_arn    = "${var.vpc_flow_logs_iam_role_arn}"
   vpc_id          = "${aws_default_vpc.default.id}"
   traffic_type    = "ALL"
