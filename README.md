@@ -77,6 +77,7 @@ Detailed information can be found at [Providers within Modules - Terraform Docs]
 ## Submodules
 
 This module is composed of several submodules and each of which can be used independently.
+[Modules in Package Sub-directories - Terraform] describes how to source a submodule.
 
 - [alarm-baseline](./modules/alarm-baseline)
 - [cloudtrail-baseline](./modules/cloudtrail-baseline)
