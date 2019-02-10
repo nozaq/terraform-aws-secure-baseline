@@ -204,12 +204,50 @@ output "vpc_flow_logs_iam_role_name" {
 
 output "vpc_flow_logs_group_arn" {
   description = "The ARN of the CloudWatch Logs log group which stores VPC Flow Logs."
-  value       = "${aws_cloudwatch_log_group.default_vpc_flow_logs.arn}"
+
+  value = "${
+    map(
+      "ap-northeast-1", "${module.vpc_baseline_ap-northeast-1.vpc_flow_logs_group_arn}",
+      "ap-northeast-2", "${module.vpc_baseline_ap-northeast-2.vpc_flow_logs_group_arn}",
+      "ap-south-1", "${module.vpc_baseline_ap-south-1.vpc_flow_logs_group_arn}",
+      "ap-southeast-1", "${module.vpc_baseline_ap-southeast-1.vpc_flow_logs_group_arn}",
+      "ap-southeast-2", "${module.vpc_baseline_ap-southeast-2.vpc_flow_logs_group_arn}",
+      "ca-central-1", "${module.vpc_baseline_ca-central-1.vpc_flow_logs_group_arn}",
+      "eu-central-1", "${module.vpc_baseline_eu-central-1.vpc_flow_logs_group_arn}",
+      "eu-west-1", "${module.vpc_baseline_eu-west-1.vpc_flow_logs_group_arn}",
+      "eu-west-2", "${module.vpc_baseline_eu-west-2.vpc_flow_logs_group_arn}",
+      "eu-west-3", "${module.vpc_baseline_eu-west-3.vpc_flow_logs_group_arn}",
+      "sa-east-1", "${module.vpc_baseline_sa-east-1.vpc_flow_logs_group_arn}",
+      "us-east-1", "${module.vpc_baseline_us-east-1.vpc_flow_logs_group_arn}",
+      "us-east-2", "${module.vpc_baseline_us-east-2.vpc_flow_logs_group_arn}",
+      "us-west-1", "${module.vpc_baseline_us-west-1.vpc_flow_logs_group_arn}",
+      "us-west-2", "${module.vpc_baseline_us-west-2.vpc_flow_logs_group_arn}",
+    )
+  }"
 }
 
 output "vpc_flow_logs_group_name" {
   description = "The name of the CloudWatch Logs log group which stores VPC Flow Logs."
-  value       = "${aws_cloudwatch_log_group.default_vpc_flow_logs.name}"
+
+  value = "${
+    map(
+      "ap-northeast-1", "${module.vpc_baseline_ap-northeast-1.vpc_flow_logs_group_name}",
+      "ap-northeast-2", "${module.vpc_baseline_ap-northeast-2.vpc_flow_logs_group_name}",
+      "ap-south-1", "${module.vpc_baseline_ap-south-1.vpc_flow_logs_group_name}",
+      "ap-southeast-1", "${module.vpc_baseline_ap-southeast-1.vpc_flow_logs_group_name}",
+      "ap-southeast-2", "${module.vpc_baseline_ap-southeast-2.vpc_flow_logs_group_name}",
+      "ca-central-1", "${module.vpc_baseline_ca-central-1.vpc_flow_logs_group_name}",
+      "eu-central-1", "${module.vpc_baseline_eu-central-1.vpc_flow_logs_group_name}",
+      "eu-west-1", "${module.vpc_baseline_eu-west-1.vpc_flow_logs_group_name}",
+      "eu-west-2", "${module.vpc_baseline_eu-west-2.vpc_flow_logs_group_name}",
+      "eu-west-3", "${module.vpc_baseline_eu-west-3.vpc_flow_logs_group_name}",
+      "sa-east-1", "${module.vpc_baseline_sa-east-1.vpc_flow_logs_group_name}",
+      "us-east-1", "${module.vpc_baseline_us-east-1.vpc_flow_logs_group_name}",
+      "us-east-2", "${module.vpc_baseline_us-east-2.vpc_flow_logs_group_name}",
+      "us-west-1", "${module.vpc_baseline_us-west-1.vpc_flow_logs_group_name}",
+      "us-west-2", "${module.vpc_baseline_us-west-2.vpc_flow_logs_group_name}",
+    )
+  }"
 }
 
 output "default_vpc_id" {
