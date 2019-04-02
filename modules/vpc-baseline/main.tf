@@ -27,12 +27,6 @@ resource "aws_default_route_table" "default" {
   }
 }
 
-resource "aws_default_subnet" "default" {
-  count = "${length(data.aws_availability_zones.available.names)}"
-
-  availability_zone = "${data.aws_availability_zones.available.names[count.index]}"
-}
-
 // Ignore "subnet_ids" changes to avoid the known issue below.
 // https://github.com/hashicorp/terraform/issues/9824
 // https://github.com/terraform-providers/terraform-provider-aws/issues/346
