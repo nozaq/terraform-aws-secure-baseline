@@ -115,6 +115,7 @@ output "config_topic_arn" {
       "ap-southeast-2", "${module.config_baseline_ap-southeast-2.config_topic_arn}",
       "ca-central-1", "${module.config_baseline_ca-central-1.config_topic_arn}",
       "eu-central-1", "${module.config_baseline_eu-central-1.config_topic_arn}",
+      "eu-north-1", "${module.config_baseline_eu-north-1.config_topic_arn}",
       "eu-west-1", "${module.config_baseline_eu-west-1.config_topic_arn}",
       "eu-west-2", "${module.config_baseline_eu-west-2.config_topic_arn}",
       "eu-west-3", "${module.config_baseline_eu-west-3.config_topic_arn}",
@@ -134,6 +135,7 @@ output "config_topic_arn" {
 output "guardduty_detector_id" {
   description = "The ID of the GuardDuty detector."
 
+  # GuardDuty is not available in eu-north-1 region yet.
   value = "${
     map(
       "ap-northeast-1", "${module.guardduty_baseline_ap-northeast-1.guardduty_detector_id}",
@@ -214,6 +216,7 @@ output "vpc_flow_logs_group_arn" {
       "ap-southeast-2", "${module.vpc_baseline_ap-southeast-2.vpc_flow_logs_group_arn}",
       "ca-central-1", "${module.vpc_baseline_ca-central-1.vpc_flow_logs_group_arn}",
       "eu-central-1", "${module.vpc_baseline_eu-central-1.vpc_flow_logs_group_arn}",
+      "eu-north-1", "${module.vpc_baseline_eu-north-1.vpc_flow_logs_group_arn}",
       "eu-west-1", "${module.vpc_baseline_eu-west-1.vpc_flow_logs_group_arn}",
       "eu-west-2", "${module.vpc_baseline_eu-west-2.vpc_flow_logs_group_arn}",
       "eu-west-3", "${module.vpc_baseline_eu-west-3.vpc_flow_logs_group_arn}",
@@ -238,6 +241,7 @@ output "vpc_flow_logs_group_name" {
       "ap-southeast-2", "${module.vpc_baseline_ap-southeast-2.vpc_flow_logs_group_name}",
       "ca-central-1", "${module.vpc_baseline_ca-central-1.vpc_flow_logs_group_name}",
       "eu-central-1", "${module.vpc_baseline_eu-central-1.vpc_flow_logs_group_name}",
+      "eu-north-1", "${module.vpc_baseline_eu-north-1.vpc_flow_logs_group_name}",
       "eu-west-1", "${module.vpc_baseline_eu-west-1.vpc_flow_logs_group_name}",
       "eu-west-2", "${module.vpc_baseline_eu-west-2.vpc_flow_logs_group_name}",
       "eu-west-3", "${module.vpc_baseline_eu-west-3.vpc_flow_logs_group_name}",
@@ -262,6 +266,7 @@ output "default_vpc_id" {
       "ap-southeast-2", "${module.vpc_baseline_ap-southeast-2.default_vpc_id}",
       "ca-central-1", "${module.vpc_baseline_ca-central-1.default_vpc_id}",
       "eu-central-1", "${module.vpc_baseline_eu-central-1.default_vpc_id}",
+      "eu-north-1", "${module.vpc_baseline_eu-north-1.default_vpc_id}",
       "eu-west-1", "${module.vpc_baseline_eu-west-1.default_vpc_id}",
       "eu-west-2", "${module.vpc_baseline_eu-west-2.default_vpc_id}",
       "eu-west-3", "${module.vpc_baseline_eu-west-3.default_vpc_id}",
@@ -286,6 +291,7 @@ output "default_security_group_id" {
       "ap-southeast-2", "${module.vpc_baseline_ap-southeast-2.default_security_group_id}",
       "ca-central-1", "${module.vpc_baseline_ca-central-1.default_security_group_id}",
       "eu-central-1", "${module.vpc_baseline_eu-central-1.default_security_group_id}",
+      "eu-north-1", "${module.vpc_baseline_eu-north-1.default_security_group_id}",
       "eu-west-1", "${module.vpc_baseline_eu-west-1.default_security_group_id}",
       "eu-west-2", "${module.vpc_baseline_eu-west-2.default_security_group_id}",
       "eu-west-3", "${module.vpc_baseline_eu-west-3.default_security_group_id}",
@@ -310,6 +316,7 @@ output "default_network_acl_id" {
       "ap-southeast-2", "${module.vpc_baseline_ap-southeast-2.default_network_acl_id}",
       "ca-central-1", "${module.vpc_baseline_ca-central-1.default_network_acl_id}",
       "eu-central-1", "${module.vpc_baseline_eu-central-1.default_network_acl_id}",
+      "eu-north-1", "${module.vpc_baseline_eu-north-1.default_network_acl_id}",
       "eu-west-1", "${module.vpc_baseline_eu-west-1.default_network_acl_id}",
       "eu-west-2", "${module.vpc_baseline_eu-west-2.default_network_acl_id}",
       "eu-west-3", "${module.vpc_baseline_eu-west-3.default_network_acl_id}",
@@ -334,6 +341,7 @@ output "default_route_table_id" {
       "ap-southeast-2", "${module.vpc_baseline_ap-southeast-2.default_route_table_id}",
       "ca-central-1", "${module.vpc_baseline_ca-central-1.default_route_table_id}",
       "eu-central-1", "${module.vpc_baseline_eu-central-1.default_route_table_id}",
+      "eu-north-1", "${module.vpc_baseline_eu-north-1.default_route_table_id}",
       "eu-west-1", "${module.vpc_baseline_eu-west-1.default_route_table_id}",
       "eu-west-2", "${module.vpc_baseline_eu-west-2.default_route_table_id}",
       "eu-west-3", "${module.vpc_baseline_eu-west-3.default_route_table_id}",
