@@ -52,6 +52,7 @@ data "aws_iam_policy_document" "recoder_publish_policy" {
       "${module.config_baseline_ap-southeast-2.config_topic_arn}",
       "${module.config_baseline_ca-central-1.config_topic_arn}",
       "${module.config_baseline_eu-central-1.config_topic_arn}",
+      "${module.config_baseline_eu-north-1.config_topic_arn}",
       "${module.config_baseline_eu-west-1.config_topic_arn}",
       "${module.config_baseline_eu-west-2.config_topic_arn}",
       "${module.config_baseline_eu-west-3.config_topic_arn}",
@@ -168,6 +169,19 @@ module "config_baseline_eu-central-1" {
 
   providers = {
     aws = "aws.eu-central-1"
+  }
+}
+
+module "config_baseline_eu-north-1" {
+  source             = "./modules/config-baseline"
+  iam_role_arn       = "${aws_iam_role.recorder.arn}"
+  s3_bucket_name     = "${module.audit_log_bucket.this_bucket_id}"
+  s3_key_prefix      = "${var.config_s3_bucket_key_prefix}"
+  delivery_frequency = "${var.config_delivery_frequency}"
+  sns_topic_name     = "${var.config_sns_topic_name}"
+
+  providers = {
+    aws = "aws.eu-north-1"
   }
 }
 
@@ -296,6 +310,7 @@ resource "aws_config_config_rule" "root_hardware_mfa" {
     "module.config_baseline_ap-southeast-2",
     "module.config_baseline_ca-central-1",
     "module.config_baseline_eu-central-1",
+    "module.config_baseline_eu-north-1",
     "module.config_baseline_eu-west-1",
     "module.config_baseline_eu-west-2",
     "module.config_baseline_eu-west-3",
@@ -324,6 +339,7 @@ resource "aws_config_config_rule" "iam_mfa" {
     "module.config_baseline_ap-southeast-2",
     "module.config_baseline_ca-central-1",
     "module.config_baseline_eu-central-1",
+    "module.config_baseline_eu-north-1",
     "module.config_baseline_eu-west-1",
     "module.config_baseline_eu-west-2",
     "module.config_baseline_eu-west-3",
@@ -354,6 +370,7 @@ resource "aws_config_config_rule" "access_key_rotated" {
     "module.config_baseline_ap-southeast-2",
     "module.config_baseline_ca-central-1",
     "module.config_baseline_eu-central-1",
+    "module.config_baseline_eu-north-1",
     "module.config_baseline_eu-west-1",
     "module.config_baseline_eu-west-2",
     "module.config_baseline_eu-west-3",
@@ -384,6 +401,7 @@ resource "aws_config_config_rule" "unused_credentials" {
     "module.config_baseline_ap-southeast-2",
     "module.config_baseline_ca-central-1",
     "module.config_baseline_eu-central-1",
+    "module.config_baseline_eu-north-1",
     "module.config_baseline_eu-west-1",
     "module.config_baseline_eu-west-2",
     "module.config_baseline_eu-west-3",
@@ -418,6 +436,7 @@ resource "aws_config_config_rule" "user_no_policies" {
     "module.config_baseline_ap-southeast-2",
     "module.config_baseline_ca-central-1",
     "module.config_baseline_eu-central-1",
+    "module.config_baseline_eu-north-1",
     "module.config_baseline_eu-west-1",
     "module.config_baseline_eu-west-2",
     "module.config_baseline_eu-west-3",
@@ -452,6 +471,7 @@ resource "aws_config_config_rule" "no_policies_with_full_admin_access" {
     "module.config_baseline_ap-southeast-2",
     "module.config_baseline_ca-central-1",
     "module.config_baseline_eu-central-1",
+    "module.config_baseline_eu-north-1",
     "module.config_baseline_eu-west-1",
     "module.config_baseline_eu-west-2",
     "module.config_baseline_eu-west-3",

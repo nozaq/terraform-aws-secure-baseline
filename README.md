@@ -58,6 +58,7 @@ module "secure-baseline" {
     "aws.ap-southeast-2" = "aws.ap-southeast-2"
     "aws.ca-central-1"   = "aws.ca-central-1"
     "aws.eu-central-1"   = "aws.eu-central-1"
+    "aws.eu-north-1"     = "aws.eu-north-1"
     "aws.eu-west-1"      = "aws.eu-west-1"
     "aws.eu-west-2"      = "aws.eu-west-2"
     "aws.eu-west-3"      = "aws.eu-west-3"

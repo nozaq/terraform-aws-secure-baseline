@@ -4,7 +4,7 @@ The table below shows which items in [CIS Amazon web Services Foundations] v1.2.
 
 ## Definition
 
-Implementation status for each item is categorized as follows. 
+Implementation status for each item is categorized as follows.
 
 | Status | Description |
 | ------ | ----------- |
