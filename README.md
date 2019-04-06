@@ -26,6 +26,7 @@ See [Benchmark Compliance](./compliance.md) to check which items in CIS benchmar
 - Logs are automatically archived into Amazon Glacier after the given period(defaults to 90 days).
 - Set up CloudWatch alarms to notify you when critical changes happen in your AWS account.
 - Enable AWS Config in all regions to automatically take configuration snapshots.
+- Enable SecurityHub and subscribe CIS benchmark standard.
 
 ### Networking
 
