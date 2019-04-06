@@ -2,12 +2,20 @@
 ## [Unreleased]
 
 ### Feat
+- enable SecurityHub and CIS standard subscription
 - add eu-north-1 region support
 
 
 <a name="0.8.0"></a>
 ## [0.8.0] - 2019-04-03
 ### Feat
+- add eu-north-1 region support
+
+
+<a name="0.9.0"></a>
+## [0.9.0] - 2019-02-11
+### Feat
+- enable SecurityHub and CIS standard subscription
 - add eu-north-1 region support
 
 ### Fix
@@ -111,7 +119,8 @@
 ## 0.0.1 - 2018-02-12
 
 [Unreleased]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.8.0...HEAD
-[0.8.0]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.7.0...0.8.0
+[0.8.0]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.9.0...0.8.0
+[0.9.0]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.7.0...0.9.0
 [0.7.0]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.6.0...0.7.0
 [0.6.0]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.5.0...0.6.0
 [0.5.0]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.4.1...0.5.0
