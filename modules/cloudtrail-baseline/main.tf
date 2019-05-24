@@ -3,8 +3,8 @@
 # --------------------------------------------------------------------------------------------------
 
 resource "aws_cloudwatch_log_group" "cloudtrail_events" {
-  name              = "${var.cloudwatch_logs_group_name}"
-  retention_in_days = "${var.cloudwatch_logs_retention_in_days}"
+  name              = var.cloudwatch_logs_group_name
+  retention_in_days = var.cloudwatch_logs_retention_in_days
 }
 
 # --------------------------------------------------------------------------------------------------
@@ -14,7 +14,7 @@ resource "aws_cloudwatch_log_group" "cloudtrail_events" {
 # --------------------------------------------------------------------------------------------------
 
 resource "aws_iam_role" "cloudwatch_delivery" {
-  name = "${var.iam_role_name}"
+  name = var.iam_role_name
 
   assume_role_policy = <<END_OF_POLICY
 {
@@ -34,9 +34,8 @@ END_OF_POLICY
 }
 
 resource "aws_iam_role_policy" "cloudwatch_delivery_policy" {
-  name = "${var.iam_role_policy_name}"
-
-  role = "${aws_iam_role.cloudwatch_delivery.id}"
+  name = var.iam_role_policy_name
+  role = aws_iam_role.cloudwatch_delivery.id
 
   policy = <<END_OF_POLICY
 {
@@ -76,7 +75,7 @@ END_OF_POLICY
 
 resource "aws_kms_key" "cloudtrail" {
   description             = "A KMS key to encrypt CloudTrail events."
-  deletion_window_in_days = "${var.key_deletion_window_in_days}"
+  deletion_window_in_days = var.key_deletion_window_in_days
   enable_key_rotation     = "true"
 
   policy = <<END_OF_POLICY
@@ -157,14 +156,14 @@ END_OF_POLICY
 # --------------------------------------------------------------------------------------------------
 
 resource "aws_cloudtrail" "global" {
-  name = "${var.cloudtrail_name}"
+  name = var.cloudtrail_name
 
-  cloud_watch_logs_group_arn    = "${aws_cloudwatch_log_group.cloudtrail_events.arn}"
-  cloud_watch_logs_role_arn     = "${aws_iam_role.cloudwatch_delivery.arn}"
-  enable_log_file_validation    = true
+  cloud_watch_logs_group_arn = aws_cloudwatch_log_group.cloudtrail_events.arn
+  cloud_watch_logs_role_arn = aws_iam_role.cloudwatch_delivery.arn
+  enable_log_file_validation = true
   include_global_service_events = true
-  is_multi_region_trail         = true
-  kms_key_id                    = "${aws_kms_key.cloudtrail.arn}"
-  s3_bucket_name                = "${var.s3_bucket_name}"
-  s3_key_prefix                 = "${var.s3_key_prefix}"
+  is_multi_region_trail = true
+  kms_key_id = aws_kms_key.cloudtrail.arn
+  s3_bucket_name = var.s3_bucket_name
+  s3_key_prefix = var.s3_key_prefix
 }

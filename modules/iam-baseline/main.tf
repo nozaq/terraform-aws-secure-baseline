@@ -3,14 +3,14 @@
 # --------------------------------------------------------------------------------------------------
 
 resource "aws_iam_account_password_policy" "default" {
-  minimum_password_length        = "${var.minimum_password_length}"
-  password_reuse_prevention      = "${var.password_reuse_prevention}"
-  require_lowercase_characters   = "${var.require_lowercase_characters}"
-  require_numbers                = "${var.require_numbers}"
-  require_uppercase_characters   = "${var.require_uppercase_characters}"
-  require_symbols                = "${var.require_symbols}"
-  allow_users_to_change_password = "${var.allow_users_to_change_password}"
-  max_password_age               = "${var.max_password_age}"
+  minimum_password_length        = var.minimum_password_length
+  password_reuse_prevention      = var.password_reuse_prevention
+  require_lowercase_characters   = var.require_lowercase_characters
+  require_numbers                = var.require_numbers
+  require_uppercase_characters   = var.require_uppercase_characters
+  require_symbols                = var.require_symbols
+  allow_users_to_change_password = var.allow_users_to_change_password
+  max_password_age               = var.max_password_age
 }
 
 # --------------------------------------------------------------------------------------------------
@@ -18,7 +18,7 @@ resource "aws_iam_account_password_policy" "default" {
 # --------------------------------------------------------------------------------------------------
 
 resource "aws_iam_role" "master" {
-  name = "${var.master_iam_role_name}"
+  name = var.master_iam_role_name
 
   assume_role_policy = <<END_OF_POLICY
 {
@@ -37,9 +37,8 @@ END_OF_POLICY
 }
 
 resource "aws_iam_role_policy" "master_policy" {
-  name = "${var.master_iam_role_policy_name}"
-
-  role = "${aws_iam_role.master.id}"
+  name = var.master_iam_role_policy_name
+  role = aws_iam_role.master.id
 
   policy = <<END_OF_POLICY
 {
@@ -78,7 +77,7 @@ END_OF_POLICY
 }
 
 resource "aws_iam_role" "manager" {
-  name = "${var.manager_iam_role_name}"
+  name = var.manager_iam_role_name
 
   assume_role_policy = <<END_OF_POLICY
 {
@@ -97,9 +96,8 @@ END_OF_POLICY
 }
 
 resource "aws_iam_role_policy" "manager_policy" {
-  name = "${var.manager_iam_role_policy_name}"
-
-  role = "${aws_iam_role.manager.id}"
+  name = var.manager_iam_role_policy_name
+  role = aws_iam_role.manager.id
 
   policy = <<END_OF_POLICY
 {
@@ -142,7 +140,7 @@ END_OF_POLICY
 # --------------------------------------------------------------------------------------------------
 
 resource "aws_iam_role" "support" {
-  name = "${var.support_iam_role_name}"
+  name = var.support_iam_role_name
 
   assume_role_policy = <<END_OF_POLICY
 {
@@ -158,9 +156,11 @@ resource "aws_iam_role" "support" {
   ]
 }
 END_OF_POLICY
+
 }
 
 resource "aws_iam_role_policy_attachment" "support_policy" {
-  role       = "${aws_iam_role.support.id}"
+  role = aws_iam_role.support.id
   policy_arn = "arn:aws:iam::aws:policy/AWSSupportAccess"
 }
+
