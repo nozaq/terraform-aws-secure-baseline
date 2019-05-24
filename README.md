@@ -9,6 +9,8 @@ Most configurations are based on [CIS Amazon Web Services Foundations] v1.2.0.
 
 See [Benchmark Compliance](./compliance.md) to check which items in CIS benchmark are covered.
 
+**Starting from v0.10.0, this module requires Terraform v0.12 or later. Please use v0.9.0 if you need to use Terraform v0.11 or ealier.**
+
 ## Features
 
 ### Identity and Access Management
