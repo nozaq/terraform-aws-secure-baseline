@@ -1,7 +1,11 @@
 <a name="unreleased"></a>
 ## [Unreleased]
 
+
+<a name="0.10.0"></a>
+## [0.10.0] - 2019-05-25
 ### Feat
+- upgrade to terraform 0.12
 - enable SecurityHub and CIS standard subscription
 - add eu-north-1 region support
 
@@ -118,7 +122,8 @@
 <a name="0.0.1"></a>
 ## 0.0.1 - 2018-02-12
 
-[Unreleased]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.8.0...HEAD
+[Unreleased]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.10.0...HEAD
+[0.10.0]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.8.0...0.10.0
 [0.8.0]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.9.0...0.8.0
 [0.9.0]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.7.0...0.9.0
 [0.7.0]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.6.0...0.7.0
