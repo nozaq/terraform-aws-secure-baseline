@@ -3,7 +3,8 @@
 # Reference: https://docs.aws.amazon.com/general/latest/gr/rande.html
 # --------------------------------------------------------------------------------------------------
 
-provider "aws" {}
+provider "aws" {
+}
 
 provider "aws" {
   alias = "ap-northeast-1"
@@ -68,3 +69,4 @@ provider "aws" {
 provider "aws" {
   alias = "us-west-2"
 }
+
