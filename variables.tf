@@ -201,3 +201,4 @@ variable "alarm_sns_topic_name" {
   description = "The name of the SNS Topic which will be notified when any alarm is performed."
   default     = "CISAlarm"
 }
+
