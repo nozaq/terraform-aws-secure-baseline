@@ -16,8 +16,8 @@ See [Benchmark Compliance](./compliance.md) to check which items in CIS benchmar
 ### Identity and Access Management
 
 - Set up IAM Password Policy.
-- Creates separated IAM roles for defining privileges and assigning them to entities such as IAM users and groups.
-- Creates an IAM role for contacting AWS support for incident handling.
+- Create separated IAM roles for defining privileges and assigning them to entities such as IAM users and groups.
+- Create an IAM role for contacting AWS support for incident handling.
 - Enable AWS Config rules to audit root account status.
 
 ### Logging & Monitoring
