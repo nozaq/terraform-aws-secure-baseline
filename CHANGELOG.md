@@ -2,6 +2,12 @@
 ## [Unreleased]
 
 
+<a name="0.12.0"></a>
+## [0.12.0] - 2019-07-14
+### Feat
+- return resources as outputs instead of specific attributes
+
+
 <a name="0.11.0"></a>
 ## [0.11.0] - 2019-06-06
 
@@ -123,7 +129,8 @@
 <a name="0.0.1"></a>
 ## 0.0.1 - 2018-02-12
 
-[Unreleased]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.11.0...HEAD
+[Unreleased]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.12.0...HEAD
+[0.12.0]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.11.0...0.12.0
 [0.11.0]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.10.0...0.11.0
 [0.10.0]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.9.0...0.10.0
 [0.9.0]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.8.0...0.9.0
