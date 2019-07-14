@@ -202,3 +202,12 @@ variable "alarm_sns_topic_name" {
   default     = "CISAlarm"
 }
 
+# --------------------------------------------------------------------------------------------------
+# Variables for guardduty-baseline module.
+# --------------------------------------------------------------------------------------------------
+
+variable "guardduty_finding_publishing_frequency" {
+  description = "Specifies the frequency of notifications sent for subsequent finding occurrences."
+  default     = "SIX_HOURS"
+}
+

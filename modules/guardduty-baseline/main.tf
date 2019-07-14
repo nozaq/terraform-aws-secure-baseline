@@ -3,6 +3,7 @@
 # --------------------------------------------------------------------------------------------------
 
 resource "aws_guardduty_detector" "default" {
-  enable = true
+  enable                       = true
+  finding_publishing_frequency = var.finding_publishing_frequency
 }
 

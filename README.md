@@ -111,6 +111,7 @@ This module is composed of several submodules and each of which can be used inde
 | config\_iam\_role\_policy\_name | The name of the IAM Role Policy which AWS Config will use. | string | `"Config-Recorder-Policy"` | no |
 | config\_s3\_bucket\_key\_prefix | The prefix used when writing AWS Config snapshots into the S3 bucket. | string | `"config"` | no |
 | config\_sns\_topic\_name | The name of the SNS Topic to be used to notify configuration changes. | string | `"ConfigChanges"` | no |
+| guardduty_finding_publishing_frequency | Specifies the frequency of notifications sent for subsequent finding occurrences. | string | `SIX_HOURS` | no |
 | manager\_iam\_role\_name | The name of the IAM Manager role. | string | `"IAM-Manager"` | no |
 | manager\_iam\_role\_policy\_name | The name of the IAM Manager role policy. | string | `"IAM-Manager-Policy"` | no |
 | master\_iam\_role\_name | The name of the IAM Master role. | string | `"IAM-Master"` | no |
