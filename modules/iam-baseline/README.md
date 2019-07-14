@@ -30,9 +30,6 @@
 
 | Name | Description |
 |------|-------------|
-| manager_iam_role_arn | The ARN of the IAM role used for the manager user. |
-| manager_iam_role_name | The name of the IAM role used for the manager user. |
-| master_iam_role_arn | The ARN of the IAM role used for the master user. |
-| master_iam_role_name | The name of the IAM role used for the master user. |
-| support_iam_role_arn | The ARN of the IAM role used for the support user. |
-| support_iam_role_name | The name of the IAM role used for the support user. |
+| manager_iam_role | The IAM role used for the manager user. |
+| master_iam_role | The IAM role used for the master user. |
+| support_iam_role | The IAM role used for the support user. |

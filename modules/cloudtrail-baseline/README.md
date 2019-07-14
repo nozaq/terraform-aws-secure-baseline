@@ -21,12 +21,8 @@ Enable CloudTrail in all regions and deliver events to CloudWatch Logs. CloudTra
 
 | Name | Description |
 |------|-------------|
-| cloudtrail_arn | The ARN of the trail for recording events in all regions. |
-| cloudtrail_id | The ID of the trail for recording events in all regions. |
-| kms_key_arn | The ARN of the KMS key used for encrypting CloudTrail events. |
-| kms_key_id | The ID of the KMS key used for encrypting CloudTrail events. |
-| log_delivery_iam_role_arn | The ARN of the IAM role used for delivering CloudTrail events to CloudWatch Logs. |
-| log_delivery_iam_role_name | The name of the IAM role used for delivering CloudTrail events to CloudWatch Logs. |
-| log_group_arn | The ARN of the CloudWatch Logs log group which stores CloudTrail events. |
-| log_group_name | The name of the CloudWatch Logs log group which stores CloudTrail events. |
+| cloudtrail | The trail for recording events in all regions. |
+| kms_key | The KMS key used for encrypting CloudTrail events. |
+| log_delivery_iam_role | The IAM role used for delivering CloudTrail events to CloudWatch Logs. |
+| log_group | The CloudWatch Logs log group which stores CloudTrail events. |
 

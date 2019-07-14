@@ -6,4 +6,4 @@ Enable GuardDuty in all regions.
 
 | Name | Description |
 |------|-------------|
-| guardduty_detector_id | The ID of the GuardDuty detector. |
+| guardduty_detector | The GuardDuty detector. |

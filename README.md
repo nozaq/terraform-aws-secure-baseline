@@ -135,36 +135,26 @@ This module is composed of several submodules and each of which can be used inde
 
 | Name | Description |
 |------|-------------|
-| alarms\_topic\_arn | The ARN of the SNS topic to which CloudWatch Alarms will be sent. |
-| audit\_bucket\_arn | The ARN of the S3 bucket used for storing audit logs. |
-| audit\_bucket\_id | The ID of the S3 bucket used for storing audit logs. |
-| cloudtrail\_arn | The ARN of the trail for recording events in all regions. |
-| cloudtrail\_id | The ID of the trail for recording events in all regions. |
-| cloudtrail\_kms\_key\_arn | The ARN of the KMS key used for encrypting CloudTrail events. |
-| cloudtrail\_kms\_key\_id | The ID of the KMS key used for encrypting CloudTrail events. |
-| cloudtrail\_log\_delivery\_iam\_role\_arn | The ARN of the IAM role used for delivering CloudTrail events to CloudWatch Logs. |
-| cloudtrail\_log\_delivery\_iam\_role\_name | The name of the IAM role used for delivering CloudTrail events to CloudWatch Logs. |
-| cloudtrail\_log\_group\_arn | The ARN of the CloudWatch Logs log group which stores CloudTrail events. |
-| cloudtrail\_log\_group\_name | The name of the CloudWatch Logs log group which stores CloudTrail events. |
-| config\_configuration\_recorder\_id | The name of the configuration recorder. |
-| config\_iam\_role\_arn | The ARN of the IAM role used for delivering AWS Config records to CloudWatch Logs. |
-| config\_iam\_role\_name | The name of the IAM role used for delivering AWS Config records to CloudWatch Logs. |
-| config\_topic\_arn | The ARN of the SNS topic that AWS Config delivers notifications to. |
-| default\_network\_acl\_id | The ID of the default network ACL. |
-| default\_route\_table\_id | The ID of the default route table. |
-| default\_security\_group\_id | The ID of the default security group. |
-| default\_vpc\_id | The ID of the default VPC. |
-| guardduty\_detector\_id | The ID of the GuardDuty detector. |
-| manager\_iam\_role\_arn | The ARN of the IAM role used for the manager user. |
-| manager\_iam\_role\_name | The name of the IAM role used for the manager user. |
-| master\_iam\_role\_arn | The ARN of the IAM role used for the master user. |
-| master\_iam\_role\_name | The name of the IAM role used for the master user. |
-| support\_iam\_role\_arn | The ARN of the IAM role used for the support user. |
-| support\_iam\_role\_name | The name of the IAM role used for the support user. |
-| vpc\_flow\_logs\_group\_arn | The ARN of the CloudWatch Logs log group which stores VPC Flow Logs. |
-| vpc\_flow\_logs\_group\_name | The name of the CloudWatch Logs log group which stores VPC Flow Logs. |
-| vpc\_flow\_logs\_iam\_role\_arn | The ARN of the IAM role used for delivering VPC Flow Logs to CloudWatch Logs. |
-| vpc\_flow\_logs\_iam\_role\_name | The name of the IAM role used for delivering VPC Flow Logs to CloudWatch Logs. |
+| alarm\_sns\_topic | The SNS topic to which CloudWatch Alarms will be sent. |
+| audit\_bucket\ | The S3 bucket used for storing audit logs. |
+| cloudtrail | The trail for recording events in all regions. |
+| cloudtrail\_kms\_key | The KMS key used for encrypting CloudTrail events. |
+| cloudtrail\_log\_delivery\_iam\_role | The IAM role used for delivering CloudTrail events to CloudWatch Logs. |
+| cloudtrail\_log\_group | The CloudWatch Logs log group which stores CloudTrail events. |
+| config\_configuration\_recorder | The configuration recorder. |
+| config\_iam\_role | The IAM role used for delivering AWS Config records to CloudWatch Logs. |
+| config\_sns\_topic | The SNS topic that AWS Config delivers notifications to. |
+| default\_network\_acl | The default network ACL. |
+| default\_route\_table | The default route table. |
+| default\_security\_group | The default security group. |
+| default\_vpc | The default VPC. |
+| guardduty\_detector| The GuardDuty detector. |
+| manager\_iam\_role | The IAM role used for the manager user. |
+| master\_iam\_role | The IAM role used for the master user. |
+| support\_iam\_role | The ARN of the IAM role used for the support user. |
+| vpc\_flow\_logs\_group | The ARN of the CloudWatch Logs log group which stores VPC Flow Logs. |
+| vpc\_flow\_logs\_group | The CloudWatch Logs log group which stores VPC Flow Logs. |
+| vpc\_flow\_logs\_iam\_role | The IAM role used for delivering VPC Flow Logs to CloudWatch Logs. |
 
 [CIS Amazon Web Services Foundations]: https://www.cisecurity.org/benchmark/amazon_web_services/
 [Providers within Modules - Terraform Docs]: https://www.terraform.io/docs/modules/usage.html#providers-within-modules

@@ -18,5 +18,5 @@ Enable AWS Config in all regions to automatically take configuration snapshots.
 
 | Name | Description |
 |------|-------------|
-| config_topic_arn | The ARN of the SNS topic that AWS Config delivers notifications to. |
-| configuration_recorder_id | The name of the configuration recorder. |
+| config_sns_topic | The SNS topic that AWS Config delivers notifications to. |
+| configuration_recorder | The configuration recorder. |

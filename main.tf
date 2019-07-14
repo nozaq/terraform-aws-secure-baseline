@@ -15,7 +15,7 @@ module "audit_log_bucket" {
 }
 
 resource "aws_s3_bucket_policy" "audit_log_bucket_policy" {
-  bucket = module.audit_log_bucket.this_bucket_id
+  bucket = module.audit_log_bucket.this_bucket.id
 
   policy = <<END_OF_POLICY
 {
@@ -26,14 +26,14 @@ resource "aws_s3_bucket_policy" "audit_log_bucket_policy" {
       "Effect": "Allow",
       "Principal": {"Service": "config.amazonaws.com"},
       "Action": "s3:GetBucketAcl",
-      "Resource": "${module.audit_log_bucket.this_bucket_arn}"
+      "Resource": "${module.audit_log_bucket.this_bucket.arn}"
     },
     {
       "Sid": " AWSCloudTrailWriteForConfig",
       "Effect": "Allow",
       "Principal": {"Service": "config.amazonaws.com"},
       "Action": "s3:PutObject",
-      "Resource": "${module.audit_log_bucket.this_bucket_arn}/config/AWSLogs/${var.aws_account_id}/Config/*",
+      "Resource": "${module.audit_log_bucket.this_bucket.arn}/config/AWSLogs/${var.aws_account_id}/Config/*",
       "Condition": {"StringEquals": {"s3:x-amz-acl": "bucket-owner-full-control"}}
     },
     {
@@ -43,7 +43,7 @@ resource "aws_s3_bucket_policy" "audit_log_bucket_policy" {
             "Service": "cloudtrail.amazonaws.com"
         },
         "Action": "s3:GetBucketAcl",
-        "Resource": "${module.audit_log_bucket.this_bucket_arn}"
+        "Resource": "${module.audit_log_bucket.this_bucket.arn}"
     },
     {
         "Sid": "AWSCloudTrailWriteForCloudTrail",
@@ -52,7 +52,7 @@ resource "aws_s3_bucket_policy" "audit_log_bucket_policy" {
             "Service": "cloudtrail.amazonaws.com"
         },
         "Action": "s3:PutObject",
-        "Resource": "${module.audit_log_bucket.this_bucket_arn}/cloudtrail/AWSLogs/${var.aws_account_id}/*",
+        "Resource": "${module.audit_log_bucket.this_bucket.arn}/cloudtrail/AWSLogs/${var.aws_account_id}/*",
         "Condition": {
             "StringEquals": {
                 "s3:x-amz-acl": "bucket-owner-full-control"
@@ -104,7 +104,7 @@ module "cloudtrail_baseline" {
   iam_role_policy_name = var.cloudtrail_iam_role_policy_name
   key_deletion_window_in_days = var.cloudtrail_key_deletion_window_in_days
   region = var.region
-  s3_bucket_name = module.audit_log_bucket.this_bucket_id
+  s3_bucket_name = module.audit_log_bucket.this_bucket.id
   s3_key_prefix = var.cloudtrail_s3_key_prefix
 }
 
@@ -116,7 +116,7 @@ module "alarm_baseline" {
   source = "./modules/alarm-baseline"
 
   alarm_namespace = var.alarm_namespace
-  cloudtrail_log_group_name = module.cloudtrail_baseline.log_group_name
+  cloudtrail_log_group_name = module.cloudtrail_baseline.log_group.name
   sns_topic_name = var.alarm_sns_topic_name
 }
 
