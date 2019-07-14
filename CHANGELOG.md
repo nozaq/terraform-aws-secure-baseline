@@ -2,6 +2,13 @@
 ## [Unreleased]
 
 
+<a name="0.13.0"></a>
+## [0.13.0] - 2019-07-14
+### Feat
+- take finding_publishing_frequency as an input variable
+- enable GuardDuty in eu-north-1 region
+
+
 <a name="0.12.0"></a>
 ## [0.12.0] - 2019-07-14
 ### Feat
@@ -129,7 +136,8 @@
 <a name="0.0.1"></a>
 ## 0.0.1 - 2018-02-12
 
-[Unreleased]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.12.0...HEAD
+[Unreleased]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.13.0...HEAD
+[0.13.0]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.12.0...0.13.0
 [0.12.0]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.11.0...0.12.0
 [0.11.0]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.10.0...0.11.0
 [0.10.0]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.9.0...0.10.0
