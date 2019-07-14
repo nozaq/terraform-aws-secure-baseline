@@ -17,9 +17,8 @@
 
 | Name | Description |
 |------|-------------|
-| default\_network\_acl\_id | The ID of the default network ACL. |
-| default\_route\_table\_id | The ID of the default route table. |
-| default\_security\_group\_id | The ID of the default security group. |
-| default\_vpc\_id | The ID of the default VPC. |
-| vpc\_flow\_logs\_group\_arn | The ARN of the CloudWatch Logs log group which stores VPC Flow Logs. |
-| vpc\_flow\_logs\_group\_name | The name of the CloudWatch Logs log group which stores VPC Flow Logs. |
+| default\_network\_acl\ | The default network ACL. |
+| default\_route\_table\ | The default route table. |
+| default\_security\_group\ | The default security group. |
+| default\_vpc\ | The default VPC. |
+| vpc\_flow\_logs\_group\ | The CloudWatch Logs log group which stores VPC Flow Logs. |
