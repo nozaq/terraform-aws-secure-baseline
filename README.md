@@ -77,6 +77,8 @@ Check [the example](./examples/root-example/regions.tf) to understand how these 
 Note that you need to define a provider for each AWS region and pass them to the module. Currently this is the recommended way to handle multiple regions in one module.
 Detailed information can be found at [Providers within Modules - Terraform Docs].
 
+A new S3 bucket to store audit logs is automatically created by default, while the external S3 bucket can be specified. It is useful when you already have a centralized S3 bucket to store all logs. Please see [external-bucket](./examples/external-bucket) example for more detail.
+
 ## Submodules
 
 This module is composed of several submodules and each of which can be used independently.
@@ -128,6 +130,7 @@ This module is composed of several submodules and each of which can be used inde
 | support\_iam\_role\_name | The name of the the support role. | string | `"IAM-Support"` | no |
 | support\_iam\_role\_policy\_name | The name of the support role policy. | string | `"IAM-Support-Role"` | no |
 | support\_iam\_role\_principal\_arn | The ARN of the IAM principal element by which the support role could be assumed. | string | n/a | yes |
+| use\_external\_audit\_log\_bucket | A boolean that indicates whether the specific audit log bucket already exists. Create a new S3 bucket if it is set to false. | string | `"false"` | no |
 | vpc\_iam\_role\_name | The name of the IAM Role which VPC Flow Logs will use. | string | `"VPC-Flow-Logs-Publisher"` | no |
 | vpc\_iam\_role\_policy\_name | The name of the IAM Role Policy which VPC Flow Logs will use. | string | `"VPC-Flow-Logs-Publish-Policy"` | no |
 | vpc\_log\_group\_name | The name of CloudWatch Logs group to which VPC Flow Logs are delivered. | string | `"default-vpc-flow-logs"` | no |
