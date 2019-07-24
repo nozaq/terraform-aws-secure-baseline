@@ -97,6 +97,7 @@ This module is composed of several submodules and each of which can be used inde
 | alarm\_sns\_topic\_name | The name of the SNS Topic which will be notified when any alarm is performed. | string | `"CISAlarm"` | no |
 | allow\_users\_to\_change\_password | Whether to allow users to change their own password. | string | `"true"` | no |
 | audit\_log\_bucket\_name | The name of the S3 bucket to store various audit logs. | string | n/a | yes |
+| audit\_log\_bucket\_force\_destroy | A boolean that indicates all objects should be deleted from the audit log bucket so that the bucket can be destroyed without error. These objects are not recoverable. | string | `"false"`  | no |
 | audit\_log\_lifecycle\_glacier\_transition\_days | The number of days after log creation when the log file is archived into Glacier. | string | `"90"` | no |
 | aws\_account\_id | The AWS Account ID number of the account. | string | n/a | yes |
 | cloudtrail\_cloudwatch\_logs\_group\_name | The name of CloudWatch Logs group to which CloudTrail events are delivered. | string | `"cloudtrail-multi-region"` | no |
