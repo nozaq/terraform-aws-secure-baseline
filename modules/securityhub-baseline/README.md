@@ -5,10 +5,6 @@
 - Enable SecurityHub.
 - Subscribe CIS benchmark standard.
 
-## Inputs
+<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
-None
-
-## Outputs
-
-None
+<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
