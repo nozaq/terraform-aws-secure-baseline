@@ -7,6 +7,7 @@ Creates a S3 bucket with access logging enabled.
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
 | bucket_name |  | string | - | yes |
+| force_destroy | string | `"false"` | no |
 | log_bucket_name |  | string | - | yes |
 
 ## Outputs

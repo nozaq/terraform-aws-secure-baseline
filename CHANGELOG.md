@@ -1,6 +1,9 @@
 <a name="unreleased"></a>
 ## [Unreleased]
 
+### Feat
+- add a flag to enable force_destroy on S3 buckets
+
 
 <a name="0.13.0"></a>
 ## [0.13.0] - 2019-07-14
