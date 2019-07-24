@@ -1,7 +1,9 @@
 resource "aws_s3_bucket" "access_log" {
   bucket = var.log_bucket_name
 
-  acl = "log-delivery-write"
+  acl           = "log-delivery-write"
+  force_destroy = var.force_destroy
+
 
   lifecycle_rule {
     id      = "auto-archive"
@@ -28,7 +30,8 @@ resource "aws_s3_bucket_public_access_block" "access_log" {
 resource "aws_s3_bucket" "content" {
   bucket = var.bucket_name
 
-  acl = "private"
+  acl           = "private"
+  force_destroy = var.force_destroy
 
   logging {
     target_bucket = aws_s3_bucket.access_log.id
