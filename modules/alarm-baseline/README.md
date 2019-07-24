@@ -2,16 +2,19 @@
 
 Set up CloudWatch alarms to notify you when critical changes happen in your AWS account.
 
+<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| alarm_namespace | The namespace in which all alarms are set up. | string | `CISBenchmark` | no |
-| cloudtrail_log_group_name | The name of the CloudWatch Logs group to which CloudTrail events are delivered. | string | - | yes |
-| sns_topic_name | The name of the SNS Topic which will be notified when any alarm is performed. | string | `CISAlarm` | no |
+| alarm\_namespace | The namespace in which all alarms are set up. | string | `"CISBenchmark"` | no |
+| cloudtrail\_log\_group\_name | The name of the CloudWatch Logs group to which CloudTrail events are delivered. | string | n/a | yes |
+| sns\_topic\_name | The name of the SNS Topic which will be notified when any alarm is performed. | string | `"CISAlarm"` | no |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| alarm_sns_topic | The SNS topic to which CloudWatch Alarms will be sent. |
+| alarm\_sns\_topic | The SNS topic to which CloudWatch Alarms will be sent. |
+
+<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

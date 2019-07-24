@@ -5,31 +5,34 @@
 - Set up IAM Password Policy.
 - Create default IAM roles for managing AWS account.
 
+<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| allow_users_to_change_password | Whether to allow users to change their own password. | string | `true` | no |
-| aws_account_id | The AWS Account ID number of the account. | string | - | yes |
-| manager_iam_role_name | The name of the IAM Manager role. | string | `IAM-Manager` | no |
-| manager_iam_role_policy_name | The name of the IAM Manager role policy. | string | `IAM-Manager-Policy` | no |
-| master_iam_role_name | The name of the IAM Master role. | string | `IAM-Master` | no |
-| master_iam_role_policy_name | The name of the IAM Master role policy. | string | `IAM-Master-Policy` | no |
-| max_password_age | The number of days that an user password is valid. | string | `90` | no |
-| minimum_password_length | Minimum length to require for user passwords. | string | `14` | no |
-| password_reuse_prevention | The number of previous passwords that users are prevented from reusing. | string | `24` | no |
-| require_lowercase_characters | Whether to require lowercase characters for user passwords. | string | `true` | no |
-| require_numbers | Whether to require numbers for user passwords. | string | `true` | no |
-| require_symbols | Whether to require symbols for user passwords. | string | `true` | no |
-| require_uppercase_characters | Whether to require uppercase characters for user passwords. | string | `true` | no |
-| support_iam_role_name | The name of the the support role. | string | `IAM-Support` | no |
-| support_iam_role_policy_name | The name of the support role policy. | string | `IAM-Support-Role` | no |
-| support_iam_role_principal_arn | The ARN of the IAM principal element by which the support role could be assumed. | string | - | yes |
+| allow\_users\_to\_change\_password | Whether to allow users to change their own password. | string | `"true"` | no |
+| aws\_account\_id | The AWS Account ID number of the account. | string | n/a | yes |
+| manager\_iam\_role\_name | The name of the IAM Manager role. | string | `"IAM-Manager"` | no |
+| manager\_iam\_role\_policy\_name | The name of the IAM Manager role policy. | string | `"IAM-Manager-Policy"` | no |
+| master\_iam\_role\_name | The name of the IAM Master role. | string | `"IAM-Master"` | no |
+| master\_iam\_role\_policy\_name | The name of the IAM Master role policy. | string | `"IAM-Master-Policy"` | no |
+| max\_password\_age | The number of days that an user password is valid. | string | `"90"` | no |
+| minimum\_password\_length | Minimum length to require for user passwords. | string | `"14"` | no |
+| password\_reuse\_prevention | The number of previous passwords that users are prevented from reusing. | string | `"24"` | no |
+| require\_lowercase\_characters | Whether to require lowercase characters for user passwords. | string | `"true"` | no |
+| require\_numbers | Whether to require numbers for user passwords. | string | `"true"` | no |
+| require\_symbols | Whether to require symbols for user passwords. | string | `"true"` | no |
+| require\_uppercase\_characters | Whether to require uppercase characters for user passwords. | string | `"true"` | no |
+| support\_iam\_role\_name | The name of the the support role. | string | `"IAM-Support"` | no |
+| support\_iam\_role\_policy\_name | The name of the support role policy. | string | `"IAM-Support-Role"` | no |
+| support\_iam\_role\_principal\_arn | The ARN of the IAM principal element by which the support role could be assumed. | string | n/a | yes |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| manager_iam_role | The IAM role used for the manager user. |
-| master_iam_role | The IAM role used for the master user. |
-| support_iam_role | The IAM role used for the support user. |
+| manager\_iam\_role | The IAM role used for the manager user. |
+| master\_iam\_role | The IAM role used for the master user. |
+| support\_iam\_role | The IAM role used for the support user. |
+
+<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

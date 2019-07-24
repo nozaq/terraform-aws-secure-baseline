@@ -5,6 +5,7 @@
 - Enable VPC Flow Logs with the default VPC in all regions.
 - Remove all rules associated with default route tables, default network ACLs and default security groups in the default VPC in all regions.
 
+<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Inputs
 
 | Name | Description | Type | Default | Required |
@@ -17,8 +18,10 @@
 
 | Name | Description |
 |------|-------------|
-| default\_network\_acl\ | The default network ACL. |
-| default\_route\_table\ | The default route table. |
-| default\_security\_group\ | The default security group. |
-| default\_vpc\ | The default VPC. |
-| vpc\_flow\_logs\_group\ | The CloudWatch Logs log group which stores VPC Flow Logs. |
+| default\_network\_acl | The default network ACL. |
+| default\_route\_table | The default route table. |
+| default\_security\_group | The default security group. |
+| default\_vpc | The default VPC. |
+| vpc\_flow\_logs\_group | The CloudWatch Logs log group which stores VPC Flow Logs. |
+
+<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

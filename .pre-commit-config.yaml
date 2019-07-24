@@ -1,3 +1,4 @@
+repos:
 - repo: git://github.com/antonbabenko/pre-commit-terraform
   rev: v1.17.0
   hooks:

@@ -91,6 +91,7 @@ This module is composed of several submodules and each of which can be used inde
 - [vpc-baseline](./modules/vpc-baseline)
 - [secure-bucket](./modules/secure-bucket)
 
+<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Inputs
 
 | Name | Description | Type | Default | Required |
@@ -98,8 +99,8 @@ This module is composed of several submodules and each of which can be used inde
 | alarm\_namespace | The namespace in which all alarms are set up. | string | `"CISBenchmark"` | no |
 | alarm\_sns\_topic\_name | The name of the SNS Topic which will be notified when any alarm is performed. | string | `"CISAlarm"` | no |
 | allow\_users\_to\_change\_password | Whether to allow users to change their own password. | string | `"true"` | no |
+| audit\_log\_bucket\_force\_destroy | A boolean that indicates all objects should be deleted from the audit log bucket so that the bucket can be destroyed without error. These objects are not recoverable. | string | `"false"` | no |
 | audit\_log\_bucket\_name | The name of the S3 bucket to store various audit logs. | string | n/a | yes |
-| audit\_log\_bucket\_force\_destroy | A boolean that indicates all objects should be deleted from the audit log bucket so that the bucket can be destroyed without error. These objects are not recoverable. | string | `"false"`  | no |
 | audit\_log\_lifecycle\_glacier\_transition\_days | The number of days after log creation when the log file is archived into Glacier. | string | `"90"` | no |
 | aws\_account\_id | The AWS Account ID number of the account. | string | n/a | yes |
 | cloudtrail\_cloudwatch\_logs\_group\_name | The name of CloudWatch Logs group to which CloudTrail events are delivered. | string | `"cloudtrail-multi-region"` | no |
@@ -114,7 +115,7 @@ This module is composed of several submodules and each of which can be used inde
 | config\_iam\_role\_policy\_name | The name of the IAM Role Policy which AWS Config will use. | string | `"Config-Recorder-Policy"` | no |
 | config\_s3\_bucket\_key\_prefix | The prefix used when writing AWS Config snapshots into the S3 bucket. | string | `"config"` | no |
 | config\_sns\_topic\_name | The name of the SNS Topic to be used to notify configuration changes. | string | `"ConfigChanges"` | no |
-| guardduty_finding_publishing_frequency | Specifies the frequency of notifications sent for subsequent finding occurrences. | string | `SIX_HOURS` | no |
+| guardduty\_finding\_publishing\_frequency | Specifies the frequency of notifications sent for subsequent finding occurrences. | string | `"SIX_HOURS"` | no |
 | manager\_iam\_role\_name | The name of the IAM Manager role. | string | `"IAM-Manager"` | no |
 | manager\_iam\_role\_policy\_name | The name of the IAM Manager role policy. | string | `"IAM-Manager-Policy"` | no |
 | master\_iam\_role\_name | The name of the IAM Master role. | string | `"IAM-Master"` | no |
@@ -141,25 +142,26 @@ This module is composed of several submodules and each of which can be used inde
 | Name | Description |
 |------|-------------|
 | alarm\_sns\_topic | The SNS topic to which CloudWatch Alarms will be sent. |
-| audit\_bucket\ | The S3 bucket used for storing audit logs. |
+| audit\_bucket | The S3 bucket used for storing audit logs. |
 | cloudtrail | The trail for recording events in all regions. |
 | cloudtrail\_kms\_key | The KMS key used for encrypting CloudTrail events. |
 | cloudtrail\_log\_delivery\_iam\_role | The IAM role used for delivering CloudTrail events to CloudWatch Logs. |
 | cloudtrail\_log\_group | The CloudWatch Logs log group which stores CloudTrail events. |
-| config\_configuration\_recorder | The configuration recorder. |
+| config\_configuration\_recorder | The configuration recorder in each region. |
 | config\_iam\_role | The IAM role used for delivering AWS Config records to CloudWatch Logs. |
 | config\_sns\_topic | The SNS topic that AWS Config delivers notifications to. |
 | default\_network\_acl | The default network ACL. |
 | default\_route\_table | The default route table. |
-| default\_security\_group | The default security group. |
+| default\_security\_group | The ID of the default security group. |
 | default\_vpc | The default VPC. |
-| guardduty\_detector| The GuardDuty detector. |
+| guardduty\_detector | The GuardDuty detector in each region. |
 | manager\_iam\_role | The IAM role used for the manager user. |
 | master\_iam\_role | The IAM role used for the master user. |
-| support\_iam\_role | The ARN of the IAM role used for the support user. |
-| vpc\_flow\_logs\_group | The ARN of the CloudWatch Logs log group which stores VPC Flow Logs. |
-| vpc\_flow\_logs\_group | The CloudWatch Logs log group which stores VPC Flow Logs. |
+| support\_iam\_role | The IAM role used for the support user. |
+| vpc\_flow\_logs\_group | The CloudWatch Logs log group which stores VPC Flow Logs in each region. |
 | vpc\_flow\_logs\_iam\_role | The IAM role used for delivering VPC Flow Logs to CloudWatch Logs. |
+
+<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 [CIS Amazon Web Services Foundations]: https://www.cisecurity.org/benchmark/amazon_web_services/
 [Providers within Modules - Terraform Docs]: https://www.terraform.io/docs/modules/usage.html#providers-within-modules
