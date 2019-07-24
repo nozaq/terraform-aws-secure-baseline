@@ -6,7 +6,6 @@ variable "secret_key" {
 
 variable "audit_s3_bucket_name" {
   description = "The name of the S3 bucket to store various audit logs."
-  default     = "YOUR_BUCKET_NAME_HERE"
 }
 
 variable "support_iam_role_principal_arn" {

@@ -15,6 +15,11 @@ variable "audit_log_lifecycle_glacier_transition_days" {
   default     = 90
 }
 
+variable "audit_log_bucket_force_destroy" {
+  description = " A boolean that indicates all objects should be deleted from the audit log bucket so that the bucket can be destroyed without error. These objects are not recoverable."
+  default     = false
+}
+
 variable "region" {
   description = "The AWS region in which global resources are set up."
 }

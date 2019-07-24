@@ -12,6 +12,7 @@ module "audit_log_bucket" {
   bucket_name                       = var.audit_log_bucket_name
   log_bucket_name                   = "${var.audit_log_bucket_name}-access-logs"
   lifecycle_glacier_transition_days = var.audit_log_lifecycle_glacier_transition_days
+  force_destroy                     = var.audit_log_bucket_force_destroy
 }
 
 resource "aws_s3_bucket_policy" "audit_log_bucket_policy" {
