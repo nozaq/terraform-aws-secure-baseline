@@ -1,9 +1,10 @@
 resource "aws_s3_bucket" "access_log" {
+  count = var.enabled ? 1 : 0
+
   bucket = var.log_bucket_name
 
   acl           = "log-delivery-write"
   force_destroy = var.force_destroy
-
 
   lifecycle_rule {
     id      = "auto-archive"
@@ -19,7 +20,9 @@ resource "aws_s3_bucket" "access_log" {
 }
 
 resource "aws_s3_bucket_public_access_block" "access_log" {
-  bucket = aws_s3_bucket.access_log.id
+  count = var.enabled ? 1 : 0
+
+  bucket = aws_s3_bucket.access_log[0].id
 
   block_public_acls       = true
   block_public_policy     = true
@@ -28,13 +31,15 @@ resource "aws_s3_bucket_public_access_block" "access_log" {
 }
 
 resource "aws_s3_bucket" "content" {
+  count = var.enabled ? 1 : 0
+
   bucket = var.bucket_name
 
   acl           = "private"
   force_destroy = var.force_destroy
 
   logging {
-    target_bucket = aws_s3_bucket.access_log.id
+    target_bucket = aws_s3_bucket.access_log[0].id
   }
 
   versioning {
@@ -63,7 +68,9 @@ resource "aws_s3_bucket" "content" {
 }
 
 resource "aws_s3_bucket_public_access_block" "content" {
-  bucket = aws_s3_bucket.content.id
+  count = var.enabled ? 1 : 0
+
+  bucket = aws_s3_bucket.content[0].id
 
   block_public_acls       = true
   block_public_policy     = true

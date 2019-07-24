@@ -6,6 +6,13 @@ variable "aws_account_id" {
   description = "The AWS Account ID number of the account."
 }
 
+variable "region" {
+  description = "The AWS region in which global resources are set up."
+}
+
+# --------------------------------------------------------------------------------------------------
+# Variables for audit log bucket configurations.
+# --------------------------------------------------------------------------------------------------
 variable "audit_log_bucket_name" {
   description = "The name of the S3 bucket to store various audit logs."
 }
@@ -20,14 +27,14 @@ variable "audit_log_bucket_force_destroy" {
   default     = false
 }
 
-variable "region" {
-  description = "The AWS region in which global resources are set up."
+variable "use_external_audit_log_bucket" {
+  description = "A boolean that indicates whether the specific audit log bucket already exists. Create a new S3 bucket if it is set to false."
+  default     = false
 }
 
 # --------------------------------------------------------------------------------------------------
 # Variables for iam-baseline module.
 # --------------------------------------------------------------------------------------------------
-
 variable "master_iam_role_name" {
   description = "The name of the IAM Master role."
   default     = "IAM-Master"

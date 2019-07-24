@@ -13,3 +13,8 @@ variable "force_destroy" {
   description = " A boolean that indicates all objects should be deleted from the bucket so that the bucket can be destroyed without error. These objects are not recoverable."
   default     = false
 }
+
+variable "enabled" {
+  description = "A boolean that indicates this module is enabled. Resources are not created if it is set to false."
+  default     = true
+}

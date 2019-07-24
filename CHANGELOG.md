@@ -2,6 +2,7 @@
 ## [Unreleased]
 
 ### Feat
+- allow using an external bucket instead of creating a new one
 - add a flag to enable force_destroy on S3 buckets
 
 
