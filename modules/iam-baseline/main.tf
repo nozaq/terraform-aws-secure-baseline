@@ -160,7 +160,7 @@ END_OF_POLICY
 }
 
 resource "aws_iam_role_policy_attachment" "support_policy" {
-  role = aws_iam_role.support.id
+  role       = aws_iam_role.support.id
   policy_arn = "arn:aws:iam::aws:policy/AWSSupportAccess"
 }
 

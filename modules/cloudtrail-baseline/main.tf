@@ -158,12 +158,12 @@ END_OF_POLICY
 resource "aws_cloudtrail" "global" {
   name = var.cloudtrail_name
 
-  cloud_watch_logs_group_arn = aws_cloudwatch_log_group.cloudtrail_events.arn
-  cloud_watch_logs_role_arn = aws_iam_role.cloudwatch_delivery.arn
-  enable_log_file_validation = true
+  cloud_watch_logs_group_arn    = aws_cloudwatch_log_group.cloudtrail_events.arn
+  cloud_watch_logs_role_arn     = aws_iam_role.cloudwatch_delivery.arn
+  enable_log_file_validation    = true
   include_global_service_events = true
-  is_multi_region_trail = true
-  kms_key_id = aws_kms_key.cloudtrail.arn
-  s3_bucket_name = var.s3_bucket_name
-  s3_key_prefix = var.s3_key_prefix
+  is_multi_region_trail         = true
+  kms_key_id                    = aws_kms_key.cloudtrail.arn
+  s3_bucket_name                = var.s3_bucket_name
+  s3_key_prefix                 = var.s3_key_prefix
 }
