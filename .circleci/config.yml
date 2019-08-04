@@ -3,7 +3,7 @@ jobs:
   build:
     docker:
       - image: hashicorp/terraform:light
-    working_directory: ~/repo/examples/root-example
+    working_directory: ~/repo/examples/simple
     steps:
       - checkout:
           path: ~/repo
