@@ -44,6 +44,7 @@ module "cloudtrail_baseline" {
   region                            = var.region
   s3_bucket_name                    = local.audit_log_bucket_id
   s3_key_prefix                     = var.cloudtrail_s3_key_prefix
+  is_organization_trail             = local.is_master_account
 }
 
 # --------------------------------------------------------------------------------------------------
@@ -65,4 +66,3 @@ module "alarm_baseline" {
 module "securityhub_baseline" {
   source = "./modules/securityhub-baseline"
 }
-
