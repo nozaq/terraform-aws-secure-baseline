@@ -111,6 +111,8 @@ This module is composed of several submodules and each of which can be used inde
 | cloudtrail\_name | The name of the trail. | string | `"cloudtrail-multi-region"` | no |
 | cloudtrail\_s3\_key\_prefix | The prefix used when CloudTrail delivers events to the S3 bucket. | string | `"cloudtrail"` | no |
 | cloudwatch\_logs\_retention\_in\_days | Number of days to retain logs for. CIS recommends 365 days.  Possible values are: 0, 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1827, and 3653. Set to 0 to keep logs indefinitely. | string | `"365"` | no |
+| config\_aggregator\_name | The name of the organizational AWS Config Configuration Aggregator. | string | `"organization-aggregator"` | no |
+| config\_aggregator\_name\_prefix | The prefix of the name for the IAM role attached to the organizational AWS Config Configuration Aggregator. | string | `"config-for-organization-role"` | no |
 | config\_delivery\_frequency | The frequency which AWS Config sends a snapshot into the S3 bucket. | string | `"One_Hour"` | no |
 | config\_iam\_role\_name | The name of the IAM Role which AWS Config will use. | string | `"Config-Recorder"` | no |
 | config\_iam\_role\_policy\_name | The name of the IAM Role Policy which AWS Config will use. | string | `"Config-Recorder-Policy"` | no |
@@ -121,6 +123,7 @@ This module is composed of several submodules and each of which can be used inde
 | guardduty\_member\_accounts | A list of IDs and emails of AWS accounts which associated as member accounts. | object | `[]` | no |
 | manager\_iam\_role\_name | The name of the IAM Manager role. | string | `"IAM-Manager"` | no |
 | manager\_iam\_role\_policy\_name | The name of the IAM Manager role policy. | string | `"IAM-Manager-Policy"` | no |
+| master\_account\_id | The ID of the master AWS account to which the current AWS account is associated. | string | `""` | no |
 | master\_iam\_role\_name | The name of the IAM Master role. | string | `"IAM-Master"` | no |
 | master\_iam\_role\_policy\_name | The name of the IAM Master role policy. | string | `"IAM-Master-Policy"` | no |
 | max\_password\_age | The number of days that an user password is valid. | string | `"90"` | no |

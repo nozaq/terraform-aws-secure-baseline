@@ -500,3 +500,48 @@ resource "aws_config_config_rule" "no_policies_with_full_admin_access" {
     module.config_baseline_us-west-2,
   ]
 }
+
+# --------------------------------------------------------------------------------------------------
+# Aggregator View
+# Only created for the master account.
+# --------------------------------------------------------------------------------------------------
+resource "aws_iam_role" "config_organization" {
+  count = local.is_master_account ? 1 : 0
+
+  name_prefix = var.config_aggregator_name_prefix
+
+  assume_role_policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "",
+      "Effect": "Allow",
+      "Principal": {
+        "Service": "config.amazonaws.com"
+      },
+      "Action": "sts:AssumeRole"
+    }
+  ]
+}
+EOF
+}
+
+resource "aws_iam_role_policy_attachment" "config_organization" {
+  count = local.is_master_account ? 1 : 0
+
+  role       = "${aws_iam_role.config_organization[0].name}"
+  policy_arn = "arn:aws:iam::aws:policy/service-role/AWSConfigRoleForOrganizations"
+}
+
+resource "aws_config_configuration_aggregator" "organization" {
+  count = local.is_master_account ? 1 : 0
+
+  name = var.config_aggregator_name
+
+  organization_aggregation_source {
+    all_regions = true
+    role_arn    = "${aws_iam_role.config_organization[0].arn}"
+  }
+}
+

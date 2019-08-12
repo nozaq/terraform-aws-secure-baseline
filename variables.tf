@@ -10,6 +10,11 @@ variable "region" {
   description = "The AWS region in which global resources are set up."
 }
 
+variable "master_account_id" {
+  description = "The ID of the master AWS account to which the current AWS account is associated."
+  default     = ""
+}
+
 # --------------------------------------------------------------------------------------------------
 # Variables for audit log bucket configurations.
 # --------------------------------------------------------------------------------------------------
@@ -159,6 +164,16 @@ variable "config_s3_bucket_key_prefix" {
 variable "config_sns_topic_name" {
   description = "The name of the SNS Topic to be used to notify configuration changes."
   default     = "ConfigChanges"
+}
+
+variable "config_aggregator_name" {
+  description = "The name of the organizational AWS Config Configuration Aggregator."
+  default     = "organization-aggregator"
+}
+
+variable "config_aggregator_name_prefix" {
+  description = "The prefix of the name for the IAM role attached to the organizational AWS Config Configuration Aggregator."
+  default     = "config-for-organization-role"
 }
 
 # --------------------------------------------------------------------------------------------------
