@@ -80,214 +80,231 @@ resource "aws_iam_role_policy_attachment" "recoder_read_policy" {
 # --------------------------------------------------------------------------------------------------
 # AWS Config Baseline
 # Needs to be set up in each region.
+# Global resource types are only recorded in the region specified by var.region.
 # --------------------------------------------------------------------------------------------------
 
 module "config_baseline_ap-northeast-1" {
-  source             = "./modules/config-baseline"
-  iam_role_arn       = aws_iam_role.recorder.arn
-  s3_bucket_name     = local.audit_log_bucket_id
-  s3_key_prefix      = var.config_s3_bucket_key_prefix
-  delivery_frequency = var.config_delivery_frequency
-  sns_topic_name     = var.config_sns_topic_name
-
   providers = {
     aws = aws.ap-northeast-1
   }
+
+  source                        = "./modules/config-baseline"
+  iam_role_arn                  = aws_iam_role.recorder.arn
+  s3_bucket_name                = local.audit_log_bucket_id
+  s3_key_prefix                 = var.config_s3_bucket_key_prefix
+  delivery_frequency            = var.config_delivery_frequency
+  sns_topic_name                = var.config_sns_topic_name
+  include_global_resource_types = var.region == "ap-northeast-1"
 }
 
 module "config_baseline_ap-northeast-2" {
-  source             = "./modules/config-baseline"
-  iam_role_arn       = aws_iam_role.recorder.arn
-  s3_bucket_name     = local.audit_log_bucket_id
-  s3_key_prefix      = var.config_s3_bucket_key_prefix
-  delivery_frequency = var.config_delivery_frequency
-  sns_topic_name     = var.config_sns_topic_name
-
   providers = {
     aws = aws.ap-northeast-2
   }
+
+  source                        = "./modules/config-baseline"
+  iam_role_arn                  = aws_iam_role.recorder.arn
+  s3_bucket_name                = local.audit_log_bucket_id
+  s3_key_prefix                 = var.config_s3_bucket_key_prefix
+  delivery_frequency            = var.config_delivery_frequency
+  sns_topic_name                = var.config_sns_topic_name
+  include_global_resource_types = var.region == "ap-northeast-2"
 }
 
 module "config_baseline_ap-south-1" {
-  source             = "./modules/config-baseline"
-  iam_role_arn       = aws_iam_role.recorder.arn
-  s3_bucket_name     = local.audit_log_bucket_id
-  s3_key_prefix      = var.config_s3_bucket_key_prefix
-  delivery_frequency = var.config_delivery_frequency
-  sns_topic_name     = var.config_sns_topic_name
-
   providers = {
     aws = aws.ap-south-1
   }
+
+  source                        = "./modules/config-baseline"
+  iam_role_arn                  = aws_iam_role.recorder.arn
+  s3_bucket_name                = local.audit_log_bucket_id
+  s3_key_prefix                 = var.config_s3_bucket_key_prefix
+  delivery_frequency            = var.config_delivery_frequency
+  sns_topic_name                = var.config_sns_topic_name
+  include_global_resource_types = var.region == "ap-south-1"
 }
 
 module "config_baseline_ap-southeast-1" {
-  source             = "./modules/config-baseline"
-  iam_role_arn       = aws_iam_role.recorder.arn
-  s3_bucket_name     = local.audit_log_bucket_id
-  s3_key_prefix      = var.config_s3_bucket_key_prefix
-  delivery_frequency = var.config_delivery_frequency
-  sns_topic_name     = var.config_sns_topic_name
-
   providers = {
     aws = aws.ap-southeast-1
   }
+
+  source                        = "./modules/config-baseline"
+  iam_role_arn                  = aws_iam_role.recorder.arn
+  s3_bucket_name                = local.audit_log_bucket_id
+  s3_key_prefix                 = var.config_s3_bucket_key_prefix
+  delivery_frequency            = var.config_delivery_frequency
+  sns_topic_name                = var.config_sns_topic_name
+  include_global_resource_types = var.region == "ap-southeast-1"
 }
 
 module "config_baseline_ap-southeast-2" {
-  source             = "./modules/config-baseline"
-  iam_role_arn       = aws_iam_role.recorder.arn
-  s3_bucket_name     = local.audit_log_bucket_id
-  s3_key_prefix      = var.config_s3_bucket_key_prefix
-  delivery_frequency = var.config_delivery_frequency
-  sns_topic_name     = var.config_sns_topic_name
-
   providers = {
     aws = aws.ap-southeast-2
   }
+
+  source                        = "./modules/config-baseline"
+  iam_role_arn                  = aws_iam_role.recorder.arn
+  s3_bucket_name                = local.audit_log_bucket_id
+  s3_key_prefix                 = var.config_s3_bucket_key_prefix
+  delivery_frequency            = var.config_delivery_frequency
+  sns_topic_name                = var.config_sns_topic_name
+  include_global_resource_types = var.region == "ap-southeast-2"
 }
 
 module "config_baseline_ca-central-1" {
-  source             = "./modules/config-baseline"
-  iam_role_arn       = aws_iam_role.recorder.arn
-  s3_bucket_name     = local.audit_log_bucket_id
-  s3_key_prefix      = var.config_s3_bucket_key_prefix
-  delivery_frequency = var.config_delivery_frequency
-  sns_topic_name     = var.config_sns_topic_name
-
   providers = {
     aws = aws.ca-central-1
   }
+
+  source                        = "./modules/config-baseline"
+  iam_role_arn                  = aws_iam_role.recorder.arn
+  s3_bucket_name                = local.audit_log_bucket_id
+  s3_key_prefix                 = var.config_s3_bucket_key_prefix
+  delivery_frequency            = var.config_delivery_frequency
+  sns_topic_name                = var.config_sns_topic_name
+  include_global_resource_types = var.region == "ca-central-1"
 }
 
 module "config_baseline_eu-central-1" {
-  source             = "./modules/config-baseline"
-  iam_role_arn       = aws_iam_role.recorder.arn
-  s3_bucket_name     = local.audit_log_bucket_id
-  s3_key_prefix      = var.config_s3_bucket_key_prefix
-  delivery_frequency = var.config_delivery_frequency
-  sns_topic_name     = var.config_sns_topic_name
-
   providers = {
     aws = aws.eu-central-1
   }
+
+  source                        = "./modules/config-baseline"
+  iam_role_arn                  = aws_iam_role.recorder.arn
+  s3_bucket_name                = local.audit_log_bucket_id
+  s3_key_prefix                 = var.config_s3_bucket_key_prefix
+  delivery_frequency            = var.config_delivery_frequency
+  sns_topic_name                = var.config_sns_topic_name
+  include_global_resource_types = var.region == "eu-central-1"
 }
 
 module "config_baseline_eu-north-1" {
-  source             = "./modules/config-baseline"
-  iam_role_arn       = aws_iam_role.recorder.arn
-  s3_bucket_name     = local.audit_log_bucket_id
-  s3_key_prefix      = var.config_s3_bucket_key_prefix
-  delivery_frequency = var.config_delivery_frequency
-  sns_topic_name     = var.config_sns_topic_name
-
   providers = {
     aws = aws.eu-north-1
   }
+
+  source                        = "./modules/config-baseline"
+  iam_role_arn                  = aws_iam_role.recorder.arn
+  s3_bucket_name                = local.audit_log_bucket_id
+  s3_key_prefix                 = var.config_s3_bucket_key_prefix
+  delivery_frequency            = var.config_delivery_frequency
+  sns_topic_name                = var.config_sns_topic_name
+  include_global_resource_types = var.region == "eu-north-1"
 }
 
 module "config_baseline_eu-west-1" {
-  source             = "./modules/config-baseline"
-  iam_role_arn       = aws_iam_role.recorder.arn
-  s3_bucket_name     = local.audit_log_bucket_id
-  s3_key_prefix      = var.config_s3_bucket_key_prefix
-  delivery_frequency = var.config_delivery_frequency
-  sns_topic_name     = var.config_sns_topic_name
-
   providers = {
     aws = aws.eu-west-1
   }
+
+  source                        = "./modules/config-baseline"
+  iam_role_arn                  = aws_iam_role.recorder.arn
+  s3_bucket_name                = local.audit_log_bucket_id
+  s3_key_prefix                 = var.config_s3_bucket_key_prefix
+  delivery_frequency            = var.config_delivery_frequency
+  sns_topic_name                = var.config_sns_topic_name
+  include_global_resource_types = var.region == "eu-west-1"
 }
 
 module "config_baseline_eu-west-2" {
-  source             = "./modules/config-baseline"
-  iam_role_arn       = aws_iam_role.recorder.arn
-  s3_bucket_name     = local.audit_log_bucket_id
-  s3_key_prefix      = var.config_s3_bucket_key_prefix
-  delivery_frequency = var.config_delivery_frequency
-  sns_topic_name     = var.config_sns_topic_name
-
   providers = {
     aws = aws.eu-west-2
   }
+
+  source                        = "./modules/config-baseline"
+  iam_role_arn                  = aws_iam_role.recorder.arn
+  s3_bucket_name                = local.audit_log_bucket_id
+  s3_key_prefix                 = var.config_s3_bucket_key_prefix
+  delivery_frequency            = var.config_delivery_frequency
+  sns_topic_name                = var.config_sns_topic_name
+  include_global_resource_types = var.region == "eu-west-2"
 }
 
 module "config_baseline_eu-west-3" {
-  source             = "./modules/config-baseline"
-  iam_role_arn       = aws_iam_role.recorder.arn
-  s3_bucket_name     = local.audit_log_bucket_id
-  s3_key_prefix      = var.config_s3_bucket_key_prefix
-  delivery_frequency = var.config_delivery_frequency
-  sns_topic_name     = var.config_sns_topic_name
-
   providers = {
     aws = aws.eu-west-3
   }
+
+  source                        = "./modules/config-baseline"
+  iam_role_arn                  = aws_iam_role.recorder.arn
+  s3_bucket_name                = local.audit_log_bucket_id
+  s3_key_prefix                 = var.config_s3_bucket_key_prefix
+  delivery_frequency            = var.config_delivery_frequency
+  sns_topic_name                = var.config_sns_topic_name
+  include_global_resource_types = var.region == "eu-west-3"
 }
 
 module "config_baseline_sa-east-1" {
-  source             = "./modules/config-baseline"
-  iam_role_arn       = aws_iam_role.recorder.arn
-  s3_bucket_name     = local.audit_log_bucket_id
-  s3_key_prefix      = var.config_s3_bucket_key_prefix
-  delivery_frequency = var.config_delivery_frequency
-  sns_topic_name     = var.config_sns_topic_name
-
   providers = {
     aws = aws.sa-east-1
   }
+
+  source                        = "./modules/config-baseline"
+  iam_role_arn                  = aws_iam_role.recorder.arn
+  s3_bucket_name                = local.audit_log_bucket_id
+  s3_key_prefix                 = var.config_s3_bucket_key_prefix
+  delivery_frequency            = var.config_delivery_frequency
+  sns_topic_name                = var.config_sns_topic_name
+  include_global_resource_types = var.region == "sa-east-1"
 }
 
 module "config_baseline_us-east-1" {
-  source             = "./modules/config-baseline"
-  iam_role_arn       = aws_iam_role.recorder.arn
-  s3_bucket_name     = local.audit_log_bucket_id
-  s3_key_prefix      = var.config_s3_bucket_key_prefix
-  delivery_frequency = var.config_delivery_frequency
-  sns_topic_name     = var.config_sns_topic_name
-
   providers = {
     aws = aws.us-east-1
   }
+
+  source                        = "./modules/config-baseline"
+  iam_role_arn                  = aws_iam_role.recorder.arn
+  s3_bucket_name                = local.audit_log_bucket_id
+  s3_key_prefix                 = var.config_s3_bucket_key_prefix
+  delivery_frequency            = var.config_delivery_frequency
+  sns_topic_name                = var.config_sns_topic_name
+  include_global_resource_types = var.region == "us-east-1"
 }
 
 module "config_baseline_us-east-2" {
-  source             = "./modules/config-baseline"
-  iam_role_arn       = aws_iam_role.recorder.arn
-  s3_bucket_name     = local.audit_log_bucket_id
-  s3_key_prefix      = var.config_s3_bucket_key_prefix
-  delivery_frequency = var.config_delivery_frequency
-  sns_topic_name     = var.config_sns_topic_name
-
   providers = {
     aws = aws.us-east-2
   }
+
+  source                        = "./modules/config-baseline"
+  iam_role_arn                  = aws_iam_role.recorder.arn
+  s3_bucket_name                = local.audit_log_bucket_id
+  s3_key_prefix                 = var.config_s3_bucket_key_prefix
+  delivery_frequency            = var.config_delivery_frequency
+  sns_topic_name                = var.config_sns_topic_name
+  include_global_resource_types = var.region == "us-east-2"
 }
 
 module "config_baseline_us-west-1" {
-  source             = "./modules/config-baseline"
-  iam_role_arn       = aws_iam_role.recorder.arn
-  s3_bucket_name     = local.audit_log_bucket_id
-  s3_key_prefix      = var.config_s3_bucket_key_prefix
-  delivery_frequency = var.config_delivery_frequency
-  sns_topic_name     = var.config_sns_topic_name
-
   providers = {
     aws = aws.us-west-1
   }
+
+  source                        = "./modules/config-baseline"
+  iam_role_arn                  = aws_iam_role.recorder.arn
+  s3_bucket_name                = local.audit_log_bucket_id
+  s3_key_prefix                 = var.config_s3_bucket_key_prefix
+  delivery_frequency            = var.config_delivery_frequency
+  sns_topic_name                = var.config_sns_topic_name
+  include_global_resource_types = var.region == "us-west-1"
 }
 
 module "config_baseline_us-west-2" {
-  source             = "./modules/config-baseline"
-  iam_role_arn       = aws_iam_role.recorder.arn
-  s3_bucket_name     = local.audit_log_bucket_id
-  s3_key_prefix      = var.config_s3_bucket_key_prefix
-  delivery_frequency = var.config_delivery_frequency
-  sns_topic_name     = var.config_sns_topic_name
-
   providers = {
     aws = aws.us-west-2
   }
+
+  source                        = "./modules/config-baseline"
+  iam_role_arn                  = aws_iam_role.recorder.arn
+  s3_bucket_name                = local.audit_log_bucket_id
+  s3_key_prefix                 = var.config_s3_bucket_key_prefix
+  delivery_frequency            = var.config_delivery_frequency
+  sns_topic_name                = var.config_sns_topic_name
+  include_global_resource_types = var.region == "us-west-2"
 }
 
 # --------------------------------------------------------------------------------------------------
@@ -483,4 +500,3 @@ resource "aws_config_config_rule" "no_policies_with_full_admin_access" {
     module.config_baseline_us-west-2,
   ]
 }
-

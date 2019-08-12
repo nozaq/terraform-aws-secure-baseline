@@ -10,6 +10,7 @@ Enable AWS Config in all regions to automatically take configuration snapshots.
 | delivery\_channel\_name | The name of the delivery channel. | string | `"default"` | no |
 | delivery\_frequency | The frequency which AWS Config sends a snapshot into the S3 bucket. | string | `"One_Hour"` | no |
 | iam\_role\_arn | The ARN of the IAM Role which AWS Config will use. | string | n/a | yes |
+| include\_global\_resource\_types | Specifies whether AWS Config includes all supported types of global resources with the resources that it records. | string | `"true"` | no |
 | recorder\_name | The name of the configuration recorder. | string | `"default"` | no |
 | s3\_bucket\_name | The name of the S3 bucket which will store configuration snapshots. | string | n/a | yes |
 | s3\_key\_prefix | The prefix for the specified S3 bucket. | string | `""` | no |
