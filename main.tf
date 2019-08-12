@@ -1,5 +1,9 @@
 locals {
-  is_master_account = var.master_account_id == ""
+  is_individual_account = var.account_type == "individual"
+  is_master_account     = var.account_type == "master"
+  is_member_account     = var.account_type == "member"
+
+  is_cloudtrail_enabled = local.is_individual_account || local.is_master_account
 }
 
 # --------------------------------------------------------------------------------------------------
@@ -34,6 +38,7 @@ module "iam_baseline" {
 module "cloudtrail_baseline" {
   source = "./modules/cloudtrail-baseline"
 
+  enabled                           = local.is_cloudtrail_enabled
   aws_account_id                    = var.aws_account_id
   cloudtrail_name                   = var.cloudtrail_name
   cloudwatch_logs_group_name        = var.cloudtrail_cloudwatch_logs_group_name
@@ -54,8 +59,9 @@ module "cloudtrail_baseline" {
 module "alarm_baseline" {
   source = "./modules/alarm-baseline"
 
+  enabled                   = local.is_cloudtrail_enabled
   alarm_namespace           = var.alarm_namespace
-  cloudtrail_log_group_name = module.cloudtrail_baseline.log_group.name
+  cloudtrail_log_group_name = local.is_cloudtrail_enabled ? module.cloudtrail_baseline.log_group.name : ""
   sns_topic_name            = var.alarm_sns_topic_name
 }
 

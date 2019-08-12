@@ -96,6 +96,7 @@ This module is composed of several submodules and each of which can be used inde
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
+| account\_type | The type of the AWS account. The possible values are `individual`, `master` and `member` . Specify `master` and `member` to set up centalized logging for multiple accounts in AWS Organization. Use individual` otherwise. | string | `"individual"` | no |
 | alarm\_namespace | The namespace in which all alarms are set up. | string | `"CISBenchmark"` | no |
 | alarm\_sns\_topic\_name | The name of the SNS Topic which will be notified when any alarm is performed. | string | `"CISAlarm"` | no |
 | allow\_users\_to\_change\_password | Whether to allow users to change their own password. | string | `"true"` | no |
@@ -122,7 +123,7 @@ This module is composed of several submodules and each of which can be used inde
 | guardduty\_member\_accounts | A list of IDs and emails of AWS accounts which associated as member accounts. | object | `[]` | no |
 | manager\_iam\_role\_name | The name of the IAM Manager role. | string | `"IAM-Manager"` | no |
 | manager\_iam\_role\_policy\_name | The name of the IAM Manager role policy. | string | `"IAM-Manager-Policy"` | no |
-| master\_account\_id | The ID of the master AWS account to which the current AWS account is associated. | string | `""` | no |
+| master\_account\_id | The ID of the master AWS account to which the current AWS account is associated. Required if `account\_type` is `member`. | string | `""` | no |
 | master\_iam\_role\_name | The name of the IAM Master role. | string | `"IAM-Master"` | no |
 | master\_iam\_role\_policy\_name | The name of the IAM Master role policy. | string | `"IAM-Master-Policy"` | no |
 | max\_password\_age | The number of days that an user password is valid. | string | `"90"` | no |

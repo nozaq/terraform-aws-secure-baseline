@@ -3,6 +3,8 @@
 # --------------------------------------------------------------------------------------------------
 
 resource "aws_cloudwatch_log_group" "cloudtrail_events" {
+  count = var.enabled ? 1 : 0
+
   name              = var.cloudwatch_logs_group_name
   retention_in_days = var.cloudwatch_logs_retention_in_days
 }
@@ -14,6 +16,8 @@ resource "aws_cloudwatch_log_group" "cloudtrail_events" {
 # --------------------------------------------------------------------------------------------------
 
 resource "aws_iam_role" "cloudwatch_delivery" {
+  count = var.enabled ? 1 : 0
+
   name = var.iam_role_name
 
   assume_role_policy = <<END_OF_POLICY
@@ -34,8 +38,10 @@ END_OF_POLICY
 }
 
 resource "aws_iam_role_policy" "cloudwatch_delivery_policy" {
+  count = var.enabled ? 1 : 0
+
   name = var.iam_role_policy_name
-  role = aws_iam_role.cloudwatch_delivery.id
+  role = aws_iam_role.cloudwatch_delivery[0].id
 
   policy = <<END_OF_POLICY
 {
@@ -48,7 +54,7 @@ resource "aws_iam_role_policy" "cloudwatch_delivery_policy" {
         "logs:CreateLogStream"
       ],
       "Resource": [
-        "arn:aws:logs:${var.region}:${var.aws_account_id}:log-group:${aws_cloudwatch_log_group.cloudtrail_events.name}:log-stream:*"
+        "arn:aws:logs:${var.region}:${var.aws_account_id}:log-group:${aws_cloudwatch_log_group.cloudtrail_events[0].name}:log-stream:*"
       ]
 
     },
@@ -59,7 +65,7 @@ resource "aws_iam_role_policy" "cloudwatch_delivery_policy" {
         "logs:PutLogEvents"
       ],
       "Resource": [
-        "arn:aws:logs:${var.region}:${var.aws_account_id}:log-group:${aws_cloudwatch_log_group.cloudtrail_events.name}:log-stream:*"
+        "arn:aws:logs:${var.region}:${var.aws_account_id}:log-group:${aws_cloudwatch_log_group.cloudtrail_events[0].name}:log-stream:*"
       ]
     }
   ]
@@ -74,6 +80,8 @@ END_OF_POLICY
 # --------------------------------------------------------------------------------------------------
 
 resource "aws_kms_key" "cloudtrail" {
+  count = var.enabled ? 1 : 0
+
   description             = "A KMS key to encrypt CloudTrail events."
   deletion_window_in_days = var.key_deletion_window_in_days
   enable_key_rotation     = "true"
@@ -156,15 +164,17 @@ END_OF_POLICY
 # --------------------------------------------------------------------------------------------------
 
 resource "aws_cloudtrail" "global" {
+  count = var.enabled ? 1 : 0
+
   name = var.cloudtrail_name
 
-  cloud_watch_logs_group_arn    = aws_cloudwatch_log_group.cloudtrail_events.arn
-  cloud_watch_logs_role_arn     = aws_iam_role.cloudwatch_delivery.arn
+  cloud_watch_logs_group_arn    = aws_cloudwatch_log_group.cloudtrail_events[0].arn
+  cloud_watch_logs_role_arn     = aws_iam_role.cloudwatch_delivery[0].arn
   enable_log_file_validation    = true
   include_global_service_events = true
   is_multi_region_trail         = true
   is_organization_trail         = var.is_organization_trail
-  kms_key_id                    = aws_kms_key.cloudtrail.arn
+  kms_key_id                    = aws_kms_key.cloudtrail[0].arn
   s3_bucket_name                = var.s3_bucket_name
   s3_key_prefix                 = var.s3_key_prefix
 }

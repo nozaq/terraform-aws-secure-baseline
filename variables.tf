@@ -10,8 +10,13 @@ variable "region" {
   description = "The AWS region in which global resources are set up."
 }
 
+variable "account_type" {
+  description = "The type of the AWS account. The possible values are `individual`, `master` and `member` . Specify `master` and `member` to set up centalized logging for multiple accounts in AWS Organization. Use individual` otherwise."
+  default     = "individual"
+}
+
 variable "master_account_id" {
-  description = "The ID of the master AWS account to which the current AWS account is associated."
+  description = "The ID of the master AWS account to which the current AWS account is associated. Required if `account_type` is `member`."
   default     = ""
 }
 
