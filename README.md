@@ -106,6 +106,7 @@ This module is composed of several submodules and each of which can be used inde
 | cloudtrail\_cloudwatch\_logs\_group\_name | The name of CloudWatch Logs group to which CloudTrail events are delivered. | string | `"cloudtrail-multi-region"` | no |
 | cloudtrail\_iam\_role\_name | The name of the IAM Role to be used by CloudTrail to delivery logs to CloudWatch Logs group. | string | `"CloudTrail-CloudWatch-Delivery-Role"` | no |
 | cloudtrail\_iam\_role\_policy\_name | The name of the IAM Role Policy to be used by CloudTrail to delivery logs to CloudWatch Logs group. | string | `"CloudTrail-CloudWatch-Delivery-Policy"` | no |
+| cloudtrail\_is\_organization\_trail | Specifies whether the trail is an AWS Organizations trail. Organization trails log events for the master account and all member accounts. Can only be created in the organization master account. | string | `"false"` | no |
 | cloudtrail\_key\_deletion\_window\_in\_days | Duration in days after which the key is deleted after destruction of the resource, must be between 7 and 30 days. Defaults to 30 days. | string | `"10"` | no |
 | cloudtrail\_name | The name of the trail. | string | `"cloudtrail-multi-region"` | no |
 | cloudtrail\_s3\_key\_prefix | The prefix used when CloudTrail delivers events to the S3 bucket. | string | `"cloudtrail"` | no |

@@ -163,6 +163,7 @@ resource "aws_cloudtrail" "global" {
   enable_log_file_validation    = true
   include_global_service_events = true
   is_multi_region_trail         = true
+  is_organization_trail         = var.is_organization_trail
   kms_key_id                    = aws_kms_key.cloudtrail.arn
   s3_bucket_name                = var.s3_bucket_name
   s3_key_prefix                 = var.s3_key_prefix
