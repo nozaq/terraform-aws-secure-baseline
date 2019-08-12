@@ -223,3 +223,16 @@ variable "guardduty_finding_publishing_frequency" {
   default     = "SIX_HOURS"
 }
 
+variable "guardduty_member_accounts" {
+  description = "A list of IDs and emails of AWS accounts which associated as member accounts."
+  type = list(object({
+    account_id = string
+    email      = string
+  }))
+  default = []
+}
+
+variable "guardduty_master_account_id" {
+  description = "AWS account ID for master account."
+  default     = ""
+}
