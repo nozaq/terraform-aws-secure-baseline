@@ -119,14 +119,13 @@ This module is composed of several submodules and each of which can be used inde
 | config\_s3\_bucket\_key\_prefix | The prefix used when writing AWS Config snapshots into the S3 bucket. | string | `"config"` | no |
 | config\_sns\_topic\_name | The name of the SNS Topic to be used to notify configuration changes. | string | `"ConfigChanges"` | no |
 | guardduty\_finding\_publishing\_frequency | Specifies the frequency of notifications sent for subsequent finding occurrences. | string | `"SIX_HOURS"` | no |
-| guardduty\_master\_account\_id | AWS account ID for master account. | string | `""` | no |
-| guardduty\_member\_accounts | A list of IDs and emails of AWS accounts which associated as member accounts. | object | `[]` | no |
 | manager\_iam\_role\_name | The name of the IAM Manager role. | string | `"IAM-Manager"` | no |
 | manager\_iam\_role\_policy\_name | The name of the IAM Manager role policy. | string | `"IAM-Manager-Policy"` | no |
 | master\_account\_id | The ID of the master AWS account to which the current AWS account is associated. Required if `account\_type` is `member`. | string | `""` | no |
 | master\_iam\_role\_name | The name of the IAM Master role. | string | `"IAM-Master"` | no |
 | master\_iam\_role\_policy\_name | The name of the IAM Master role policy. | string | `"IAM-Master-Policy"` | no |
 | max\_password\_age | The number of days that an user password is valid. | string | `"90"` | no |
+| member\_accounts | A list of IDs and emails of AWS accounts which associated as member accounts. | object | `[]` | no |
 | minimum\_password\_length | Minimum length to require for user passwords. | string | `"14"` | no |
 | password\_reuse\_prevention | The number of previous passwords that users are prevented from reusing. | string | `"24"` | no |
 | region | The AWS region in which global resources are set up. | string | n/a | yes |

@@ -2,7 +2,6 @@
 # Create an IAM Role for AWS Config recorder to publish results and send notifications.
 # Reference: https://docs.aws.amazon.com/config/latest/developerguide/gs-cli-prereq.html#gs-cli-create-iamrole
 # --------------------------------------------------------------------------------------------------
-
 resource "aws_iam_role" "recorder" {
   name = var.config_iam_role_name
 

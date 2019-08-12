@@ -20,6 +20,15 @@ variable "master_account_id" {
   default     = ""
 }
 
+variable "member_accounts" {
+  description = "A list of IDs and emails of AWS accounts which associated as member accounts."
+  type = list(object({
+    account_id = string
+    email      = string
+  }))
+  default = []
+}
+
 # --------------------------------------------------------------------------------------------------
 # Variables for audit log bucket configurations.
 # --------------------------------------------------------------------------------------------------
@@ -241,18 +250,4 @@ variable "alarm_sns_topic_name" {
 variable "guardduty_finding_publishing_frequency" {
   description = "Specifies the frequency of notifications sent for subsequent finding occurrences."
   default     = "SIX_HOURS"
-}
-
-variable "guardduty_member_accounts" {
-  description = "A list of IDs and emails of AWS accounts which associated as member accounts."
-  type = list(object({
-    account_id = string
-    email      = string
-  }))
-  default = []
-}
-
-variable "guardduty_master_account_id" {
-  description = "AWS account ID for master account."
-  default     = ""
 }
