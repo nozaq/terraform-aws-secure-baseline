@@ -54,7 +54,10 @@ data "aws_iam_policy_document" "audit_log" {
       type        = "Service"
       identifiers = ["config.amazonaws.com"]
     }
-    resources = ["${module.audit_log_bucket.this_bucket.arn}/config/AWSLogs/${var.aws_account_id}/Config/*"]
+    resources = concat(
+      ["${module.audit_log_bucket.this_bucket.arn}/config/AWSLogs/${var.aws_account_id}/Config/*"],
+      [for account in var.member_accounts : "${module.audit_log_bucket.this_bucket.arn}/config/AWSLogs/${account.account_id}/Config/*"]
+    )
     condition {
       test     = "StringEquals"
       variable = "s3:x-amz-acl"
@@ -79,11 +82,27 @@ data "aws_iam_policy_document" "audit_log" {
       type        = "Service"
       identifiers = ["cloudtrail.amazonaws.com"]
     }
-    resources = ["${module.audit_log_bucket.this_bucket.arn}/cloudtrail/AWSLogs/${var.aws_account_id}/*"]
+    resources = concat(
+      ["${module.audit_log_bucket.this_bucket.arn}/cloudtrail/AWSLogs/${var.aws_account_id}/*"],
+      [for account in var.member_accounts : "${module.audit_log_bucket.this_bucket.arn}/cloudtrail/AWSLogs/${account.account_id}/*"]
+    )
     condition {
       test     = "StringEquals"
       variable = "s3:x-amz-acl"
       values   = ["bucket-owner-full-control"]
+    }
+  }
+
+  dynamic "statement" {
+    for_each = local.is_master_account && length(var.member_accounts) > 0 ? [var.member_accounts] : []
+
+    content {
+      principals {
+        type        = "AWS"
+        identifiers = [for account in statement.value : "arn:aws:iam::${account.account_id}:root"]
+      }
+      actions   = ["s3:GetBucketLocation", "s3:ListBucket"]
+      resources = [module.audit_log_bucket.this_bucket.arn]
     }
   }
 }
