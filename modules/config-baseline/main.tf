@@ -57,7 +57,6 @@ resource "aws_config_config_rule" "restricted_ports" {
 }
 JSON
 
-
   depends_on = [aws_config_configuration_recorder.recorder]
 }
 

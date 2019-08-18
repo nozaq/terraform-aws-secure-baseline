@@ -2,25 +2,20 @@
 # Create an IAM Role for AWS Config recorder to publish results and send notifications.
 # Reference: https://docs.aws.amazon.com/config/latest/developerguide/gs-cli-prereq.html#gs-cli-create-iamrole
 # --------------------------------------------------------------------------------------------------
+data "aws_iam_policy_document" "recorder_assume_role_policy" {
+  statement {
+    principals {
+      type        = "Service"
+      identifiers = ["config.amazonaws.com"]
+    }
+    actions = ["sts:AssumeRole"]
+  }
+}
+
 resource "aws_iam_role" "recorder" {
   name = var.config_iam_role_name
 
-  assume_role_policy = <<POLICY
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Action": "sts:AssumeRole",
-      "Principal": {
-        "Service": "config.amazonaws.com"
-      },
-      "Effect": "Allow",
-      "Sid": ""
-    }
-  ]
-}
-POLICY
-
+  assume_role_policy = data.aws_iam_policy_document.recorder_assume_role_policy.json
 }
 
 # See https://docs.aws.amazon.com/config/latest/developerguide/iamrole-permissions.html
@@ -504,26 +499,22 @@ resource "aws_config_config_rule" "no_policies_with_full_admin_access" {
 # Aggregator View
 # Only created for the master account.
 # --------------------------------------------------------------------------------------------------
+data "aws_iam_policy_document" "config_organization_assume_role_policy" {
+  statement {
+    principals {
+      type        = "Service"
+      identifiers = ["config.amazonaws.com"]
+    }
+    actions = ["sts:AssumeRole"]
+  }
+}
+
 resource "aws_iam_role" "config_organization" {
   count = local.is_master_account ? 1 : 0
 
   name_prefix = var.config_aggregator_name_prefix
 
-  assume_role_policy = <<EOF
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Sid": "",
-      "Effect": "Allow",
-      "Principal": {
-        "Service": "config.amazonaws.com"
-      },
-      "Action": "sts:AssumeRole"
-    }
-  ]
-}
-EOF
+  assume_role_policy = data.aws_iam_policy_document.config_organization_assume_role_policy.json
 }
 
 resource "aws_iam_role_policy_attachment" "config_organization" {
