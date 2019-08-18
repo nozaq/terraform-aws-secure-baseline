@@ -2,7 +2,8 @@
 # Configure the S3 bucket to store audit logs.
 # --------------------------------------------------------------------------------------------------
 locals {
-  use_external_bucket  = var.use_external_audit_log_bucket
+  use_external_bucket = var.use_external_audit_log_bucket
+
   audit_log_bucket_id  = local.use_external_bucket ? data.aws_s3_bucket.external[0].id : module.audit_log_bucket.this_bucket.id
   audit_log_bucket_arn = local.use_external_bucket ? data.aws_s3_bucket.external[0].arn : module.audit_log_bucket.this_bucket.arn
 }
@@ -34,53 +35,84 @@ module "audit_log_bucket" {
   enabled                           = ! local.use_external_bucket
 }
 
+data "aws_organizations_organization" "org" {}
+
+data "aws_iam_policy_document" "audit_log" {
+  count = local.use_external_bucket ? 0 : 1
+
+  statement {
+    sid     = "AWSCloudTrailAclCheckForConfig"
+    actions = ["s3:GetBucketAcl"]
+    principals {
+      type        = "Service"
+      identifiers = ["config.amazonaws.com"]
+    }
+    resources = [module.audit_log_bucket.this_bucket.arn]
+  }
+
+  statement {
+    sid     = "AWSCloudTrailWriteForConfig"
+    actions = ["s3:PutObject"]
+    principals {
+      type        = "Service"
+      identifiers = ["config.amazonaws.com"]
+    }
+    resources = concat(
+      ["${module.audit_log_bucket.this_bucket.arn}/config/AWSLogs/${var.aws_account_id}/Config/*"],
+      local.is_master_account ? [for account in var.member_accounts : "${module.audit_log_bucket.this_bucket.arn}/config/AWSLogs/${account.account_id}/Config/*"] : []
+    )
+    condition {
+      test     = "StringEquals"
+      variable = "s3:x-amz-acl"
+      values   = ["bucket-owner-full-control"]
+    }
+  }
+
+  statement {
+    sid     = "AWSCloudTrailAclCheckForCloudTrail"
+    actions = ["s3:GetBucketAcl"]
+    principals {
+      type        = "Service"
+      identifiers = ["cloudtrail.amazonaws.com"]
+    }
+    resources = [module.audit_log_bucket.this_bucket.arn]
+  }
+
+  statement {
+    sid     = "AWSCloudTrailWriteForCloudTrail"
+    actions = ["s3:PutObject"]
+    principals {
+      type        = "Service"
+      identifiers = ["cloudtrail.amazonaws.com"]
+    }
+    resources = concat(
+      ["${module.audit_log_bucket.this_bucket.arn}/cloudtrail/AWSLogs/${var.aws_account_id}/*"],
+      local.is_master_account ? ["${module.audit_log_bucket.this_bucket.arn}/cloudtrail/AWSLogs/${data.aws_organizations_organization.org.id}/*"] : []
+    )
+    condition {
+      test     = "StringEquals"
+      variable = "s3:x-amz-acl"
+      values   = ["bucket-owner-full-control"]
+    }
+  }
+
+  dynamic "statement" {
+    for_each = local.is_master_account && length(var.member_accounts) > 0 ? [var.member_accounts] : []
+
+    content {
+      principals {
+        type        = "AWS"
+        identifiers = [for account in statement.value : "arn:aws:iam::${account.account_id}:root"]
+      }
+      actions   = ["s3:GetBucketLocation", "s3:ListBucket"]
+      resources = [module.audit_log_bucket.this_bucket.arn]
+    }
+  }
+}
+
 resource "aws_s3_bucket_policy" "audit_log" {
   count = local.use_external_bucket ? 0 : 1
 
   bucket = module.audit_log_bucket.this_bucket.id
-  policy = <<END_OF_POLICY
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Sid": "AWSCloudTrailAclCheckForConfig",
-      "Effect": "Allow",
-      "Principal": {"Service": "config.amazonaws.com"},
-      "Action": "s3:GetBucketAcl",
-      "Resource": "${module.audit_log_bucket.this_bucket.arn}"
-    },
-    {
-      "Sid": " AWSCloudTrailWriteForConfig",
-      "Effect": "Allow",
-      "Principal": {"Service": "config.amazonaws.com"},
-      "Action": "s3:PutObject",
-      "Resource": "${module.audit_log_bucket.this_bucket.arn}/config/AWSLogs/${var.aws_account_id}/Config/*",
-      "Condition": {"StringEquals": {"s3:x-amz-acl": "bucket-owner-full-control"}}
-    },
-    {
-        "Sid": "AWSCloudTrailAclCheckForCloudTrail",
-        "Effect": "Allow",
-        "Principal": {
-            "Service": "cloudtrail.amazonaws.com"
-        },
-        "Action": "s3:GetBucketAcl",
-        "Resource": "${module.audit_log_bucket.this_bucket.arn}"
-    },
-    {
-        "Sid": "AWSCloudTrailWriteForCloudTrail",
-        "Effect": "Allow",
-        "Principal": {
-            "Service": "cloudtrail.amazonaws.com"
-        },
-        "Action": "s3:PutObject",
-        "Resource": "${module.audit_log_bucket.this_bucket.arn}/cloudtrail/AWSLogs/${var.aws_account_id}/*",
-        "Condition": {
-            "StringEquals": {
-                "s3:x-amz-acl": "bucket-owner-full-control"
-            }
-        }
-    }
-  ]
-}
-END_OF_POLICY
+  policy = data.aws_iam_policy_document.audit_log[0].json
 }

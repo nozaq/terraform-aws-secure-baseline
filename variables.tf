@@ -10,6 +10,25 @@ variable "region" {
   description = "The AWS region in which global resources are set up."
 }
 
+variable "account_type" {
+  description = "The type of the AWS account. The possible values are `individual`, `master` and `member` . Specify `master` and `member` to set up centalized logging for multiple accounts in AWS Organization. Use individual` otherwise."
+  default     = "individual"
+}
+
+variable "master_account_id" {
+  description = "The ID of the master AWS account to which the current AWS account is associated. Required if `account_type` is `member`."
+  default     = ""
+}
+
+variable "member_accounts" {
+  description = "A list of IDs and emails of AWS accounts which associated as member accounts."
+  type = list(object({
+    account_id = string
+    email      = string
+  }))
+  default = []
+}
+
 # --------------------------------------------------------------------------------------------------
 # Variables for audit log bucket configurations.
 # --------------------------------------------------------------------------------------------------
@@ -161,6 +180,16 @@ variable "config_sns_topic_name" {
   default     = "ConfigChanges"
 }
 
+variable "config_aggregator_name" {
+  description = "The name of the organizational AWS Config Configuration Aggregator."
+  default     = "organization-aggregator"
+}
+
+variable "config_aggregator_name_prefix" {
+  description = "The prefix of the name for the IAM role attached to the organizational AWS Config Configuration Aggregator."
+  default     = "config-for-organization-role"
+}
+
 # --------------------------------------------------------------------------------------------------
 # Variables for cloudtrail-baseline module.
 # --------------------------------------------------------------------------------------------------
@@ -217,9 +246,17 @@ variable "alarm_sns_topic_name" {
 # --------------------------------------------------------------------------------------------------
 # Variables for guardduty-baseline module.
 # --------------------------------------------------------------------------------------------------
+variable "guardduty_disable_email_notification" {
+  description = "Boolean whether an email notification is sent to the accounts."
+  default     = false
+}
 
 variable "guardduty_finding_publishing_frequency" {
   description = "Specifies the frequency of notifications sent for subsequent finding occurrences."
   default     = "SIX_HOURS"
 }
 
+variable "guardduty_invitation_message" {
+  description = "Message for invitation."
+  default     = "This is an automatic invitation message from guardduty-baseline module."
+}

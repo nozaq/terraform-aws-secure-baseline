@@ -1,8 +1,9 @@
 # --------------------------------------------------------------------------------------------------
 # CloudWatch Logs group to accept CloudTrail event stream.
 # --------------------------------------------------------------------------------------------------
-
 resource "aws_cloudwatch_log_group" "cloudtrail_events" {
+  count = var.enabled ? 1 : 0
+
   name              = var.cloudwatch_logs_group_name
   retention_in_days = var.cloudwatch_logs_retention_in_days
 }
@@ -12,59 +13,46 @@ resource "aws_cloudwatch_log_group" "cloudtrail_events" {
 # The policy was derived from the default key policy descrived in AWS CloudTrail User Guide.
 # https://docs.aws.amazon.com/awscloudtrail/latest/userguide/send-cloudtrail-events-to-cloudwatch-logs.html
 # --------------------------------------------------------------------------------------------------
+data "aws_iam_policy_document" "cloudwatch_delivery_assume_policy" {
+  statement {
+    principals {
+      type        = "Service"
+      identifiers = ["cloudtrail.amazonaws.com"]
+    }
+    actions = ["sts:AssumeRole"]
+  }
+}
 
 resource "aws_iam_role" "cloudwatch_delivery" {
-  name = var.iam_role_name
+  count = var.enabled ? 1 : 0
 
-  assume_role_policy = <<END_OF_POLICY
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Action": "sts:AssumeRole",
-      "Principal": {
-        "Service": "cloudtrail.amazonaws.com"
-      },
-      "Effect": "Allow",
-      "Sid": ""
-    }
-  ]
+  name               = var.iam_role_name
+  assume_role_policy = data.aws_iam_policy_document.cloudwatch_delivery_assume_policy.json
 }
-END_OF_POLICY
+
+data "aws_iam_policy_document" "cloudwatch_delivery_policy" {
+  count = var.enabled ? 1 : 0
+
+  statement {
+    sid       = "AWSCloudTrailCreateLogStream2014110"
+    actions   = ["logs:CreateLogStream"]
+    resources = ["arn:aws:logs:${var.region}:${var.aws_account_id}:log-group:${aws_cloudwatch_log_group.cloudtrail_events[0].name}:log-stream:*"]
+  }
+
+  statement {
+    sid       = "AWSCloudTrailPutLogEvents20141101"
+    actions   = ["logs:PutLogEvents"]
+    resources = ["arn:aws:logs:${var.region}:${var.aws_account_id}:log-group:${aws_cloudwatch_log_group.cloudtrail_events[0].name}:log-stream:*"]
+  }
 }
 
 resource "aws_iam_role_policy" "cloudwatch_delivery_policy" {
+  count = var.enabled ? 1 : 0
+
   name = var.iam_role_policy_name
-  role = aws_iam_role.cloudwatch_delivery.id
+  role = aws_iam_role.cloudwatch_delivery[0].id
 
-  policy = <<END_OF_POLICY
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Sid": "AWSCloudTrailCreateLogStream2014110",
-      "Effect": "Allow",
-      "Action": [
-        "logs:CreateLogStream"
-      ],
-      "Resource": [
-        "arn:aws:logs:${var.region}:${var.aws_account_id}:log-group:${aws_cloudwatch_log_group.cloudtrail_events.name}:log-stream:*"
-      ]
-
-    },
-    {
-      "Sid": "AWSCloudTrailPutLogEvents20141101",
-      "Effect": "Allow",
-      "Action": [
-        "logs:PutLogEvents"
-      ],
-      "Resource": [
-        "arn:aws:logs:${var.region}:${var.aws_account_id}:log-group:${aws_cloudwatch_log_group.cloudtrail_events.name}:log-stream:*"
-      ]
-    }
-  ]
-}
-END_OF_POLICY
+  policy = data.aws_iam_policy_document.cloudwatch_delivery_policy[0].json
 }
 
 # --------------------------------------------------------------------------------------------------
@@ -72,83 +60,122 @@ END_OF_POLICY
 # The policy was derived from the default key policy descrived in AWS CloudTrail User Guide.
 # https://docs.aws.amazon.com/awscloudtrail/latest/userguide/default-cmk-policy.html
 # --------------------------------------------------------------------------------------------------
+data "aws_iam_policy_document" "cloudtrail_key_policy" {
+  policy_id = "Key policy created by CloudTrail"
+
+  statement {
+    sid = "Enable IAM User Permissions"
+
+    principals {
+      type = "AWS"
+      identifiers = [
+        "arn:aws:iam::${var.aws_account_id}:root"
+      ]
+    }
+    actions   = ["kms:*"]
+    resources = ["*"]
+  }
+
+  statement {
+    sid = "Allow CloudTrail to encrypt logs"
+    principals {
+      type        = "Service"
+      identifiers = ["cloudtrail.amazonaws.com"]
+    }
+    actions   = ["kms:GenerateDataKey*"]
+    resources = ["*"]
+    condition {
+      test     = "StringLike"
+      variable = "kms:EncryptionContext:aws:cloudtrail:arn"
+      values   = ["arn:aws:cloudtrail:*:${var.aws_account_id}:trail/*"]
+    }
+  }
+
+  statement {
+    sid = "Allow CloudTrail to describe key"
+    principals {
+      type        = "Service"
+      identifiers = ["cloudtrail.amazonaws.com"]
+    }
+    actions   = ["kms:DescribeKey"]
+    resources = ["*"]
+  }
+
+  statement {
+    sid = "Allow principals in the account to decrypt log files"
+    principals {
+      type        = "AWS"
+      identifiers = ["*"]
+    }
+    actions = [
+      "kms:Decrypt",
+      "kms:ReEncryptFrom"
+    ]
+    resources = ["*"]
+    condition {
+      test     = "StringEquals"
+      variable = "kms:CallerAccount"
+      values   = ["${var.aws_account_id}"]
+    }
+    condition {
+      test     = "StringLike"
+      variable = "kms:EncryptionContext:aws:cloudtrail:arn"
+      values   = ["arn:aws:cloudtrail:*:${var.aws_account_id}:trail/*"]
+    }
+  }
+
+  statement {
+    sid = "Allow alias creation during setup"
+    principals {
+      type        = "AWS"
+      identifiers = ["*"]
+    }
+    actions   = ["kms:CreateAlias"]
+    resources = ["*"]
+    condition {
+      test     = "StringEquals"
+      variable = "kms:ViaService"
+      values   = ["ec2.${var.region}.amazonaws.com"]
+    }
+    condition {
+      test     = "StringEquals"
+      variable = "kms:CallerAccount"
+      values   = ["${var.aws_account_id}"]
+    }
+  }
+
+  statement {
+    sid = "Enable cross account log decryption"
+    principals {
+      type        = "AWS"
+      identifiers = ["*"]
+    }
+    actions = [
+      "kms:Decrypt",
+      "kms:ReEncryptFrom"
+    ]
+    resources = ["*"]
+    condition {
+      test     = "StringEquals"
+      variable = "kms:CallerAccount"
+      values   = ["${var.aws_account_id}"]
+    }
+    condition {
+      test     = "StringLike"
+      variable = "kms:EncryptionContext:aws:cloudtrail:arn"
+      values   = ["arn:aws:cloudtrail:*:${var.aws_account_id}:trail/*"]
+    }
+  }
+}
 
 resource "aws_kms_key" "cloudtrail" {
+  count = var.enabled ? 1 : 0
+
   description             = "A KMS key to encrypt CloudTrail events."
   deletion_window_in_days = var.key_deletion_window_in_days
   enable_key_rotation     = "true"
 
-  policy = <<END_OF_POLICY
-{
-    "Version": "2012-10-17",
-    "Id": "Key policy created by CloudTrail",
-    "Statement": [
-        {
-            "Sid": "Enable IAM User Permissions",
-            "Effect": "Allow",
-            "Principal": {"AWS": [
-                "arn:aws:iam::${var.aws_account_id}:root"
-            ]},
-            "Action": "kms:*",
-            "Resource": "*"
-        },
-        {
-            "Sid": "Allow CloudTrail to encrypt logs",
-            "Effect": "Allow",
-            "Principal": {"Service": ["cloudtrail.amazonaws.com"]},
-            "Action": "kms:GenerateDataKey*",
-            "Resource": "*",
-            "Condition": {"StringLike": {"kms:EncryptionContext:aws:cloudtrail:arn": "arn:aws:cloudtrail:*:${var.aws_account_id}:trail/*"}}
-        },
-        {
-            "Sid": "Allow CloudTrail to describe key",
-            "Effect": "Allow",
-            "Principal": {"Service": ["cloudtrail.amazonaws.com"]},
-            "Action": "kms:DescribeKey",
-            "Resource": "*"
-        },
-        {
-            "Sid": "Allow principals in the account to decrypt log files",
-            "Effect": "Allow",
-            "Principal": {"AWS": "*"},
-            "Action": [
-                "kms:Decrypt",
-                "kms:ReEncryptFrom"
-            ],
-            "Resource": "*",
-            "Condition": {
-                "StringEquals": {"kms:CallerAccount": "${var.aws_account_id}"},
-                "StringLike": {"kms:EncryptionContext:aws:cloudtrail:arn": "arn:aws:cloudtrail:*:${var.aws_account_id}:trail/*"}
-            }
-        },
-        {
-            "Sid": "Allow alias creation during setup",
-            "Effect": "Allow",
-            "Principal": {"AWS": "*"},
-            "Action": "kms:CreateAlias",
-            "Resource": "*",
-            "Condition": {"StringEquals": {
-                "kms:ViaService": "ec2.${var.region}.amazonaws.com",
-                "kms:CallerAccount": "${var.aws_account_id}"
-            }}
-        },
-        {
-            "Sid": "Enable cross account log decryption",
-            "Effect": "Allow",
-            "Principal": {"AWS": "*"},
-            "Action": [
-                "kms:Decrypt",
-                "kms:ReEncryptFrom"
-            ],
-            "Resource": "*",
-            "Condition": {
-                "StringEquals": {"kms:CallerAccount": "${var.aws_account_id}"},
-                "StringLike": {"kms:EncryptionContext:aws:cloudtrail:arn": "arn:aws:cloudtrail:*:${var.aws_account_id}:trail/*"}
-            }
-        }
-    ]
-}
-END_OF_POLICY
+  policy = data.aws_iam_policy_document.cloudtrail_key_policy.json
 }
 
 # --------------------------------------------------------------------------------------------------
@@ -156,14 +183,17 @@ END_OF_POLICY
 # --------------------------------------------------------------------------------------------------
 
 resource "aws_cloudtrail" "global" {
+  count = var.enabled ? 1 : 0
+
   name = var.cloudtrail_name
 
-  cloud_watch_logs_group_arn    = aws_cloudwatch_log_group.cloudtrail_events.arn
-  cloud_watch_logs_role_arn     = aws_iam_role.cloudwatch_delivery.arn
+  cloud_watch_logs_group_arn    = aws_cloudwatch_log_group.cloudtrail_events[0].arn
+  cloud_watch_logs_role_arn     = aws_iam_role.cloudwatch_delivery[0].arn
   enable_log_file_validation    = true
   include_global_service_events = true
   is_multi_region_trail         = true
-  kms_key_id                    = aws_kms_key.cloudtrail.arn
+  is_organization_trail         = var.is_organization_trail
+  kms_key_id                    = aws_kms_key.cloudtrail[0].arn
   s3_bucket_name                = var.s3_bucket_name
   s3_key_prefix                 = var.s3_key_prefix
 }

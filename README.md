@@ -79,6 +79,11 @@ Detailed information can be found at [Providers within Modules - Terraform Docs]
 
 A new S3 bucket to store audit logs is automatically created by default, while the external S3 bucket can be specified. It is useful when you already have a centralized S3 bucket to store all logs. Please see [external-bucket](./examples/external-bucket) example for more detail.
 
+### Managing multiple accounts in AWS Organization
+
+When you have multiple AWS accounts in your AWS Organization, `secure-baseline` module configures the separated environment for each AWS account. You can change this behavior to centrally manage security information and audit logs from all accounts in one master account.
+Check [organization](./examples/organization) example for more detail.
+
 ## Submodules
 
 This module is composed of several submodules and each of which can be used independently.
@@ -96,6 +101,7 @@ This module is composed of several submodules and each of which can be used inde
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
+| account\_type | The type of the AWS account. The possible values are `individual`, `master` and `member` . Specify `master` and `member` to set up centalized logging for multiple accounts in AWS Organization. Use individual` otherwise. | string | `"individual"` | no |
 | alarm\_namespace | The namespace in which all alarms are set up. | string | `"CISBenchmark"` | no |
 | alarm\_sns\_topic\_name | The name of the SNS Topic which will be notified when any alarm is performed. | string | `"CISAlarm"` | no |
 | allow\_users\_to\_change\_password | Whether to allow users to change their own password. | string | `"true"` | no |
@@ -110,17 +116,23 @@ This module is composed of several submodules and each of which can be used inde
 | cloudtrail\_name | The name of the trail. | string | `"cloudtrail-multi-region"` | no |
 | cloudtrail\_s3\_key\_prefix | The prefix used when CloudTrail delivers events to the S3 bucket. | string | `"cloudtrail"` | no |
 | cloudwatch\_logs\_retention\_in\_days | Number of days to retain logs for. CIS recommends 365 days.  Possible values are: 0, 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1827, and 3653. Set to 0 to keep logs indefinitely. | string | `"365"` | no |
+| config\_aggregator\_name | The name of the organizational AWS Config Configuration Aggregator. | string | `"organization-aggregator"` | no |
+| config\_aggregator\_name\_prefix | The prefix of the name for the IAM role attached to the organizational AWS Config Configuration Aggregator. | string | `"config-for-organization-role"` | no |
 | config\_delivery\_frequency | The frequency which AWS Config sends a snapshot into the S3 bucket. | string | `"One_Hour"` | no |
 | config\_iam\_role\_name | The name of the IAM Role which AWS Config will use. | string | `"Config-Recorder"` | no |
 | config\_iam\_role\_policy\_name | The name of the IAM Role Policy which AWS Config will use. | string | `"Config-Recorder-Policy"` | no |
 | config\_s3\_bucket\_key\_prefix | The prefix used when writing AWS Config snapshots into the S3 bucket. | string | `"config"` | no |
 | config\_sns\_topic\_name | The name of the SNS Topic to be used to notify configuration changes. | string | `"ConfigChanges"` | no |
+| guardduty\_disable\_email\_notification | Boolean whether an email notification is sent to the accounts. | string | `"false"` | no |
 | guardduty\_finding\_publishing\_frequency | Specifies the frequency of notifications sent for subsequent finding occurrences. | string | `"SIX_HOURS"` | no |
+| guardduty\_invitation\_message | Message for invitation. | string | `"This is an automatic invitation message from guardduty-baseline module."` | no |
 | manager\_iam\_role\_name | The name of the IAM Manager role. | string | `"IAM-Manager"` | no |
 | manager\_iam\_role\_policy\_name | The name of the IAM Manager role policy. | string | `"IAM-Manager-Policy"` | no |
+| master\_account\_id | The ID of the master AWS account to which the current AWS account is associated. Required if `account\_type` is `member`. | string | `""` | no |
 | master\_iam\_role\_name | The name of the IAM Master role. | string | `"IAM-Master"` | no |
 | master\_iam\_role\_policy\_name | The name of the IAM Master role policy. | string | `"IAM-Master-Policy"` | no |
 | max\_password\_age | The number of days that an user password is valid. | string | `"90"` | no |
+| member\_accounts | A list of IDs and emails of AWS accounts which associated as member accounts. | object | `[]` | no |
 | minimum\_password\_length | Minimum length to require for user passwords. | string | `"14"` | no |
 | password\_reuse\_prevention | The number of previous passwords that users are prevented from reusing. | string | `"24"` | no |
 | region | The AWS region in which global resources are set up. | string | n/a | yes |

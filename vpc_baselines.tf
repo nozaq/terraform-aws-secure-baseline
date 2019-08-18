@@ -2,51 +2,40 @@
 # Create an IAM Role for publishing VPC Flow Logs into CloudWatch Logs group.
 # Reference: https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/flow-logs.html#flow-logs-iam
 # --------------------------------------------------------------------------------------------------
+data "aws_iam_policy_document" "vpc_flow_logs_publisher_assume_role_policy" {
+  statement {
+    principals {
+      type        = "Service"
+      identifiers = ["vpc-flow-logs.amazonaws.com"]
+    }
+    actions = ["sts:AssumeRole"]
+  }
+}
 
 resource "aws_iam_role" "vpc_flow_logs_publisher" {
   name = var.vpc_iam_role_name
 
-  assume_role_policy = <<END_OF_POLICY
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Sid": "",
-      "Effect": "Allow",
-      "Principal": {
-        "Service": "vpc-flow-logs.amazonaws.com"
-      },
-      "Action": "sts:AssumeRole"
-    }
-  ]
+  assume_role_policy = data.aws_iam_policy_document.vpc_flow_logs_publisher_assume_role_policy.json
 }
-END_OF_POLICY
 
+data "aws_iam_policy_document" "vpc_flow_logs_publish_policy" {
+  statement {
+    actions = [
+      "logs:CreateLogGroup",
+      "logs:CreateLogStream",
+      "logs:PutLogEvents",
+      "logs:DescribeLogGroups",
+      "logs:DescribeLogStreams"
+    ]
+    resources = ["*"]
+  }
 }
 
 resource "aws_iam_role_policy" "vpc_flow_logs_publish_policy" {
   name = var.vpc_iam_role_policy_name
   role = aws_iam_role.vpc_flow_logs_publisher.id
 
-  policy = <<END_OF_POLICY
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Action": [
-        "logs:CreateLogGroup",
-        "logs:CreateLogStream",
-        "logs:PutLogEvents",
-        "logs:DescribeLogGroups",
-        "logs:DescribeLogStreams"
-      ],
-      "Effect": "Allow",
-      "Resource": "*"
-    }
-  ]
-}
-END_OF_POLICY
-
+  policy = data.aws_iam_policy_document.vpc_flow_logs_publish_policy.json
 }
 
 # --------------------------------------------------------------------------------------------------

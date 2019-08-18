@@ -1,3 +1,8 @@
+variable "enabled" {
+  description = "The boolean flag whether this module is enabled or not. No resources are created when set to false."
+  default     = true
+}
+
 variable "aws_account_id" {
   description = "The AWS Account ID number of the account."
 }
@@ -43,4 +48,9 @@ variable "s3_bucket_name" {
 variable "s3_key_prefix" {
   description = "The prefix for the specified S3 bucket."
   default     = ""
+}
+
+variable "is_organization_trail" {
+  description = "Specifies whether the trail is an AWS Organizations trail. Organization trails log events for the master account and all member accounts. Can only be created in the organization master account."
+  default     = false
 }
