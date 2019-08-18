@@ -79,6 +79,11 @@ Detailed information can be found at [Providers within Modules - Terraform Docs]
 
 A new S3 bucket to store audit logs is automatically created by default, while the external S3 bucket can be specified. It is useful when you already have a centralized S3 bucket to store all logs. Please see [external-bucket](./examples/external-bucket) example for more detail.
 
+### Managing multiple accounts in AWS Organization
+
+When you have multiple AWS accounts in your AWS Organization, `secure-baseline` module configures the separated environment for each AWS account. You can change this behavior to centrally manage security information and audit logs from all accounts in one master account.
+Check [organization](./examples/organization) example for more detail.
+
 ## Submodules
 
 This module is composed of several submodules and each of which can be used independently.
