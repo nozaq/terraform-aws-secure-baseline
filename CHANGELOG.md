@@ -2,6 +2,25 @@
 ## [Unreleased]
 
 
+<a name="0.15.0"></a>
+## [0.15.0] - 2019-08-18
+### Feat
+- allow member accounts access to the audit log bucket
+- do not setup CloudTrail for member accounts
+- add the organizational AWS Config aggregated view
+- support organization trails
+- support GuardDuty master/member accounts
+- only include global resources in the specified region
+
+### Fix
+- permissions for organization trail
+- do not override guardduty_master_account_id for simplicity
+- insufficient permission to accept organization trails.
+
+### Refactor
+- use aws_iam_policy_document instead of heredocs
+
+
 <a name="0.14.0"></a>
 ## [0.14.0] - 2019-07-24
 ### Feat
@@ -143,7 +162,8 @@
 <a name="0.0.1"></a>
 ## 0.0.1 - 2018-02-12
 
-[Unreleased]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.14.0...HEAD
+[Unreleased]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.15.0...HEAD
+[0.15.0]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.14.0...0.15.0
 [0.14.0]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.13.0...0.14.0
 [0.13.0]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.12.0...0.13.0
 [0.12.0]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.11.0...0.12.0
