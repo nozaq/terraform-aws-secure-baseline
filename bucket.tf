@@ -2,7 +2,8 @@
 # Configure the S3 bucket to store audit logs.
 # --------------------------------------------------------------------------------------------------
 locals {
-  use_external_bucket  = var.use_external_audit_log_bucket
+  use_external_bucket = var.use_external_audit_log_bucket
+
   audit_log_bucket_id  = local.use_external_bucket ? data.aws_s3_bucket.external[0].id : module.audit_log_bucket.this_bucket.id
   audit_log_bucket_arn = local.use_external_bucket ? data.aws_s3_bucket.external[0].arn : module.audit_log_bucket.this_bucket.arn
 }
@@ -34,6 +35,8 @@ module "audit_log_bucket" {
   enabled                           = ! local.use_external_bucket
 }
 
+data "aws_organizations_organization" "org" {}
+
 data "aws_iam_policy_document" "audit_log" {
   count = local.use_external_bucket ? 0 : 1
 
@@ -56,7 +59,7 @@ data "aws_iam_policy_document" "audit_log" {
     }
     resources = concat(
       ["${module.audit_log_bucket.this_bucket.arn}/config/AWSLogs/${var.aws_account_id}/Config/*"],
-      [for account in var.member_accounts : "${module.audit_log_bucket.this_bucket.arn}/config/AWSLogs/${account.account_id}/Config/*"]
+      local.is_master_account ? [for account in var.member_accounts : "${module.audit_log_bucket.this_bucket.arn}/config/AWSLogs/${account.account_id}/Config/*"] : []
     )
     condition {
       test     = "StringEquals"
@@ -84,7 +87,7 @@ data "aws_iam_policy_document" "audit_log" {
     }
     resources = concat(
       ["${module.audit_log_bucket.this_bucket.arn}/cloudtrail/AWSLogs/${var.aws_account_id}/*"],
-      [for account in var.member_accounts : "${module.audit_log_bucket.this_bucket.arn}/cloudtrail/AWSLogs/${account.account_id}/*"]
+      local.is_master_account ? ["${module.audit_log_bucket.this_bucket.arn}/cloudtrail/AWSLogs/${data.aws_organizations_organization.org.id}/*"] : []
     )
     condition {
       test     = "StringEquals"

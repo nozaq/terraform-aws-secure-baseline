@@ -246,8 +246,17 @@ variable "alarm_sns_topic_name" {
 # --------------------------------------------------------------------------------------------------
 # Variables for guardduty-baseline module.
 # --------------------------------------------------------------------------------------------------
+variable "guardduty_disable_email_notification" {
+  description = "Boolean whether an email notification is sent to the accounts."
+  default     = false
+}
 
 variable "guardduty_finding_publishing_frequency" {
   description = "Specifies the frequency of notifications sent for subsequent finding occurrences."
   default     = "SIX_HOURS"
+}
+
+variable "guardduty_invitation_message" {
+  description = "Message for invitation."
+  default     = "This is an automatic invitation message from guardduty-baseline module."
 }

@@ -1,7 +1,6 @@
 # --------------------------------------------------------------------------------------------------
 # CloudWatch Logs group to accept CloudTrail event stream.
 # --------------------------------------------------------------------------------------------------
-
 resource "aws_cloudwatch_log_group" "cloudtrail_events" {
   count = var.enabled ? 1 : 0
 

@@ -22,12 +22,13 @@ resource "aws_organizations_organization" "org" {
 module "secure_baseline" {
   source = "../../../"
 
-  account_type                   = "master"
-  member_accounts                = var.member_accounts
-  audit_log_bucket_name          = var.audit_s3_bucket_name
-  aws_account_id                 = data.aws_caller_identity.current.account_id
-  region                         = var.region
-  support_iam_role_principal_arn = aws_iam_user.admin.arn
+  account_type                         = "master"
+  member_accounts                      = var.member_accounts
+  audit_log_bucket_name                = var.audit_s3_bucket_name
+  aws_account_id                       = data.aws_caller_identity.current.account_id
+  region                               = var.region
+  support_iam_role_principal_arn       = aws_iam_user.admin.arn
+  guardduty_disable_email_notification = true
 
   # Setting it to true means all audit logs are automatically deleted
   #   when you run `terraform destroy`.

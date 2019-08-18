@@ -1,15 +1,11 @@
+variable "disable_email_notification" {
+  description = "Boolean whether an email notification is sent to the accounts."
+  default     = false
+}
+
 variable "finding_publishing_frequency" {
   description = "Specifies the frequency of notifications sent for subsequent finding occurrences."
   default     = "SIX_HOURS"
-}
-
-variable "member_accounts" {
-  description = "A list of IDs and emails of AWS accounts which associated as member accounts."
-  type = list(object({
-    account_id = string
-    email      = string
-  }))
-  default = []
 }
 
 variable "invitation_message" {
@@ -20,4 +16,13 @@ variable "invitation_message" {
 variable "master_account_id" {
   description = "AWS account ID for master account."
   default     = ""
+}
+
+variable "member_accounts" {
+  description = "A list of IDs and emails of AWS accounts which associated as member accounts."
+  type = list(object({
+    account_id = string
+    email      = string
+  }))
+  default = []
 }
