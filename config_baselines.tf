@@ -20,7 +20,7 @@ resource "aws_iam_role" "recorder" {
 }
 
 # See https://docs.aws.amazon.com/config/latest/developerguide/iamrole-permissions.html
-data "aws_iam_policy_document" "recoder_publish_policy" {
+data "aws_iam_policy_document" "recorder_publish_policy" {
   statement {
     actions   = ["s3:PutObject"]
     resources = ["${local.audit_log_bucket_arn}/config/AWSLogs/${var.aws_account_id}/*"]
@@ -61,13 +61,13 @@ data "aws_iam_policy_document" "recoder_publish_policy" {
   }
 }
 
-resource "aws_iam_role_policy" "recoder_publish_policy" {
+resource "aws_iam_role_policy" "recorder_publish_policy" {
   name   = var.config_iam_role_policy_name
   role   = aws_iam_role.recorder.id
-  policy = data.aws_iam_policy_document.recoder_publish_policy.json
+  policy = data.aws_iam_policy_document.recorder_publish_policy.json
 }
 
-resource "aws_iam_role_policy_attachment" "recoder_read_policy" {
+resource "aws_iam_role_policy_attachment" "recorder_read_policy" {
   role       = aws_iam_role.recorder.id
   policy_arn = "arn:aws:iam::aws:policy/service-role/AWSConfigRole"
 }
