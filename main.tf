@@ -29,6 +29,7 @@ module "iam_baseline" {
   require_symbols                = var.require_symbols
   allow_users_to_change_password = var.allow_users_to_change_password
   max_password_age               = var.max_password_age
+  tags                           = var.tags
 }
 
 # --------------------------------------------------------------------------------------------------
@@ -50,6 +51,7 @@ module "cloudtrail_baseline" {
   s3_bucket_name                    = local.audit_log_bucket_id
   s3_key_prefix                     = var.cloudtrail_s3_key_prefix
   is_organization_trail             = local.is_master_account
+  tags                              = var.tags
 }
 
 # --------------------------------------------------------------------------------------------------
@@ -63,6 +65,7 @@ module "alarm_baseline" {
   alarm_namespace           = var.alarm_namespace
   cloudtrail_log_group_name = local.is_cloudtrail_enabled ? module.cloudtrail_baseline.log_group.name : ""
   sns_topic_name            = var.alarm_sns_topic_name
+  tags                      = var.tags
 }
 
 # --------------------------------------------------------------------------------------------------

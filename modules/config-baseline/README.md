@@ -15,6 +15,7 @@ Enable AWS Config in all regions to automatically take configuration snapshots.
 | s3\_bucket\_name | The name of the S3 bucket which will store configuration snapshots. | string | n/a | yes |
 | s3\_key\_prefix | The prefix for the specified S3 bucket. | string | `""` | no |
 | sns\_topic\_name | The name of the SNS Topic to be used to notify configuration changes. | string | `"ConfigChanges"` | no |
+| tags | Specifies object tags key and value. This applies to all resources created by this module. | map | `{ "Terraform": true }` | no |
 
 ## Outputs
 

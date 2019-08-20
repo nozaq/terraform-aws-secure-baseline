@@ -4,6 +4,8 @@
 
 resource "aws_sns_topic" "config" {
   name = var.sns_topic_name
+
+  tags = var.tags
 }
 
 resource "aws_config_configuration_recorder" "recorder" {
@@ -56,6 +58,8 @@ resource "aws_config_config_rule" "restricted_ports" {
   "blockedPort2": "3389"
 }
 JSON
+
+  tags = var.tags
 
   depends_on = [aws_config_configuration_recorder.recorder]
 }

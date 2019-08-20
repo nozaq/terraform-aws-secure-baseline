@@ -6,6 +6,8 @@ resource "aws_sns_topic" "alarms" {
   count = var.enabled ? 1 : 0
 
   name = var.sns_topic_name
+
+  tags = var.tags
 }
 
 # --------------------------------------------------------------------------------------------------
@@ -41,6 +43,8 @@ resource "aws_cloudwatch_metric_alarm" "unauthorized_api_calls" {
   alarm_actions             = [aws_sns_topic.alarms[0].arn]
   treat_missing_data        = "notBreaching"
   insufficient_data_actions = []
+
+  tags = var.tags
 }
 
 resource "aws_cloudwatch_log_metric_filter" "no_mfa_console_signin" {
@@ -72,6 +76,8 @@ resource "aws_cloudwatch_metric_alarm" "no_mfa_console_signin" {
   alarm_actions             = [aws_sns_topic.alarms[0].arn]
   treat_missing_data        = "notBreaching"
   insufficient_data_actions = []
+
+  tags = var.tags
 }
 
 resource "aws_cloudwatch_log_metric_filter" "root_usage" {
@@ -103,6 +109,8 @@ resource "aws_cloudwatch_metric_alarm" "root_usage" {
   alarm_actions             = [aws_sns_topic.alarms[0].arn]
   treat_missing_data        = "notBreaching"
   insufficient_data_actions = []
+
+  tags = var.tags
 }
 
 resource "aws_cloudwatch_log_metric_filter" "iam_changes" {
@@ -134,6 +142,8 @@ resource "aws_cloudwatch_metric_alarm" "iam_changes" {
   alarm_actions             = [aws_sns_topic.alarms[0].arn]
   treat_missing_data        = "notBreaching"
   insufficient_data_actions = []
+
+  tags = var.tags
 }
 
 resource "aws_cloudwatch_log_metric_filter" "cloudtrail_cfg_changes" {
@@ -165,6 +175,8 @@ resource "aws_cloudwatch_metric_alarm" "cloudtrail_cfg_changes" {
   alarm_actions             = [aws_sns_topic.alarms[0].arn]
   treat_missing_data        = "notBreaching"
   insufficient_data_actions = []
+
+  tags = var.tags
 }
 
 resource "aws_cloudwatch_log_metric_filter" "console_signin_failures" {
@@ -196,6 +208,8 @@ resource "aws_cloudwatch_metric_alarm" "console_signin_failures" {
   alarm_actions             = [aws_sns_topic.alarms[0].arn]
   treat_missing_data        = "notBreaching"
   insufficient_data_actions = []
+
+  tags = var.tags
 }
 
 resource "aws_cloudwatch_log_metric_filter" "disable_or_delete_cmk" {
@@ -227,6 +241,8 @@ resource "aws_cloudwatch_metric_alarm" "disable_or_delete_cmk" {
   alarm_actions             = [aws_sns_topic.alarms[0].arn]
   treat_missing_data        = "notBreaching"
   insufficient_data_actions = []
+
+  tags = var.tags
 }
 
 resource "aws_cloudwatch_log_metric_filter" "s3_bucket_policy_changes" {
@@ -258,6 +274,8 @@ resource "aws_cloudwatch_metric_alarm" "s3_bucket_policy_changes" {
   alarm_actions             = [aws_sns_topic.alarms[0].arn]
   treat_missing_data        = "notBreaching"
   insufficient_data_actions = []
+
+  tags = var.tags
 }
 
 resource "aws_cloudwatch_log_metric_filter" "aws_config_changes" {
@@ -289,6 +307,8 @@ resource "aws_cloudwatch_metric_alarm" "aws_config_changes" {
   alarm_actions             = [aws_sns_topic.alarms[0].arn]
   treat_missing_data        = "notBreaching"
   insufficient_data_actions = []
+
+  tags = var.tags
 }
 
 resource "aws_cloudwatch_log_metric_filter" "security_group_changes" {
@@ -320,6 +340,8 @@ resource "aws_cloudwatch_metric_alarm" "security_group_changes" {
   alarm_actions             = [aws_sns_topic.alarms[0].arn]
   treat_missing_data        = "notBreaching"
   insufficient_data_actions = []
+
+  tags = var.tags
 }
 
 resource "aws_cloudwatch_log_metric_filter" "nacl_changes" {
@@ -351,6 +373,8 @@ resource "aws_cloudwatch_metric_alarm" "nacl_changes" {
   alarm_actions             = [aws_sns_topic.alarms[0].arn]
   treat_missing_data        = "notBreaching"
   insufficient_data_actions = []
+
+  tags = var.tags
 }
 
 resource "aws_cloudwatch_log_metric_filter" "network_gw_changes" {
@@ -382,6 +406,8 @@ resource "aws_cloudwatch_metric_alarm" "network_gw_changes" {
   alarm_actions             = [aws_sns_topic.alarms[0].arn]
   treat_missing_data        = "notBreaching"
   insufficient_data_actions = []
+
+  tags = var.tags
 }
 
 resource "aws_cloudwatch_log_metric_filter" "route_table_changes" {
@@ -413,6 +439,8 @@ resource "aws_cloudwatch_metric_alarm" "route_table_changes" {
   alarm_actions             = [aws_sns_topic.alarms[0].arn]
   treat_missing_data        = "notBreaching"
   insufficient_data_actions = []
+
+  tags = var.tags
 }
 
 resource "aws_cloudwatch_log_metric_filter" "vpc_changes" {
@@ -444,4 +472,6 @@ resource "aws_cloudwatch_metric_alarm" "vpc_changes" {
   alarm_actions             = [aws_sns_topic.alarms[0].arn]
   treat_missing_data        = "notBreaching"
   insufficient_data_actions = []
+
+  tags = var.tags
 }

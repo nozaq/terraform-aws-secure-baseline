@@ -11,6 +11,7 @@ Set up CloudWatch alarms to notify you when critical changes happen in your AWS 
 | cloudtrail\_log\_group\_name | The name of the CloudWatch Logs group to which CloudTrail events are delivered. | string | n/a | yes |
 | enabled | The boolean flag whether this module is enabled or not. No resources are created when set to false. | string | `"true"` | no |
 | sns\_topic\_name | The name of the SNS Topic which will be notified when any alarm is performed. | string | `"CISAlarm"` | no |
+| tags | Specifies object tags key and value. This applies to all resources created by this module. | map | `{ "Terraform": true }` | no |
 
 ## Outputs
 

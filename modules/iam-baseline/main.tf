@@ -27,9 +27,10 @@ data "aws_iam_policy_document" "master_assume_policy" {
 }
 
 resource "aws_iam_role" "master" {
-  name = var.master_iam_role_name
-
+  name               = var.master_iam_role_name
   assume_role_policy = data.aws_iam_policy_document.master_assume_policy.json
+
+  tags = var.tags
 }
 
 data "aws_iam_policy_document" "master_policy" {
@@ -85,9 +86,10 @@ data "aws_iam_policy_document" "manager_assume_policy" {
 }
 
 resource "aws_iam_role" "manager" {
-  name = var.manager_iam_role_name
-
+  name               = var.manager_iam_role_name
   assume_role_policy = data.aws_iam_policy_document.manager_assume_policy.json
+
+  tags = var.tags
 }
 
 data "aws_iam_policy_document" "manager_policy" {
@@ -147,6 +149,8 @@ data "aws_iam_policy_document" "support_assume_policy" {
 resource "aws_iam_role" "support" {
   name               = var.support_iam_role_name
   assume_role_policy = data.aws_iam_policy_document.support_assume_policy.json
+
+  tags = var.tags
 }
 
 resource "aws_iam_role_policy_attachment" "support_policy" {

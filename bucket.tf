@@ -33,6 +33,8 @@ module "audit_log_bucket" {
   lifecycle_glacier_transition_days = var.audit_log_lifecycle_glacier_transition_days
   force_destroy                     = var.audit_log_bucket_force_destroy
   enabled                           = ! local.use_external_bucket
+
+  tags = var.tags
 }
 
 data "aws_organizations_organization" "org" {}
