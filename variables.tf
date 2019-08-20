@@ -29,6 +29,13 @@ variable "member_accounts" {
   default = []
 }
 
+variable "tags" {
+  description = "Specifies object tags key and value. This applies to all resources created by this module."
+  default = {
+    "Terraform" = true
+  }
+}
+
 # --------------------------------------------------------------------------------------------------
 # Variables for audit log bucket configurations.
 # --------------------------------------------------------------------------------------------------

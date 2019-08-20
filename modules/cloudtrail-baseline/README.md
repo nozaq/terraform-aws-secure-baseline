@@ -19,6 +19,7 @@ Enable CloudTrail in all regions and deliver events to CloudWatch Logs. CloudTra
 | region | The AWS region in which CloudTrail is set up. | string | n/a | yes |
 | s3\_bucket\_name | The name of the S3 bucket which will store configuration snapshots. | string | n/a | yes |
 | s3\_key\_prefix | The prefix for the specified S3 bucket. | string | `""` | no |
+| tags | Specifies object tags key and value. This applies to all resources created by this module. | map | `{ "Terraform": true }` | no |
 
 ## Outputs
 

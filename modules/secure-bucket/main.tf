@@ -17,6 +17,8 @@ resource "aws_s3_bucket" "access_log" {
       storage_class = "GLACIER"
     }
   }
+
+  tags = var.tags
 }
 
 resource "aws_s3_bucket_public_access_block" "access_log" {
@@ -65,6 +67,8 @@ resource "aws_s3_bucket" "content" {
       storage_class = "GLACIER"
     }
   }
+
+  tags = var.tags
 }
 
 resource "aws_s3_bucket_public_access_block" "content" {

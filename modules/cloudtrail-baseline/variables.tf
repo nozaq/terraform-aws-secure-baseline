@@ -54,3 +54,10 @@ variable "is_organization_trail" {
   description = "Specifies whether the trail is an AWS Organizations trail. Organization trails log events for the master account and all member accounts. Can only be created in the organization master account."
   default     = false
 }
+
+variable "tags" {
+  description = "Specifies object tags key and value. This applies to all resources created by this module."
+  default = {
+    "Terraform" = true
+  }
+}

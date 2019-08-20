@@ -75,3 +75,11 @@ variable "allow_users_to_change_password" {
   description = "Whether to allow users to change their own password."
   default     = true
 }
+
+variable "tags" {
+  description = "Specifies object tags key and value. This applies to all resources created by this module."
+  default = {
+    "Terraform" = true
+  }
+}
+

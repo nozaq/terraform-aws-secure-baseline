@@ -35,3 +35,10 @@ variable "include_global_resource_types" {
   description = "Specifies whether AWS Config includes all supported types of global resources with the resources that it records."
   default     = true
 }
+
+variable "tags" {
+  description = "Specifies object tags key and value. This applies to all resources created by this module."
+  default = {
+    "Terraform" = true
+  }
+}

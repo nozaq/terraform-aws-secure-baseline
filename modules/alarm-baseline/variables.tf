@@ -16,3 +16,10 @@ variable "sns_topic_name" {
   description = "The name of the SNS Topic which will be notified when any alarm is performed."
   default     = "CISAlarm"
 }
+
+variable "tags" {
+  description = "Specifies object tags key and value. This applies to all resources created by this module."
+  default = {
+    "Terraform" = true
+  }
+}

@@ -13,9 +13,10 @@ data "aws_iam_policy_document" "recorder_assume_role_policy" {
 }
 
 resource "aws_iam_role" "recorder" {
-  name = var.config_iam_role_name
-
+  name               = var.config_iam_role_name
   assume_role_policy = data.aws_iam_policy_document.recorder_assume_role_policy.json
+
+  tags = var.tags
 }
 
 # See https://docs.aws.amazon.com/config/latest/developerguide/iamrole-permissions.html
@@ -89,6 +90,7 @@ module "config_baseline_ap-northeast-1" {
   delivery_frequency            = var.config_delivery_frequency
   sns_topic_name                = var.config_sns_topic_name
   include_global_resource_types = var.region == "ap-northeast-1"
+  tags                          = var.tags
 }
 
 module "config_baseline_ap-northeast-2" {
@@ -103,6 +105,7 @@ module "config_baseline_ap-northeast-2" {
   delivery_frequency            = var.config_delivery_frequency
   sns_topic_name                = var.config_sns_topic_name
   include_global_resource_types = var.region == "ap-northeast-2"
+  tags                          = var.tags
 }
 
 module "config_baseline_ap-south-1" {
@@ -117,6 +120,7 @@ module "config_baseline_ap-south-1" {
   delivery_frequency            = var.config_delivery_frequency
   sns_topic_name                = var.config_sns_topic_name
   include_global_resource_types = var.region == "ap-south-1"
+  tags                          = var.tags
 }
 
 module "config_baseline_ap-southeast-1" {
@@ -131,6 +135,7 @@ module "config_baseline_ap-southeast-1" {
   delivery_frequency            = var.config_delivery_frequency
   sns_topic_name                = var.config_sns_topic_name
   include_global_resource_types = var.region == "ap-southeast-1"
+  tags                          = var.tags
 }
 
 module "config_baseline_ap-southeast-2" {
@@ -145,6 +150,7 @@ module "config_baseline_ap-southeast-2" {
   delivery_frequency            = var.config_delivery_frequency
   sns_topic_name                = var.config_sns_topic_name
   include_global_resource_types = var.region == "ap-southeast-2"
+  tags                          = var.tags
 }
 
 module "config_baseline_ca-central-1" {
@@ -159,6 +165,7 @@ module "config_baseline_ca-central-1" {
   delivery_frequency            = var.config_delivery_frequency
   sns_topic_name                = var.config_sns_topic_name
   include_global_resource_types = var.region == "ca-central-1"
+  tags                          = var.tags
 }
 
 module "config_baseline_eu-central-1" {
@@ -173,6 +180,7 @@ module "config_baseline_eu-central-1" {
   delivery_frequency            = var.config_delivery_frequency
   sns_topic_name                = var.config_sns_topic_name
   include_global_resource_types = var.region == "eu-central-1"
+  tags                          = var.tags
 }
 
 module "config_baseline_eu-north-1" {
@@ -187,6 +195,7 @@ module "config_baseline_eu-north-1" {
   delivery_frequency            = var.config_delivery_frequency
   sns_topic_name                = var.config_sns_topic_name
   include_global_resource_types = var.region == "eu-north-1"
+  tags                          = var.tags
 }
 
 module "config_baseline_eu-west-1" {
@@ -201,6 +210,7 @@ module "config_baseline_eu-west-1" {
   delivery_frequency            = var.config_delivery_frequency
   sns_topic_name                = var.config_sns_topic_name
   include_global_resource_types = var.region == "eu-west-1"
+  tags                          = var.tags
 }
 
 module "config_baseline_eu-west-2" {
@@ -215,6 +225,7 @@ module "config_baseline_eu-west-2" {
   delivery_frequency            = var.config_delivery_frequency
   sns_topic_name                = var.config_sns_topic_name
   include_global_resource_types = var.region == "eu-west-2"
+  tags                          = var.tags
 }
 
 module "config_baseline_eu-west-3" {
@@ -229,6 +240,7 @@ module "config_baseline_eu-west-3" {
   delivery_frequency            = var.config_delivery_frequency
   sns_topic_name                = var.config_sns_topic_name
   include_global_resource_types = var.region == "eu-west-3"
+  tags                          = var.tags
 }
 
 module "config_baseline_sa-east-1" {
@@ -243,6 +255,7 @@ module "config_baseline_sa-east-1" {
   delivery_frequency            = var.config_delivery_frequency
   sns_topic_name                = var.config_sns_topic_name
   include_global_resource_types = var.region == "sa-east-1"
+  tags                          = var.tags
 }
 
 module "config_baseline_us-east-1" {
@@ -257,6 +270,7 @@ module "config_baseline_us-east-1" {
   delivery_frequency            = var.config_delivery_frequency
   sns_topic_name                = var.config_sns_topic_name
   include_global_resource_types = var.region == "us-east-1"
+  tags                          = var.tags
 }
 
 module "config_baseline_us-east-2" {
@@ -271,6 +285,7 @@ module "config_baseline_us-east-2" {
   delivery_frequency            = var.config_delivery_frequency
   sns_topic_name                = var.config_sns_topic_name
   include_global_resource_types = var.region == "us-east-2"
+  tags                          = var.tags
 }
 
 module "config_baseline_us-west-1" {
@@ -285,6 +300,7 @@ module "config_baseline_us-west-1" {
   delivery_frequency            = var.config_delivery_frequency
   sns_topic_name                = var.config_sns_topic_name
   include_global_resource_types = var.region == "us-west-1"
+  tags                          = var.tags
 }
 
 module "config_baseline_us-west-2" {
@@ -299,6 +315,7 @@ module "config_baseline_us-west-2" {
   delivery_frequency            = var.config_delivery_frequency
   sns_topic_name                = var.config_sns_topic_name
   include_global_resource_types = var.region == "us-west-2"
+  tags                          = var.tags
 }
 
 # --------------------------------------------------------------------------------------------------
@@ -312,6 +329,8 @@ resource "aws_config_config_rule" "root_hardware_mfa" {
     owner             = "AWS"
     source_identifier = "ROOT_ACCOUNT_HARDWARE_MFA_ENABLED"
   }
+
+  tags = var.tags
 
   # Ensure this rule is created after all configuration recorders.
   depends_on = [
@@ -341,6 +360,8 @@ resource "aws_config_config_rule" "iam_mfa" {
     owner             = "AWS"
     source_identifier = "MFA_ENABLED_FOR_IAM_CONSOLE_ACCESS"
   }
+
+  tags = var.tags
 
   # Ensure this rule is created after all configuration recorders.
   depends_on = [
@@ -373,6 +394,8 @@ resource "aws_config_config_rule" "access_key_rotated" {
 
   input_parameters = "{\"maxAccessKeyAge\": \"90\"}"
 
+  tags = var.tags
+
   # Ensure this rule is created after all configuration recorders.
   depends_on = [
     module.config_baseline_ap-northeast-1,
@@ -403,6 +426,8 @@ resource "aws_config_config_rule" "unused_credentials" {
   }
 
   input_parameters = "{\"maxCredentialUsageAge\": \"90\"}"
+
+  tags = var.tags
 
   # Ensure this rule is created after all configuration recorders.
   depends_on = [
@@ -439,6 +464,8 @@ resource "aws_config_config_rule" "user_no_policies" {
     ]
   }
 
+  tags = var.tags
+
   # Ensure this rule is created after all configuration recorders.
   depends_on = [
     module.config_baseline_ap-northeast-1,
@@ -473,6 +500,8 @@ resource "aws_config_config_rule" "no_policies_with_full_admin_access" {
       "AWS::IAM::Policy",
     ]
   }
+
+  tags = var.tags
 
   # Ensure this rule is created after all configuration recorders.
   depends_on = [
@@ -512,9 +541,10 @@ data "aws_iam_policy_document" "config_organization_assume_role_policy" {
 resource "aws_iam_role" "config_organization" {
   count = local.is_master_account ? 1 : 0
 
-  name_prefix = var.config_aggregator_name_prefix
-
+  name_prefix        = var.config_aggregator_name_prefix
   assume_role_policy = data.aws_iam_policy_document.config_organization_assume_role_policy.json
+
+  tags = var.tags
 }
 
 resource "aws_iam_role_policy_attachment" "config_organization" {
@@ -533,5 +563,7 @@ resource "aws_config_configuration_aggregator" "organization" {
     all_regions = true
     role_arn    = "${aws_iam_role.config_organization[0].arn}"
   }
+
+  tags = var.tags
 }
 
