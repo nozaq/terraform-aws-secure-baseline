@@ -12,7 +12,7 @@ data "aws_iam_policy_document" "logs_bucket_policy" {
       type        = "Service"
       identifiers = ["config.amazonaws.com"]
     }
-    resources = [module.audit_log_bucket.this_bucket.arn]
+    resources = [aws_s3_bucket.logs.arn]
   }
 
   statement {
@@ -22,7 +22,7 @@ data "aws_iam_policy_document" "logs_bucket_policy" {
       type        = "Service"
       identifiers = ["config.amazonaws.com"]
     }
-    resources = ["${module.audit_log_bucket.this_bucket.arn}/config/AWSLogs/${var.aws_account_id}/Config/*"]
+    resources = ["${aws_s3_bucket.logs.arn}/config/AWSLogs/${data.aws_caller_identity.current.account_id}/Config/*"]
     condition {
       test     = "StringEquals"
       variable = "s3:x-amz-acl"
@@ -37,7 +37,7 @@ data "aws_iam_policy_document" "logs_bucket_policy" {
       type        = "Service"
       identifiers = ["cloudtrail.amazonaws.com"]
     }
-    resources = [module.audit_log_bucket.this_bucket.arn]
+    resources = [aws_s3_bucket.logs.arn]
   }
 
   statement {
@@ -47,7 +47,7 @@ data "aws_iam_policy_document" "logs_bucket_policy" {
       type        = "Service"
       identifiers = ["cloudtrail.amazonaws.com"]
     }
-    resources = ["${module.audit_log_bucket.this_bucket.arn}/cloudtrail/AWSLogs/*"]
+    resources = ["${aws_s3_bucket.logs.arn}/cloudtrail/AWSLogs/*"]
     condition {
       test     = "StringEquals"
       variable = "s3:x-amz-acl"
