@@ -1,0 +1,62 @@
+name: Terraform
+on: [push, pull_request]
+
+jobs:
+  check-format:
+    name: Check format
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v1.0.0
+
+    - name: terraform fmt
+      uses: hashicorp/terraform-github-actions/fmt@v0.3.5
+      env:
+        TF_ACTION_WORKING_DIR: "."
+
+  validate-examples:
+    name: Validate examples
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@master
+
+    - name: terraform init - examples/simple
+      uses: hashicorp/terraform-github-actions/init@v0.3.5
+      env:
+        TF_ACTION_WORKING_DIR: "./examples/simple"
+
+    - name: terraform validate - examples/simple
+      uses: hashicorp/terraform-github-actions/validate@v0.3.5
+      env:
+        TF_ACTION_WORKING_DIR: "./examples/simple"
+
+    - name: terraform init - examples/external-bucket
+      uses: hashicorp/terraform-github-actions/init@v0.3.5
+      env:
+        TF_ACTION_WORKING_DIR: "./examples/external-bucket"
+
+    - name: terraform validate - examples/external-bucket
+      uses: hashicorp/terraform-github-actions/validate@v0.3.5
+      env:
+        TF_ACTION_WORKING_DIR: "./examples/external-bucket"
+
+    - name: terraform init - examples/organization/master
+      uses: hashicorp/terraform-github-actions/init@v0.3.5
+      env:
+        TF_ACTION_WORKING_DIR: "./examples/organization/master"
+
+    - name: terraform validate - examples/organization/master
+      uses: hashicorp/terraform-github-actions/validate@v0.3.5
+      env:
+        TF_ACTION_WORKING_DIR: "./examples/organization/master"
+
+    - name: terraform init - examples/organization/member
+      uses: hashicorp/terraform-github-actions/init@v0.3.5
+      env:
+        TF_ACTION_WORKING_DIR: "./examples/organization/member"
+
+    - name: terraform validate - examples/organization/member
+      uses: hashicorp/terraform-github-actions/validate@v0.3.5
+      env:
+        TF_ACTION_WORKING_DIR: "./examples/organization/member"
