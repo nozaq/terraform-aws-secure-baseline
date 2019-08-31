@@ -10,6 +10,7 @@
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
+| enabled | The boolean flag whether this module is enabled or not. No resources are created when set to false. | string | `"true"` | no |
 | tags | Specifies object tags key and value. This applies to all resources created by this module. | map | `{ "Terraform": true }` | no |
 | vpc\_flow\_logs\_iam\_role\_arn | The ARN of the IAM Role which will be used by VPC Flow Logs. | string | n/a | yes |
 | vpc\_log\_group\_name | The name of CloudWatch Logs group to which VPC Flow Logs are delivered. | string | n/a | yes |

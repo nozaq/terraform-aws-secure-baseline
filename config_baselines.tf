@@ -1,3 +1,24 @@
+locals {
+  config_topics = [
+    module.config_baseline_ap-northeast-1.config_sns_topic,
+    module.config_baseline_ap-northeast-2.config_sns_topic,
+    module.config_baseline_ap-south-1.config_sns_topic,
+    module.config_baseline_ap-southeast-1.config_sns_topic,
+    module.config_baseline_ap-southeast-2.config_sns_topic,
+    module.config_baseline_ca-central-1.config_sns_topic,
+    module.config_baseline_eu-central-1.config_sns_topic,
+    module.config_baseline_eu-north-1.config_sns_topic,
+    module.config_baseline_eu-west-1.config_sns_topic,
+    module.config_baseline_eu-west-2.config_sns_topic,
+    module.config_baseline_eu-west-3.config_sns_topic,
+    module.config_baseline_sa-east-1.config_sns_topic,
+    module.config_baseline_us-east-1.config_sns_topic,
+    module.config_baseline_us-east-2.config_sns_topic,
+    module.config_baseline_us-west-1.config_sns_topic,
+    module.config_baseline_us-west-2.config_sns_topic,
+  ]
+}
+
 # --------------------------------------------------------------------------------------------------
 # Create an IAM Role for AWS Config recorder to publish results and send notifications.
 # Reference: https://docs.aws.amazon.com/config/latest/developerguide/gs-cli-prereq.html#gs-cli-create-iamrole
@@ -40,24 +61,7 @@ data "aws_iam_policy_document" "recorder_publish_policy" {
   statement {
     actions = ["sns:Publish"]
 
-    resources = [
-      module.config_baseline_ap-northeast-1.config_sns_topic.arn,
-      module.config_baseline_ap-northeast-2.config_sns_topic.arn,
-      module.config_baseline_ap-south-1.config_sns_topic.arn,
-      module.config_baseline_ap-southeast-1.config_sns_topic.arn,
-      module.config_baseline_ap-southeast-2.config_sns_topic.arn,
-      module.config_baseline_ca-central-1.config_sns_topic.arn,
-      module.config_baseline_eu-central-1.config_sns_topic.arn,
-      module.config_baseline_eu-north-1.config_sns_topic.arn,
-      module.config_baseline_eu-west-1.config_sns_topic.arn,
-      module.config_baseline_eu-west-2.config_sns_topic.arn,
-      module.config_baseline_eu-west-3.config_sns_topic.arn,
-      module.config_baseline_sa-east-1.config_sns_topic.arn,
-      module.config_baseline_us-east-1.config_sns_topic.arn,
-      module.config_baseline_us-east-2.config_sns_topic.arn,
-      module.config_baseline_us-west-1.config_sns_topic.arn,
-      module.config_baseline_us-west-2.config_sns_topic.arn,
-    ]
+    resources = [for topic in local.config_topics : topic.arn if topic != null]
   }
 }
 
@@ -77,13 +81,14 @@ resource "aws_iam_role_policy_attachment" "recorder_read_policy" {
 # Needs to be set up in each region.
 # Global resource types are only recorded in the region specified by var.region.
 # --------------------------------------------------------------------------------------------------
-
 module "config_baseline_ap-northeast-1" {
+  source = "./modules/config-baseline"
+
   providers = {
     aws = aws.ap-northeast-1
   }
 
-  source                        = "./modules/config-baseline"
+  enabled                       = contains(var.target_regions, "ap-northeast-1")
   iam_role_arn                  = aws_iam_role.recorder.arn
   s3_bucket_name                = local.audit_log_bucket_id
   s3_key_prefix                 = var.config_s3_bucket_key_prefix
@@ -94,11 +99,13 @@ module "config_baseline_ap-northeast-1" {
 }
 
 module "config_baseline_ap-northeast-2" {
+  source = "./modules/config-baseline"
+
   providers = {
     aws = aws.ap-northeast-2
   }
 
-  source                        = "./modules/config-baseline"
+  enabled                       = contains(var.target_regions, "ap-northeast-2")
   iam_role_arn                  = aws_iam_role.recorder.arn
   s3_bucket_name                = local.audit_log_bucket_id
   s3_key_prefix                 = var.config_s3_bucket_key_prefix
@@ -109,11 +116,13 @@ module "config_baseline_ap-northeast-2" {
 }
 
 module "config_baseline_ap-south-1" {
+  source = "./modules/config-baseline"
+
   providers = {
     aws = aws.ap-south-1
   }
 
-  source                        = "./modules/config-baseline"
+  enabled                       = contains(var.target_regions, "ap-south-1")
   iam_role_arn                  = aws_iam_role.recorder.arn
   s3_bucket_name                = local.audit_log_bucket_id
   s3_key_prefix                 = var.config_s3_bucket_key_prefix
@@ -124,11 +133,13 @@ module "config_baseline_ap-south-1" {
 }
 
 module "config_baseline_ap-southeast-1" {
+  source = "./modules/config-baseline"
+
   providers = {
     aws = aws.ap-southeast-1
   }
 
-  source                        = "./modules/config-baseline"
+  enabled                       = contains(var.target_regions, "ap-southeast-1")
   iam_role_arn                  = aws_iam_role.recorder.arn
   s3_bucket_name                = local.audit_log_bucket_id
   s3_key_prefix                 = var.config_s3_bucket_key_prefix
@@ -139,11 +150,13 @@ module "config_baseline_ap-southeast-1" {
 }
 
 module "config_baseline_ap-southeast-2" {
+  source = "./modules/config-baseline"
+
   providers = {
     aws = aws.ap-southeast-2
   }
 
-  source                        = "./modules/config-baseline"
+  enabled                       = contains(var.target_regions, "ap-southeast-2")
   iam_role_arn                  = aws_iam_role.recorder.arn
   s3_bucket_name                = local.audit_log_bucket_id
   s3_key_prefix                 = var.config_s3_bucket_key_prefix
@@ -154,11 +167,13 @@ module "config_baseline_ap-southeast-2" {
 }
 
 module "config_baseline_ca-central-1" {
+  source = "./modules/config-baseline"
+
   providers = {
     aws = aws.ca-central-1
   }
 
-  source                        = "./modules/config-baseline"
+  enabled                       = contains(var.target_regions, "ca-central-1")
   iam_role_arn                  = aws_iam_role.recorder.arn
   s3_bucket_name                = local.audit_log_bucket_id
   s3_key_prefix                 = var.config_s3_bucket_key_prefix
@@ -169,11 +184,13 @@ module "config_baseline_ca-central-1" {
 }
 
 module "config_baseline_eu-central-1" {
+  source = "./modules/config-baseline"
+
   providers = {
     aws = aws.eu-central-1
   }
 
-  source                        = "./modules/config-baseline"
+  enabled                       = contains(var.target_regions, "eu-central-1")
   iam_role_arn                  = aws_iam_role.recorder.arn
   s3_bucket_name                = local.audit_log_bucket_id
   s3_key_prefix                 = var.config_s3_bucket_key_prefix
@@ -184,11 +201,13 @@ module "config_baseline_eu-central-1" {
 }
 
 module "config_baseline_eu-north-1" {
+  source = "./modules/config-baseline"
+
   providers = {
     aws = aws.eu-north-1
   }
 
-  source                        = "./modules/config-baseline"
+  enabled                       = contains(var.target_regions, "eu-north-1")
   iam_role_arn                  = aws_iam_role.recorder.arn
   s3_bucket_name                = local.audit_log_bucket_id
   s3_key_prefix                 = var.config_s3_bucket_key_prefix
@@ -199,11 +218,13 @@ module "config_baseline_eu-north-1" {
 }
 
 module "config_baseline_eu-west-1" {
+  source = "./modules/config-baseline"
+
   providers = {
     aws = aws.eu-west-1
   }
 
-  source                        = "./modules/config-baseline"
+  enabled                       = contains(var.target_regions, "eu-west-1")
   iam_role_arn                  = aws_iam_role.recorder.arn
   s3_bucket_name                = local.audit_log_bucket_id
   s3_key_prefix                 = var.config_s3_bucket_key_prefix
@@ -214,11 +235,13 @@ module "config_baseline_eu-west-1" {
 }
 
 module "config_baseline_eu-west-2" {
+  source = "./modules/config-baseline"
+
   providers = {
     aws = aws.eu-west-2
   }
 
-  source                        = "./modules/config-baseline"
+  enabled                       = contains(var.target_regions, "eu-west-2")
   iam_role_arn                  = aws_iam_role.recorder.arn
   s3_bucket_name                = local.audit_log_bucket_id
   s3_key_prefix                 = var.config_s3_bucket_key_prefix
@@ -229,11 +252,13 @@ module "config_baseline_eu-west-2" {
 }
 
 module "config_baseline_eu-west-3" {
+  source = "./modules/config-baseline"
+
   providers = {
     aws = aws.eu-west-3
   }
 
-  source                        = "./modules/config-baseline"
+  enabled                       = contains(var.target_regions, "eu-west-3")
   iam_role_arn                  = aws_iam_role.recorder.arn
   s3_bucket_name                = local.audit_log_bucket_id
   s3_key_prefix                 = var.config_s3_bucket_key_prefix
@@ -244,11 +269,13 @@ module "config_baseline_eu-west-3" {
 }
 
 module "config_baseline_sa-east-1" {
+  source = "./modules/config-baseline"
+
   providers = {
     aws = aws.sa-east-1
   }
 
-  source                        = "./modules/config-baseline"
+  enabled                       = contains(var.target_regions, "sa-east-1")
   iam_role_arn                  = aws_iam_role.recorder.arn
   s3_bucket_name                = local.audit_log_bucket_id
   s3_key_prefix                 = var.config_s3_bucket_key_prefix
@@ -259,11 +286,13 @@ module "config_baseline_sa-east-1" {
 }
 
 module "config_baseline_us-east-1" {
+  source = "./modules/config-baseline"
+
   providers = {
     aws = aws.us-east-1
   }
 
-  source                        = "./modules/config-baseline"
+  enabled                       = contains(var.target_regions, "us-east-1")
   iam_role_arn                  = aws_iam_role.recorder.arn
   s3_bucket_name                = local.audit_log_bucket_id
   s3_key_prefix                 = var.config_s3_bucket_key_prefix
@@ -274,11 +303,13 @@ module "config_baseline_us-east-1" {
 }
 
 module "config_baseline_us-east-2" {
+  source = "./modules/config-baseline"
+
   providers = {
     aws = aws.us-east-2
   }
 
-  source                        = "./modules/config-baseline"
+  enabled                       = contains(var.target_regions, "us-east-2")
   iam_role_arn                  = aws_iam_role.recorder.arn
   s3_bucket_name                = local.audit_log_bucket_id
   s3_key_prefix                 = var.config_s3_bucket_key_prefix
@@ -289,11 +320,13 @@ module "config_baseline_us-east-2" {
 }
 
 module "config_baseline_us-west-1" {
+  source = "./modules/config-baseline"
+
   providers = {
     aws = aws.us-west-1
   }
 
-  source                        = "./modules/config-baseline"
+  enabled                       = contains(var.target_regions, "us-west-1")
   iam_role_arn                  = aws_iam_role.recorder.arn
   s3_bucket_name                = local.audit_log_bucket_id
   s3_key_prefix                 = var.config_s3_bucket_key_prefix
@@ -304,11 +337,13 @@ module "config_baseline_us-west-1" {
 }
 
 module "config_baseline_us-west-2" {
+  source = "./modules/config-baseline"
+
   providers = {
     aws = aws.us-west-2
   }
 
-  source                        = "./modules/config-baseline"
+  enabled                       = contains(var.target_regions, "us-west-2")
   iam_role_arn                  = aws_iam_role.recorder.arn
   s3_bucket_name                = local.audit_log_bucket_id
   s3_key_prefix                 = var.config_s3_bucket_key_prefix

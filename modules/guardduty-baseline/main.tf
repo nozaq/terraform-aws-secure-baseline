@@ -3,14 +3,16 @@
 # --------------------------------------------------------------------------------------------------
 
 resource "aws_guardduty_detector" "default" {
+  count = var.enabled ? 1 : 0
+
   enable                       = true
   finding_publishing_frequency = var.finding_publishing_frequency
 }
 
 resource "aws_guardduty_member" "members" {
-  count = length(var.member_accounts)
+  count = var.enabled ? length(var.member_accounts) : 0
 
-  detector_id = aws_guardduty_detector.default.id
+  detector_id = aws_guardduty_detector.default[0].id
   invite      = true
 
   account_id                 = var.member_accounts[count.index].account_id
@@ -20,8 +22,8 @@ resource "aws_guardduty_member" "members" {
 }
 
 resource "aws_guardduty_invite_accepter" "master" {
-  count = var.master_account_id != "" ? 1 : 0
+  count = var.enabled && var.master_account_id != "" ? 1 : 0
 
-  detector_id       = aws_guardduty_detector.default.id
+  detector_id       = aws_guardduty_detector.default[0].id
   master_account_id = var.master_account_id
 }
