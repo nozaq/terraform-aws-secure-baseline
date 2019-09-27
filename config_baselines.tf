@@ -322,37 +322,6 @@ module "config_baseline_us-west-2" {
 # Global Config Rules
 # --------------------------------------------------------------------------------------------------
 
-resource "aws_config_config_rule" "root_hardware_mfa" {
-  name = "RootAccountHardwareMFAEnabled"
-
-  source {
-    owner             = "AWS"
-    source_identifier = "ROOT_ACCOUNT_HARDWARE_MFA_ENABLED"
-  }
-
-  tags = var.tags
-
-  # Ensure this rule is created after all configuration recorders.
-  depends_on = [
-    module.config_baseline_ap-northeast-1,
-    module.config_baseline_ap-northeast-2,
-    module.config_baseline_ap-south-1,
-    module.config_baseline_ap-southeast-1,
-    module.config_baseline_ap-southeast-2,
-    module.config_baseline_ca-central-1,
-    module.config_baseline_eu-central-1,
-    module.config_baseline_eu-north-1,
-    module.config_baseline_eu-west-1,
-    module.config_baseline_eu-west-2,
-    module.config_baseline_eu-west-3,
-    module.config_baseline_sa-east-1,
-    module.config_baseline_us-east-1,
-    module.config_baseline_us-east-2,
-    module.config_baseline_us-west-1,
-    module.config_baseline_us-west-2,
-  ]
-}
-
 resource "aws_config_config_rule" "iam_mfa" {
   name = "IAMAccountMFAEnabled"
 
