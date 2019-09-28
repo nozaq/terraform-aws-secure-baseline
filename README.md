@@ -1,6 +1,6 @@
 # terraform-aws-secure-baseline
 
-[![CircleCI](https://circleci.com/gh/nozaq/terraform-aws-secure-baseline.svg?style=svg)](https://circleci.com/gh/nozaq/terraform-aws-secure-baseline)
+[![Github Actions](https://github.com/nozaq/terraform-aws-secure-baseline/workflows/Terraform/badge.svg)](https://github.com/nozaq/terraform-aws-secure-baseline/actions?workflow=Terraform)
 
 [Terraform Module Registry](https://registry.terraform.io/modules/nozaq/secure-baseline/aws)
 
