@@ -1,3 +1,8 @@
+variable "enabled" {
+  description = "The boolean flag whether this module is enabled or not. No resources are created when set to false."
+  default     = true
+}
+
 variable "vpc_log_group_name" {
   description = "The name of CloudWatch Logs group to which VPC Flow Logs are delivered."
 }
