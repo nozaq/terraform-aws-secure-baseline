@@ -1,3 +1,8 @@
+variable "enabled" {
+  description = "The boolean flag whether this module is enabled or not. No resources are created when set to false."
+  default     = true
+}
+
 variable "disable_email_notification" {
   description = "Boolean whether an email notification is sent to the accounts."
   default     = false
