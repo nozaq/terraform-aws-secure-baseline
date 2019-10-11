@@ -2,6 +2,12 @@
 ## [Unreleased]
 
 
+<a name="0.16.1"></a>
+## [0.16.1] - 2019-10-12
+### Fix
+- do not read AWS Organization when account_type is set to "individual"
+
+
 <a name="0.16.0"></a>
 ## [0.16.0] - 2019-09-28
 ### Feat
@@ -172,7 +178,8 @@
 <a name="0.0.1"></a>
 ## 0.0.1 - 2018-02-12
 
-[Unreleased]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.16.0...HEAD
+[Unreleased]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.16.1...HEAD
+[0.16.1]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.16.0...0.16.1
 [0.16.0]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.15.0...0.16.0
 [0.15.0]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.14.0...0.15.0
 [0.14.0]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.13.0...0.14.0
