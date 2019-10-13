@@ -39,6 +39,10 @@ provider "aws" {
 }
 
 provider "aws" {
+  alias = "me-south-1"
+}
+
+provider "aws" {
   alias = "eu-west-1"
 }
 
