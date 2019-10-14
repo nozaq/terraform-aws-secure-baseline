@@ -17,7 +17,7 @@ resource "aws_iam_account_password_policy" "default" {
 # Manager & Master Role Separation
 # --------------------------------------------------------------------------------------------------
 data "aws_iam_policy_document" "master_assume_policy" {
-  count = var.create_master_role != false ? 1 : 0
+  count = var.create_master_role  ? 1 : 0
 
   statement {
     principals {
@@ -33,7 +33,7 @@ data "aws_iam_policy_document" "master_assume_policy" {
 }
 
 resource "aws_iam_role" "master" {
-  count = var.create_master_role != false ? 1 : 0
+  count = var.create_master_role  ? 1 : 0
 
   name               = var.master_iam_role_name
   assume_role_policy = data.aws_iam_policy_document.master_assume_policy.0.json
@@ -42,7 +42,7 @@ resource "aws_iam_role" "master" {
 }
 
 data "aws_iam_policy_document" "master_policy" {
-  count = var.create_master_role != false ? 1 : 0
+  count = var.create_master_role  ? 1 : 0
 
   statement {
     actions = [
@@ -114,7 +114,7 @@ data "aws_iam_policy_document" "master_policy" {
 }
 
 resource "aws_iam_role_policy" "master_policy" {
-  count = var.create_master_role != false ? 1 : 0
+  count = var.create_master_role  ? 1 : 0
 
   name = var.master_iam_role_policy_name
   role = aws_iam_role.master.0.id
@@ -139,7 +139,7 @@ data "aws_iam_policy_document" "manager_assume_policy" {
 }
 
 resource "aws_iam_role" "manager" {
-  count = var.create_manager_role != false ? 1 : 0
+  count = var.create_manager_role  ? 1 : 0
 
   name               = var.manager_iam_role_name
   assume_role_policy = data.aws_iam_policy_document.manager_assume_policy.0.json
@@ -148,7 +148,7 @@ resource "aws_iam_role" "manager" {
 }
 
 data "aws_iam_policy_document" "manager_policy" {
-  count = var.create_manager_role != false ? 1 : 0
+  count = var.create_manager_role  ? 1 : 0
 
   statement {
     actions = [
@@ -220,7 +220,7 @@ data "aws_iam_policy_document" "manager_policy" {
 }
 
 resource "aws_iam_role_policy" "manager_policy" {
-  count = var.create_manager_role != false ? 1 : 0
+  count = var.create_manager_role  ? 1 : 0
 
   name   = var.manager_iam_role_policy_name
   role   = aws_iam_role.manager.0.id
@@ -231,7 +231,7 @@ resource "aws_iam_role_policy" "manager_policy" {
 # Support Role
 # --------------------------------------------------------------------------------------------------
 data "aws_iam_policy_document" "support_assume_policy" {
-  count = var.create_support_role != false ? 1 : 0
+  count = var.create_support_role  ? 1 : 0
 
   statement {
     principals {
@@ -247,7 +247,7 @@ data "aws_iam_policy_document" "support_assume_policy" {
 }
 
 resource "aws_iam_role" "support" {
-  count = var.create_support_role != false ? 1 : 0
+  count = var.create_support_role  ? 1 : 0
 
   name               = var.support_iam_role_name
   assume_role_policy = data.aws_iam_policy_document.support_assume_policy.0.json
@@ -256,7 +256,7 @@ resource "aws_iam_role" "support" {
 }
 
 resource "aws_iam_role_policy_attachment" "support_policy" {
-  count = var.create_support_role != false ? 1 : 0
+  count = var.create_support_role  ? 1 : 0
 
   role       = aws_iam_role.support.0.id
   policy_arn = "arn:aws:iam::aws:policy/AWSSupportAccess"
