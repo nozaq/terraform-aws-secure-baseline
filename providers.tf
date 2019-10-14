@@ -7,15 +7,35 @@ provider "aws" {
 }
 
 provider "aws" {
-  alias = "ap-northeast-1"
+  alias = "us-east-2"
 }
 
 provider "aws" {
-  alias = "ap-northeast-2"
+  alias = "us-east-1"
+}
+
+provider "aws" {
+  alias = "us-west-1"
+}
+
+provider "aws" {
+  alias = "us-west-2"
+}
+
+provider "aws" {
+  alias = "ap-east-1"
 }
 
 provider "aws" {
   alias = "ap-south-1"
+}
+
+provider "aws" {
+  alias = "ap-northeast-3"
+}
+
+provider "aws" {
+  alias = "ap-northeast-2"
 }
 
 provider "aws" {
@@ -27,15 +47,19 @@ provider "aws" {
 }
 
 provider "aws" {
+  alias = "ap-northeast-1"
+}
+
+provider "aws" {
   alias = "ca-central-1"
 }
 
 provider "aws" {
-  alias = "eu-central-1"
+  alias = "cn-north-1"
 }
 
 provider "aws" {
-  alias = "eu-north-1"
+  alias = "eu-central-1"
 }
 
 provider "aws" {
@@ -51,38 +75,14 @@ provider "aws" {
 }
 
 provider "aws" {
+  alias = "eu-north-1"
+}
+
+provider "aws" {
   alias = "me-south-1"
 }
 
 provider "aws" {
-  alias = "ap-east-1"
-}
-
-provider "aws" {
-  alias = "cn-north-1"
-}
-
-provider "aws" {
-  alias = "cn-northwest-1"
-}
-
-provider "aws" {
   alias = "sa-east-1"
-}
-
-provider "aws" {
-  alias = "us-east-1"
-}
-
-provider "aws" {
-  alias = "us-east-2"
-}
-
-provider "aws" {
-  alias = "us-west-1"
-}
-
-provider "aws" {
-  alias = "us-west-2"
 }
 

@@ -44,14 +44,14 @@ resource "aws_iam_role_policy" "vpc_flow_logs_publish_policy" {
 # Needs to be set up in each region.
 # --------------------------------------------------------------------------------------------------
 
-module "vpc_baseline_ap-northeast-1" {
+module "vpc_baseline_us-east-2" {
   source = "./modules/vpc-baseline"
 
   providers = {
-    aws = aws.ap-northeast-1
+    aws = aws.us-east-2
   }
 
-  enabled                    = contains(var.target_regions, "ap-northeast-1")
+  enabled                    = contains(var.target_regions, "us-east-2")
   vpc_log_group_name         = var.vpc_log_group_name
   vpc_flow_logs_iam_role_arn = aws_iam_role.vpc_flow_logs_publisher.arn
   vpc_log_retention_in_days  = var.vpc_log_retention_in_days
@@ -59,14 +59,59 @@ module "vpc_baseline_ap-northeast-1" {
   tags = var.tags
 }
 
-module "vpc_baseline_ap-northeast-2" {
+module "vpc_baseline_us-east-1" {
   source = "./modules/vpc-baseline"
 
   providers = {
-    aws = aws.ap-northeast-2
+    aws = aws.us-east-1
   }
 
-  enabled                    = contains(var.target_regions, "ap-northeast-2")
+  enabled                    = contains(var.target_regions, "us-east-1")
+  vpc_log_group_name         = var.vpc_log_group_name
+  vpc_flow_logs_iam_role_arn = aws_iam_role.vpc_flow_logs_publisher.arn
+  vpc_log_retention_in_days  = var.vpc_log_retention_in_days
+
+  tags = var.tags
+}
+
+module "vpc_baseline_us-west-1" {
+  source = "./modules/vpc-baseline"
+
+  providers = {
+    aws = aws.us-west-1
+  }
+
+  enabled                    = contains(var.target_regions, "us-west-1")
+  vpc_log_group_name         = var.vpc_log_group_name
+  vpc_flow_logs_iam_role_arn = aws_iam_role.vpc_flow_logs_publisher.arn
+  vpc_log_retention_in_days  = var.vpc_log_retention_in_days
+
+  tags = var.tags
+}
+
+module "vpc_baseline_us-west-2" {
+  source = "./modules/vpc-baseline"
+
+  providers = {
+    aws = aws.us-west-2
+  }
+
+  enabled                    = contains(var.target_regions, "us-west-2")
+  vpc_log_group_name         = var.vpc_log_group_name
+  vpc_flow_logs_iam_role_arn = aws_iam_role.vpc_flow_logs_publisher.arn
+  vpc_log_retention_in_days  = var.vpc_log_retention_in_days
+
+  tags = var.tags
+}
+
+module "vpc_baseline_ap-east-1" {
+  source = "./modules/vpc-baseline"
+
+  providers = {
+    aws = aws.ap-east-1
+  }
+
+  enabled                    = contains(var.target_regions, "ap-east-1")
   vpc_log_group_name         = var.vpc_log_group_name
   vpc_flow_logs_iam_role_arn = aws_iam_role.vpc_flow_logs_publisher.arn
   vpc_log_retention_in_days  = var.vpc_log_retention_in_days
@@ -82,6 +127,36 @@ module "vpc_baseline_ap-south-1" {
   }
 
   enabled                    = contains(var.target_regions, "ap-south-1")
+  vpc_log_group_name         = var.vpc_log_group_name
+  vpc_flow_logs_iam_role_arn = aws_iam_role.vpc_flow_logs_publisher.arn
+  vpc_log_retention_in_days  = var.vpc_log_retention_in_days
+
+  tags = var.tags
+}
+
+module "vpc_baseline_ap-northeast-3" {
+  source = "./modules/vpc-baseline"
+
+  providers = {
+    aws = aws.ap-northeast-3
+  }
+
+  enabled                    = contains(var.target_regions, "ap-northeast-3")
+  vpc_log_group_name         = var.vpc_log_group_name
+  vpc_flow_logs_iam_role_arn = aws_iam_role.vpc_flow_logs_publisher.arn
+  vpc_log_retention_in_days  = var.vpc_log_retention_in_days
+
+  tags = var.tags
+}
+
+module "vpc_baseline_ap-northeast-2" {
+  source = "./modules/vpc-baseline"
+
+  providers = {
+    aws = aws.ap-northeast-2
+  }
+
+  enabled                    = contains(var.target_regions, "ap-northeast-2")
   vpc_log_group_name         = var.vpc_log_group_name
   vpc_flow_logs_iam_role_arn = aws_iam_role.vpc_flow_logs_publisher.arn
   vpc_log_retention_in_days  = var.vpc_log_retention_in_days
@@ -119,6 +194,21 @@ module "vpc_baseline_ap-southeast-2" {
   tags = var.tags
 }
 
+module "vpc_baseline_ap-northeast-1" {
+  source = "./modules/vpc-baseline"
+
+  providers = {
+    aws = aws.ap-northeast-1
+  }
+
+  enabled                    = contains(var.target_regions, "ap-northeast-1")
+  vpc_log_group_name         = var.vpc_log_group_name
+  vpc_flow_logs_iam_role_arn = aws_iam_role.vpc_flow_logs_publisher.arn
+  vpc_log_retention_in_days  = var.vpc_log_retention_in_days
+
+  tags = var.tags
+}
+
 module "vpc_baseline_ca-central-1" {
   source = "./modules/vpc-baseline"
 
@@ -134,6 +224,21 @@ module "vpc_baseline_ca-central-1" {
   tags = var.tags
 }
 
+module "vpc_baseline_cn-north-1" {
+  source = "./modules/vpc-baseline"
+
+  providers = {
+    aws = aws.cn-north-1
+  }
+
+  enabled                    = contains(var.target_regions, "cn-north-1")
+  vpc_log_group_name         = var.vpc_log_group_name
+  vpc_flow_logs_iam_role_arn = aws_iam_role.vpc_flow_logs_publisher.arn
+  vpc_log_retention_in_days  = var.vpc_log_retention_in_days
+
+  tags = var.tags
+}
+
 module "vpc_baseline_eu-central-1" {
   source = "./modules/vpc-baseline"
 
@@ -142,21 +247,6 @@ module "vpc_baseline_eu-central-1" {
   }
 
   enabled                    = contains(var.target_regions, "eu-central-1")
-  vpc_log_group_name         = var.vpc_log_group_name
-  vpc_flow_logs_iam_role_arn = aws_iam_role.vpc_flow_logs_publisher.arn
-  vpc_log_retention_in_days  = var.vpc_log_retention_in_days
-
-  tags = var.tags
-}
-
-module "vpc_baseline_eu-north-1" {
-  source = "./modules/vpc-baseline"
-
-  providers = {
-    aws = aws.eu-north-1
-  }
-
-  enabled                    = contains(var.target_regions, "eu-north-1")
   vpc_log_group_name         = var.vpc_log_group_name
   vpc_flow_logs_iam_role_arn = aws_iam_role.vpc_flow_logs_publisher.arn
   vpc_log_retention_in_days  = var.vpc_log_retention_in_days
@@ -209,6 +299,21 @@ module "vpc_baseline_eu-west-3" {
   tags = var.tags
 }
 
+module "vpc_baseline_eu-north-1" {
+  source = "./modules/vpc-baseline"
+
+  providers = {
+    aws = aws.eu-north-1
+  }
+
+  enabled                    = contains(var.target_regions, "eu-north-1")
+  vpc_log_group_name         = var.vpc_log_group_name
+  vpc_flow_logs_iam_role_arn = aws_iam_role.vpc_flow_logs_publisher.arn
+  vpc_log_retention_in_days  = var.vpc_log_retention_in_days
+
+  tags = var.tags
+}
+
 module "vpc_baseline_me-south-1" {
   source = "./modules/vpc-baseline"
 
@@ -224,51 +329,6 @@ module "vpc_baseline_me-south-1" {
   tags = var.tags
 }
 
-module "vpc_baseline_ap-east-1" {
-  source = "./modules/vpc-baseline"
-
-  providers = {
-    aws = aws.ap-east-1
-  }
-
-  enabled                    = contains(var.target_regions, "ap-east-1")
-  vpc_log_group_name         = var.vpc_log_group_name
-  vpc_flow_logs_iam_role_arn = aws_iam_role.vpc_flow_logs_publisher.arn
-  vpc_log_retention_in_days  = var.vpc_log_retention_in_days
-
-  tags = var.tags
-}
-
-module "vpc_baseline_cn-north-1" {
-  source = "./modules/vpc-baseline"
-
-  providers = {
-    aws = aws.cn-north-1
-  }
-
-  enabled                    = contains(var.target_regions, "cn-north-1")
-  vpc_log_group_name         = var.vpc_log_group_name
-  vpc_flow_logs_iam_role_arn = aws_iam_role.vpc_flow_logs_publisher.arn
-  vpc_log_retention_in_days  = var.vpc_log_retention_in_days
-
-  tags = var.tags
-}
-
-module "vpc_baseline_cn-northwest-1" {
-  source = "./modules/vpc-baseline"
-
-  providers = {
-    aws = aws.cn-northwest-1
-  }
-
-  enabled                    = contains(var.target_regions, "cn-northwest-1")
-  vpc_log_group_name         = var.vpc_log_group_name
-  vpc_flow_logs_iam_role_arn = aws_iam_role.vpc_flow_logs_publisher.arn
-  vpc_log_retention_in_days  = var.vpc_log_retention_in_days
-
-  tags = var.tags
-}
-
 module "vpc_baseline_sa-east-1" {
   source = "./modules/vpc-baseline"
 
@@ -277,66 +337,6 @@ module "vpc_baseline_sa-east-1" {
   }
 
   enabled                    = contains(var.target_regions, "sa-east-1")
-  vpc_log_group_name         = var.vpc_log_group_name
-  vpc_flow_logs_iam_role_arn = aws_iam_role.vpc_flow_logs_publisher.arn
-  vpc_log_retention_in_days  = var.vpc_log_retention_in_days
-
-  tags = var.tags
-}
-
-module "vpc_baseline_us-east-1" {
-  source = "./modules/vpc-baseline"
-
-  providers = {
-    aws = aws.us-east-1
-  }
-
-  enabled                    = contains(var.target_regions, "us-east-1")
-  vpc_log_group_name         = var.vpc_log_group_name
-  vpc_flow_logs_iam_role_arn = aws_iam_role.vpc_flow_logs_publisher.arn
-  vpc_log_retention_in_days  = var.vpc_log_retention_in_days
-
-  tags = var.tags
-}
-
-module "vpc_baseline_us-east-2" {
-  source = "./modules/vpc-baseline"
-
-  providers = {
-    aws = aws.us-east-2
-  }
-
-  enabled                    = contains(var.target_regions, "us-east-2")
-  vpc_log_group_name         = var.vpc_log_group_name
-  vpc_flow_logs_iam_role_arn = aws_iam_role.vpc_flow_logs_publisher.arn
-  vpc_log_retention_in_days  = var.vpc_log_retention_in_days
-
-  tags = var.tags
-}
-
-module "vpc_baseline_us-west-1" {
-  source = "./modules/vpc-baseline"
-
-  providers = {
-    aws = aws.us-west-1
-  }
-
-  enabled                    = contains(var.target_regions, "us-west-1")
-  vpc_log_group_name         = var.vpc_log_group_name
-  vpc_flow_logs_iam_role_arn = aws_iam_role.vpc_flow_logs_publisher.arn
-  vpc_log_retention_in_days  = var.vpc_log_retention_in_days
-
-  tags = var.tags
-}
-
-module "vpc_baseline_us-west-2" {
-  source = "./modules/vpc-baseline"
-
-  providers = {
-    aws = aws.us-west-2
-  }
-
-  enabled                    = contains(var.target_regions, "us-west-2")
   vpc_log_group_name         = var.vpc_log_group_name
   vpc_flow_logs_iam_role_arn = aws_iam_role.vpc_flow_logs_publisher.arn
   vpc_log_retention_in_days  = var.vpc_log_retention_in_days
