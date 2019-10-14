@@ -1,0 +1,27 @@
+# --------------------------------------------------------------------------------------------------
+# GuardDuty Baseline
+# Needs to be set up in each region.
+# This is an extra configuration which is not included in CIS benchmark.
+# --------------------------------------------------------------------------------------------------
+locals {
+  guardduty_master_account_id = var.master_account_id
+  guardduty_member_accounts   = var.member_accounts
+}
+
+{% for region in regions %}
+module "guardduty_baseline_{{ region }}" {
+  source = "./modules/guardduty-baseline"
+
+  providers = {
+    aws = aws.{{ region }}
+  }
+
+  enabled                      = contains(var.target_regions, "{{ region }}")
+  disable_email_notification   = var.guardduty_disable_email_notification
+  finding_publishing_frequency = var.guardduty_finding_publishing_frequency
+  invitation_message           = var.guardduty_invitation_message
+  master_account_id            = local.guardduty_master_account_id
+  member_accounts              = local.guardduty_member_accounts
+}
+
+{% endfor %}

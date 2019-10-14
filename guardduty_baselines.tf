@@ -117,7 +117,7 @@ module "guardduty_baseline_eu-north-1" {
   source = "./modules/guardduty-baseline"
 
   providers = {
-    aws = "aws.eu-north-1"
+    aws = aws.eu-north-1
   }
 
   enabled                      = contains(var.target_regions, "eu-north-1")
@@ -166,6 +166,66 @@ module "guardduty_baseline_eu-west-3" {
   }
 
   enabled                      = contains(var.target_regions, "eu-west-3")
+  disable_email_notification   = var.guardduty_disable_email_notification
+  finding_publishing_frequency = var.guardduty_finding_publishing_frequency
+  invitation_message           = var.guardduty_invitation_message
+  master_account_id            = local.guardduty_master_account_id
+  member_accounts              = local.guardduty_member_accounts
+}
+
+module "guardduty_baseline_me-south-1" {
+  source = "./modules/guardduty-baseline"
+
+  providers = {
+    aws = aws.me-south-1
+  }
+
+  enabled                      = contains(var.target_regions, "me-south-1")
+  disable_email_notification   = var.guardduty_disable_email_notification
+  finding_publishing_frequency = var.guardduty_finding_publishing_frequency
+  invitation_message           = var.guardduty_invitation_message
+  master_account_id            = local.guardduty_master_account_id
+  member_accounts              = local.guardduty_member_accounts
+}
+
+module "guardduty_baseline_ap-east-1" {
+  source = "./modules/guardduty-baseline"
+
+  providers = {
+    aws = aws.ap-east-1
+  }
+
+  enabled                      = contains(var.target_regions, "ap-east-1")
+  disable_email_notification   = var.guardduty_disable_email_notification
+  finding_publishing_frequency = var.guardduty_finding_publishing_frequency
+  invitation_message           = var.guardduty_invitation_message
+  master_account_id            = local.guardduty_master_account_id
+  member_accounts              = local.guardduty_member_accounts
+}
+
+module "guardduty_baseline_cn-north-1" {
+  source = "./modules/guardduty-baseline"
+
+  providers = {
+    aws = aws.cn-north-1
+  }
+
+  enabled                      = contains(var.target_regions, "cn-north-1")
+  disable_email_notification   = var.guardduty_disable_email_notification
+  finding_publishing_frequency = var.guardduty_finding_publishing_frequency
+  invitation_message           = var.guardduty_invitation_message
+  master_account_id            = local.guardduty_master_account_id
+  member_accounts              = local.guardduty_member_accounts
+}
+
+module "guardduty_baseline_cn-northwest-1" {
+  source = "./modules/guardduty-baseline"
+
+  providers = {
+    aws = aws.cn-northwest-1
+  }
+
+  enabled                      = contains(var.target_regions, "cn-northwest-1")
   disable_email_notification   = var.guardduty_disable_email_notification
   finding_publishing_frequency = var.guardduty_finding_publishing_frequency
   invitation_message           = var.guardduty_invitation_message
@@ -247,3 +307,4 @@ module "guardduty_baseline_us-west-2" {
   master_account_id            = local.guardduty_master_account_id
   member_accounts              = local.guardduty_member_accounts
 }
+

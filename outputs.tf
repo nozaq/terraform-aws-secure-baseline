@@ -60,9 +60,14 @@ output "config_configuration_recorder" {
     "ap-southeast-2" = module.config_baseline_ap-southeast-2.configuration_recorder
     "ca-central-1"   = module.config_baseline_ca-central-1.configuration_recorder
     "eu-central-1"   = module.config_baseline_eu-central-1.configuration_recorder
+    "eu-north-1"     = module.config_baseline_eu-north-1.configuration_recorder
     "eu-west-1"      = module.config_baseline_eu-west-1.configuration_recorder
     "eu-west-2"      = module.config_baseline_eu-west-2.configuration_recorder
     "eu-west-3"      = module.config_baseline_eu-west-3.configuration_recorder
+    "me-south-1"     = module.config_baseline_me-south-1.configuration_recorder
+    "ap-east-1"      = module.config_baseline_ap-east-1.configuration_recorder
+    "cn-north-1"     = module.config_baseline_cn-north-1.configuration_recorder
+    "cn-northwest-1" = module.config_baseline_cn-northwest-1.configuration_recorder
     "sa-east-1"      = module.config_baseline_sa-east-1.configuration_recorder
     "us-east-1"      = module.config_baseline_us-east-1.configuration_recorder
     "us-east-2"      = module.config_baseline_us-east-2.configuration_recorder
@@ -86,6 +91,10 @@ output "config_sns_topic" {
     "eu-west-1"      = module.config_baseline_eu-west-1.config_sns_topic
     "eu-west-2"      = module.config_baseline_eu-west-2.config_sns_topic
     "eu-west-3"      = module.config_baseline_eu-west-3.config_sns_topic
+    "me-south-1"     = module.config_baseline_me-south-1.config_sns_topic
+    "ap-east-1"      = module.config_baseline_ap-east-1.config_sns_topic
+    "cn-north-1"     = module.config_baseline_cn-north-1.config_sns_topic
+    "cn-northwest-1" = module.config_baseline_cn-northwest-1.config_sns_topic
     "sa-east-1"      = module.config_baseline_sa-east-1.config_sns_topic
     "us-east-1"      = module.config_baseline_us-east-1.config_sns_topic
     "us-east-2"      = module.config_baseline_us-east-2.config_sns_topic
@@ -112,6 +121,11 @@ output "guardduty_detector" {
     "eu-north-1"     = module.guardduty_baseline_eu-north-1.guardduty_detector
     "eu-west-1"      = module.guardduty_baseline_eu-west-1.guardduty_detector
     "eu-west-2"      = module.guardduty_baseline_eu-west-2.guardduty_detector
+    "eu-west-3"      = module.guardduty_baseline_eu-west-3.guardduty_detector
+    "me-south-1"     = module.guardduty_baseline_me-south-1.guardduty_detector
+    "ap-east-1"      = module.guardduty_baseline_ap-east-1.guardduty_detector
+    "cn-north-1"     = module.guardduty_baseline_cn-north-1.guardduty_detector
+    "cn-northwest-1" = module.guardduty_baseline_cn-northwest-1.guardduty_detector
     "sa-east-1"      = module.guardduty_baseline_sa-east-1.guardduty_detector
     "us-east-1"      = module.guardduty_baseline_us-east-1.guardduty_detector
     "us-east-2"      = module.guardduty_baseline_us-east-2.guardduty_detector
@@ -119,6 +133,7 @@ output "guardduty_detector" {
     "us-west-2"      = module.guardduty_baseline_us-west-2.guardduty_detector
   }
 }
+
 
 # --------------------------------------------------------------------------------------------------
 # Outputs from iam-baseline module.
@@ -148,6 +163,7 @@ output "vpc_flow_logs_iam_role" {
   value       = aws_iam_role.vpc_flow_logs_publisher
 }
 
+
 output "vpc_flow_logs_group" {
   description = "The CloudWatch Logs log group which stores VPC Flow Logs in each region."
 
@@ -163,6 +179,10 @@ output "vpc_flow_logs_group" {
     "eu-west-1"      = module.vpc_baseline_eu-west-1.vpc_flow_logs_group
     "eu-west-2"      = module.vpc_baseline_eu-west-2.vpc_flow_logs_group
     "eu-west-3"      = module.vpc_baseline_eu-west-3.vpc_flow_logs_group
+    "me-south-1"     = module.vpc_baseline_me-south-1.vpc_flow_logs_group
+    "ap-east-1"      = module.vpc_baseline_ap-east-1.vpc_flow_logs_group
+    "cn-north-1"     = module.vpc_baseline_cn-north-1.vpc_flow_logs_group
+    "cn-northwest-1" = module.vpc_baseline_cn-northwest-1.vpc_flow_logs_group
     "sa-east-1"      = module.vpc_baseline_sa-east-1.vpc_flow_logs_group
     "us-east-1"      = module.vpc_baseline_us-east-1.vpc_flow_logs_group
     "us-east-2"      = module.vpc_baseline_us-east-2.vpc_flow_logs_group
@@ -186,6 +206,10 @@ output "default_vpc" {
     "eu-west-1"      = module.vpc_baseline_eu-west-1.default_vpc
     "eu-west-2"      = module.vpc_baseline_eu-west-2.default_vpc
     "eu-west-3"      = module.vpc_baseline_eu-west-3.default_vpc
+    "me-south-1"     = module.vpc_baseline_me-south-1.default_vpc
+    "ap-east-1"      = module.vpc_baseline_ap-east-1.default_vpc
+    "cn-north-1"     = module.vpc_baseline_cn-north-1.default_vpc
+    "cn-northwest-1" = module.vpc_baseline_cn-northwest-1.default_vpc
     "sa-east-1"      = module.vpc_baseline_sa-east-1.default_vpc
     "us-east-1"      = module.vpc_baseline_us-east-1.default_vpc
     "us-east-2"      = module.vpc_baseline_us-east-2.default_vpc
@@ -209,6 +233,10 @@ output "default_security_group" {
     "eu-west-1"      = module.vpc_baseline_eu-west-1.default_security_group
     "eu-west-2"      = module.vpc_baseline_eu-west-2.default_security_group
     "eu-west-3"      = module.vpc_baseline_eu-west-3.default_security_group
+    "me-south-1"     = module.vpc_baseline_me-south-1.default_security_group
+    "ap-east-1"      = module.vpc_baseline_ap-east-1.default_security_group
+    "cn-north-1"     = module.vpc_baseline_cn-north-1.default_security_group
+    "cn-northwest-1" = module.vpc_baseline_cn-northwest-1.default_security_group
     "sa-east-1"      = module.vpc_baseline_sa-east-1.default_security_group
     "us-east-1"      = module.vpc_baseline_us-east-1.default_security_group
     "us-east-2"      = module.vpc_baseline_us-east-2.default_security_group
@@ -232,6 +260,10 @@ output "default_network_acl" {
     "eu-west-1"      = module.vpc_baseline_eu-west-1.default_network_acl
     "eu-west-2"      = module.vpc_baseline_eu-west-2.default_network_acl
     "eu-west-3"      = module.vpc_baseline_eu-west-3.default_network_acl
+    "me-south-1"     = module.vpc_baseline_me-south-1.default_network_acl
+    "ap-east-1"      = module.vpc_baseline_ap-east-1.default_network_acl
+    "cn-north-1"     = module.vpc_baseline_cn-north-1.default_network_acl
+    "cn-northwest-1" = module.vpc_baseline_cn-northwest-1.default_network_acl
     "sa-east-1"      = module.vpc_baseline_sa-east-1.default_network_acl
     "us-east-1"      = module.vpc_baseline_us-east-1.default_network_acl
     "us-east-2"      = module.vpc_baseline_us-east-2.default_network_acl
@@ -255,6 +287,10 @@ output "default_route_table" {
     "eu-west-1"      = module.vpc_baseline_eu-west-1.default_route_table
     "eu-west-2"      = module.vpc_baseline_eu-west-2.default_route_table
     "eu-west-3"      = module.vpc_baseline_eu-west-3.default_route_table
+    "me-south-1"     = module.vpc_baseline_me-south-1.default_route_table
+    "ap-east-1"      = module.vpc_baseline_ap-east-1.default_route_table
+    "cn-north-1"     = module.vpc_baseline_cn-north-1.default_route_table
+    "cn-northwest-1" = module.vpc_baseline_cn-northwest-1.default_route_table
     "sa-east-1"      = module.vpc_baseline_sa-east-1.default_route_table
     "us-east-1"      = module.vpc_baseline_us-east-1.default_route_table
     "us-east-2"      = module.vpc_baseline_us-east-2.default_route_table
@@ -262,4 +298,3 @@ output "default_route_table" {
     "us-west-2"      = module.vpc_baseline_us-west-2.default_route_table
   }
 }
-

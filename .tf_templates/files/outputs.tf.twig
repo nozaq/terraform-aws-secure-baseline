@@ -1,0 +1,164 @@
+# --------------------------------------------------------------------------------------------------
+# Outputs from the root module.
+# --------------------------------------------------------------------------------------------------
+
+output "audit_bucket" {
+  description = "The S3 bucket used for storing audit logs."
+  value       = module.audit_log_bucket.this_bucket
+}
+
+# --------------------------------------------------------------------------------------------------
+# Outputs from alarm-baseline module.
+# --------------------------------------------------------------------------------------------------
+
+output "alarm_sns_topic" {
+  description = "The SNS topic to which CloudWatch Alarms will be sent."
+  value       = module.alarm_baseline.alarm_sns_topic
+}
+
+# --------------------------------------------------------------------------------------------------
+# Outputs from cloudtrail-baseline module.
+# --------------------------------------------------------------------------------------------------
+
+output "cloudtrail" {
+  description = "The trail for recording events in all regions."
+  value       = module.cloudtrail_baseline.cloudtrail
+}
+
+output "cloudtrail_kms_key" {
+  description = "The KMS key used for encrypting CloudTrail events."
+  value       = module.cloudtrail_baseline.kms_key
+}
+
+output "cloudtrail_log_delivery_iam_role" {
+  description = "The IAM role used for delivering CloudTrail events to CloudWatch Logs."
+  value       = module.cloudtrail_baseline.log_delivery_iam_role
+}
+
+output "cloudtrail_log_group" {
+  description = "The CloudWatch Logs log group which stores CloudTrail events."
+  value       = module.cloudtrail_baseline.log_group
+}
+
+# --------------------------------------------------------------------------------------------------
+# Outputs from config-baseline module.
+# --------------------------------------------------------------------------------------------------
+
+output "config_iam_role" {
+  description = "The IAM role used for delivering AWS Config records to CloudWatch Logs."
+  value       = aws_iam_role.recorder
+}
+
+output "config_configuration_recorder" {
+  description = "The configuration recorder in each region."
+
+  value = {
+  {% for region in regions %}
+  "{{ region }}" = module.config_baseline_{{ region }}.configuration_recorder
+  {% endfor %}
+  }
+}
+
+output "config_sns_topic" {
+  description = "The SNS topic that AWS Config delivers notifications to."
+
+  value = {
+  {% for region in regions %}
+  "{{ region }}" = module.config_baseline_{{ region }}.config_sns_topic
+  {% endfor %}
+  }
+}
+
+# --------------------------------------------------------------------------------------------------
+# Outputs from guardduty-baseline module.
+# --------------------------------------------------------------------------------------------------
+
+output "guardduty_detector" {
+  description = "The GuardDuty detector in each region."
+
+  value = {
+  {% for region in regions %}
+  "{{ region }}" = module.guardduty_baseline_{{ region }}.guardduty_detector
+  {% endfor %}
+  }
+}
+
+
+# --------------------------------------------------------------------------------------------------
+# Outputs from iam-baseline module.
+# --------------------------------------------------------------------------------------------------
+
+output "master_iam_role" {
+  description = "The IAM role used for the master user."
+  value       = module.iam_baseline.master_iam_role
+}
+
+output "manager_iam_role" {
+  description = "The IAM role used for the manager user."
+  value       = module.iam_baseline.manager_iam_role
+}
+
+output "support_iam_role" {
+  description = "The IAM role used for the support user."
+  value       = module.iam_baseline.support_iam_role
+}
+
+# --------------------------------------------------------------------------------------------------
+# Outputs from vpc-baseline module.
+# --------------------------------------------------------------------------------------------------
+
+output "vpc_flow_logs_iam_role" {
+  description = "The IAM role used for delivering VPC Flow Logs to CloudWatch Logs."
+  value       = aws_iam_role.vpc_flow_logs_publisher
+}
+
+
+output "vpc_flow_logs_group" {
+  description = "The CloudWatch Logs log group which stores VPC Flow Logs in each region."
+
+  value = {
+    {% for region in regions %}
+    "{{ region }}" = module.vpc_baseline_{{ region }}.vpc_flow_logs_group
+    {% endfor %}
+  }
+}
+
+output "default_vpc" {
+  description = "The default VPC."
+
+  value = {
+    {% for region in regions %}
+    "{{ region }}" = module.vpc_baseline_{{ region }}.default_vpc
+    {% endfor %}
+  }
+}
+
+output "default_security_group" {
+  description = "The ID of the default security group."
+
+  value = {
+    {% for region in regions %}
+    "{{ region }}" = module.vpc_baseline_{{ region }}.default_security_group
+    {% endfor %}
+  }
+}
+
+output "default_network_acl" {
+  description = "The default network ACL."
+
+  value = {
+    {% for region in regions %}
+    "{{ region }}" = module.vpc_baseline_{{ region }}.default_network_acl
+    {% endfor %}
+  }
+}
+
+output "default_route_table" {
+  description = "The default route table."
+
+  value = {
+    {% for region in regions %}
+    "{{ region }}" = module.vpc_baseline_{{ region }}.default_route_table
+    {% endfor %}
+  }
+}

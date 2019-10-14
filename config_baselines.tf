@@ -11,6 +11,10 @@ locals {
     module.config_baseline_eu-west-1.config_sns_topic,
     module.config_baseline_eu-west-2.config_sns_topic,
     module.config_baseline_eu-west-3.config_sns_topic,
+    module.config_baseline_me-south-1.config_sns_topic,
+    module.config_baseline_ap-east-1.config_sns_topic,
+    module.config_baseline_cn-north-1.config_sns_topic,
+    module.config_baseline_cn-northwest-1.config_sns_topic,
     module.config_baseline_sa-east-1.config_sns_topic,
     module.config_baseline_us-east-1.config_sns_topic,
     module.config_baseline_us-east-2.config_sns_topic,
@@ -18,7 +22,6 @@ locals {
     module.config_baseline_us-west-2.config_sns_topic,
   ]
 }
-
 # --------------------------------------------------------------------------------------------------
 # Create an IAM Role for AWS Config recorder to publish results and send notifications.
 # Reference: https://docs.aws.amazon.com/config/latest/developerguide/gs-cli-prereq.html#gs-cli-create-iamrole
@@ -81,6 +84,7 @@ resource "aws_iam_role_policy_attachment" "recorder_read_policy" {
 # Needs to be set up in each region.
 # Global resource types are only recorded in the region specified by var.region.
 # --------------------------------------------------------------------------------------------------
+
 module "config_baseline_ap-northeast-1" {
   source = "./modules/config-baseline"
 
@@ -268,6 +272,74 @@ module "config_baseline_eu-west-3" {
   tags                          = var.tags
 }
 
+module "config_baseline_me-south-1" {
+  source = "./modules/config-baseline"
+
+  providers = {
+    aws = aws.me-south-1
+  }
+
+  enabled                       = contains(var.target_regions, "me-south-1")
+  iam_role_arn                  = aws_iam_role.recorder.arn
+  s3_bucket_name                = local.audit_log_bucket_id
+  s3_key_prefix                 = var.config_s3_bucket_key_prefix
+  delivery_frequency            = var.config_delivery_frequency
+  sns_topic_name                = var.config_sns_topic_name
+  include_global_resource_types = var.region == "me-south-1"
+  tags                          = var.tags
+}
+
+module "config_baseline_ap-east-1" {
+  source = "./modules/config-baseline"
+
+  providers = {
+    aws = aws.ap-east-1
+  }
+
+  enabled                       = contains(var.target_regions, "ap-east-1")
+  iam_role_arn                  = aws_iam_role.recorder.arn
+  s3_bucket_name                = local.audit_log_bucket_id
+  s3_key_prefix                 = var.config_s3_bucket_key_prefix
+  delivery_frequency            = var.config_delivery_frequency
+  sns_topic_name                = var.config_sns_topic_name
+  include_global_resource_types = var.region == "ap-east-1"
+  tags                          = var.tags
+}
+
+module "config_baseline_cn-north-1" {
+  source = "./modules/config-baseline"
+
+  providers = {
+    aws = aws.cn-north-1
+  }
+
+  enabled                       = contains(var.target_regions, "cn-north-1")
+  iam_role_arn                  = aws_iam_role.recorder.arn
+  s3_bucket_name                = local.audit_log_bucket_id
+  s3_key_prefix                 = var.config_s3_bucket_key_prefix
+  delivery_frequency            = var.config_delivery_frequency
+  sns_topic_name                = var.config_sns_topic_name
+  include_global_resource_types = var.region == "cn-north-1"
+  tags                          = var.tags
+}
+
+module "config_baseline_cn-northwest-1" {
+  source = "./modules/config-baseline"
+
+  providers = {
+    aws = aws.cn-northwest-1
+  }
+
+  enabled                       = contains(var.target_regions, "cn-northwest-1")
+  iam_role_arn                  = aws_iam_role.recorder.arn
+  s3_bucket_name                = local.audit_log_bucket_id
+  s3_key_prefix                 = var.config_s3_bucket_key_prefix
+  delivery_frequency            = var.config_delivery_frequency
+  sns_topic_name                = var.config_sns_topic_name
+  include_global_resource_types = var.region == "cn-northwest-1"
+  tags                          = var.tags
+}
+
 module "config_baseline_sa-east-1" {
   source = "./modules/config-baseline"
 
@@ -353,6 +425,7 @@ module "config_baseline_us-west-2" {
   tags                          = var.tags
 }
 
+
 # --------------------------------------------------------------------------------------------------
 # Global Config Rules
 # --------------------------------------------------------------------------------------------------
@@ -380,6 +453,10 @@ resource "aws_config_config_rule" "iam_mfa" {
     module.config_baseline_eu-west-1,
     module.config_baseline_eu-west-2,
     module.config_baseline_eu-west-3,
+    module.config_baseline_me-south-1,
+    module.config_baseline_ap-east-1,
+    module.config_baseline_cn-north-1,
+    module.config_baseline_cn-northwest-1,
     module.config_baseline_sa-east-1,
     module.config_baseline_us-east-1,
     module.config_baseline_us-east-2,
@@ -413,6 +490,10 @@ resource "aws_config_config_rule" "unused_credentials" {
     module.config_baseline_eu-west-1,
     module.config_baseline_eu-west-2,
     module.config_baseline_eu-west-3,
+    module.config_baseline_me-south-1,
+    module.config_baseline_ap-east-1,
+    module.config_baseline_cn-north-1,
+    module.config_baseline_cn-northwest-1,
     module.config_baseline_sa-east-1,
     module.config_baseline_us-east-1,
     module.config_baseline_us-east-2,
@@ -450,6 +531,10 @@ resource "aws_config_config_rule" "user_no_policies" {
     module.config_baseline_eu-west-1,
     module.config_baseline_eu-west-2,
     module.config_baseline_eu-west-3,
+    module.config_baseline_me-south-1,
+    module.config_baseline_ap-east-1,
+    module.config_baseline_cn-north-1,
+    module.config_baseline_cn-northwest-1,
     module.config_baseline_sa-east-1,
     module.config_baseline_us-east-1,
     module.config_baseline_us-east-2,
@@ -487,6 +572,10 @@ resource "aws_config_config_rule" "no_policies_with_full_admin_access" {
     module.config_baseline_eu-west-1,
     module.config_baseline_eu-west-2,
     module.config_baseline_eu-west-3,
+    module.config_baseline_me-south-1,
+    module.config_baseline_ap-east-1,
+    module.config_baseline_cn-north-1,
+    module.config_baseline_cn-northwest-1,
     module.config_baseline_sa-east-1,
     module.config_baseline_us-east-1,
     module.config_baseline_us-east-2,

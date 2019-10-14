@@ -39,22 +39,6 @@ provider "aws" {
 }
 
 provider "aws" {
-  alias = "ap-east-1"
-}
-
-provider "aws" {
-  alias = "cn-north-1"
-}
-
-provider "aws" {
-  alias = "cn-northwest-1"
-}
-
-provider "aws" {
-  alias = "me-south-1"
-}
-
-provider "aws" {
   alias = "eu-west-1"
 }
 
@@ -64,6 +48,22 @@ provider "aws" {
 
 provider "aws" {
   alias = "eu-west-3"
+}
+
+provider "aws" {
+  alias = "me-south-1"
+}
+
+provider "aws" {
+  alias = "ap-east-1"
+}
+
+provider "aws" {
+  alias = "cn-north-1"
+}
+
+provider "aws" {
+  alias = "cn-northwest-1"
 }
 
 provider "aws" {

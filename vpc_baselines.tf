@@ -209,6 +209,66 @@ module "vpc_baseline_eu-west-3" {
   tags = var.tags
 }
 
+module "vpc_baseline_me-south-1" {
+  source = "./modules/vpc-baseline"
+
+  providers = {
+    aws = aws.me-south-1
+  }
+
+  enabled                    = contains(var.target_regions, "me-south-1")
+  vpc_log_group_name         = var.vpc_log_group_name
+  vpc_flow_logs_iam_role_arn = aws_iam_role.vpc_flow_logs_publisher.arn
+  vpc_log_retention_in_days  = var.vpc_log_retention_in_days
+
+  tags = var.tags
+}
+
+module "vpc_baseline_ap-east-1" {
+  source = "./modules/vpc-baseline"
+
+  providers = {
+    aws = aws.ap-east-1
+  }
+
+  enabled                    = contains(var.target_regions, "ap-east-1")
+  vpc_log_group_name         = var.vpc_log_group_name
+  vpc_flow_logs_iam_role_arn = aws_iam_role.vpc_flow_logs_publisher.arn
+  vpc_log_retention_in_days  = var.vpc_log_retention_in_days
+
+  tags = var.tags
+}
+
+module "vpc_baseline_cn-north-1" {
+  source = "./modules/vpc-baseline"
+
+  providers = {
+    aws = aws.cn-north-1
+  }
+
+  enabled                    = contains(var.target_regions, "cn-north-1")
+  vpc_log_group_name         = var.vpc_log_group_name
+  vpc_flow_logs_iam_role_arn = aws_iam_role.vpc_flow_logs_publisher.arn
+  vpc_log_retention_in_days  = var.vpc_log_retention_in_days
+
+  tags = var.tags
+}
+
+module "vpc_baseline_cn-northwest-1" {
+  source = "./modules/vpc-baseline"
+
+  providers = {
+    aws = aws.cn-northwest-1
+  }
+
+  enabled                    = contains(var.target_regions, "cn-northwest-1")
+  vpc_log_group_name         = var.vpc_log_group_name
+  vpc_flow_logs_iam_role_arn = aws_iam_role.vpc_flow_logs_publisher.arn
+  vpc_log_retention_in_days  = var.vpc_log_retention_in_days
+
+  tags = var.tags
+}
+
 module "vpc_baseline_sa-east-1" {
   source = "./modules/vpc-baseline"
 
