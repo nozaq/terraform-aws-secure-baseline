@@ -114,22 +114,22 @@ variable "support_iam_role_policy_name" {
 
 variable "create_master_role" {
   description = "Create master role"
-  default = false
+  default     = false
 }
 
 variable "create_manager_role" {
   description = "Create manager role"
-  default = false
+  default     = false
 }
 
 variable "create_support_role" {
   description = "Create support role"
-  default = false
+  default     = false
 }
 
 variable "support_iam_role_principal_arn" {
   description = "The ARN of the IAM principal element by which the support role could be assumed."
-  default = ""
+  default     = ""
 }
 
 variable "max_password_age" {

@@ -1,6 +1,6 @@
 variable "aws_account_id" {
   description = "The AWS Account ID number of the account."
-  default = ""
+  default     = ""
 }
 
 variable "create_master_role" {
@@ -20,7 +20,7 @@ variable "master_iam_role_policy_name" {
 
 variable "create_manager_role" {
   description = "Create manager role."
-  default = false
+  default     = false
 }
 
 variable "manager_iam_role_name" {
