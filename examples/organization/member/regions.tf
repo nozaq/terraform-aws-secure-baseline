@@ -1,5 +1,5 @@
 # --------------------------------------------------------------------------------------------------
-# A list of providers for all AWS regions.
+# A list of regions for all AWS regions.
 # Reference: https://docs.aws.amazon.com/general/latest/gr/rande.html
 # --------------------------------------------------------------------------------------------------
 
@@ -78,6 +78,34 @@ provider "aws" {
   secret_key = var.secret_key
   region     = "eu-west-3"
   alias      = "eu-west-3"
+}
+
+provider "aws" {
+  access_key = var.access_key
+  secret_key = var.secret_key
+  region     = "me-south-1"
+  alias      = "me-south-1"
+}
+
+provider "aws" {
+  access_key = var.access_key
+  secret_key = var.secret_key
+  region     = "ap-east-1"
+  alias      = "ap-east-1"
+}
+
+provider "aws" {
+  access_key = var.access_key
+  secret_key = var.secret_key
+  region     = "cn-north-1"
+  alias      = "cn-north-1"
+}
+
+provider "aws" {
+  access_key = var.access_key
+  secret_key = var.secret_key
+  region     = "cn-northwest-1"
+  alias      = "cn-northwest-1"
 }
 
 provider "aws" {
