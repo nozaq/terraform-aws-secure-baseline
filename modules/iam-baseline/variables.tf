@@ -1,5 +1,11 @@
 variable "aws_account_id" {
   description = "The AWS Account ID number of the account."
+  default = ""
+}
+
+variable "create_master_role" {
+  description = "Create master role."
+  default     = false
 }
 
 variable "master_iam_role_name" {
@@ -12,6 +18,11 @@ variable "master_iam_role_policy_name" {
   default     = "IAM-Master-Policy"
 }
 
+variable "create_manager_role" {
+  description = "Create manager role."
+  default = false
+}
+
 variable "manager_iam_role_name" {
   description = "The name of the IAM Manager role."
   default     = "IAM-Manager"
@@ -20,6 +31,11 @@ variable "manager_iam_role_name" {
 variable "manager_iam_role_policy_name" {
   description = "The name of the IAM Manager role policy."
   default     = "IAM-Manager-Policy"
+}
+
+variable "create_support_role" {
+  description = "Create support role."
+  default     = false
 }
 
 variable "support_iam_role_name" {

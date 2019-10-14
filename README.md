@@ -44,7 +44,7 @@ data "aws_caller_identity" "current" {}
 data "aws_region" "current" {}
 
 module "secure_baseline" {
-  source  = "nozaq/secure-baseline/aws"
+  source = "git::https://github.com/nozaq/terraform-aws-secure-baseline.git?ref=master"
 
   audit_log_bucket_name          = "YOUR_BUCKET_NAME"
   aws_account_id                 = data.aws_caller_identity.current.account_id
@@ -140,6 +140,9 @@ This module is composed of several submodules and each of which can be used inde
 | require\_numbers | Whether to require numbers for user passwords. | string | `"true"` | no |
 | require\_symbols | Whether to require symbols for user passwords. | string | `"true"` | no |
 | require\_uppercase\_characters | Whether to require uppercase characters for user passwords. | string | `"true"` | no |
+| create\_master\_role | Create mater role. | bool | `false` | no |
+| create\_manager\_role | Create manager role. | bool | `false` | no |
+| create\_support\_role | Create support role. | bool | `false` | no |
 | support\_iam\_role\_name | The name of the the support role. | string | `"IAM-Support"` | no |
 | support\_iam\_role\_policy\_name | The name of the support role policy. | string | `"IAM-Support-Role"` | no |
 | support\_iam\_role\_principal\_arn | The ARN of the IAM principal element by which the support role could be assumed. | string | n/a | yes |
