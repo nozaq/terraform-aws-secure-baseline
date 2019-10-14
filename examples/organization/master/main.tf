@@ -27,6 +27,9 @@ module "secure_baseline" {
   audit_log_bucket_name                = var.audit_s3_bucket_name
   aws_account_id                       = data.aws_caller_identity.current.account_id
   region                               = var.region
+  create_master_role                   = true
+  create_manager                       = true
+  create_support_role                  = true
   support_iam_role_principal_arn       = aws_iam_user.admin.arn
   guardduty_disable_email_notification = true
 
