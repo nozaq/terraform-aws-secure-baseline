@@ -14,7 +14,7 @@ const regions = [
   'ap-southeast-2',
   'ap-northeast-1',
   'ca-central-1',
-  'cn-north-1',
+  // 'cn-north-1',
   // 'cn-northwest-1', inactive?
   'eu-central-1',
   'eu-west-1',

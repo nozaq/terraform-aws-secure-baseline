@@ -23,8 +23,6 @@ module "secure_baseline" {
   #   when you run `terraform destroy`.
   # Note that it might be inappropriate for highly secured environment.
   audit_log_bucket_force_destroy = true
-
-
   providers = {
     aws                = aws
     aws.us-east-2      = aws.us-east-2
@@ -39,7 +37,6 @@ module "secure_baseline" {
     aws.ap-southeast-2 = aws.ap-southeast-2
     aws.ap-northeast-1 = aws.ap-northeast-1
     aws.ca-central-1   = aws.ca-central-1
-    aws.cn-north-1     = aws.cn-north-1
     aws.eu-central-1   = aws.eu-central-1
     aws.eu-west-1      = aws.eu-west-1
     aws.eu-west-2      = aws.eu-west-2
@@ -48,8 +45,5 @@ module "secure_baseline" {
     aws.me-south-1     = aws.me-south-1
     aws.sa-east-1      = aws.sa-east-1
   }
-
-
-
 }
 

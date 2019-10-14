@@ -55,10 +55,6 @@ provider "aws" {
 }
 
 provider "aws" {
-  alias = "cn-north-1"
-}
-
-provider "aws" {
   alias = "eu-central-1"
 }
 

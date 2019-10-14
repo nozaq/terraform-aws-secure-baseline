@@ -129,16 +129,6 @@ provider "aws" {
   skip_region_validation      = true
   skip_credentials_validation = true
 
-  region     = "cn-north-1"
-  alias      = "cn-north-1"
-}
-
-provider "aws" {
-
-  skip_metadata_api_check     = true
-  skip_region_validation      = true
-  skip_credentials_validation = true
-
   region     = "eu-central-1"
   alias      = "eu-central-1"
 }

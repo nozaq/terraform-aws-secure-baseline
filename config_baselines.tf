@@ -12,7 +12,6 @@ locals {
     module.config_baseline_ap-southeast-2.config_sns_topic,
     module.config_baseline_ap-northeast-1.config_sns_topic,
     module.config_baseline_ca-central-1.config_sns_topic,
-    module.config_baseline_cn-north-1.config_sns_topic,
     module.config_baseline_eu-central-1.config_sns_topic,
     module.config_baseline_eu-west-1.config_sns_topic,
     module.config_baseline_eu-west-2.config_sns_topic,
@@ -289,23 +288,6 @@ module "config_baseline_ca-central-1" {
   tags                          = var.tags
 }
 
-module "config_baseline_cn-north-1" {
-  source = "./modules/config-baseline"
-
-  providers = {
-    aws = aws.cn-north-1
-  }
-
-  enabled                       = contains(var.target_regions, "cn-north-1")
-  iam_role_arn                  = aws_iam_role.recorder.arn
-  s3_bucket_name                = local.audit_log_bucket_id
-  s3_key_prefix                 = var.config_s3_bucket_key_prefix
-  delivery_frequency            = var.config_delivery_frequency
-  sns_topic_name                = var.config_sns_topic_name
-  include_global_resource_types = var.region == "cn-north-1"
-  tags                          = var.tags
-}
-
 module "config_baseline_eu-central-1" {
   source = "./modules/config-baseline"
 
@@ -454,7 +436,6 @@ resource "aws_config_config_rule" "iam_mfa" {
     module.config_baseline_ap-southeast-2,
     module.config_baseline_ap-northeast-1,
     module.config_baseline_ca-central-1,
-    module.config_baseline_cn-north-1,
     module.config_baseline_eu-central-1,
     module.config_baseline_eu-west-1,
     module.config_baseline_eu-west-2,
@@ -491,7 +472,6 @@ resource "aws_config_config_rule" "unused_credentials" {
     module.config_baseline_ap-southeast-2,
     module.config_baseline_ap-northeast-1,
     module.config_baseline_ca-central-1,
-    module.config_baseline_cn-north-1,
     module.config_baseline_eu-central-1,
     module.config_baseline_eu-west-1,
     module.config_baseline_eu-west-2,
@@ -532,7 +512,6 @@ resource "aws_config_config_rule" "user_no_policies" {
     module.config_baseline_ap-southeast-2,
     module.config_baseline_ap-northeast-1,
     module.config_baseline_ca-central-1,
-    module.config_baseline_cn-north-1,
     module.config_baseline_eu-central-1,
     module.config_baseline_eu-west-1,
     module.config_baseline_eu-west-2,
@@ -573,7 +552,6 @@ resource "aws_config_config_rule" "no_policies_with_full_admin_access" {
     module.config_baseline_ap-southeast-2,
     module.config_baseline_ap-northeast-1,
     module.config_baseline_ca-central-1,
-    module.config_baseline_cn-north-1,
     module.config_baseline_eu-central-1,
     module.config_baseline_eu-west-1,
     module.config_baseline_eu-west-2,

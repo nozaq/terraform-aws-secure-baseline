@@ -90,13 +90,6 @@ provider "aws" {
 provider "aws" {
   access_key = var.access_key
   secret_key = var.secret_key
-  region     = "cn-north-1"
-  alias     = "cn-north-1"
-}
-
-provider "aws" {
-  access_key = var.access_key
-  secret_key = var.secret_key
   region     = "eu-central-1"
   alias     = "eu-central-1"
 }
