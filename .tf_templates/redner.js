@@ -48,3 +48,7 @@ Twig.renderFile(__dirname + '/files/vpc_baselines.tf.twig', { regions: regions }
 Twig.renderFile(__dirname + '/files/regions.tf.twig', { regions: regions }, (err, text) => {
   fs.writeFileSync(__dirname + '/regions.tf', text);
 });
+
+Twig.renderFile(__dirname + '/files/regions_shared_key.tf.twig', { regions: regions }, (err, text) => {
+  fs.writeFileSync(__dirname + '/regions_shared_key.tf', text);
+});

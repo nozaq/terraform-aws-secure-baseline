@@ -1,0 +1,17 @@
+# --------------------------------------------------------------------------------------------------
+# A list of regions for all AWS regions.
+# Reference: https://docs.aws.amazon.com/general/latest/gr/rande.html
+# --------------------------------------------------------------------------------------------------
+
+{% for region in regions %}
+provider "aws" {
+
+  skip_metadata_api_check     = true
+  skip_region_validation      = true
+  skip_credentials_validation = true
+
+  region     = "{{ region }}"
+  alias     = "{{ region }}"
+}
+
+{% endfor %}
