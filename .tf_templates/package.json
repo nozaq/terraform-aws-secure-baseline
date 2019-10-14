@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "twig": "^1.13.3"
+  },
+  "devDependencies": {
+    "@types/twig": "^1.12.2"
+  }
+}
