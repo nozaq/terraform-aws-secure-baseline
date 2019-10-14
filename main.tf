@@ -20,7 +20,7 @@ module "iam_baseline" {
   create_manager_role            = tobool(var.create_manager_role)
   manager_iam_role_name          = var.manager_iam_role_name
   manager_iam_role_policy_name   = var.manager_iam_role_policy_name
-  create_support_role            = var.support_iam_role_principal_arn ? true : tobool(var.create_support_role)
+  create_support_role            = var.support_iam_role_principal_arn != "" ? true : tobool(var.create_support_role)
   support_iam_role_name          = var.support_iam_role_name
   support_iam_role_policy_name   = var.support_iam_role_policy_name
   support_iam_role_principal_arn = var.support_iam_role_principal_arn
