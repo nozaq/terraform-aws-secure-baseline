@@ -50,5 +50,9 @@ Twig.renderFile(__dirname + '/files/regions.tf.twig', { regions: regions }, (err
 });
 
 Twig.renderFile(__dirname + '/files/regions_shared_key.tf.twig', { regions: regions }, (err, text) => {
-  fs.writeFileSync(__dirname + '/regions_shared_key.tf', text);
+  fs.writeFileSync(__dirname + '/regions_shared_key.tf_', text);
+});
+
+Twig.renderFile(__dirname + '/files/provider_map.tf.twig', { regions: regions }, (err, text) => {
+  fs.writeFileSync(__dirname + '/provider_map.tf_', text);
 });

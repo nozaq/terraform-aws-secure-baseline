@@ -20,7 +20,7 @@ locals {
     module.config_baseline_us-east-2.config_sns_topic,
     module.config_baseline_us-west-1.config_sns_topic,
     module.config_baseline_us-west-2.config_sns_topic,
-    ]
+  ]
 }
 # --------------------------------------------------------------------------------------------------
 # Create an IAM Role for AWS Config recorder to publish results and send notifications.
@@ -462,7 +462,7 @@ resource "aws_config_config_rule" "iam_mfa" {
     module.config_baseline_us-east-2,
     module.config_baseline_us-west-1,
     module.config_baseline_us-west-2,
-    ]
+  ]
 }
 
 resource "aws_config_config_rule" "unused_credentials" {
@@ -499,7 +499,7 @@ resource "aws_config_config_rule" "unused_credentials" {
     module.config_baseline_us-east-2,
     module.config_baseline_us-west-1,
     module.config_baseline_us-west-2,
-    ]
+  ]
 }
 
 resource "aws_config_config_rule" "user_no_policies" {
@@ -540,7 +540,7 @@ resource "aws_config_config_rule" "user_no_policies" {
     module.config_baseline_us-east-2,
     module.config_baseline_us-west-1,
     module.config_baseline_us-west-2,
-    ]
+  ]
 }
 
 resource "aws_config_config_rule" "no_policies_with_full_admin_access" {
@@ -581,7 +581,7 @@ resource "aws_config_config_rule" "no_policies_with_full_admin_access" {
     module.config_baseline_us-east-2,
     module.config_baseline_us-west-1,
     module.config_baseline_us-west-2,
-    ]
+  ]
 }
 
 # --------------------------------------------------------------------------------------------------

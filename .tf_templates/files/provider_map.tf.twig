@@ -1,0 +1,8 @@
+
+providers = {
+  aws                = aws
+  {% for region in regions %}
+  aws.{{ region }} = aws.{{ region }}
+  {% endfor %}
+}
+
