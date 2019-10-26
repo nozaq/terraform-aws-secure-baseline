@@ -3,7 +3,15 @@ resource "aws_s3_bucket" "access_log" {
 
   bucket = var.log_bucket_name
 
-  acl           = "log-delivery-write"
+  acl = "log-delivery-write"
+
+  server_side_encryption_configuration {
+    rule {
+      apply_server_side_encryption_by_default {
+        sse_algorithm = "AES256"
+      }
+    }
+  }
   force_destroy = var.force_destroy
 
   lifecycle_rule {
@@ -39,6 +47,14 @@ resource "aws_s3_bucket" "content" {
 
   acl           = "private"
   force_destroy = var.force_destroy
+
+  server_side_encryption_configuration {
+    rule {
+      apply_server_side_encryption_by_default {
+        sse_algorithm = "AES256"
+      }
+    }
+  }
 
   logging {
     target_bucket = aws_s3_bucket.access_log[0].id
