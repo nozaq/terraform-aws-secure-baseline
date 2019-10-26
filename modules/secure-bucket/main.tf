@@ -3,7 +3,7 @@ resource "aws_s3_bucket" "access_log" {
 
   bucket = var.log_bucket_name
 
-  acl           = "log-delivery-write"
+  acl = "log-delivery-write"
 
   server_side_encryption_configuration {
     rule {
