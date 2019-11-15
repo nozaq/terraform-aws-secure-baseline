@@ -1,4 +1,4 @@
-# vpc-baseline
+# securityhub-baseline
 
 ## Features
 
