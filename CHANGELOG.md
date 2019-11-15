@@ -2,6 +2,12 @@
 ## [Unreleased]
 
 
+<a name="0.16.2"></a>
+## [0.16.2] - 2019-11-16
+### Refactor
+- remove unused data source
+
+
 <a name="0.16.1"></a>
 ## [0.16.1] - 2019-10-12
 ### Fix
@@ -178,7 +184,8 @@
 <a name="0.0.1"></a>
 ## 0.0.1 - 2018-02-12
 
-[Unreleased]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.16.1...HEAD
+[Unreleased]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.16.2...HEAD
+[0.16.2]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.16.1...0.16.2
 [0.16.1]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.16.0...0.16.1
 [0.16.0]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.15.0...0.16.0
 [0.15.0]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.14.0...0.15.0
