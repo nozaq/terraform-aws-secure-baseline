@@ -521,7 +521,7 @@ resource "aws_iam_role" "config_organization" {
 resource "aws_iam_role_policy_attachment" "config_organization" {
   count = local.is_master_account ? 1 : 0
 
-  role       = "${aws_iam_role.config_organization[0].name}"
+  role       = aws_iam_role.config_organization[0].name
   policy_arn = "arn:aws:iam::aws:policy/service-role/AWSConfigRoleForOrganizations"
 }
 
@@ -532,7 +532,7 @@ resource "aws_config_configuration_aggregator" "organization" {
 
   organization_aggregation_source {
     all_regions = true
-    role_arn    = "${aws_iam_role.config_organization[0].arn}"
+    role_arn    = aws_iam_role.config_organization[0].arn
   }
 
   tags = var.tags

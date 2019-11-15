@@ -117,7 +117,7 @@ module "guardduty_baseline_eu-north-1" {
   source = "./modules/guardduty-baseline"
 
   providers = {
-    aws = "aws.eu-north-1"
+    aws = aws.eu-north-1
   }
 
   enabled                      = contains(var.target_regions, "eu-north-1")
