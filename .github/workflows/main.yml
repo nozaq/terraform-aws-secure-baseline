@@ -7,12 +7,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
-      uses: actions/checkout@v1.0.0
+      uses: actions/checkout@master
 
-    - name: terraform fmt
-      uses: hashicorp/terraform-github-actions/fmt@v0.4.4
+    - name: 'Terraform Format'
+      uses: hashicorp/terraform-github-actions@master
+      with:
+        tf_actions_version: 0.12.15
+        tf_actions_subcommand: 'fmt'
+        tf_actions_working_dir: '.'
+        tf_actions_comment: true
       env:
-        TF_ACTION_WORKING_DIR: "."
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   validate-examples:
     name: Validate examples
@@ -21,42 +26,82 @@ jobs:
     - name: Checkout
       uses: actions/checkout@master
 
-    - name: terraform init - examples/simple
-      uses: hashicorp/terraform-github-actions/init@v0.4.4
+    - name: 'Terraform Init - examples/simple'
+      uses: hashicorp/terraform-github-actions@master
+      with:
+        tf_actions_version: 0.12.15
+        tf_actions_subcommand: 'init'
+        tf_actions_working_dir: './examples/simple'
+        tf_actions_comment: true
       env:
-        TF_ACTION_WORKING_DIR: "./examples/simple"
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: terraform validate - examples/simple
-      uses: hashicorp/terraform-github-actions/validate@v0.4.4
+    - name: 'Terraform Validate - examples/simple'
+      uses: hashicorp/terraform-github-actions@master
+      with:
+        tf_actions_version: 0.12.15
+        tf_actions_subcommand: 'validate'
+        tf_actions_working_dir: './examples/simple'
+        tf_actions_comment: true
       env:
-        TF_ACTION_WORKING_DIR: "./examples/simple"
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: terraform init - examples/external-bucket
-      uses: hashicorp/terraform-github-actions/init@v0.4.4
+    - name: 'Terraform Init - examples/external-bucket'
+      uses: hashicorp/terraform-github-actions@master
+      with:
+        tf_actions_version: 0.12.15
+        tf_actions_subcommand: 'init'
+        tf_actions_working_dir: './examples/external-bucket'
+        tf_actions_comment: true
       env:
-        TF_ACTION_WORKING_DIR: "./examples/external-bucket"
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: terraform validate - examples/external-bucket
-      uses: hashicorp/terraform-github-actions/validate@v0.4.4
+    - name: 'Terraform Validate - examples/external-bucket'
+      uses: hashicorp/terraform-github-actions@master
+      with:
+        tf_actions_version: 0.12.15
+        tf_actions_subcommand: 'validate'
+        tf_actions_working_dir: './examples/external-bucket'
+        tf_actions_comment: true
       env:
-        TF_ACTION_WORKING_DIR: "./examples/external-bucket"
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: terraform init - examples/organization/master
-      uses: hashicorp/terraform-github-actions/init@v0.4.4
+    - name: 'Terraform Init - examples/organization/master'
+      uses: hashicorp/terraform-github-actions@master
+      with:
+        tf_actions_version: 0.12.15
+        tf_actions_subcommand: 'init'
+        tf_actions_working_dir: './examples/organization/master'
+        tf_actions_comment: true
       env:
-        TF_ACTION_WORKING_DIR: "./examples/organization/master"
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: terraform validate - examples/organization/master
-      uses: hashicorp/terraform-github-actions/validate@v0.4.4
+    - name: 'Terraform Validate - examples/organization/master'
+      uses: hashicorp/terraform-github-actions@master
+      with:
+        tf_actions_version: 0.12.15
+        tf_actions_subcommand: 'validate'
+        tf_actions_working_dir: './examples/organization/master'
+        tf_actions_comment: true
       env:
-        TF_ACTION_WORKING_DIR: "./examples/organization/master"
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: terraform init - examples/organization/member
-      uses: hashicorp/terraform-github-actions/init@v0.4.4
+    - name: 'Terraform Init - examples/organization/member'
+      uses: hashicorp/terraform-github-actions@master
+      with:
+        tf_actions_version: 0.12.15
+        tf_actions_subcommand: 'init'
+        tf_actions_working_dir: './examples/organization/member'
+        tf_actions_comment: true
       env:
-        TF_ACTION_WORKING_DIR: "./examples/organization/member"
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: terraform validate - examples/organization/member
-      uses: hashicorp/terraform-github-actions/validate@v0.4.4
+    - name: 'Terraform Validate - examples/organization/masmemberter'
+      uses: hashicorp/terraform-github-actions@master
+      with:
+        tf_actions_version: 0.12.15
+        tf_actions_subcommand: 'validate'
+        tf_actions_working_dir: './examples/organization/member'
+        tf_actions_comment: true
       env:
-        TF_ACTION_WORKING_DIR: "./examples/organization/member"
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
