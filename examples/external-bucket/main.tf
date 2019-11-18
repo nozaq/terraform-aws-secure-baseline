@@ -14,11 +14,11 @@ resource "aws_iam_user" "admin" {
 module "secure_baseline" {
   source = "../../"
 
-  audit_log_bucket_name          = aws_s3_bucket.logs.id
-  use_external_audit_log_bucket  = true
-  aws_account_id                 = data.aws_caller_identity.current.account_id
-  region                         = var.region
-  support_iam_role_principal_arn = aws_iam_user.admin.arn
+  audit_log_bucket_name           = aws_s3_bucket.logs.id
+  use_external_audit_log_bucket   = true
+  aws_account_id                  = data.aws_caller_identity.current.account_id
+  region                          = var.region
+  support_iam_role_principal_arns = [aws_iam_user.admin.arn]
 
   providers = {
     aws                = aws
