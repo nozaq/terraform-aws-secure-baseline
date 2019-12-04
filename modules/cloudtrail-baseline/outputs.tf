@@ -3,6 +3,11 @@ output "cloudtrail" {
   value       = var.enabled ? aws_cloudtrail.global[0] : null
 }
 
+output "cloudtrail_sns_topic" {
+  description = "The sns topic linked to the cloudtrail."
+  value       = var.enabled ? aws_sns_topic.cloudtrail-sns-topic[0] : null
+}
+
 output "kms_key" {
   description = "The  KMS key used for encrypting CloudTrail events."
   value       = var.enabled ? aws_kms_key.cloudtrail[0] : null

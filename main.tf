@@ -43,6 +43,7 @@ module "cloudtrail_baseline" {
   enabled                           = local.is_cloudtrail_enabled
   aws_account_id                    = var.aws_account_id
   cloudtrail_name                   = var.cloudtrail_name
+  cloudtrail_sns_topic_name         = var.cloudtrail_sns_topic_name
   cloudwatch_logs_group_name        = var.cloudtrail_cloudwatch_logs_group_name
   cloudwatch_logs_retention_in_days = var.cloudwatch_logs_retention_in_days
   iam_role_name                     = var.cloudtrail_iam_role_name
