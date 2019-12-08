@@ -140,7 +140,7 @@ data "aws_iam_policy_document" "support_assume_policy" {
   statement {
     principals {
       type        = "AWS"
-      identifiers = [var.support_iam_role_principal_arn]
+      identifiers = var.support_iam_role_principal_arns
     }
     actions = ["sts:AssumeRole"]
   }
