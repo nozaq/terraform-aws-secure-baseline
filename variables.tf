@@ -258,6 +258,11 @@ variable "cloudtrail_name" {
   default     = "cloudtrail-multi-region"
 }
 
+variable "cloudtrail_sns_topic_name" {
+  description = "The name of the sns topic to link to the trail."
+  default     = "cloudtrail-multi-region-sns-topic"
+}
+
 variable "cloudtrail_s3_key_prefix" {
   description = "The prefix used when CloudTrail delivers events to the S3 bucket."
   default     = "cloudtrail"
