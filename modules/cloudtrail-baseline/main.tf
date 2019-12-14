@@ -185,6 +185,38 @@ resource "aws_kms_key" "cloudtrail" {
 }
 
 # --------------------------------------------------------------------------------------------------
+# SNS Topic
+# Could be used as subscription target to get feed of audit trail messages
+# --------------------------------------------------------------------------------------------------
+
+resource "aws_sns_topic" "cloudtrail-sns-topic" {
+  count = var.enabled ? 1 : 0
+
+  name = var.cloudtrail_sns_topic_name
+}
+
+data "aws_iam_policy_document" "cloudtrail-sns-policy" {
+  count = var.enabled ? 1 : 0
+
+  statement {
+    actions   = ["sns:Publish"]
+    resources = [aws_sns_topic.cloudtrail-sns-topic[0].arn]
+
+    principals {
+      type        = "Service"
+      identifiers = ["cloudtrail.amazonaws.com"]
+    }
+  }
+}
+
+resource "aws_sns_topic_policy" "local-account-cloudtrail" {
+  count = var.enabled ? 1 : 0
+
+  arn    = aws_sns_topic.cloudtrail-sns-topic[0].arn
+  policy = data.aws_iam_policy_document.cloudtrail-sns-policy[0].json
+}
+
+# --------------------------------------------------------------------------------------------------
 # CloudTrail configuration.
 # --------------------------------------------------------------------------------------------------
 
@@ -202,6 +234,7 @@ resource "aws_cloudtrail" "global" {
   kms_key_id                    = aws_kms_key.cloudtrail[0].arn
   s3_bucket_name                = var.s3_bucket_name
   s3_key_prefix                 = var.s3_key_prefix
+  sns_topic_name                = aws_sns_topic.cloudtrail-sns-topic[0].arn
 
   tags = var.tags
 }

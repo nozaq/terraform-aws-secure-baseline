@@ -12,6 +12,11 @@ variable "cloudtrail_name" {
   default     = "cloudtrail-multi-region"
 }
 
+variable "cloudtrail_sns_topic_name" {
+  description = "The sns topic linked to the cloudtrail"
+  default     = "cloudtrail-multi-region-sns-topic"
+}
+
 variable "cloudwatch_logs_group_name" {
   description = "The name of CloudWatch Logs group to which CloudTrail events are delivered."
   default     = "cloudtrail-multi-region"

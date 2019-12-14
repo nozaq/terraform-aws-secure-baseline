@@ -25,6 +25,11 @@ output "cloudtrail" {
   value       = module.cloudtrail_baseline.cloudtrail
 }
 
+output "cloudtrail_sns_topic" {
+  description = "The sns topic linked to the cloudtrail."
+  value       = module.cloudtrail_baseline.cloudtrail_sns_topic
+}
+
 output "cloudtrail_kms_key" {
   description = "The KMS key used for encrypting CloudTrail events."
   value       = module.cloudtrail_baseline.kms_key
