@@ -1,6 +1,12 @@
 <a name="unreleased"></a>
 ## [Unreleased]
 
+<a name="0.16.2"></a>
+## [0.17.0] - 2019-12-14
+### Feat
+- add `audit_log_bucket_custom_policy_json` variable
+- create an SNS topic for notifications of CloudTrail log delivery
+
 
 <a name="0.16.2"></a>
 ## [0.16.2] - 2019-11-16

@@ -105,6 +105,7 @@ This module is composed of several submodules and each of which can be used inde
 | alarm\_namespace | The namespace in which all alarms are set up. | string | `"CISBenchmark"` | no |
 | alarm\_sns\_topic\_name | The name of the SNS Topic which will be notified when any alarm is performed. | string | `"CISAlarm"` | no |
 | allow\_users\_to\_change\_password | Whether to allow users to change their own password. | string | `"true"` | no |
+| audit\_log\_bucket\_custom\_policy\_json | Override policy for the audit log bucket. Allows addition of extra policies. | string | `"{}"` | no |
 | audit\_log\_bucket\_force\_destroy | A boolean that indicates all objects should be deleted from the audit log bucket so that the bucket can be destroyed without error. These objects are not recoverable. | string | `"false"` | no |
 | audit\_log\_bucket\_name | The name of the S3 bucket to store various audit logs. | string | n/a | yes |
 | audit\_log\_lifecycle\_glacier\_transition\_days | The number of days after log creation when the log file is archived into Glacier. | string | `"90"` | no |
@@ -115,6 +116,7 @@ This module is composed of several submodules and each of which can be used inde
 | cloudtrail\_key\_deletion\_window\_in\_days | Duration in days after which the key is deleted after destruction of the resource, must be between 7 and 30 days. Defaults to 30 days. | string | `"10"` | no |
 | cloudtrail\_name | The name of the trail. | string | `"cloudtrail-multi-region"` | no |
 | cloudtrail\_s3\_key\_prefix | The prefix used when CloudTrail delivers events to the S3 bucket. | string | `"cloudtrail"` | no |
+| cloudtrail\_sns\_topic\_name | The name of the sns topic to link to the trail. | string | `"cloudtrail-multi-region-sns-topic"` | no |
 | cloudwatch\_logs\_retention\_in\_days | Number of days to retain logs for. CIS recommends 365 days.  Possible values are: 0, 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1827, and 3653. Set to 0 to keep logs indefinitely. | string | `"365"` | no |
 | config\_aggregator\_name | The name of the organizational AWS Config Configuration Aggregator. | string | `"organization-aggregator"` | no |
 | config\_aggregator\_name\_prefix | The prefix of the name for the IAM role attached to the organizational AWS Config Configuration Aggregator. | string | `"config-for-organization-role"` | no |
@@ -142,7 +144,7 @@ This module is composed of several submodules and each of which can be used inde
 | require\_uppercase\_characters | Whether to require uppercase characters for user passwords. | string | `"true"` | no |
 | support\_iam\_role\_name | The name of the the support role. | string | `"IAM-Support"` | no |
 | support\_iam\_role\_policy\_name | The name of the support role policy. | string | `"IAM-Support-Role"` | no |
-| support\_iam\_role\_principal\_arn | The ARN of the IAM principal element by which the support role could be assumed. | string | n/a | yes |
+| support\_iam\_role\_principal\_arns | List of ARNs of the IAM principal elements by which the support role could be assumed. | list | n/a | yes |
 | tags | Specifies object tags key and value. This applies to all resources created by this module. | map | `{}` | no |
 | target\_regions | A list of regions to set up with this module. | list | `[ "ap-northeast-1", "ap-northeast-2", "ap-south-1", "ap-southeast-1", "ap-southeast-2", "ca-central-1", "eu-central-1", "eu-north-1", "eu-west-1", "eu-west-2", "eu-west-3", "sa-east-1", "us-east-1", "us-east-2", "us-west-1", "us-west-2" ]` | no |
 | use\_external\_audit\_log\_bucket | A boolean that indicates whether the specific audit log bucket already exists. Create a new S3 bucket if it is set to false. | string | `"false"` | no |
@@ -161,6 +163,7 @@ This module is composed of several submodules and each of which can be used inde
 | cloudtrail\_kms\_key | The KMS key used for encrypting CloudTrail events. |
 | cloudtrail\_log\_delivery\_iam\_role | The IAM role used for delivering CloudTrail events to CloudWatch Logs. |
 | cloudtrail\_log\_group | The CloudWatch Logs log group which stores CloudTrail events. |
+| cloudtrail\_sns\_topic | The sns topic linked to the cloudtrail. |
 | config\_configuration\_recorder | The configuration recorder in each region. |
 | config\_iam\_role | The IAM role used for delivering AWS Config records to CloudWatch Logs. |
 | config\_sns\_topic | The SNS topic that AWS Config delivers notifications to. |

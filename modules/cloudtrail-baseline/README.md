@@ -9,6 +9,7 @@ Enable CloudTrail in all regions and deliver events to CloudWatch Logs. CloudTra
 |------|-------------|:----:|:-----:|:-----:|
 | aws\_account\_id | The AWS Account ID number of the account. | string | n/a | yes |
 | cloudtrail\_name | The name of the trail. | string | `"cloudtrail-multi-region"` | no |
+| cloudtrail\_sns\_topic\_name | The sns topic linked to the cloudtrail | string | `"cloudtrail-multi-region-sns-topic"` | no |
 | cloudwatch\_logs\_group\_name | The name of CloudWatch Logs group to which CloudTrail events are delivered. | string | `"cloudtrail-multi-region"` | no |
 | cloudwatch\_logs\_retention\_in\_days | Number of days to retain logs for. CIS recommends 365 days.  Possible values are: 0, 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1827, and 3653. Set to 0 to keep logs indefinitely. | string | `"365"` | no |
 | enabled | The boolean flag whether this module is enabled or not. No resources are created when set to false. | string | `"true"` | no |
@@ -26,6 +27,7 @@ Enable CloudTrail in all regions and deliver events to CloudWatch Logs. CloudTra
 | Name | Description |
 |------|-------------|
 | cloudtrail | The trail for recording events in all regions. |
+| cloudtrail\_sns\_topic | The sns topic linked to the cloudtrail. |
 | kms\_key | The  KMS key used for encrypting CloudTrail events. |
 | log\_delivery\_iam\_role | The IAM role used for delivering CloudTrail events to CloudWatch Logs. |
 | log\_group | The CloudWatch Logs log group which stores CloudTrail events. |
