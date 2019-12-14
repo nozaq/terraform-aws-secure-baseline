@@ -44,6 +44,8 @@ data "aws_organizations_organization" "org" {
 data "aws_iam_policy_document" "audit_log" {
   count = local.use_external_bucket ? 0 : 1
 
+  override_json = var.audit_log_bucket_custom_policy_json
+
   statement {
     sid     = "AWSCloudTrailAclCheckForConfig"
     actions = ["s3:GetBucketAcl"]
