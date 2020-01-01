@@ -1,5 +1,9 @@
 name: Terraform
-on: [push, pull_request]
+on:
+  push:
+    branches:
+    - master
+  pull_request:
 env:
   TF_ACTIONS_VERSION: latest
 jobs:
