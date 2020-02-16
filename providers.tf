@@ -15,6 +15,10 @@ provider "aws" {
 }
 
 provider "aws" {
+  alias = "ap-northeast-3"
+}
+
+provider "aws" {
   alias = "ap-south-1"
 }
 
