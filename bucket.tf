@@ -89,7 +89,7 @@ data "aws_iam_policy_document" "audit_log" {
     }
     resources = concat(
       ["${module.audit_log_bucket.this_bucket.arn}/cloudtrail/AWSLogs/${var.aws_account_id}/*"],
-      local.is_master_account ? [ for account in var.member_accounts : "${module.audit_log_bucket.this_bucket.arn}/cloudtrail/AWSLogs/${account.account_id}"] : []
+      local.is_master_account ? [for account in var.member_accounts : "${module.audit_log_bucket.this_bucket.arn}/cloudtrail/AWSLogs/${account.account_id}"] : []
     )
     condition {
       test     = "StringEquals"
