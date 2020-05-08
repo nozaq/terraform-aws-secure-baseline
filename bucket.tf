@@ -37,10 +37,6 @@ module "audit_log_bucket" {
   tags = var.tags
 }
 
-data "aws_organizations_organization" "org" {
-  count = local.is_individual_account ? 0 : 1
-}
-
 data "aws_iam_policy_document" "audit_log" {
   count = local.use_external_bucket ? 0 : 1
 
@@ -93,7 +89,7 @@ data "aws_iam_policy_document" "audit_log" {
     }
     resources = concat(
       ["${module.audit_log_bucket.this_bucket.arn}/cloudtrail/AWSLogs/${var.aws_account_id}/*"],
-      local.is_master_account ? ["${module.audit_log_bucket.this_bucket.arn}/cloudtrail/AWSLogs/${data.aws_organizations_organization.org[0].id}/*"] : []
+      local.is_master_account ? [ for account in var.member_accounts : "${module.audit_log_bucket.this_bucket.arn}/cloudtrail/AWSLogs/${account.account_id}"] : []
     )
     condition {
       test     = "StringEquals"
