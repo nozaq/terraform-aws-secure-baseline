@@ -71,11 +71,3 @@ module "alarm_baseline" {
 
   tags = var.tags
 }
-
-# --------------------------------------------------------------------------------------------------
-# SecurityHub Baseline
-# --------------------------------------------------------------------------------------------------
-
-module "securityhub_baseline" {
-  source = "./modules/securityhub-baseline"
-}
