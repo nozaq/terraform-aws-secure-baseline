@@ -55,6 +55,11 @@ variable "s3_key_prefix" {
   default     = ""
 }
 
+variable "sns_topic_kms_master_key_id" {
+  description = "The ID of an AWS-managed customer master key (CMK) for Amazon SNS or a custom CMK."
+  default     = "alias/aws/sns"
+}
+
 variable "is_organization_trail" {
   description = "Specifies whether the trail is an AWS Organizations trail. Organization trails log events for the master account and all member accounts. Can only be created in the organization master account."
   default     = false
