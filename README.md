@@ -74,7 +74,7 @@ module "secure_baseline" {
 }
 ```
 
-Check [the example](./examples/root-example/regions.tf) to understand how these providers are defined.
+Check [the example](./examples/simple/regions.tf) to understand how these providers are defined.
 Note that you need to define a provider for each AWS region and pass them to the module. Currently this is the recommended way to handle multiple regions in one module.
 Detailed information can be found at [Providers within Modules - Terraform Docs].
 
