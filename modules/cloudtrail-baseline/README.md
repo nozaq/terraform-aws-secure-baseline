@@ -20,7 +20,6 @@ Enable CloudTrail in all regions and deliver events to CloudWatch Logs. CloudTra
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | aws\_account\_id | The AWS Account ID number of the account. | `any` | n/a | yes |
-| cloudtrail\_depends\_on | External resources which should be set up before CloudTrail. | `list` | `[]` | no |
 | cloudtrail\_name | The name of the trail. | `string` | `"cloudtrail-multi-region"` | no |
 | cloudtrail\_sns\_topic\_name | The sns topic linked to the cloudtrail | `string` | `"cloudtrail-multi-region-sns-topic"` | no |
 | cloudwatch\_logs\_group\_name | The name of CloudWatch Logs group to which CloudTrail events are delivered. | `string` | `"cloudtrail-multi-region"` | no |
