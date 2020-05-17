@@ -13,40 +13,25 @@ jobs:
     - name: Checkout
       uses: actions/checkout@master
     - name: 'Terraform Format'
-      run: terraform fmt -check
+      run: terraform fmt -check -recursive
 
   validate-examples:
     name: Validate examples
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: examples
     steps:
     - uses: hashicorp/setup-terraform@v1
     - name: Checkout
       uses: actions/checkout@master
-
-    - name: 'Terraform Init - examples/simple'
-      run: terraform init
-      working-directory: ./examples/simple
-    - name: 'Terraform Validate - examples/simple'
-      run: terraform validate
-      working-directory: ./examples/simple
-
-    - name: 'Terraform Init - examples/external-bucket'
-      run: terraform init
-      working-directory: ./examples/external-bucket
-    - name: 'Terraform Validate - examples/external-bucket'
-      run: terraform validate
-      working-directory: ./examples/external-bucket
-
-    - name: 'Terraform Init - examples/organization/master'
-      run: terraform init
-      working-directory: ./examples/organization/master
-    - name: 'Terraform Validate - examples/organization/master'
-      run: terraform validate
-      working-directory: ./examples/organization/master
-
-    - name: 'Terraform Init - examples/organization/member'
-      run: terraform init
-      working-directory: ./examples/organization/member
-    - name: 'Terraform Validate - examples/organization/member'
-      run: terraform validate
-      working-directory: ./examples/organization/member
+    - name: Check examples
+      env:
+        EXAMPLES: simple external-bucket select-region organization/master organization/member
+      run: |
+        for EXAMPLE in ${EXAMPLES}
+        do
+          echo "Validating $EXAMPLE"...
+          cd $EXAMPLE && terraform init && terraform validate && cd -
+        done
