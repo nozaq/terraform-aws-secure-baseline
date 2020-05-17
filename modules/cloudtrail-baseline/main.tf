@@ -237,4 +237,6 @@ resource "aws_cloudtrail" "global" {
   sns_topic_name                = aws_sns_topic.cloudtrail-sns-topic[0].arn
 
   tags = var.tags
+
+  depends_on = [var.cloudtrail_depends_on]
 }
