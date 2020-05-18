@@ -42,6 +42,7 @@ module "cloudtrail_baseline" {
 
   enabled                           = local.is_cloudtrail_enabled
   aws_account_id                    = var.aws_account_id
+  cloudtrail_depends_on             = [aws_s3_bucket_policy.audit_log]
   cloudtrail_name                   = var.cloudtrail_name
   cloudtrail_sns_topic_name         = var.cloudtrail_sns_topic_name
   cloudwatch_logs_group_name        = var.cloudtrail_cloudwatch_logs_group_name
@@ -69,12 +70,4 @@ module "alarm_baseline" {
   sns_topic_name            = var.alarm_sns_topic_name
 
   tags = var.tags
-}
-
-# --------------------------------------------------------------------------------------------------
-# SecurityHub Baseline
-# --------------------------------------------------------------------------------------------------
-
-module "securityhub_baseline" {
-  source = "./modules/securityhub-baseline"
 }

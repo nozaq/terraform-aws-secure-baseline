@@ -170,6 +170,20 @@ data "aws_iam_policy_document" "cloudtrail_key_policy" {
       values   = ["arn:aws:cloudtrail:*:${var.aws_account_id}:trail/*"]
     }
   }
+
+  # https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-permissions-for-sns-notifications.html
+  statement {
+    sid = "Allow CloudTrail to send notifications to the encrypted SNS topic"
+    principals {
+      type        = "Service"
+      identifiers = ["cloudtrail.amazonaws.com"]
+    }
+    actions = [
+      "kms:GenerateDataKey*",
+      "kms:Decrypt"
+    ]
+    resources = ["*"]
+  }
 }
 
 resource "aws_kms_key" "cloudtrail" {
@@ -192,7 +206,8 @@ resource "aws_kms_key" "cloudtrail" {
 resource "aws_sns_topic" "cloudtrail-sns-topic" {
   count = var.enabled ? 1 : 0
 
-  name = var.cloudtrail_sns_topic_name
+  name              = var.cloudtrail_sns_topic_name
+  kms_master_key_id = aws_kms_key.cloudtrail[0].id
 }
 
 data "aws_iam_policy_document" "cloudtrail-sns-policy" {
@@ -237,4 +252,6 @@ resource "aws_cloudtrail" "global" {
   sns_topic_name                = aws_sns_topic.cloudtrail-sns-topic[0].arn
 
   tags = var.tags
+
+  depends_on = [var.cloudtrail_depends_on]
 }

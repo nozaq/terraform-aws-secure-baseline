@@ -74,7 +74,7 @@ module "secure_baseline" {
 }
 ```
 
-Check [the example](./examples/root-example/regions.tf) to understand how these providers are defined.
+Check [the example](./examples/simple/regions.tf) to understand how these providers are defined.
 Note that you need to define a provider for each AWS region and pass them to the module. Currently this is the recommended way to handle multiple regions in one module.
 Detailed information can be found at [Providers within Modules - Terraform Docs].
 
@@ -98,61 +98,73 @@ This module is composed of several submodules and each of which can be used inde
 - [secure-bucket](./modules/secure-bucket)
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+## Requirements
+
+| Name | Version |
+|------|---------|
+| terraform | >= 0.12 |
+
+## Providers
+
+| Name | Version |
+|------|---------|
+| aws | n/a |
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|:----:|:-----:|:-----:|
-| account\_type | The type of the AWS account. The possible values are `individual`, `master` and `member` . Specify `master` and `member` to set up centalized logging for multiple accounts in AWS Organization. Use individual` otherwise. | string | `"individual"` | no |
-| alarm\_namespace | The namespace in which all alarms are set up. | string | `"CISBenchmark"` | no |
-| alarm\_sns\_topic\_name | The name of the SNS Topic which will be notified when any alarm is performed. | string | `"CISAlarm"` | no |
-| allow\_users\_to\_change\_password | Whether to allow users to change their own password. | string | `"true"` | no |
-| audit\_log\_bucket\_custom\_policy\_json | Override policy for the audit log bucket. Allows addition of extra policies. | string | `"{}"` | no |
-| audit\_log\_bucket\_force\_destroy | A boolean that indicates all objects should be deleted from the audit log bucket so that the bucket can be destroyed without error. These objects are not recoverable. | string | `"false"` | no |
-| audit\_log\_bucket\_name | The name of the S3 bucket to store various audit logs. | string | n/a | yes |
-| audit\_log\_lifecycle\_glacier\_transition\_days | The number of days after log creation when the log file is archived into Glacier. | string | `"90"` | no |
-| aws\_account\_id | The AWS Account ID number of the account. | string | n/a | yes |
-| cloudtrail\_cloudwatch\_logs\_group\_name | The name of CloudWatch Logs group to which CloudTrail events are delivered. | string | `"cloudtrail-multi-region"` | no |
-| cloudtrail\_iam\_role\_name | The name of the IAM Role to be used by CloudTrail to delivery logs to CloudWatch Logs group. | string | `"CloudTrail-CloudWatch-Delivery-Role"` | no |
-| cloudtrail\_iam\_role\_policy\_name | The name of the IAM Role Policy to be used by CloudTrail to delivery logs to CloudWatch Logs group. | string | `"CloudTrail-CloudWatch-Delivery-Policy"` | no |
-| cloudtrail\_key\_deletion\_window\_in\_days | Duration in days after which the key is deleted after destruction of the resource, must be between 7 and 30 days. Defaults to 30 days. | string | `"10"` | no |
-| cloudtrail\_name | The name of the trail. | string | `"cloudtrail-multi-region"` | no |
-| cloudtrail\_s3\_key\_prefix | The prefix used when CloudTrail delivers events to the S3 bucket. | string | `"cloudtrail"` | no |
-| cloudtrail\_sns\_topic\_name | The name of the sns topic to link to the trail. | string | `"cloudtrail-multi-region-sns-topic"` | no |
-| cloudwatch\_logs\_retention\_in\_days | Number of days to retain logs for. CIS recommends 365 days.  Possible values are: 0, 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1827, and 3653. Set to 0 to keep logs indefinitely. | string | `"365"` | no |
-| config\_aggregator\_name | The name of the organizational AWS Config Configuration Aggregator. | string | `"organization-aggregator"` | no |
-| config\_aggregator\_name\_prefix | The prefix of the name for the IAM role attached to the organizational AWS Config Configuration Aggregator. | string | `"config-for-organization-role"` | no |
-| config\_delivery\_frequency | The frequency which AWS Config sends a snapshot into the S3 bucket. | string | `"One_Hour"` | no |
-| config\_iam\_role\_name | The name of the IAM Role which AWS Config will use. | string | `"Config-Recorder"` | no |
-| config\_iam\_role\_policy\_name | The name of the IAM Role Policy which AWS Config will use. | string | `"Config-Recorder-Policy"` | no |
-| config\_s3\_bucket\_key\_prefix | The prefix used when writing AWS Config snapshots into the S3 bucket. | string | `"config"` | no |
-| config\_sns\_topic\_name | The name of the SNS Topic to be used to notify configuration changes. | string | `"ConfigChanges"` | no |
-| guardduty\_disable\_email\_notification | Boolean whether an email notification is sent to the accounts. | string | `"false"` | no |
-| guardduty\_finding\_publishing\_frequency | Specifies the frequency of notifications sent for subsequent finding occurrences. | string | `"SIX_HOURS"` | no |
-| guardduty\_invitation\_message | Message for invitation. | string | `"This is an automatic invitation message from guardduty-baseline module."` | no |
-| manager\_iam\_role\_name | The name of the IAM Manager role. | string | `"IAM-Manager"` | no |
-| manager\_iam\_role\_policy\_name | The name of the IAM Manager role policy. | string | `"IAM-Manager-Policy"` | no |
-| master\_account\_id | The ID of the master AWS account to which the current AWS account is associated. Required if `account\_type` is `member`. | string | `""` | no |
-| master\_iam\_role\_name | The name of the IAM Master role. | string | `"IAM-Master"` | no |
-| master\_iam\_role\_policy\_name | The name of the IAM Master role policy. | string | `"IAM-Master-Policy"` | no |
-| max\_password\_age | The number of days that an user password is valid. | string | `"90"` | no |
-| member\_accounts | A list of IDs and emails of AWS accounts which associated as member accounts. | object | `[]` | no |
-| minimum\_password\_length | Minimum length to require for user passwords. | string | `"14"` | no |
-| password\_reuse\_prevention | The number of previous passwords that users are prevented from reusing. | string | `"24"` | no |
-| region | The AWS region in which global resources are set up. | string | n/a | yes |
-| require\_lowercase\_characters | Whether to require lowercase characters for user passwords. | string | `"true"` | no |
-| require\_numbers | Whether to require numbers for user passwords. | string | `"true"` | no |
-| require\_symbols | Whether to require symbols for user passwords. | string | `"true"` | no |
-| require\_uppercase\_characters | Whether to require uppercase characters for user passwords. | string | `"true"` | no |
-| support\_iam\_role\_name | The name of the the support role. | string | `"IAM-Support"` | no |
-| support\_iam\_role\_policy\_name | The name of the support role policy. | string | `"IAM-Support-Role"` | no |
-| support\_iam\_role\_principal\_arns | List of ARNs of the IAM principal elements by which the support role could be assumed. | list | n/a | yes |
-| tags | Specifies object tags key and value. This applies to all resources created by this module. | map | `{}` | no |
-| target\_regions | A list of regions to set up with this module. | list | `[ "ap-northeast-1", "ap-northeast-2", "ap-south-1", "ap-southeast-1", "ap-southeast-2", "ca-central-1", "eu-central-1", "eu-north-1", "eu-west-1", "eu-west-2", "eu-west-3", "sa-east-1", "us-east-1", "us-east-2", "us-west-1", "us-west-2" ]` | no |
-| use\_external\_audit\_log\_bucket | A boolean that indicates whether the specific audit log bucket already exists. Create a new S3 bucket if it is set to false. | string | `"false"` | no |
-| vpc\_iam\_role\_name | The name of the IAM Role which VPC Flow Logs will use. | string | `"VPC-Flow-Logs-Publisher"` | no |
-| vpc\_iam\_role\_policy\_name | The name of the IAM Role Policy which VPC Flow Logs will use. | string | `"VPC-Flow-Logs-Publish-Policy"` | no |
-| vpc\_log\_group\_name | The name of CloudWatch Logs group to which VPC Flow Logs are delivered. | string | `"default-vpc-flow-logs"` | no |
-| vpc\_log\_retention\_in\_days | Number of days to retain logs for. CIS recommends 365 days.  Possible values are: 0, 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1827, and 3653. Set to 0 to keep logs indefinitely. | string | `"365"` | no |
+|------|-------------|------|---------|:--------:|
+| account\_type | The type of the AWS account. The possible values are `individual`, `master` and `member` . Specify `master` and `member` to set up centalized logging for multiple accounts in AWS Organization. Use individual` otherwise.` | `string` | `"individual"` | no |
+| alarm\_namespace | The namespace in which all alarms are set up. | `string` | `"CISBenchmark"` | no |
+| alarm\_sns\_topic\_name | The name of the SNS Topic which will be notified when any alarm is performed. | `string` | `"CISAlarm"` | no |
+| allow\_users\_to\_change\_password | Whether to allow users to change their own password. | `bool` | `true` | no |
+| audit\_log\_bucket\_custom\_policy\_json | Override policy for the audit log bucket. Allows addition of extra policies. | `string` | `"{}"` | no |
+| audit\_log\_bucket\_force\_destroy | A boolean that indicates all objects should be deleted from the audit log bucket so that the bucket can be destroyed without error. These objects are not recoverable. | `bool` | `false` | no |
+| audit\_log\_bucket\_name | The name of the S3 bucket to store various audit logs. | `any` | n/a | yes |
+| audit\_log\_lifecycle\_glacier\_transition\_days | The number of days after log creation when the log file is archived into Glacier. | `number` | `90` | no |
+| aws\_account\_id | The AWS Account ID number of the account. | `any` | n/a | yes |
+| cloudtrail\_cloudwatch\_logs\_group\_name | The name of CloudWatch Logs group to which CloudTrail events are delivered. | `string` | `"cloudtrail-multi-region"` | no |
+| cloudtrail\_iam\_role\_name | The name of the IAM Role to be used by CloudTrail to delivery logs to CloudWatch Logs group. | `string` | `"CloudTrail-CloudWatch-Delivery-Role"` | no |
+| cloudtrail\_iam\_role\_policy\_name | The name of the IAM Role Policy to be used by CloudTrail to delivery logs to CloudWatch Logs group. | `string` | `"CloudTrail-CloudWatch-Delivery-Policy"` | no |
+| cloudtrail\_key\_deletion\_window\_in\_days | Duration in days after which the key is deleted after destruction of the resource, must be between 7 and 30 days. Defaults to 30 days. | `number` | `10` | no |
+| cloudtrail\_name | The name of the trail. | `string` | `"cloudtrail-multi-region"` | no |
+| cloudtrail\_s3\_key\_prefix | The prefix used when CloudTrail delivers events to the S3 bucket. | `string` | `"cloudtrail"` | no |
+| cloudtrail\_sns\_topic\_name | The name of the sns topic to link to the trail. | `string` | `"cloudtrail-multi-region-sns-topic"` | no |
+| cloudwatch\_logs\_retention\_in\_days | Number of days to retain logs for. CIS recommends 365 days.  Possible values are: 0, 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1827, and 3653. Set to 0 to keep logs indefinitely. | `number` | `365` | no |
+| config\_aggregator\_name | The name of the organizational AWS Config Configuration Aggregator. | `string` | `"organization-aggregator"` | no |
+| config\_aggregator\_name\_prefix | The prefix of the name for the IAM role attached to the organizational AWS Config Configuration Aggregator. | `string` | `"config-for-organization-role"` | no |
+| config\_delivery\_frequency | The frequency which AWS Config sends a snapshot into the S3 bucket. | `string` | `"One_Hour"` | no |
+| config\_iam\_role\_name | The name of the IAM Role which AWS Config will use. | `string` | `"Config-Recorder"` | no |
+| config\_iam\_role\_policy\_name | The name of the IAM Role Policy which AWS Config will use. | `string` | `"Config-Recorder-Policy"` | no |
+| config\_s3\_bucket\_key\_prefix | The prefix used when writing AWS Config snapshots into the S3 bucket. | `string` | `"config"` | no |
+| config\_sns\_topic\_name | The name of the SNS Topic to be used to notify configuration changes. | `string` | `"ConfigChanges"` | no |
+| guardduty\_disable\_email\_notification | Boolean whether an email notification is sent to the accounts. | `bool` | `false` | no |
+| guardduty\_finding\_publishing\_frequency | Specifies the frequency of notifications sent for subsequent finding occurrences. | `string` | `"SIX_HOURS"` | no |
+| guardduty\_invitation\_message | Message for invitation. | `string` | `"This is an automatic invitation message from guardduty-baseline module."` | no |
+| manager\_iam\_role\_name | The name of the IAM Manager role. | `string` | `"IAM-Manager"` | no |
+| manager\_iam\_role\_policy\_name | The name of the IAM Manager role policy. | `string` | `"IAM-Manager-Policy"` | no |
+| master\_account\_id | The ID of the master AWS account to which the current AWS account is associated. Required if `account_type` is `member`. | `string` | `""` | no |
+| master\_iam\_role\_name | The name of the IAM Master role. | `string` | `"IAM-Master"` | no |
+| master\_iam\_role\_policy\_name | The name of the IAM Master role policy. | `string` | `"IAM-Master-Policy"` | no |
+| max\_password\_age | The number of days that an user password is valid. | `number` | `90` | no |
+| member\_accounts | A list of IDs and emails of AWS accounts which associated as member accounts. | <pre>list(object({<br>    account_id = string<br>    email      = string<br>  }))</pre> | `[]` | no |
+| minimum\_password\_length | Minimum length to require for user passwords. | `number` | `14` | no |
+| password\_reuse\_prevention | The number of previous passwords that users are prevented from reusing. | `number` | `24` | no |
+| region | The AWS region in which global resources are set up. | `any` | n/a | yes |
+| require\_lowercase\_characters | Whether to require lowercase characters for user passwords. | `bool` | `true` | no |
+| require\_numbers | Whether to require numbers for user passwords. | `bool` | `true` | no |
+| require\_symbols | Whether to require symbols for user passwords. | `bool` | `true` | no |
+| require\_uppercase\_characters | Whether to require uppercase characters for user passwords. | `bool` | `true` | no |
+| support\_iam\_role\_name | The name of the the support role. | `string` | `"IAM-Support"` | no |
+| support\_iam\_role\_policy\_name | The name of the support role policy. | `string` | `"IAM-Support-Role"` | no |
+| support\_iam\_role\_principal\_arns | List of ARNs of the IAM principal elements by which the support role could be assumed. | `list` | n/a | yes |
+| tags | Specifies object tags key and value. This applies to all resources created by this module. | `map` | `{}` | no |
+| target\_regions | A list of regions to set up with this module. | `list` | <pre>[<br>  "ap-northeast-1",<br>  "ap-northeast-2",<br>  "ap-south-1",<br>  "ap-southeast-1",<br>  "ap-southeast-2",<br>  "ca-central-1",<br>  "eu-central-1",<br>  "eu-north-1",<br>  "eu-west-1",<br>  "eu-west-2",<br>  "eu-west-3",<br>  "sa-east-1",<br>  "us-east-1",<br>  "us-east-2",<br>  "us-west-1",<br>  "us-west-2"<br>]</pre> | no |
+| use\_external\_audit\_log\_bucket | A boolean that indicates whether the specific audit log bucket already exists. Create a new S3 bucket if it is set to false. | `bool` | `false` | no |
+| vpc\_iam\_role\_name | The name of the IAM Role which VPC Flow Logs will use. | `string` | `"VPC-Flow-Logs-Publisher"` | no |
+| vpc\_iam\_role\_policy\_name | The name of the IAM Role Policy which VPC Flow Logs will use. | `string` | `"VPC-Flow-Logs-Publish-Policy"` | no |
+| vpc\_log\_group\_name | The name of CloudWatch Logs group to which VPC Flow Logs are delivered. | `string` | `"default-vpc-flow-logs"` | no |
+| vpc\_log\_retention\_in\_days | Number of days to retain logs for. CIS recommends 365 days.  Possible values are: 0, 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1827, and 3653. Set to 0 to keep logs indefinitely. | `number` | `365` | no |
 
 ## Outputs
 
