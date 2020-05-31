@@ -2,6 +2,12 @@
 ## [Unreleased]
 
 
+<a name="0.18.1"></a>
+## [0.18.1] - 2020-05-31
+### Fix
+- do not enable SecurityHub when not enabled ([#111](https://github.com/nozaq/terraform-aws-secure-baseline/issues/111))
+
+
 <a name="0.18.0"></a>
 ## [0.18.0] - 2020-05-17
 ### Feat
@@ -199,7 +205,8 @@
 <a name="0.0.1"></a>
 ## 0.0.1 - 2018-02-12
 
-[Unreleased]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.18.0...HEAD
+[Unreleased]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.18.1...HEAD
+[0.18.1]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.18.0...0.18.1
 [0.18.0]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.17.0...0.18.0
 [0.17.0]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.16.2...0.17.0
 [0.16.2]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.16.1...0.16.2
