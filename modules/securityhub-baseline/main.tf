@@ -1,3 +1,4 @@
+data "aws_region" "current" {}
 # --------------------------------------------------------------------------------------------------
 # Enable SecurityHub
 # --------------------------------------------------------------------------------------------------
@@ -22,7 +23,7 @@ resource "aws_securityhub_standards_subscription" "cis" {
 resource "aws_securityhub_standards_subscription" "aws_foundational" {
   count = var.enabled && var.securityhub_enable_aws_foundational_standard ? 1 : 0
 
-  standards_arn = "arn:aws:securityhub:::standards/aws-foundational-security-best-practices/v/1.0.0"
+  standards_arn = "arn:aws:securityhub:${data.aws_region.current.name}::standards/aws-foundational-security-best-practices/v/1.0.0"
 
   depends_on = [aws_securityhub_account.main]
 }
@@ -33,7 +34,7 @@ resource "aws_securityhub_standards_subscription" "aws_foundational" {
 resource "aws_securityhub_standards_subscription" "pci_dss" {
   count = var.enabled && var.securityhub_enable_pci_dss_standard ? 1 : 0
 
-  standards_arn = "arn:aws:securityhub:::standards/pci-dss/v/3.2.1"
+  standards_arn = "arn:aws:securityhub:${data.aws_region.current.name}::standards/pci-dss/v/3.2.1"
 
   depends_on = [aws_securityhub_account.main]
 }
