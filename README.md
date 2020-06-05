@@ -28,7 +28,7 @@ See [Benchmark Compliance](./compliance.md) to check which items in CIS benchmar
 - Logs are automatically archived into Amazon Glacier after the given period(defaults to 90 days).
 - Set up CloudWatch alarms to notify you when critical changes happen in your AWS account.
 - Enable AWS Config in all regions to automatically take configuration snapshots.
-- Enable SecurityHub and subscribe CIS benchmark standard.
+- Enable SecurityHub and subscribe available standards.
 
 ### Networking
 
@@ -96,6 +96,7 @@ This module is composed of several submodules and each of which can be used inde
 - [iam-baseline](./modules/iam-baseline)
 - [vpc-baseline](./modules/vpc-baseline)
 - [secure-bucket](./modules/secure-bucket)
+- [securityhub-baseline](./modules/securityhub-baseline)
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
@@ -165,6 +166,10 @@ This module is composed of several submodules and each of which can be used inde
 | vpc\_iam\_role\_policy\_name | The name of the IAM Role Policy which VPC Flow Logs will use. | `string` | `"VPC-Flow-Logs-Publish-Policy"` | no |
 | vpc\_log\_group\_name | The name of CloudWatch Logs group to which VPC Flow Logs are delivered. | `string` | `"default-vpc-flow-logs"` | no |
 | vpc\_log\_retention\_in\_days | Number of days to retain logs for. CIS recommends 365 days.  Possible values are: 0, 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1827, and 3653. Set to 0 to keep logs indefinitely. | `number` | `365` | no |
+| securityhub\_enable\_cis\_standard | A boolean that indicates whether the CIS standard is enabled. | `bool` | `true` | no |
+| securityhub\_enable\_pci\_dss\_standard | A boolean that indicates whether the PCI DSS standard is enabled. | `bool` | `true` | no |
+| securityhub\_enable\_aws\_foundational\_standard | A boolean that indicates whether the AWS Foundational security best practices standard is enabled. | `bool` | `true` | no |
+
 
 ## Outputs
 

@@ -9,7 +9,11 @@ module "securityhub_baseline_ap-northeast-1" {
     aws = aws.ap-northeast-1
   }
 
-  enabled = contains(var.target_regions, "ap-northeast-1")
+  enabled                                      = contains(var.target_regions, "ap-northeast-1")
+  securityhub_enable_cis_standard              = var.securityhub_enable_cis_standard
+  securityhub_enable_pci_dss_standard          = var.securityhub_enable_pci_dss_standard
+  securityhub_enable_aws_foundational_standard = var.securityhub_enable_aws_foundational_standard
+
 }
 
 module "securityhub_baseline_ap-northeast-2" {
