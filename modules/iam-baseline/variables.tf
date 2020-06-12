@@ -77,6 +77,12 @@ variable "allow_users_to_change_password" {
   default     = true
 }
 
+variable "create_password_policy" {
+  type        = bool
+  description = "Define if the password policy should be created."
+  default     = true
+}
+
 variable "tags" {
   description = "Specifies object tags key and value. This applies to all resources created by this module."
   default = {
