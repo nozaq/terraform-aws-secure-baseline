@@ -83,6 +83,25 @@ variable "create_password_policy" {
   default     = true
 }
 
+variable "create_master_role" {
+  type        = bool
+  description = "Define if the master role should be created."
+  default     = true
+}
+
+variable "create_manager_role" {
+  type        = bool
+  description = "Define if the manager role should be created."
+  default     = true
+}
+
+variable "create_support_role" {
+  type        = bool
+  description = "Define if the support role should be created."
+  default     = true
+}
+
+
 variable "tags" {
   description = "Specifies object tags key and value. This applies to all resources created by this module."
   default = {
