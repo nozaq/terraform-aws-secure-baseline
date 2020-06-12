@@ -89,9 +89,9 @@ data "aws_iam_policy_document" "manager_assume_policy" {
 }
 
 resource "aws_iam_role" "manager" {
-  name                = var.manager_iam_role_name
-  assume_role_policy  = data.aws_iam_policy_document.manager_assume_policy.json
-  count               = var.create_manager_role ? 1 : 0
+  name               = var.manager_iam_role_name
+  assume_role_policy = data.aws_iam_policy_document.manager_assume_policy.json
+  count              = var.create_manager_role ? 1 : 0
 
   tags = var.tags
 }
