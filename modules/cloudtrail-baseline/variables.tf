@@ -66,3 +66,11 @@ variable "tags" {
     "Terraform" = true
   }
 }
+
+# Use the hack to inject external dependencies from outsite the module.
+# See below for more detail.
+# https://stackoverflow.com/questions/58275233/terraform-depends-on-with-modules
+variable "cloudtrail_depends_on" {
+  description = "External resources which should be set up before CloudTrail."
+  default     = []
+}

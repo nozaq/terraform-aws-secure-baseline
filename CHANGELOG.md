@@ -1,12 +1,27 @@
 <a name="unreleased"></a>
 ## [Unreleased]
 
-<a name="0.16.2"></a>
-## [0.17.0] - 2019-12-14
-### Feat
-- add `audit_log_bucket_custom_policy_json` variable
-- create an SNS topic for notifications of CloudTrail log delivery
 
+<a name="0.18.1"></a>
+## [0.18.1] - 2020-05-31
+### Fix
+- do not enable SecurityHub when not enabled ([#111](https://github.com/nozaq/terraform-aws-secure-baseline/issues/111))
+
+
+<a name="0.18.0"></a>
+## [0.18.0] - 2020-05-17
+### Feat
+- enable Security Hub in each region ([#105](https://github.com/nozaq/terraform-aws-secure-baseline/issues/105))
+- encrypt the sns topic ([#103](https://github.com/nozaq/terraform-aws-secure-baseline/issues/103))
+
+### Fix
+- use the same CMK for encrypting the SNS topic ([#104](https://github.com/nozaq/terraform-aws-secure-baseline/issues/104))
+- ensure to have the audit log bucket before CloudTrail ([#102](https://github.com/nozaq/terraform-aws-secure-baseline/issues/102))
+- add in new region ([#91](https://github.com/nozaq/terraform-aws-secure-baseline/issues/91))
+
+
+<a name="0.17.0"></a>
+## [0.17.0] - 2019-12-14
 
 <a name="0.16.2"></a>
 ## [0.16.2] - 2019-11-16
@@ -190,7 +205,10 @@
 <a name="0.0.1"></a>
 ## 0.0.1 - 2018-02-12
 
-[Unreleased]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.16.2...HEAD
+[Unreleased]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.18.1...HEAD
+[0.18.1]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.18.0...0.18.1
+[0.18.0]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.17.0...0.18.0
+[0.17.0]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.16.2...0.17.0
 [0.16.2]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.16.1...0.16.2
 [0.16.1]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.16.0...0.16.1
 [0.16.0]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.15.0...0.16.0

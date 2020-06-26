@@ -4,109 +4,34 @@ on:
     branches:
     - master
   pull_request:
-env:
-  TF_ACTIONS_VERSION: latest
 jobs:
   check-format:
     name: Check format
     runs-on: ubuntu-latest
     steps:
+    - uses: hashicorp/setup-terraform@v1
     - name: Checkout
       uses: actions/checkout@master
-
     - name: 'Terraform Format'
-      uses: hashicorp/terraform-github-actions@master
-      with:
-        tf_actions_version: ${{ env.TF_ACTIONS_VERSION }}
-        tf_actions_subcommand: 'fmt'
-        tf_actions_working_dir: '.'
-        tf_actions_comment: true
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: terraform fmt -check -recursive
 
   validate-examples:
     name: Validate examples
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: examples
     steps:
+    - uses: hashicorp/setup-terraform@v1
     - name: Checkout
       uses: actions/checkout@master
-
-    - name: 'Terraform Init - examples/simple'
-      uses: hashicorp/terraform-github-actions@master
-      with:
-        tf_actions_version: ${{ env.TF_ACTIONS_VERSION }}
-        tf_actions_subcommand: 'init'
-        tf_actions_working_dir: './examples/simple'
-        tf_actions_comment: true
+    - name: Check examples
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-    - name: 'Terraform Validate - examples/simple'
-      uses: hashicorp/terraform-github-actions@master
-      with:
-        tf_actions_version: ${{ env.TF_ACTIONS_VERSION }}
-        tf_actions_subcommand: 'validate'
-        tf_actions_working_dir: './examples/simple'
-        tf_actions_comment: true
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-    - name: 'Terraform Init - examples/external-bucket'
-      uses: hashicorp/terraform-github-actions@master
-      with:
-        tf_actions_version: ${{ env.TF_ACTIONS_VERSION }}
-        tf_actions_subcommand: 'init'
-        tf_actions_working_dir: './examples/external-bucket'
-        tf_actions_comment: true
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-    - name: 'Terraform Validate - examples/external-bucket'
-      uses: hashicorp/terraform-github-actions@master
-      with:
-        tf_actions_version: ${{ env.TF_ACTIONS_VERSION }}
-        tf_actions_subcommand: 'validate'
-        tf_actions_working_dir: './examples/external-bucket'
-        tf_actions_comment: true
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-    - name: 'Terraform Init - examples/organization/master'
-      uses: hashicorp/terraform-github-actions@master
-      with:
-        tf_actions_version: ${{ env.TF_ACTIONS_VERSION }}
-        tf_actions_subcommand: 'init'
-        tf_actions_working_dir: './examples/organization/master'
-        tf_actions_comment: true
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-    - name: 'Terraform Validate - examples/organization/master'
-      uses: hashicorp/terraform-github-actions@master
-      with:
-        tf_actions_version: ${{ env.TF_ACTIONS_VERSION }}
-        tf_actions_subcommand: 'validate'
-        tf_actions_working_dir: './examples/organization/master'
-        tf_actions_comment: true
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-    - name: 'Terraform Init - examples/organization/member'
-      uses: hashicorp/terraform-github-actions@master
-      with:
-        tf_actions_version: ${{ env.TF_ACTIONS_VERSION }}
-        tf_actions_subcommand: 'init'
-        tf_actions_working_dir: './examples/organization/member'
-        tf_actions_comment: true
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-    - name: 'Terraform Validate - examples/organization/masmemberter'
-      uses: hashicorp/terraform-github-actions@master
-      with:
-        tf_actions_version: ${{ env.TF_ACTIONS_VERSION }}
-        tf_actions_subcommand: 'validate'
-        tf_actions_working_dir: './examples/organization/member'
-        tf_actions_comment: true
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        EXAMPLES: simple external-bucket select-region organization/master organization/member
+      run: |
+        for EXAMPLE in ${EXAMPLES}
+        do
+          echo "Validating $EXAMPLE"...
+          cd $EXAMPLE && terraform init && terraform validate && cd -
+        done
