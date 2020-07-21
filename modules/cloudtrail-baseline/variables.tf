@@ -12,9 +12,19 @@ variable "cloudtrail_name" {
   default     = "cloudtrail-multi-region"
 }
 
+variable "cloudtrail_sns_topic_enabled" {
+  description = "Specifies whether the trail is delivered to a SNS topic."
+  default     = true
+}
+
 variable "cloudtrail_sns_topic_name" {
-  description = "The sns topic linked to the cloudtrail"
+  description = "The SNS topic linked to the CloudTrail"
   default     = "cloudtrail-multi-region-sns-topic"
+}
+
+variable "cloudwatch_logs_enabled" {
+  description = "Specifies whether the trail is delivered to CloudWatch Logs."
+  default     = true
 }
 
 variable "cloudwatch_logs_group_name" {

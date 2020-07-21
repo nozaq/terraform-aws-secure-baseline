@@ -2,7 +2,7 @@
 # CloudWatch Logs group to accept CloudTrail event stream.
 # --------------------------------------------------------------------------------------------------
 resource "aws_cloudwatch_log_group" "cloudtrail_events" {
-  count = var.enabled ? 1 : 0
+  count = var.cloudwatch_logs_enabled && var.enabled ? 1 : 0
 
   name              = var.cloudwatch_logs_group_name
   retention_in_days = var.cloudwatch_logs_retention_in_days
@@ -26,7 +26,7 @@ data "aws_iam_policy_document" "cloudwatch_delivery_assume_policy" {
 }
 
 resource "aws_iam_role" "cloudwatch_delivery" {
-  count = var.enabled ? 1 : 0
+  count = var.cloudwatch_logs_enabled && var.enabled ? 1 : 0
 
   name               = var.iam_role_name
   assume_role_policy = data.aws_iam_policy_document.cloudwatch_delivery_assume_policy.json
@@ -35,7 +35,7 @@ resource "aws_iam_role" "cloudwatch_delivery" {
 }
 
 data "aws_iam_policy_document" "cloudwatch_delivery_policy" {
-  count = var.enabled ? 1 : 0
+  count = var.cloudwatch_logs_enabled && var.enabled ? 1 : 0
 
   statement {
     sid       = "AWSCloudTrailCreateLogStream2014110"
@@ -51,7 +51,7 @@ data "aws_iam_policy_document" "cloudwatch_delivery_policy" {
 }
 
 resource "aws_iam_role_policy" "cloudwatch_delivery_policy" {
-  count = var.enabled ? 1 : 0
+  count = var.cloudwatch_logs_enabled && var.enabled ? 1 : 0
 
   name = var.iam_role_policy_name
   role = aws_iam_role.cloudwatch_delivery[0].id
@@ -61,7 +61,7 @@ resource "aws_iam_role_policy" "cloudwatch_delivery_policy" {
 
 # --------------------------------------------------------------------------------------------------
 # KMS Key to encrypt CloudTrail events.
-# The policy was derived from the default key policy descrived in AWS CloudTrail User Guide.
+# The policy was derived from the default key policy described in AWS CloudTrail User Guide.
 # https://docs.aws.amazon.com/awscloudtrail/latest/userguide/default-cmk-policy.html
 # --------------------------------------------------------------------------------------------------
 data "aws_iam_policy_document" "cloudtrail_key_policy" {
@@ -204,14 +204,14 @@ resource "aws_kms_key" "cloudtrail" {
 # --------------------------------------------------------------------------------------------------
 
 resource "aws_sns_topic" "cloudtrail-sns-topic" {
-  count = var.enabled ? 1 : 0
+  count = var.cloudtrail_sns_topic_enabled && var.enabled ? 1 : 0
 
   name              = var.cloudtrail_sns_topic_name
   kms_master_key_id = aws_kms_key.cloudtrail[0].id
 }
 
 data "aws_iam_policy_document" "cloudtrail-sns-policy" {
-  count = var.enabled ? 1 : 0
+  count = var.cloudtrail_sns_topic_enabled && var.enabled ? 1 : 0
 
   statement {
     actions   = ["sns:Publish"]
@@ -225,7 +225,7 @@ data "aws_iam_policy_document" "cloudtrail-sns-policy" {
 }
 
 resource "aws_sns_topic_policy" "local-account-cloudtrail" {
-  count = var.enabled ? 1 : 0
+  count = var.cloudtrail_sns_topic_enabled && var.enabled ? 1 : 0
 
   arn    = aws_sns_topic.cloudtrail-sns-topic[0].arn
   policy = data.aws_iam_policy_document.cloudtrail-sns-policy[0].json
@@ -240,8 +240,8 @@ resource "aws_cloudtrail" "global" {
 
   name = var.cloudtrail_name
 
-  cloud_watch_logs_group_arn    = aws_cloudwatch_log_group.cloudtrail_events[0].arn
-  cloud_watch_logs_role_arn     = aws_iam_role.cloudwatch_delivery[0].arn
+  cloud_watch_logs_group_arn    = var.cloudwatch_logs_enabled ? aws_cloudwatch_log_group.cloudtrail_events[0].arn : null
+  cloud_watch_logs_role_arn     = var.cloudwatch_logs_enabled ? aws_iam_role.cloudwatch_delivery[0].arn : null
   enable_log_file_validation    = true
   include_global_service_events = true
   is_multi_region_trail         = true
@@ -249,7 +249,7 @@ resource "aws_cloudtrail" "global" {
   kms_key_id                    = aws_kms_key.cloudtrail[0].arn
   s3_bucket_name                = var.s3_bucket_name
   s3_key_prefix                 = var.s3_key_prefix
-  sns_topic_name                = aws_sns_topic.cloudtrail-sns-topic[0].arn
+  sns_topic_name                = var.cloudtrail_sns_topic_enabled ? aws_sns_topic.cloudtrail-sns-topic[0].arn : null
 
   tags = var.tags
 

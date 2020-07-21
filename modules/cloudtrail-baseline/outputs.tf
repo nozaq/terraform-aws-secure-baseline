@@ -5,7 +5,7 @@ output "cloudtrail" {
 
 output "cloudtrail_sns_topic" {
   description = "The sns topic linked to the cloudtrail."
-  value       = var.enabled ? aws_sns_topic.cloudtrail-sns-topic[0] : null
+  value       = var.cloudtrail_sns_topic_enabled && var.enabled ? aws_sns_topic.cloudtrail-sns-topic[0] : null
 }
 
 output "kms_key" {
@@ -15,10 +15,10 @@ output "kms_key" {
 
 output "log_delivery_iam_role" {
   description = "The IAM role used for delivering CloudTrail events to CloudWatch Logs."
-  value       = var.enabled ? aws_iam_role.cloudwatch_delivery[0] : null
+  value       = var.cloudwatch_logs_enabled && var.enabled ? aws_iam_role.cloudwatch_delivery[0] : null
 }
 
 output "log_group" {
   description = "The CloudWatch Logs log group which stores CloudTrail events."
-  value       = var.enabled ? aws_cloudwatch_log_group.cloudtrail_events[0] : null
+  value       = var.cloudwatch_logs_enabled && var.enabled ? aws_cloudwatch_log_group.cloudtrail_events[0] : null
 }

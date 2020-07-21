@@ -228,6 +228,11 @@ variable "config_aggregator_name_prefix" {
 # Variables for cloudtrail-baseline module.
 # --------------------------------------------------------------------------------------------------
 
+variable "cloudtrail_cloudwatch_logs_enabled" {
+  description = "Specifies whether the trail is delivered to CloudWatch Logs."
+  default     = true
+}
+
 variable "cloudtrail_cloudwatch_logs_group_name" {
   description = "The name of CloudWatch Logs group to which CloudTrail events are delivered."
   default     = "cloudtrail-multi-region"
@@ -258,8 +263,13 @@ variable "cloudtrail_name" {
   default     = "cloudtrail-multi-region"
 }
 
+variable "cloudtrail_sns_topic_enabled" {
+  description = "Specifies whether the trail is delivered to a SNS topic."
+  default     = true
+}
+
 variable "cloudtrail_sns_topic_name" {
-  description = "The name of the sns topic to link to the trail."
+  description = "The name of the SNS topic to link to the trail."
   default     = "cloudtrail-multi-region-sns-topic"
 }
 
