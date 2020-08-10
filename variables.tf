@@ -320,7 +320,7 @@ variable "securityhub_enable_cis_standard" {
 
 variable "securityhub_enable_pci_dss_standard" {
   description = "Boolean whether PCI DSS standard is enabled."
-  default     = true
+  default     = false
 }
 
 variable "securityhub_enable_aws_foundational_standard" {
