@@ -2,6 +2,16 @@
 ## [Unreleased]
 
 
+<a name="0.19.0"></a>
+## [0.19.0] - 2020-08-10
+### Feat
+- new SecurityHub standards support ([#113](https://github.com/nozaq/terraform-aws-secure-baseline/issues/113))
+- make delivery of CloudTrail to CloudWatch Logs and SNS optional ([#117](https://github.com/nozaq/terraform-aws-secure-baseline/issues/117))
+
+### Fix
+- support standard options for ap-east-1
+
+
 <a name="0.18.1"></a>
 ## [0.18.1] - 2020-05-31
 ### Fix
@@ -205,7 +215,8 @@
 <a name="0.0.1"></a>
 ## 0.0.1 - 2018-02-12
 
-[Unreleased]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.18.1...HEAD
+[Unreleased]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.19.0...HEAD
+[0.19.0]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.18.1...0.19.0
 [0.18.1]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.18.0...0.18.1
 [0.18.0]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.17.0...0.18.0
 [0.17.0]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.16.2...0.17.0
