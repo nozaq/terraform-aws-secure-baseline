@@ -81,6 +81,23 @@ resource "aws_iam_role_policy_attachment" "recorder_read_policy" {
 # Needs to be set up in each region.
 # Global resource types are only recorded in the region specified by var.region.
 # --------------------------------------------------------------------------------------------------
+module "config_baseline_ap-east-1" {
+  source = "./modules/config-baseline"
+
+  providers = {
+    aws = aws.ap-east-1
+  }
+
+  enabled                       = contains(var.target_regions, "ap-east-1")
+  iam_role_arn                  = aws_iam_role.recorder.arn
+  s3_bucket_name                = local.audit_log_bucket_id
+  s3_key_prefix                 = var.config_s3_bucket_key_prefix
+  delivery_frequency            = var.config_delivery_frequency
+  sns_topic_name                = var.config_sns_topic_name
+  include_global_resource_types = var.region == "ap-east-1"
+  tags                          = var.tags
+}
+
 module "config_baseline_ap-northeast-1" {
   source = "./modules/config-baseline"
 
@@ -537,4 +554,3 @@ resource "aws_config_configuration_aggregator" "organization" {
 
   tags = var.tags
 }
-
