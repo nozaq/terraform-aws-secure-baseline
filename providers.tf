@@ -7,10 +7,6 @@ provider "aws" {
 }
 
 provider "aws" {
-  alias = "ap-east-1"
-}
-
-provider "aws" {
   alias = "ap-northeast-1"
 }
 
@@ -77,3 +73,4 @@ provider "aws" {
 provider "aws" {
   alias = "us-west-2"
 }
+

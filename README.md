@@ -53,7 +53,6 @@ module "secure_baseline" {
 
   providers = {
     aws                = aws
-    aws.ap-east-1      = aws.ap-east-1
     aws.ap-northeast-1 = aws.ap-northeast-1
     aws.ap-northeast-2 = aws.ap-northeast-2
     aws.ap-northeast-3 = aws.ap-northeast-3
@@ -166,7 +165,7 @@ This module is composed of several submodules and each of which can be used inde
 | support\_iam\_role\_policy\_name | The name of the support role policy. | `string` | `"IAM-Support-Role"` | no |
 | support\_iam\_role\_principal\_arns | List of ARNs of the IAM principal elements by which the support role could be assumed. | `list` | n/a | yes |
 | tags | Specifies object tags key and value. This applies to all resources created by this module. | `map` | `{}` | no |
-| target\_regions | A list of regions to set up with this module. | `list` | <pre>[<br>  "ap-east-1",<br>  "ap-northeast-1",<br>  "ap-northeast-2",<br>  "ap-south-1",<br>  "ap-southeast-1",<br>  "ap-southeast-2",<br>  "ca-central-1",<br>  "eu-central-1",<br>  "eu-north-1",<br>  "eu-west-1",<br>  "eu-west-2",<br>  "eu-west-3",<br>  "sa-east-1",<br>  "us-east-1",<br>  "us-east-2",<br>  "us-west-1",<br>  "us-west-2"<br>]</pre> | no |
+| target\_regions | A list of regions to set up with this module. | `list` | <pre>[<br>  "ap-northeast-1",<br>  "ap-northeast-2",<br>  "ap-south-1",<br>  "ap-southeast-1",<br>  "ap-southeast-2",<br>  "ca-central-1",<br>  "eu-central-1",<br>  "eu-north-1",<br>  "eu-west-1",<br>  "eu-west-2",<br>  "eu-west-3",<br>  "sa-east-1",<br>  "us-east-1",<br>  "us-east-2",<br>  "us-west-1",<br>  "us-west-2"<br>]</pre> | no |
 | use\_external\_audit\_log\_bucket | A boolean that indicates whether the specific audit log bucket already exists. Create a new S3 bucket if it is set to false. | `bool` | `false` | no |
 | vpc\_iam\_role\_name | The name of the IAM Role which VPC Flow Logs will use. | `string` | `"VPC-Flow-Logs-Publisher"` | no |
 | vpc\_iam\_role\_policy\_name | The name of the IAM Role Policy which VPC Flow Logs will use. | `string` | `"VPC-Flow-Logs-Publish-Policy"` | no |

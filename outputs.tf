@@ -58,7 +58,6 @@ output "config_configuration_recorder" {
   description = "The configuration recorder in each region."
 
   value = {
-    "ap-east-1"      = module.config_baseline_ap-east-1.configuration_recorder
     "ap-northeast-1" = module.config_baseline_ap-northeast-1.configuration_recorder
     "ap-northeast-2" = module.config_baseline_ap-northeast-2.configuration_recorder
     "ap-south-1"     = module.config_baseline_ap-south-1.configuration_recorder
@@ -81,7 +80,6 @@ output "config_sns_topic" {
   description = "The SNS topic that AWS Config delivers notifications to."
 
   value = {
-    "ap-east-1"      = module.config_baseline_ap-east-1.config_sns_topic
     "ap-northeast-1" = module.config_baseline_ap-northeast-1.config_sns_topic
     "ap-northeast-2" = module.config_baseline_ap-northeast-2.config_sns_topic
     "ap-south-1"     = module.config_baseline_ap-south-1.config_sns_topic
@@ -109,7 +107,6 @@ output "guardduty_detector" {
   description = "The GuardDuty detector in each region."
 
   value = {
-    "ap-east-1"      = module.guardduty_baseline_ap-east-1.guardduty_detector
     "ap-northeast-1" = module.guardduty_baseline_ap-northeast-1.guardduty_detector
     "ap-northeast-2" = module.guardduty_baseline_ap-northeast-2.guardduty_detector
     "ap-south-1"     = module.guardduty_baseline_ap-south-1.guardduty_detector
@@ -160,7 +157,6 @@ output "vpc_flow_logs_group" {
   description = "The CloudWatch Logs log group which stores VPC Flow Logs in each region."
 
   value = {
-    "ap-east-1"      = module.vpc_baseline_ap-east-1.vpc_flow_logs_group
     "ap-northeast-1" = module.vpc_baseline_ap-northeast-1.vpc_flow_logs_group
     "ap-northeast-2" = module.vpc_baseline_ap-northeast-2.vpc_flow_logs_group
     "ap-south-1"     = module.vpc_baseline_ap-south-1.vpc_flow_logs_group
@@ -184,7 +180,6 @@ output "default_vpc" {
   description = "The default VPC."
 
   value = {
-    "ap-east-1"      = module.vpc_baseline_ap-east-1.default_vpc
     "ap-northeast-1" = module.vpc_baseline_ap-northeast-1.default_vpc
     "ap-northeast-2" = module.vpc_baseline_ap-northeast-2.default_vpc
     "ap-south-1"     = module.vpc_baseline_ap-south-1.default_vpc
@@ -208,7 +203,6 @@ output "default_security_group" {
   description = "The ID of the default security group."
 
   value = {
-    "ap-east-1"      = module.vpc_baseline_ap-east-1.default_security_group
     "ap-northeast-1" = module.vpc_baseline_ap-northeast-1.default_security_group
     "ap-northeast-2" = module.vpc_baseline_ap-northeast-2.default_security_group
     "ap-south-1"     = module.vpc_baseline_ap-south-1.default_security_group
@@ -232,7 +226,6 @@ output "default_network_acl" {
   description = "The default network ACL."
 
   value = {
-    "ap-east-1"      = module.vpc_baseline_ap-east-1.default_network_acl
     "ap-northeast-1" = module.vpc_baseline_ap-northeast-1.default_network_acl
     "ap-northeast-2" = module.vpc_baseline_ap-northeast-2.default_network_acl
     "ap-south-1"     = module.vpc_baseline_ap-south-1.default_network_acl
@@ -256,7 +249,6 @@ output "default_route_table" {
   description = "The default route table."
 
   value = {
-    "ap-east-1"      = module.vpc_baseline_ap-east-1.default_route_table
     "ap-northeast-1" = module.vpc_baseline_ap-northeast-1.default_route_table
     "ap-northeast-2" = module.vpc_baseline_ap-northeast-2.default_route_table
     "ap-south-1"     = module.vpc_baseline_ap-south-1.default_route_table
@@ -275,3 +267,4 @@ output "default_route_table" {
     "us-west-2"      = module.vpc_baseline_us-west-2.default_route_table
   }
 }
+
