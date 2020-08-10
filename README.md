@@ -160,7 +160,7 @@ This module is composed of several submodules and each of which can be used inde
 | require\_uppercase\_characters | Whether to require uppercase characters for user passwords. | `bool` | `true` | no |
 | securityhub\_enable\_aws\_foundational\_standard | Boolean whether AWS Foundations standard is enabled. | `bool` | `true` | no |
 | securityhub\_enable\_cis\_standard | Boolean whether CIS standard is enabled. | `bool` | `true` | no |
-| securityhub\_enable\_pci\_dss\_standard | Boolean whether PCI DSS standard is enabled. | `bool` | `true` | no |
+| securityhub\_enable\_pci\_dss\_standard | Boolean whether PCI DSS standard is enabled. | `bool` | `false` | no |
 | support\_iam\_role\_name | The name of the the support role. | `string` | `"IAM-Support"` | no |
 | support\_iam\_role\_policy\_name | The name of the support role policy. | `string` | `"IAM-Support-Role"` | no |
 | support\_iam\_role\_principal\_arns | List of ARNs of the IAM principal elements by which the support role could be assumed. | `list` | n/a | yes |
