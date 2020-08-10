@@ -29,7 +29,6 @@ module "secure_baseline" {
   # all providers still need to be passed to the module.
   providers = {
     aws                = aws
-    aws.ap-east-1      = aws.ap-east-1
     aws.ap-northeast-1 = aws.ap-northeast-1
     aws.ap-northeast-2 = aws.ap-northeast-2
     aws.ap-northeast-3 = aws.ap-northeast-3

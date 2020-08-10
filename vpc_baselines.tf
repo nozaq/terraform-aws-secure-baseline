@@ -44,21 +44,6 @@ resource "aws_iam_role_policy" "vpc_flow_logs_publish_policy" {
 # Needs to be set up in each region.
 # --------------------------------------------------------------------------------------------------
 
-module "vpc_baseline_ap-east-1" {
-  source = "./modules/vpc-baseline"
-
-  providers = {
-    aws = aws.ap-east-1
-  }
-
-  enabled                    = contains(var.target_regions, "ap-east-1")
-  vpc_log_group_name         = var.vpc_log_group_name
-  vpc_flow_logs_iam_role_arn = aws_iam_role.vpc_flow_logs_publisher.arn
-  vpc_log_retention_in_days  = var.vpc_log_retention_in_days
-
-  tags = var.tags
-}
-
 module "vpc_baseline_ap-northeast-1" {
   source = "./modules/vpc-baseline"
 
@@ -298,3 +283,4 @@ module "vpc_baseline_us-west-2" {
 
   tags = var.tags
 }
+

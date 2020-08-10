@@ -32,7 +32,6 @@ variable "member_accounts" {
 variable "target_regions" {
   description = "A list of regions to set up with this module."
   default = [
-    "ap-east-1",
     "ap-northeast-1",
     "ap-northeast-2",
     "ap-south-1",

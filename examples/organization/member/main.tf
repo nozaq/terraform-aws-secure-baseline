@@ -31,7 +31,6 @@ module "secure_baseline" {
 
   providers = {
     aws                = aws
-    aws.ap-east-1      = aws.ap-east-1
     aws.ap-northeast-1 = aws.ap-northeast-1
     aws.ap-northeast-2 = aws.ap-northeast-2
     aws.ap-northeast-3 = aws.ap-northeast-3
@@ -51,3 +50,4 @@ module "secure_baseline" {
     aws.us-west-2      = aws.us-west-2
   }
 }
+
