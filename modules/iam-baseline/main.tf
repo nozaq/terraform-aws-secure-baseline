@@ -11,6 +11,7 @@ resource "aws_iam_account_password_policy" "default" {
   require_symbols                = var.require_symbols
   allow_users_to_change_password = var.allow_users_to_change_password
   max_password_age               = var.max_password_age
+  count                          = var.create_password_policy ? 1 : 0
 }
 
 # --------------------------------------------------------------------------------------------------
@@ -29,6 +30,7 @@ data "aws_iam_policy_document" "master_assume_policy" {
 resource "aws_iam_role" "master" {
   name               = var.master_iam_role_name
   assume_role_policy = data.aws_iam_policy_document.master_assume_policy.json
+  count              = var.create_master_role ? 1 : 0
 
   tags = var.tags
 }
@@ -69,8 +71,9 @@ data "aws_iam_policy_document" "master_policy" {
 }
 
 resource "aws_iam_role_policy" "master_policy" {
-  name = var.master_iam_role_policy_name
-  role = aws_iam_role.master.id
+  name  = var.master_iam_role_policy_name
+  role  = aws_iam_role.master[0].id
+  count = var.create_master_role ? 1 : 0
 
   policy = data.aws_iam_policy_document.master_policy.json
 }
@@ -88,6 +91,7 @@ data "aws_iam_policy_document" "manager_assume_policy" {
 resource "aws_iam_role" "manager" {
   name               = var.manager_iam_role_name
   assume_role_policy = data.aws_iam_policy_document.manager_assume_policy.json
+  count              = var.create_manager_role ? 1 : 0
 
   tags = var.tags
 }
@@ -129,8 +133,9 @@ data "aws_iam_policy_document" "manager_policy" {
 
 resource "aws_iam_role_policy" "manager_policy" {
   name   = var.manager_iam_role_policy_name
-  role   = aws_iam_role.manager.id
+  role   = aws_iam_role.manager[0].id
   policy = data.aws_iam_policy_document.manager_policy.json
+  count  = var.create_manager_role ? 1 : 0
 }
 
 # --------------------------------------------------------------------------------------------------
@@ -149,12 +154,14 @@ data "aws_iam_policy_document" "support_assume_policy" {
 resource "aws_iam_role" "support" {
   name               = var.support_iam_role_name
   assume_role_policy = data.aws_iam_policy_document.support_assume_policy.json
+  count              = var.create_support_role ? 1 : 0
 
   tags = var.tags
 }
 
 resource "aws_iam_role_policy_attachment" "support_policy" {
-  role       = aws_iam_role.support.id
+  role       = aws_iam_role.support[0].id
   policy_arn = "arn:aws:iam::aws:policy/AWSSupportAccess"
+  count      = var.create_support_role ? 1 : 0
 }
 
