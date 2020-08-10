@@ -240,7 +240,7 @@ resource "aws_cloudtrail" "global" {
 
   name = var.cloudtrail_name
 
-  cloud_watch_logs_group_arn    = var.cloudwatch_logs_enabled ? aws_cloudwatch_log_group.cloudtrail_events[0].arn : null
+  cloud_watch_logs_group_arn    = var.cloudwatch_logs_enabled ? "${aws_cloudwatch_log_group.cloudtrail_events[0].arn}:*" : null
   cloud_watch_logs_role_arn     = var.cloudwatch_logs_enabled ? aws_iam_role.cloudwatch_delivery[0].arn : null
   enable_log_file_validation    = true
   include_global_service_events = true

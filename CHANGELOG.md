@@ -1,6 +1,9 @@
 <a name="unreleased"></a>
 ## [Unreleased]
 
+### Fix
+- add a wildcard suffix to log group ARN
+
 
 <a name="0.19.0"></a>
 ## [0.19.0] - 2020-08-10
