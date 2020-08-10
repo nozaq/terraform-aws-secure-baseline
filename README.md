@@ -9,8 +9,6 @@ Most configurations are based on [CIS Amazon Web Services Foundations] v1.2.0.
 
 See [Benchmark Compliance](./compliance.md) to check which items in CIS benchmark are covered.
 
-**Starting from v0.10.0, this module requires Terraform v0.12 or later. Please use v0.9.0 if you need to use Terraform v0.11 or ealier.**
-
 ## Features
 
 ### Identity and Access Management
@@ -104,12 +102,13 @@ This module is composed of several submodules and each of which can be used inde
 | Name | Version |
 |------|---------|
 | terraform | >= 0.12 |
+| aws | >= 3.0.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| aws | n/a |
+| aws | >= 3.0.0 |
 
 ## Inputs
 
@@ -198,6 +197,12 @@ This module is composed of several submodules and each of which can be used inde
 | vpc\_flow\_logs\_iam\_role | The IAM role used for delivering VPC Flow Logs to CloudWatch Logs. |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+
+## Compatibility
+
+- Starting from v0.20, this module requires [Terraform Provider for AWS](https://github.com/terraform-providers/terraform-provider-aws) v3.0 or later. Please use v0.19 if you need to use v2.x or earlier.
+- Starting from v0.10, this module requires Terraform v0.12 or later. Please use v0.9 if you need to use Terraform v0.11 or ealier.
+
 
 [CIS Amazon Web Services Foundations]: https://www.cisecurity.org/benchmark/amazon_web_services/
 [Providers within Modules - Terraform Docs]: https://www.terraform.io/docs/modules/usage.html#providers-within-modules
