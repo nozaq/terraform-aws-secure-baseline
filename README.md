@@ -28,7 +28,7 @@ See [Benchmark Compliance](./compliance.md) to check which items in CIS benchmar
 - Logs are automatically archived into Amazon Glacier after the given period(defaults to 90 days).
 - Set up CloudWatch alarms to notify you when critical changes happen in your AWS account.
 - Enable AWS Config in all regions to automatically take configuration snapshots.
-- Enable SecurityHub and subscribe CIS benchmark standard.
+- Enable SecurityHub and subscribe available standards.
 
 ### Networking
 
@@ -53,6 +53,7 @@ module "secure_baseline" {
 
   providers = {
     aws                = aws
+    aws.ap-east-1      = aws.ap-east-1
     aws.ap-northeast-1 = aws.ap-northeast-1
     aws.ap-northeast-2 = aws.ap-northeast-2
     aws.ap-northeast-3 = aws.ap-northeast-3
@@ -96,6 +97,7 @@ This module is composed of several submodules and each of which can be used inde
 - [iam-baseline](./modules/iam-baseline)
 - [vpc-baseline](./modules/vpc-baseline)
 - [secure-bucket](./modules/secure-bucket)
+- [securityhub-baseline](./modules/securityhub-baseline)
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
@@ -123,12 +125,14 @@ This module is composed of several submodules and each of which can be used inde
 | audit\_log\_bucket\_name | The name of the S3 bucket to store various audit logs. | `any` | n/a | yes |
 | audit\_log\_lifecycle\_glacier\_transition\_days | The number of days after log creation when the log file is archived into Glacier. | `number` | `90` | no |
 | aws\_account\_id | The AWS Account ID number of the account. | `any` | n/a | yes |
+| cloudtrail\_cloudwatch\_logs\_enabled | Specifies whether the trail is delivered to CloudWatch Logs. | `bool` | `true` | no |
 | cloudtrail\_cloudwatch\_logs\_group\_name | The name of CloudWatch Logs group to which CloudTrail events are delivered. | `string` | `"cloudtrail-multi-region"` | no |
 | cloudtrail\_iam\_role\_name | The name of the IAM Role to be used by CloudTrail to delivery logs to CloudWatch Logs group. | `string` | `"CloudTrail-CloudWatch-Delivery-Role"` | no |
 | cloudtrail\_iam\_role\_policy\_name | The name of the IAM Role Policy to be used by CloudTrail to delivery logs to CloudWatch Logs group. | `string` | `"CloudTrail-CloudWatch-Delivery-Policy"` | no |
 | cloudtrail\_key\_deletion\_window\_in\_days | Duration in days after which the key is deleted after destruction of the resource, must be between 7 and 30 days. Defaults to 30 days. | `number` | `10` | no |
 | cloudtrail\_name | The name of the trail. | `string` | `"cloudtrail-multi-region"` | no |
 | cloudtrail\_s3\_key\_prefix | The prefix used when CloudTrail delivers events to the S3 bucket. | `string` | `"cloudtrail"` | no |
+| cloudtrail\_sns\_topic\_enabled | Specifies whether the trail is delivered to a SNS topic. | `bool` | `true` | no |
 | cloudtrail\_sns\_topic\_name | The name of the sns topic to link to the trail. | `string` | `"cloudtrail-multi-region-sns-topic"` | no |
 | cloudwatch\_logs\_retention\_in\_days | Number of days to retain logs for. CIS recommends 365 days.  Possible values are: 0, 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1827, and 3653. Set to 0 to keep logs indefinitely. | `number` | `365` | no |
 | config\_aggregator\_name | The name of the organizational AWS Config Configuration Aggregator. | `string` | `"organization-aggregator"` | no |
@@ -159,12 +163,16 @@ This module is composed of several submodules and each of which can be used inde
 | support\_iam\_role\_policy\_name | The name of the support role policy. | `string` | `"IAM-Support-Role"` | no |
 | support\_iam\_role\_principal\_arns | List of ARNs of the IAM principal elements by which the support role could be assumed. | `list` | n/a | yes |
 | tags | Specifies object tags key and value. This applies to all resources created by this module. | `map` | `{}` | no |
-| target\_regions | A list of regions to set up with this module. | `list` | <pre>[<br>  "ap-northeast-1",<br>  "ap-northeast-2",<br>  "ap-south-1",<br>  "ap-southeast-1",<br>  "ap-southeast-2",<br>  "ca-central-1",<br>  "eu-central-1",<br>  "eu-north-1",<br>  "eu-west-1",<br>  "eu-west-2",<br>  "eu-west-3",<br>  "sa-east-1",<br>  "us-east-1",<br>  "us-east-2",<br>  "us-west-1",<br>  "us-west-2"<br>]</pre> | no |
+| target\_regions | A list of regions to set up with this module. | `list` | <pre>[<br>  "ap-east-1",<br>  "ap-northeast-1",<br>  "ap-northeast-2",<br>  "ap-south-1",<br>  "ap-southeast-1",<br>  "ap-southeast-2",<br>  "ca-central-1",<br>  "eu-central-1",<br>  "eu-north-1",<br>  "eu-west-1",<br>  "eu-west-2",<br>  "eu-west-3",<br>  "sa-east-1",<br>  "us-east-1",<br>  "us-east-2",<br>  "us-west-1",<br>  "us-west-2"<br>]</pre> | no |
 | use\_external\_audit\_log\_bucket | A boolean that indicates whether the specific audit log bucket already exists. Create a new S3 bucket if it is set to false. | `bool` | `false` | no |
 | vpc\_iam\_role\_name | The name of the IAM Role which VPC Flow Logs will use. | `string` | `"VPC-Flow-Logs-Publisher"` | no |
 | vpc\_iam\_role\_policy\_name | The name of the IAM Role Policy which VPC Flow Logs will use. | `string` | `"VPC-Flow-Logs-Publish-Policy"` | no |
 | vpc\_log\_group\_name | The name of CloudWatch Logs group to which VPC Flow Logs are delivered. | `string` | `"default-vpc-flow-logs"` | no |
 | vpc\_log\_retention\_in\_days | Number of days to retain logs for. CIS recommends 365 days.  Possible values are: 0, 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1827, and 3653. Set to 0 to keep logs indefinitely. | `number` | `365` | no |
+| securityhub\_enable\_cis\_standard | A boolean that indicates whether the CIS standard is enabled. | `bool` | `true` | no |
+| securityhub\_enable\_pci\_dss\_standard | A boolean that indicates whether the PCI DSS standard is enabled. | `bool` | `true` | no |
+| securityhub\_enable\_aws\_foundational\_standard | A boolean that indicates whether the AWS Foundational security best practices standard is enabled. | `bool` | `true` | no |
+
 
 ## Outputs
 
