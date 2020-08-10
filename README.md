@@ -133,7 +133,7 @@ This module is composed of several submodules and each of which can be used inde
 | cloudtrail\_name | The name of the trail. | `string` | `"cloudtrail-multi-region"` | no |
 | cloudtrail\_s3\_key\_prefix | The prefix used when CloudTrail delivers events to the S3 bucket. | `string` | `"cloudtrail"` | no |
 | cloudtrail\_sns\_topic\_enabled | Specifies whether the trail is delivered to a SNS topic. | `bool` | `true` | no |
-| cloudtrail\_sns\_topic\_name | The name of the sns topic to link to the trail. | `string` | `"cloudtrail-multi-region-sns-topic"` | no |
+| cloudtrail\_sns\_topic\_name | The name of the SNS topic to link to the trail. | `string` | `"cloudtrail-multi-region-sns-topic"` | no |
 | cloudwatch\_logs\_retention\_in\_days | Number of days to retain logs for. CIS recommends 365 days.  Possible values are: 0, 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1827, and 3653. Set to 0 to keep logs indefinitely. | `number` | `365` | no |
 | config\_aggregator\_name | The name of the organizational AWS Config Configuration Aggregator. | `string` | `"organization-aggregator"` | no |
 | config\_aggregator\_name\_prefix | The prefix of the name for the IAM role attached to the organizational AWS Config Configuration Aggregator. | `string` | `"config-for-organization-role"` | no |
@@ -159,6 +159,9 @@ This module is composed of several submodules and each of which can be used inde
 | require\_numbers | Whether to require numbers for user passwords. | `bool` | `true` | no |
 | require\_symbols | Whether to require symbols for user passwords. | `bool` | `true` | no |
 | require\_uppercase\_characters | Whether to require uppercase characters for user passwords. | `bool` | `true` | no |
+| securityhub\_enable\_aws\_foundational\_standard | Boolean whether AWS Foundations standard is enabled. | `bool` | `true` | no |
+| securityhub\_enable\_cis\_standard | Boolean whether CIS standard is enabled. | `bool` | `true` | no |
+| securityhub\_enable\_pci\_dss\_standard | Boolean whether PCI DSS standard is enabled. | `bool` | `true` | no |
 | support\_iam\_role\_name | The name of the the support role. | `string` | `"IAM-Support"` | no |
 | support\_iam\_role\_policy\_name | The name of the support role policy. | `string` | `"IAM-Support-Role"` | no |
 | support\_iam\_role\_principal\_arns | List of ARNs of the IAM principal elements by which the support role could be assumed. | `list` | n/a | yes |
@@ -169,10 +172,6 @@ This module is composed of several submodules and each of which can be used inde
 | vpc\_iam\_role\_policy\_name | The name of the IAM Role Policy which VPC Flow Logs will use. | `string` | `"VPC-Flow-Logs-Publish-Policy"` | no |
 | vpc\_log\_group\_name | The name of CloudWatch Logs group to which VPC Flow Logs are delivered. | `string` | `"default-vpc-flow-logs"` | no |
 | vpc\_log\_retention\_in\_days | Number of days to retain logs for. CIS recommends 365 days.  Possible values are: 0, 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1827, and 3653. Set to 0 to keep logs indefinitely. | `number` | `365` | no |
-| securityhub\_enable\_cis\_standard | A boolean that indicates whether the CIS standard is enabled. | `bool` | `true` | no |
-| securityhub\_enable\_pci\_dss\_standard | A boolean that indicates whether the PCI DSS standard is enabled. | `bool` | `true` | no |
-| securityhub\_enable\_aws\_foundational\_standard | A boolean that indicates whether the AWS Foundational security best practices standard is enabled. | `bool` | `true` | no |
-
 
 ## Outputs
 
