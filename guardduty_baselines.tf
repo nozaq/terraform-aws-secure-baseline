@@ -8,6 +8,21 @@ locals {
   guardduty_member_accounts   = var.member_accounts
 }
 
+module "guardduty_baseline_ap-east-1" {
+  source = "./modules/guardduty-baseline"
+
+  providers = {
+    aws = aws.ap-east-1
+  }
+
+  enabled                      = contains(var.target_regions, "ap-east-1")
+  disable_email_notification   = var.guardduty_disable_email_notification
+  finding_publishing_frequency = var.guardduty_finding_publishing_frequency
+  invitation_message           = var.guardduty_invitation_message
+  master_account_id            = local.guardduty_master_account_id
+  member_accounts              = local.guardduty_member_accounts
+}
+
 module "guardduty_baseline_ap-northeast-1" {
   source = "./modules/guardduty-baseline"
 

@@ -44,7 +44,9 @@ module "cloudtrail_baseline" {
   aws_account_id                    = var.aws_account_id
   cloudtrail_depends_on             = [aws_s3_bucket_policy.audit_log]
   cloudtrail_name                   = var.cloudtrail_name
+  cloudtrail_sns_topic_enabled      = var.cloudtrail_sns_topic_enabled
   cloudtrail_sns_topic_name         = var.cloudtrail_sns_topic_name
+  cloudwatch_logs_enabled           = var.cloudtrail_cloudwatch_logs_enabled
   cloudwatch_logs_group_name        = var.cloudtrail_cloudwatch_logs_group_name
   cloudwatch_logs_retention_in_days = var.cloudwatch_logs_retention_in_days
   iam_role_name                     = var.cloudtrail_iam_role_name

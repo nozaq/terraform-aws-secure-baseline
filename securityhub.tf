@@ -2,6 +2,16 @@
 # SecurityHub Baseline
 # --------------------------------------------------------------------------------------------------
 
+module "securityhub_baseline_ap-east-1" {
+  source = "./modules/securityhub-baseline"
+
+  providers = {
+    aws = aws.ap-east-1
+  }
+
+  enabled = contains(var.target_regions, "ap-east-1")
+}
+
 module "securityhub_baseline_ap-northeast-1" {
   source = "./modules/securityhub-baseline"
 

@@ -6,6 +6,13 @@
 provider "aws" {
   access_key = var.access_key
   secret_key = var.secret_key
+  region     = "ap-east-1"
+  alias      = "ap-east-1"
+}
+
+provider "aws" {
+  access_key = var.access_key
+  secret_key = var.secret_key
   region     = "ap-northeast-1"
   alias      = "ap-northeast-1"
 }
@@ -121,4 +128,3 @@ provider "aws" {
   region     = "us-west-2"
   alias      = "us-west-2"
 }
-
