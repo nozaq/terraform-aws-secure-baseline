@@ -1,8 +1,14 @@
 <a name="unreleased"></a>
 ## [Unreleased]
 
+
+<a name="0.20.0"></a>
+## [0.20.0] - 2020-08-10
+### Feat
+- make all roles to be optional ([#115](https://github.com/nozaq/terraform-aws-secure-baseline/issues/115))
+
 ### Fix
-- add a wildcard suffix to log group ARN
+- add a wildcard suffix to log group ARN ([#119](https://github.com/nozaq/terraform-aws-secure-baseline/issues/119))
 
 
 <a name="0.19.0"></a>
@@ -218,7 +224,8 @@
 <a name="0.0.1"></a>
 ## 0.0.1 - 2018-02-12
 
-[Unreleased]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.19.0...HEAD
+[Unreleased]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.20.0...HEAD
+[0.20.0]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.19.0...0.20.0
 [0.19.0]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.18.1...0.19.0
 [0.18.1]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.18.0...0.18.1
 [0.18.0]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.17.0...0.18.0
