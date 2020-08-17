@@ -71,5 +71,7 @@ resource "aws_flow_log" "default_vpc_flow_logs" {
   iam_role_arn    = var.vpc_flow_logs_iam_role_arn
   vpc_id          = aws_default_vpc.default[0].id
   traffic_type    = "ALL"
+  
+  tags = var.tags
 }
 
