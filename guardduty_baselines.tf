@@ -21,6 +21,8 @@ module "guardduty_baseline_ap-northeast-1" {
   invitation_message           = var.guardduty_invitation_message
   master_account_id            = local.guardduty_master_account_id
   member_accounts              = local.guardduty_member_accounts
+
+  tags = var.tags
 }
 
 module "guardduty_baseline_ap-northeast-2" {
@@ -36,6 +38,8 @@ module "guardduty_baseline_ap-northeast-2" {
   invitation_message           = var.guardduty_invitation_message
   master_account_id            = local.guardduty_master_account_id
   member_accounts              = local.guardduty_member_accounts
+
+  tags = var.tags
 }
 
 module "guardduty_baseline_ap-south-1" {
@@ -51,6 +55,8 @@ module "guardduty_baseline_ap-south-1" {
   invitation_message           = var.guardduty_invitation_message
   master_account_id            = local.guardduty_master_account_id
   member_accounts              = local.guardduty_member_accounts
+
+  tags = var.tags
 }
 
 module "guardduty_baseline_ap-southeast-1" {
@@ -66,6 +72,8 @@ module "guardduty_baseline_ap-southeast-1" {
   invitation_message           = var.guardduty_invitation_message
   master_account_id            = local.guardduty_master_account_id
   member_accounts              = local.guardduty_member_accounts
+
+  tags = var.tags
 }
 
 module "guardduty_baseline_ap-southeast-2" {
@@ -81,6 +89,8 @@ module "guardduty_baseline_ap-southeast-2" {
   invitation_message           = var.guardduty_invitation_message
   master_account_id            = local.guardduty_master_account_id
   member_accounts              = local.guardduty_member_accounts
+
+  tags = var.tags
 }
 
 module "guardduty_baseline_ca-central-1" {
@@ -96,6 +106,8 @@ module "guardduty_baseline_ca-central-1" {
   invitation_message           = var.guardduty_invitation_message
   master_account_id            = local.guardduty_master_account_id
   member_accounts              = local.guardduty_member_accounts
+
+  tags = var.tags
 }
 
 module "guardduty_baseline_eu-central-1" {
@@ -111,6 +123,8 @@ module "guardduty_baseline_eu-central-1" {
   invitation_message           = var.guardduty_invitation_message
   master_account_id            = local.guardduty_master_account_id
   member_accounts              = local.guardduty_member_accounts
+
+  tags = var.tags
 }
 
 module "guardduty_baseline_eu-north-1" {
@@ -126,6 +140,8 @@ module "guardduty_baseline_eu-north-1" {
   invitation_message           = var.guardduty_invitation_message
   master_account_id            = local.guardduty_master_account_id
   member_accounts              = local.guardduty_member_accounts
+
+  tags = var.tags
 }
 
 module "guardduty_baseline_eu-west-1" {
@@ -141,6 +157,8 @@ module "guardduty_baseline_eu-west-1" {
   invitation_message           = var.guardduty_invitation_message
   master_account_id            = local.guardduty_master_account_id
   member_accounts              = local.guardduty_member_accounts
+
+  tags = var.tags
 }
 
 module "guardduty_baseline_eu-west-2" {
@@ -156,6 +174,8 @@ module "guardduty_baseline_eu-west-2" {
   invitation_message           = var.guardduty_invitation_message
   master_account_id            = local.guardduty_master_account_id
   member_accounts              = local.guardduty_member_accounts
+
+  tags = var.tags
 }
 
 module "guardduty_baseline_eu-west-3" {
@@ -171,6 +191,8 @@ module "guardduty_baseline_eu-west-3" {
   invitation_message           = var.guardduty_invitation_message
   master_account_id            = local.guardduty_master_account_id
   member_accounts              = local.guardduty_member_accounts
+
+  tags = var.tags
 }
 
 module "guardduty_baseline_sa-east-1" {
@@ -186,6 +208,8 @@ module "guardduty_baseline_sa-east-1" {
   invitation_message           = var.guardduty_invitation_message
   master_account_id            = local.guardduty_master_account_id
   member_accounts              = local.guardduty_member_accounts
+
+  tags = var.tags
 }
 
 module "guardduty_baseline_us-east-1" {
@@ -201,6 +225,8 @@ module "guardduty_baseline_us-east-1" {
   invitation_message           = var.guardduty_invitation_message
   master_account_id            = local.guardduty_master_account_id
   member_accounts              = local.guardduty_member_accounts
+
+  tags = var.tags
 }
 
 module "guardduty_baseline_us-east-2" {
@@ -216,6 +242,8 @@ module "guardduty_baseline_us-east-2" {
   invitation_message           = var.guardduty_invitation_message
   master_account_id            = local.guardduty_master_account_id
   member_accounts              = local.guardduty_member_accounts
+
+  tags = var.tags
 }
 
 module "guardduty_baseline_us-west-1" {
@@ -231,6 +259,8 @@ module "guardduty_baseline_us-west-1" {
   invitation_message           = var.guardduty_invitation_message
   master_account_id            = local.guardduty_master_account_id
   member_accounts              = local.guardduty_member_accounts
+
+  tags = var.tags
 }
 
 module "guardduty_baseline_us-west-2" {
@@ -246,4 +276,6 @@ module "guardduty_baseline_us-west-2" {
   invitation_message           = var.guardduty_invitation_message
   master_account_id            = local.guardduty_master_account_id
   member_accounts              = local.guardduty_member_accounts
+
+  tags = var.tags
 }
