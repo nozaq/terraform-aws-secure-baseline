@@ -1,3 +1,25 @@
+data "aws_iam_policy_document" "access_log_policy" {
+  count = var.enabled ? 1 : 0
+
+  statement {
+    actions = ["s3:*"]
+    effect  = "Deny"
+    resources = [
+      "${aws_s3_bucket.access_log[0].arn}",
+      "${aws_s3_bucket.access_log[0].arn}/*"
+    ]
+    condition {
+      test     = "Bool"
+      variable = "aws:SecureTransport"
+      values   = ["false"]
+    }
+    principals {
+      type        = "*"
+      identifiers = ["*"]
+    }
+  }
+}
+
 resource "aws_s3_bucket" "access_log" {
   count = var.enabled ? 1 : 0
 
@@ -27,6 +49,13 @@ resource "aws_s3_bucket" "access_log" {
   }
 
   tags = var.tags
+}
+
+resource "aws_s3_bucket_policy" "access_log_policy" {
+  count = var.enabled ? 1 : 0
+
+  bucket = aws_s3_bucket.access_log[0].id
+  policy = data.aws_iam_policy_document.access_log_policy[0].json
 }
 
 resource "aws_s3_bucket_public_access_block" "access_log" {
