@@ -102,6 +102,24 @@ data "aws_iam_policy_document" "audit_log" {
     }
   }
 
+  statement {
+    actions = ["s3:*"]
+    effect  = "Deny"
+    resources = [
+      "${module.audit_log_bucket.this_bucket.arn}",
+      "${module.audit_log_bucket.this_bucket.arn}/*"
+    ]
+    condition {
+      test     = "Bool"
+      variable = "aws:SecureTransport"
+      values   = ["false"]
+    }
+    principals {
+      type        = "*"
+      identifiers = ["*"]
+    }
+  }
+
   dynamic "statement" {
     for_each = local.is_master_account && length(var.member_accounts) > 0 ? [var.member_accounts] : []
 
