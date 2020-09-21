@@ -29,6 +29,10 @@ module "iam_baseline" {
   require_symbols                 = var.require_symbols
   allow_users_to_change_password  = var.allow_users_to_change_password
   max_password_age                = var.max_password_age
+  create_password_policy          = var.create_password_policy
+  create_master_role              = var.create_master_role
+  create_manager_role             = var.create_manager_role
+  create_support_role             = var.create_support_role
 
   tags = var.tags
 }

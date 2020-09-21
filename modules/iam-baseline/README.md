@@ -24,6 +24,10 @@
 |------|-------------|------|---------|:--------:|
 | allow\_users\_to\_change\_password | Whether to allow users to change their own password. | `bool` | `true` | no |
 | aws\_account\_id | The AWS Account ID number of the account. | `any` | n/a | yes |
+| create\_manager\_role | Define if the manager role should be created. | `bool` | `true` | no |
+| create\_master\_role | Define if the master role should be created. | `bool` | `true` | no |
+| create\_password\_policy | Define if the password policy should be created. | `bool` | `true` | no |
+| create\_support\_role | Define if the support role should be created. | `bool` | `true` | no |
 | manager\_iam\_role\_name | The name of the IAM Manager role. | `string` | `"IAM-Manager"` | no |
 | manager\_iam\_role\_policy\_name | The name of the IAM Manager role policy. | `string` | `"IAM-Manager-Policy"` | no |
 | master\_iam\_role\_name | The name of the IAM Master role. | `string` | `"IAM-Master"` | no |
@@ -38,10 +42,6 @@
 | support\_iam\_role\_name | The name of the the support role. | `string` | `"IAM-Support"` | no |
 | support\_iam\_role\_policy\_name | The name of the support role policy. | `string` | `"IAM-Support-Role"` | no |
 | support\_iam\_role\_principal\_arns | List of ARNs of the IAM principal elements by which the support role could be assumed. | `list` | n/a | yes |
-| create\_password\_policy| Define if the password policy should be created. | `bool` | `true` | no |
-| create\_master\_role| Define if the master role should be created. | `bool` | `true` | no |
-| create\_manager\_role| Define if the manager role should be created. | `bool` | `true` | no |
-| create\_support\_role| Define if the support role should be created. | `bool` | `true` | no |
 | tags | Specifies object tags key and value. This applies to all resources created by this module. | `map` | <pre>{<br>  "Terraform": true<br>}</pre> | no |
 
 ## Outputs

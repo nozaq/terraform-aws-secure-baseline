@@ -140,6 +140,10 @@ This module is composed of several submodules and each of which can be used inde
 | config\_iam\_role\_policy\_name | The name of the IAM Role Policy which AWS Config will use. | `string` | `"Config-Recorder-Policy"` | no |
 | config\_s3\_bucket\_key\_prefix | The prefix used when writing AWS Config snapshots into the S3 bucket. | `string` | `"config"` | no |
 | config\_sns\_topic\_name | The name of the SNS Topic to be used to notify configuration changes. | `string` | `"ConfigChanges"` | no |
+| create\_manager\_role | Define if the manager role should be created. | `bool` | `true` | no |
+| create\_master\_role | Define if the master role should be created. | `bool` | `true` | no |
+| create\_password\_policy | Define if the password policy should be created. | `bool` | `true` | no |
+| create\_support\_role | Define if the support role should be created. | `bool` | `true` | no |
 | guardduty\_disable\_email\_notification | Boolean whether an email notification is sent to the accounts. | `bool` | `false` | no |
 | guardduty\_finding\_publishing\_frequency | Specifies the frequency of notifications sent for subsequent finding occurrences. | `string` | `"SIX_HOURS"` | no |
 | guardduty\_invitation\_message | Message for invitation. | `string` | `"This is an automatic invitation message from guardduty-baseline module."` | no |

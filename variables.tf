@@ -87,6 +87,30 @@ variable "use_external_audit_log_bucket" {
 # --------------------------------------------------------------------------------------------------
 # Variables for iam-baseline module.
 # --------------------------------------------------------------------------------------------------
+variable "create_password_policy" {
+  type        = bool
+  description = "Define if the password policy should be created."
+  default     = true
+}
+
+variable "create_master_role" {
+  type        = bool
+  description = "Define if the master role should be created."
+  default     = true
+}
+
+variable "create_manager_role" {
+  type        = bool
+  description = "Define if the manager role should be created."
+  default     = true
+}
+
+variable "create_support_role" {
+  type        = bool
+  description = "Define if the support role should be created."
+  default     = true
+}
+
 variable "master_iam_role_name" {
   description = "The name of the IAM Master role."
   default     = "IAM-Master"
