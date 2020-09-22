@@ -2,7 +2,7 @@
 
 This file exaplains which items in the following compliance standards this module covers.
 
-- [CIS Amazon web Services Foundations v1.2.0]
+- [CIS Amazon web Services Foundations v1.3.0]
 - [AWS Foundational Security Best Practices v1.0.0]
 
 ## Definition
@@ -15,59 +15,65 @@ Implementation status for each item is categorized as follows.
 | PARTIAL | This module helps to meet the requirements for this item, but additional work would also be needed. |
 | N/A | This module has nothing to do with the requirements for this item. |
 
-## CIS Amazon Web Services Foundations v1.2.0
+## CIS Amazon Web Services Foundations v1.3.0
 
 | No. | Item | Status | Notes |
 | ---:| ---- | ------ | ----- |
-| 1.1  | Avoid the use of the "root" account | N/A | |
-| 1.2  | Ensure multi-factor authentication (MFA) is enabled for all IAM users that have a console password | PARTIAL | Monitored by the AWS Config rule. |
-| 1.3  | Ensure credentials unused for 90 days or greater are disabled | PARTIAL | Monitored by the AWS Config rule. |
-| 1.4  | Ensure access keys are rotated every 90 days or less | N/A | |
-| 1.5  | Ensure IAM password policy requires at least one uppercase letter | OK | |
-| 1.6  | Ensure IAM password policy require at least one lowercase letter | OK | |
-| 1.7  | Ensure IAM password policy require at least one symbol | OK | |
-| 1.8  | Ensure IAM password policy require at least one number | OK | |
-| 1.9  | Ensure IAM password policy requires minimum length of 14 or greater | OK | |
-| 1.10 | Ensure IAM password policy prevents password reuse | OK | |
-| 1.11 | Ensure IAM password policy expires passwords within 90 days or less | OK | |
-| 1.12 | Ensure no root account access key exists | N/A | |
-| 1.13 | Ensure MFA is enabled for the "root" account | N/A | |
-| 1.14 | Ensure hardware MFA is enabled for the "root" account | N/A | |
-| 1.15 | Ensure security questions are registered in the AWS account | N/A | |
-| 1.16 | Ensure IAM policies are attached only to groups or roles | N/A | |
-| 1.17 | Maintain current contact details | N/A | |
-| 1.18 | Ensure security contact information is registered | N/A | |
-| 1.19 | Ensure IAM instance roles are used for AWS resource access from instances | N/A | |
-| 1.20 | Ensure a support role has been created to manage incidents with AWS Support | OK | |
-| 1.21 | Do not setup access keys during initial user setup for all IAM users that have a console password | N/A | |
-| 1.22 | Ensure IAM policies that allow full "\*:\*" administrative privileges are not created | N/A | |
-| 2.1  | Ensure CloudTrail is enabled in all regions | OK | |
-| 2.2  | Ensure CloudTrail log file validation is enabled | OK | |
-| 2.3  | Ensure the S3 bucket used to store CloudTrail logs is not publicly accessible | OK | |
-| 2.4  | Ensure CloudTrail trails are integrated with CloudWatch Logs | OK | |
-| 2.5  | Ensure AWS Config is enabled in all regions | OK | |
-| 2.6  | Ensure S3 bucket access logging is enabled on the CloudTrail S3 bucket | OK | |
-| 2.7  | Ensure CloudTrail logs are encrypted at rest using KMS CMKs | OK | |
-| 2.8  | Ensure rotation for customer created CMKs is enabled | OK | |
-| 2.9  | Ensure VPC flow logging is enabled in all VPCs | OK | |
-| 3.1  | Ensure a log metric filter and alarm exist for unauthorized API calls | OK | |
-| 3.2  | Ensure a log metric filter and alarm exist for Management Console sign-in without MFA | OK | |
-| 3.3  | Ensure a log metric filter and alarm exist for usage of "root" account | OK | |
-| 3.4  | Ensure a log metric filter and alarm exist for IAM policy changes | OK | |
-| 3.5  | Ensure a log metric filter and alarm exist for CloudTrail configuration changes | OK | |
-| 3.6  | Ensure a log metric filter and alarm exist for AWS Management Console authentication failures | OK | |
-| 3.7  | Ensure a log metric filter and alarm exist for disabling or scheduled deletion of customer created CMKs | OK | |
-| 3.8  | Ensure a log metric filter and alarm exist for S3 bucket policy changes | OK | |
-| 3.9  | Ensure a log metric filter and alarm exist for AWS Config configuration changes | OK | |
-| 3.10 | Ensure a log metric filter and alarm exist for security group changes | OK | |
-| 3.11 | Ensure a log metric filter and alarm exist for changes to Network Access Control Lists (NACL) | OK | |
-| 3.12 | Ensure a log metric filter and alarm exist for changes to network gateways | OK | |
-| 3.13 | Ensure a log metric filter and alarm exist for route table changes | OK | |
-| 3.14 | Ensure a log metric filter and alarm exist for VPC changes | OK | |
-| 4.1  | Ensure no security groups allow ingress from 0.0.0.0/0 to port 22 | N/A | |
-| 4.2  | Ensure no security groups allow ingress from 0.0.0.0/0 to port 3389 | N/A | |
-| 4.3  | Ensure the default security group of every VPC restricts all traffic | OK | |
-| 4.4  | Ensure routing tables for VPC peering are "least access" | N/A | |
+| 1.1 | Maintain current contact details | N/A | |
+| 1.2 | Ensure security contact information is registered | N/A | |
+| 1.3 | Ensure security questions are registered in the AWS account | N/A | |
+| 1.4 | Ensure no root account access key exists | N/A | |
+| 1.5 | Ensure MFA is enabled for the "root" account | N/A | |
+| 1.6 | Ensure hardware MFA is enabled for the "root" account | N/A | |
+| 1.7  | Eliminate use of the root user for administrative and daily taks | N/A | |
+| 1.8  | Ensure IAM password policy requires minimum length of 14 or greater | OK | |
+| 1.9 | Ensure IAM password policy prevents password reuse | OK | |
+| 1.10  | Ensure multi-factor authentication (MFA) is enabled for all IAM users that have a console password | N/A | |
+| 1.11  | Do not setup access keys during initial user setup for all IAM users that have a console password | N/A | |
+| 1.12  | Ensure credentials unused for 90 days or greater are disabled | N/A | |
+| 1.13  | Ensure there is only one active access key available for any single IAM user | N/A | |
+| 1.14  | Ensure access keys are rotated every 90 days or less | N/A | |
+| 1.15 | Ensure IAM Users Receive Permissions Only Through Groups | N/A | |
+| 1.16 | Ensure IAM policies that allow full "\*:\*" administrative privileges are not created | N/A | |
+| 1.17 | Ensure a support role has been created to manage incidents with AWS Support | OK | |
+| 1.18 | Ensure IAM instance roles are used for AWS resource access from instances | N/A | |
+| 1.19 | Ensure that all the expired SSL/TLS certificates stored in AWS IAM are removed | N/A | |
+| 1.20 | Ensure that S3 Buckets are configured with 'Block public access(bucket settings)' | PARTIAL | All S3 buckets created by this module block public access. |
+---| 1.21 | Ensure that IAM Access analyzer is enabled | N/A | |
+| 1.22 | Ensure IAM users are managed centrally via identity federation or AWS Organizations for multi-account environments | N/A | |
+| 2.1.1  | Ensure all S3 buckets employ encryption-at-rest | PARTIAL | All S3 buckets created by this module enable server-side encryption. |
+| 2.1.2  | Ensure S3 Bucket Policy allows HTTPS requests | PARTIAL | All S3 buckets created by this module block non-SSL requests. |
+| 2.2.1 | Ensure EBS volume encryption is enabled | N/A | |
+| 3.1 | Ensure CloudTrail is enabled in all regions | OK | |
+| 3.2 | Ensure CloudTrail log file validation is enabled | OK | |
+| 3.3 | Ensure the S3 bucket used to store CloudTrail logs is not publicly accessible | OK | |
+| 3.4 | Ensure CloudTrail trails are integrated with CloudWatch Logs | OK | |
+| 3.5 | Ensure AWS Config is enabled in all regions | OK | |
+| 3.6 | Ensure S3 bucket access logging is enabled on the CloudTrail S3 bucket | OK | |
+| 3.7 | Ensure CloudTrail logs are encrypted at rest using KMS CMKs | OK | |
+| 3.8 | Ensure rotation for customer created CMKs is enabled | PARTIAL | All CMKs created by this module enable automated key rotation |
+| 3.9 | Ensure VPC flow logging is enabled in all VPCs | PARTIAL | VPC flow logging is enabled for all default VPCs |
+---| 3.10 | Ensure that Object-level logging for write events is enables for S3 bucket | N/A | |
+---| 3.11 | Ensure that Object-level logging for read events is enables for S3 bucket | N/A | |
+| 4.1  | Ensure a log metric filter and alarm exist for unauthorized API calls | OK | |
+| 4.2  | Ensure a log metric filter and alarm exist for Management Console sign-in without MFA | OK | |
+| 4.3  | Ensure a log metric filter and alarm exist for usage of "root" account | OK | |
+| 4.4  | Ensure a log metric filter and alarm exist for IAM policy changes | OK | |
+| 4.5  | Ensure a log metric filter and alarm exist for CloudTrail configuration changes | OK | |
+| 4.6  | Ensure a log metric filter and alarm exist for AWS Management Console authentication failures | OK | |
+| 4.7  | Ensure a log metric filter and alarm exist for disabling or scheduled deletion of customer created CMKs | OK | |
+| 4.8  | Ensure a log metric filter and alarm exist for S3 bucket policy changes | OK | |
+| 4.9  | Ensure a log metric filter and alarm exist for AWS Config configuration changes | OK | |
+| 4.10 | Ensure a log metric filter and alarm exist for security group changes | OK | |
+| 4.11 | Ensure a log metric filter and alarm exist for changes to Network Access Control Lists (NACL) | OK | |
+| 4.12 | Ensure a log metric filter and alarm exist for changes to network gateways | OK | |
+| 4.13 | Ensure a log metric filter and alarm exist for route table changes | OK | |
+| 4.14 | Ensure a log metric filter and alarm exist for VPC changes | OK | |
+---| 4.15 | Ensure a log metric filter and alarm exist for AWS Organizations changes | N/A | |
+| 5.1 | Ensure no Network ACLs allow ingress from 0.0.0.0/0 to remote server administration ports | PARTIAL | All default Network ACLs are configured to have no ingress rules. |
+| 5.2 | Ensure no security groups allow ingress from 0.0.0.0/0 to remote server administration ports | PARTIAL | All default security groups are configured to have no ingress rules. |
+| 5.3  | Ensure the default security group of every VPC restricts all traffic | OK | |
+| 5.4  | Ensure routing tables for VPC peering are "least access" | N/A | |
 
 ## AWS Foundational Security Best Practices v1.0.0
 
@@ -126,5 +132,5 @@ Implementation status for each item is categorized as follows.
 | SSM.2 | All EC2 instances managed by Systems Manager should be compliant with patching requirements | N/A | |
 | SSM.3 | Instances managed by Systems Manager should have an association compliance status of COMPLIANT | N/A | |
 
-[CIS Amazon Web Services Foundations v1.2.0]: https://www.cisecurity.org/benchmark/amazon_web_services/
+[CIS Amazon Web Services Foundations v1.3.0]: https://www.cisecurity.org/benchmark/amazon_web_services/
 [AWS Foundational Security Best Practices v1.0.0]: https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-standards-fsbp.html
