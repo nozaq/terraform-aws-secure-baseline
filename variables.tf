@@ -351,3 +351,11 @@ variable "securityhub_enable_aws_foundational_standard" {
   description = "Boolean whether AWS Foundations standard is enabled."
   default     = true
 }
+
+# --------------------------------------------------------------------------------------------------
+# Variables for analyzer-baseline module.
+# --------------------------------------------------------------------------------------------------
+variable "analyzer_name" {
+  description = "The name for the IAM Access Analyzer resource to be created."
+  default     = "default-analyer"
+}

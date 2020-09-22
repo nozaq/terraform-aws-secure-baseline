@@ -118,6 +118,7 @@ This module is composed of several submodules and each of which can be used inde
 | alarm\_namespace | The namespace in which all alarms are set up. | `string` | `"CISBenchmark"` | no |
 | alarm\_sns\_topic\_name | The name of the SNS Topic which will be notified when any alarm is performed. | `string` | `"CISAlarm"` | no |
 | allow\_users\_to\_change\_password | Whether to allow users to change their own password. | `bool` | `true` | no |
+| analyzer\_name | The name for the IAM Access Analyzer resource to be created. | `string` | `"default-analyer"` | no |
 | audit\_log\_bucket\_custom\_policy\_json | Override policy for the audit log bucket. Allows addition of extra policies. | `string` | `"{}"` | no |
 | audit\_log\_bucket\_force\_destroy | A boolean that indicates all objects should be deleted from the audit log bucket so that the bucket can be destroyed without error. These objects are not recoverable. | `bool` | `false` | no |
 | audit\_log\_bucket\_name | The name of the S3 bucket to store various audit logs. | `any` | n/a | yes |
