@@ -69,7 +69,7 @@ Implementation status for each item is categorized as follows.
 | 4.12 | Ensure a log metric filter and alarm exist for changes to network gateways | OK | |
 | 4.13 | Ensure a log metric filter and alarm exist for route table changes | OK | |
 | 4.14 | Ensure a log metric filter and alarm exist for VPC changes | OK | |
----| 4.15 | Ensure a log metric filter and alarm exist for AWS Organizations changes | N/A | |
+| 4.15 | Ensure a log metric filter and alarm exist for AWS Organizations changes | N/A | |
 | 5.1 | Ensure no Network ACLs allow ingress from 0.0.0.0/0 to remote server administration ports | PARTIAL | All default Network ACLs are configured to have no ingress rules. |
 | 5.2 | Ensure no security groups allow ingress from 0.0.0.0/0 to remote server administration ports | PARTIAL | All default security groups are configured to have no ingress rules. |
 | 5.3  | Ensure the default security group of every VPC restricts all traffic | OK | |

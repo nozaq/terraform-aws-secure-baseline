@@ -475,3 +475,36 @@ resource "aws_cloudwatch_metric_alarm" "vpc_changes" {
 
   tags = var.tags
 }
+
+resource "aws_cloudwatch_log_metric_filter" "organizations_changes" {
+  count = var.enabled ? 1 : 0
+
+  name           = "OrganizationsChanges"
+  pattern        = "{ ($.eventSource = organizations.amazonaws.com) && (($.eventName = \"AcceptHandshake\") || ($.eventName = \"AttachPolicy\") || ($.eventName = \"CreateAccount\") || ($.eventName = \"CreateOrganizationalUnit\") || ($.eventName= \"CreatePolicy\") || ($.eventName = \"DeclineHandshake\") || ($.eventName = \"DeleteOrganization\") || ($.eventName = \"DeleteOrganizationalUnit\") || ($.eventName = \"DeletePolicy\") || ($.eventName = \"DetachPolicy\") || ($.eventName = \"DisablePolicyType\") || ($.eventName = \"EnablePolicyType\") || ($.eventName = \"InviteAccountToOrganization\") || ($.eventName = \"LeaveOrganization\") || ($.eventName = \"MoveAccount\") || ($.eventName = \"RemoveAccountFromOrganization\") || ($.eventName = \"UpdatePolicy\") || ($.eventName =\"UpdateOrganizationalUnit\")) }"
+  log_group_name = var.cloudtrail_log_group_name
+
+  metric_transformation {
+    name      = "OrganizationsChanges"
+    namespace = var.alarm_namespace
+    value     = "1"
+  }
+}
+
+resource "aws_cloudwatch_metric_alarm" "organizations_changes" {
+  count = var.enabled ? 1 : 0
+
+  alarm_name                = "OrganizationsChanges"
+  comparison_operator       = "GreaterThanOrEqualToThreshold"
+  evaluation_periods        = "1"
+  metric_name               = aws_cloudwatch_log_metric_filter.organizations_changes[0].id
+  namespace                 = var.alarm_namespace
+  period                    = "300"
+  statistic                 = "Sum"
+  threshold                 = "1"
+  alarm_description         = "Monitoring AWS Organizations changes can help you prevent any unwanted, accidental or intentional modifications that may lead to unauthorized access or other security breaches."
+  alarm_actions             = [aws_sns_topic.alarms[0].arn]
+  treat_missing_data        = "notBreaching"
+  insufficient_data_actions = []
+
+  tags = var.tags
+}
