@@ -5,9 +5,9 @@
 [Terraform Module Registry](https://registry.terraform.io/modules/nozaq/secure-baseline/aws)
 
 A terraform module to set up your AWS account with the reasonably secure configuration baseline.
-Most configurations are based on [CIS Amazon Web Services Foundations] v1.2.0.
+Most configurations are based on [CIS Amazon Web Services Foundations v1.2.0] and [AWS Foundational Security Best Practices v1.0.0].
 
-See [Benchmark Compliance](./compliance.md) to check which items in CIS benchmark are covered.
+See [Benchmark Compliance](./compliance.md) to check which items in various benchmarks are covered.
 
 ## Features
 
@@ -208,6 +208,7 @@ This module is composed of several submodules and each of which can be used inde
 - Starting from v0.10, this module requires Terraform v0.12 or later. Please use v0.9 if you need to use Terraform v0.11 or ealier.
 
 
-[CIS Amazon Web Services Foundations]: https://www.cisecurity.org/benchmark/amazon_web_services/
+[CIS Amazon Web Services Foundations v1.2.0]: https://www.cisecurity.org/benchmark/amazon_web_services/
+[AWS Foundational Security Best Practices v1.0.0]: https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-standards-fsbp.html
 [Providers within Modules - Terraform Docs]: https://www.terraform.io/docs/modules/usage.html#providers-within-modules
 [Modules in Package Sub-directories - Terraform]: https://www.terraform.io/docs/modules/sources.html#modules-in-package-sub-directories
