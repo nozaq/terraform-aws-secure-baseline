@@ -53,8 +53,8 @@ Implementation status for each item is categorized as follows.
 | 3.7 | Ensure CloudTrail logs are encrypted at rest using KMS CMKs | OK | |
 | 3.8 | Ensure rotation for customer created CMKs is enabled | PARTIAL | All CMKs created by this module enable automated key rotation |
 | 3.9 | Ensure VPC flow logging is enabled in all VPCs | PARTIAL | VPC flow logging is enabled for all default VPCs |
----| 3.10 | Ensure that Object-level logging for write events is enables for S3 bucket | N/A | |
----| 3.11 | Ensure that Object-level logging for read events is enables for S3 bucket | N/A | |
+| 3.10 | Ensure that Object-level logging for write events is enables for S3 bucket | OK| |
+| 3.11 | Ensure that Object-level logging for read events is enables for S3 bucket | OK | |
 | 4.1  | Ensure a log metric filter and alarm exist for unauthorized API calls | OK | |
 | 4.2  | Ensure a log metric filter and alarm exist for Management Console sign-in without MFA | OK | |
 | 4.3  | Ensure a log metric filter and alarm exist for usage of "root" account | OK | |

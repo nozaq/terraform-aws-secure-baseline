@@ -34,6 +34,7 @@ Enable CloudTrail in all regions and deliver events to CloudWatch Logs. CloudTra
 | key\_deletion\_window\_in\_days | Duration in days after which the key is deleted after destruction of the resource, must be between 7 and 30 days. Defaults to 30 days. | `number` | `10` | no |
 | region | The AWS region in which CloudTrail is set up. | `any` | n/a | yes |
 | s3\_bucket\_name | The name of the S3 bucket which will store configuration snapshots. | `any` | n/a | yes |
+| s3\_buckets\_for\_object\_level\_logging | The S3 bucket ARNs on which to enable object-level logging. | `list` | <pre>[<br>  "arn:aws:s3:::"<br>]</pre> | no |
 | s3\_key\_prefix | The prefix for the specified S3 bucket. | `string` | `""` | no |
 | tags | Specifies object tags key and value. This applies to all resources created by this module. | `map` | <pre>{<br>  "Terraform": true<br>}</pre> | no |
 
