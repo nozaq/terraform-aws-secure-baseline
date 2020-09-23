@@ -75,6 +75,16 @@ data "aws_iam_policy_document" "audit_log" {
   }
 
   statement {
+    sid     = "AWSCloudTrailHeadForConfig"
+    actions = ["s3:ListBucket"]
+    principals {
+      type        = "Service"
+      identifiers = ["config.amazonaws.com"]
+    }
+    resources = [module.audit_log_bucket.this_bucket.arn]
+  }
+
+  statement {
     sid     = "AWSCloudTrailAclCheckForCloudTrail"
     actions = ["s3:GetBucketAcl"]
     principals {
@@ -128,8 +138,26 @@ data "aws_iam_policy_document" "audit_log" {
         type        = "AWS"
         identifiers = [for account in statement.value : "arn:aws:iam::${account.account_id}:root"]
       }
-      actions   = ["s3:GetBucketLocation", "s3:ListBucket"]
+      actions   = ["s3:GetBucketAcl", "s3:GetBucketLocation", "s3:ListBucket"]
       resources = [module.audit_log_bucket.this_bucket.arn]
+    }
+  }
+
+  dynamic "statement" {
+    for_each = local.is_master_account && length(var.member_accounts) > 0 ? [var.member_accounts] : []
+
+    content {
+      principals {
+        type        = "AWS"
+        identifiers = [for account in statement.value : "arn:aws:iam::${account.account_id}:root"]
+      }
+      actions   = ["s3:PutObject", "s3:PutObjectAcl"]
+      resources = [for account in statement.value : "${module.audit_log_bucket.this_bucket.arn}/config/AWSLogs/${account.account_id}/Config/*"]
+      condition {
+        test     = "StringEquals"
+        variable = "s3:x-amz-acl"
+        values   = ["bucket-owner-full-control"]
+      }
     }
   }
 }

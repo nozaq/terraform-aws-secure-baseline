@@ -43,7 +43,12 @@ resource "aws_iam_role" "recorder" {
 # See https://docs.aws.amazon.com/config/latest/developerguide/iamrole-permissions.html
 data "aws_iam_policy_document" "recorder_publish_policy" {
   statement {
-    actions   = ["s3:PutObject"]
+    actions   = ["s3:GetBucketAcl", "s3:ListBucket"]
+    resources = [local.audit_log_bucket_arn]
+  }
+
+  statement {
+    actions   = ["s3:PutObject", "s3:PutObjectAcl"]
     resources = ["${local.audit_log_bucket_arn}/config/AWSLogs/${var.aws_account_id}/*"]
 
     condition {
@@ -51,11 +56,6 @@ data "aws_iam_policy_document" "recorder_publish_policy" {
       variable = "s3:x-amz-acl"
       values   = ["bucket-owner-full-control"]
     }
-  }
-
-  statement {
-    actions   = ["s3:GetBucketAcl"]
-    resources = [local.audit_log_bucket_arn]
   }
 
   statement {
@@ -73,7 +73,7 @@ resource "aws_iam_role_policy" "recorder_publish_policy" {
 
 resource "aws_iam_role_policy_attachment" "recorder_read_policy" {
   role       = aws_iam_role.recorder.id
-  policy_arn = "arn:aws:iam::aws:policy/service-role/AWSConfigRole"
+  policy_arn = "arn:aws:iam::aws:policy/service-role/AWS_ConfigRole"
 }
 
 # --------------------------------------------------------------------------------------------------
