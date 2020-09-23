@@ -2,8 +2,8 @@
 
 This file exaplains which items in the following compliance standards this module covers.
 
-- [CIS Amazon web Services Foundations v1.3.0]
-- [AWS Foundational Security Best Practices v1.0.0]
+- [CIS Amazon web Services Foundations v1.3.0](#cis-amazon-web-services-foundations-v130)
+- [AWS Foundational Security Best Practices v1.0.0](#aws-foundational-security-best-practices-v100)
 
 ## Definition
 
@@ -17,8 +17,10 @@ Implementation status for each item is categorized as follows.
 
 ## CIS Amazon Web Services Foundations v1.3.0
 
+[Link](https://www.cisecurity.org/benchmark/amazon_web_services/)
+
 | No. | Item | Status | Notes |
-| ---:| ---- | ------ | ----- |
+| ---:| ---- |:------:| ----- |
 | 1.1 | Maintain current contact details | N/A | |
 | 1.2 | Ensure security contact information is registered | N/A | |
 | 1.3 | Ensure security questions are registered in the AWS account | N/A | |
@@ -77,8 +79,10 @@ Implementation status for each item is categorized as follows.
 
 ## AWS Foundational Security Best Practices v1.0.0
 
+[Link](https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-standards-fsbp.html)
+
 | No. | Item | Status | Notes |
-| ---:| ---- | ------ | ----- |
+| ---:| ---- |:------:| ----- |
 | ACM.1 | Imported ACM certificates should be renewed after a specified time period | N/A | |
 | AutoScaling.1 | Auto Scaling groups associated with a load balancer should use load balancer health checks | N/A | |
 | CloudTrail.1 | CloudTrail should be enabled and configured with at least one multi-Region trail | OK | |
@@ -131,6 +135,3 @@ Implementation status for each item is categorized as follows.
 | SSM.1 | EC2 instances should be managed by AWS Systems Manager | N/A | |
 | SSM.2 | All EC2 instances managed by Systems Manager should be compliant with patching requirements | N/A | |
 | SSM.3 | Instances managed by Systems Manager should have an association compliance status of COMPLIANT | N/A | |
-
-[CIS Amazon Web Services Foundations v1.3.0]: https://www.cisecurity.org/benchmark/amazon_web_services/
-[AWS Foundational Security Best Practices v1.0.0]: https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-standards-fsbp.html
