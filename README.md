@@ -14,7 +14,6 @@ See [Benchmark Compliance](./compliance.md) to check which items in various benc
 ### Identity and Access Management
 
 - Set up IAM Password Policy.
-- Create separated IAM roles for defining privileges and assigning them to entities such as IAM users and groups.
 - Create an IAM role for contacting AWS support for incident handling.
 - Enable AWS Config rules to audit root account status.
 - Enable IAM Access Analyzer in each region.
@@ -201,8 +200,6 @@ This module is composed of several submodules and each of which can be used inde
 | default\_security\_group | The ID of the default security group. |
 | default\_vpc | The default VPC. |
 | guardduty\_detector | The GuardDuty detector in each region. |
-| manager\_iam\_role | The IAM role used for the manager user. |
-| master\_iam\_role | The IAM role used for the master user. |
 | support\_iam\_role | The IAM role used for the support user. |
 | vpc\_flow\_logs\_group | The CloudWatch Logs log group which stores VPC Flow Logs in each region. |
 | vpc\_flow\_logs\_iam\_role | The IAM role used for delivering VPC Flow Logs to CloudWatch Logs. |
