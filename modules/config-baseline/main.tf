@@ -47,30 +47,3 @@ resource "aws_config_configuration_recorder_status" "recorder" {
   is_enabled = true
   depends_on = [aws_config_delivery_channel.bucket[0]]
 }
-
-# --------------------------------------------------------------------------------------------------
-# A config rule to monitor open known ports.
-# --------------------------------------------------------------------------------------------------
-
-resource "aws_config_config_rule" "restricted_ports" {
-  count = var.enabled ? 1 : 0
-
-  name = "RestrictedIncomingTraffic"
-
-  source {
-    owner             = "AWS"
-    source_identifier = "RESTRICTED_INCOMING_TRAFFIC"
-  }
-
-  input_parameters = <<JSON
-{
-  "blockedPort1": "22",
-  "blockedPort2": "3389"
-}
-JSON
-
-  tags = var.tags
-
-  depends_on = [aws_config_configuration_recorder.recorder[0]]
-}
-
