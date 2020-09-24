@@ -2,6 +2,20 @@
 ## [Unreleased]
 
 
+<a name="0.21.0"></a>
+## [0.21.0] - 2020-09-24
+### Feat
+- various updates to comply with CIS Benchmark v1.3.0 ([#131](https://github.com/nozaq/terraform-aws-secure-baseline/issues/131))
+- force using HTTPS to access the access log bucket ([#129](https://github.com/nozaq/terraform-aws-secure-baseline/issues/129))
+- force using HTTPS to access the audit log bucket ([#128](https://github.com/nozaq/terraform-aws-secure-baseline/issues/128))
+- add parameters to make role creations optional ([#127](https://github.com/nozaq/terraform-aws-secure-baseline/issues/127))
+- add tags to guardduty ([#121](https://github.com/nozaq/terraform-aws-secure-baseline/issues/121))
+- add tags to flow logs ([#120](https://github.com/nozaq/terraform-aws-secure-baseline/issues/120))
+
+### Fix
+- remove a redundant Config rule ([#132](https://github.com/nozaq/terraform-aws-secure-baseline/issues/132))
+
+
 <a name="0.20.0"></a>
 ## [0.20.0] - 2020-08-10
 ### Feat
@@ -224,7 +238,8 @@
 <a name="0.0.1"></a>
 ## 0.0.1 - 2018-02-12
 
-[Unreleased]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.20.0...HEAD
+[Unreleased]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.21.0...HEAD
+[0.21.0]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.20.0...0.21.0
 [0.20.0]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.19.0...0.20.0
 [0.19.0]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.18.1...0.19.0
 [0.18.1]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.18.0...0.18.1
