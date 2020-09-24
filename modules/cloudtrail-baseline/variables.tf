@@ -70,8 +70,8 @@ variable "is_organization_trail" {
   default     = false
 }
 
-variable "s3_buckets_for_object_level_logging" {
-  description = "The S3 bucket ARNs on which to enable object-level logging."
+variable "s3_object_level_logging_buckets" {
+  description = "The list of S3 bucket ARNs on which to enable object-level logging."
   default     = ["arn:aws:s3:::"] # All S3 buckets
 }
 

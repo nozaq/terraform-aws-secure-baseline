@@ -257,7 +257,7 @@ resource "aws_cloudtrail" "global" {
 
     data_resource {
       type   = "AWS::S3::Object"
-      values = ["arn:aws:s3:::"]
+      values = var.s3_object_level_logging_buckets
     }
   }
 

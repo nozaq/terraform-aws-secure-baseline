@@ -59,6 +59,7 @@ module "cloudtrail_baseline" {
   region                            = var.region
   s3_bucket_name                    = local.audit_log_bucket_id
   s3_key_prefix                     = var.cloudtrail_s3_key_prefix
+  s3_object_level_logging_buckets   = var.cloudtrail_s3_object_level_logging_buckets
   is_organization_trail             = local.is_master_account
   tags                              = var.tags
 }

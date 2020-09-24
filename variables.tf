@@ -302,6 +302,12 @@ variable "cloudtrail_s3_key_prefix" {
   default     = "cloudtrail"
 }
 
+variable "cloudtrail_s3_object_level_logging_buckets" {
+  description = "The list of S3 bucket ARNs on which to enable object-level logging."
+  default     = ["arn:aws:s3:::"] # All S3 buckets
+}
+
+
 # --------------------------------------------------------------------------------------------------
 # Variables for alarm-baseline module.
 # --------------------------------------------------------------------------------------------------
