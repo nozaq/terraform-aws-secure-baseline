@@ -48,7 +48,7 @@ data "aws_iam_policy_document" "recorder_publish_policy" {
   }
 
   statement {
-    actions   = ["s3:PutObject", "s3:PutObjectAcl"]
+    actions   = ["s3:PutObject"]
     resources = ["${local.audit_log_bucket_arn}/config/AWSLogs/${var.aws_account_id}/*"]
 
     condition {

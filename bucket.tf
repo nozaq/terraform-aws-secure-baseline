@@ -151,7 +151,7 @@ data "aws_iam_policy_document" "audit_log" {
         type        = "AWS"
         identifiers = [for account in statement.value : "arn:aws:iam::${account.account_id}:root"]
       }
-      actions   = ["s3:PutObject", "s3:PutObjectAcl"]
+      actions   = ["s3:PutObject"]
       resources = [for account in statement.value : "${module.audit_log_bucket.this_bucket.arn}/config/AWSLogs/${account.account_id}/Config/*"]
       condition {
         test     = "StringEquals"
