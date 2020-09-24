@@ -5,7 +5,7 @@
 [Terraform Module Registry](https://registry.terraform.io/modules/nozaq/secure-baseline/aws)
 
 A terraform module to set up your AWS account with the reasonably secure configuration baseline.
-Most configurations are based on [CIS Amazon Web Services Foundations v1.2.0] and [AWS Foundational Security Best Practices v1.0.0].
+Most configurations are based on [CIS Amazon Web Services Foundations v1.3.0] and [AWS Foundational Security Best Practices v1.0.0].
 
 See [Benchmark Compliance](./compliance.md) to check which items in various benchmarks are covered.
 
@@ -17,23 +17,26 @@ See [Benchmark Compliance](./compliance.md) to check which items in various benc
 - Create separated IAM roles for defining privileges and assigning them to entities such as IAM users and groups.
 - Create an IAM role for contacting AWS support for incident handling.
 - Enable AWS Config rules to audit root account status.
+- Enable IAM Access Analyzer in each region.
 
 ### Logging & Monitoring
 
 - Enable CloudTrail in all regions and deliver events to CloudWatch Logs.
+- Object-level logging for all S3 buckets is enabled by default.
 - CloudTrail logs are encrypted using AWS Key Management Service.
 - All logs are stored in the S3 bucket with access logging enabled.
 - Logs are automatically archived into Amazon Glacier after the given period(defaults to 90 days).
 - Set up CloudWatch alarms to notify you when critical changes happen in your AWS account.
-- Enable AWS Config in all regions to automatically take configuration snapshots.
+- Enable AWS Config in each regions to automatically take configuration snapshots.
 - Enable SecurityHub and subscribe available standards.
+- Enable GuardDuty in each regions.
 
-### Networking
+### Networking & Computing
 
 - Remove all rules associated with default route tables, default network ACLs and default security groups in the default VPC in all regions.
 - Enable AWS Config rules to audit unrestricted common ports in Security Group rules.
 - Enable VPC Flow Logs with the default VPC in all regions.
-- Enable GuardDuty in all regions.
+- Enable default EBS encryption for newly created volumes.
 
 ## Usage
 
@@ -95,6 +98,8 @@ This module is composed of several submodules and each of which can be used inde
 - [vpc-baseline](./modules/vpc-baseline)
 - [secure-bucket](./modules/secure-bucket)
 - [securityhub-baseline](./modules/securityhub-baseline)
+- [analyzer-baseline](./modules/analyzer-baseline)
+- [ebs-baseline](./modules/ebs-baseline)
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
@@ -210,7 +215,7 @@ This module is composed of several submodules and each of which can be used inde
 - Starting from v0.10, this module requires Terraform v0.12 or later. Please use v0.9 if you need to use Terraform v0.11 or ealier.
 
 
-[CIS Amazon Web Services Foundations v1.2.0]: https://www.cisecurity.org/benchmark/amazon_web_services/
+[CIS Amazon Web Services Foundations v1.3.0]: https://www.cisecurity.org/benchmark/amazon_web_services/
 [AWS Foundational Security Best Practices v1.0.0]: https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-standards-fsbp.html
 [Providers within Modules - Terraform Docs]: https://www.terraform.io/docs/modules/usage.html#providers-within-modules
 [Modules in Package Sub-directories - Terraform]: https://www.terraform.io/docs/modules/sources.html#modules-in-package-sub-directories
