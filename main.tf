@@ -14,10 +14,6 @@ module "iam_baseline" {
   source = "./modules/iam-baseline"
 
   aws_account_id                  = var.aws_account_id
-  master_iam_role_name            = var.master_iam_role_name
-  master_iam_role_policy_name     = var.master_iam_role_policy_name
-  manager_iam_role_name           = var.manager_iam_role_name
-  manager_iam_role_policy_name    = var.manager_iam_role_policy_name
   support_iam_role_name           = var.support_iam_role_name
   support_iam_role_policy_name    = var.support_iam_role_policy_name
   support_iam_role_principal_arns = var.support_iam_role_principal_arns
@@ -30,8 +26,6 @@ module "iam_baseline" {
   allow_users_to_change_password  = var.allow_users_to_change_password
   max_password_age                = var.max_password_age
   create_password_policy          = var.create_password_policy
-  create_master_role              = var.create_master_role
-  create_manager_role             = var.create_manager_role
   create_support_role             = var.create_support_role
 
   tags = var.tags

@@ -24,14 +24,8 @@
 |------|-------------|------|---------|:--------:|
 | allow\_users\_to\_change\_password | Whether to allow users to change their own password. | `bool` | `true` | no |
 | aws\_account\_id | The AWS Account ID number of the account. | `any` | n/a | yes |
-| create\_manager\_role | Define if the manager role should be created. | `bool` | `true` | no |
-| create\_master\_role | Define if the master role should be created. | `bool` | `true` | no |
 | create\_password\_policy | Define if the password policy should be created. | `bool` | `true` | no |
 | create\_support\_role | Define if the support role should be created. | `bool` | `true` | no |
-| manager\_iam\_role\_name | The name of the IAM Manager role. | `string` | `"IAM-Manager"` | no |
-| manager\_iam\_role\_policy\_name | The name of the IAM Manager role policy. | `string` | `"IAM-Manager-Policy"` | no |
-| master\_iam\_role\_name | The name of the IAM Master role. | `string` | `"IAM-Master"` | no |
-| master\_iam\_role\_policy\_name | The name of the IAM Master role policy. | `string` | `"IAM-Master-Policy"` | no |
 | max\_password\_age | The number of days that an user password is valid. | `number` | `90` | no |
 | minimum\_password\_length | Minimum length to require for user passwords. | `number` | `14` | no |
 | password\_reuse\_prevention | The number of previous passwords that users are prevented from reusing. | `number` | `24` | no |
@@ -48,8 +42,6 @@
 
 | Name | Description |
 |------|-------------|
-| manager\_iam\_role | The IAM role used for the manager user. |
-| master\_iam\_role | The IAM role used for the master user. |
 | support\_iam\_role | The IAM role used for the support user. |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
