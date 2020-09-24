@@ -45,7 +45,7 @@ Implementation status for each item is categorized as follows.
 | 1.22 | Ensure IAM users are managed centrally via identity federation or AWS Organizations for multi-account environments | N/A | |
 | 2.1.1  | Ensure all S3 buckets employ encryption-at-rest | PARTIAL | All S3 buckets created by this module enable server-side encryption. |
 | 2.1.2  | Ensure S3 Bucket Policy allows HTTPS requests | PARTIAL | All S3 buckets created by this module block non-SSL requests. |
-| 2.2.1 | Ensure EBS volume encryption is enabled | N/A | |
+| 2.2.1 | Ensure EBS volume encryption is enabled | OK | |
 | 3.1 | Ensure CloudTrail is enabled in all regions | OK | |
 | 3.2 | Ensure CloudTrail log file validation is enabled | OK | |
 | 3.3 | Ensure the S3 bucket used to store CloudTrail logs is not publicly accessible | OK | |
@@ -93,10 +93,10 @@ Implementation status for each item is categorized as follows.
 | DMS.1 | Database Migration Service replication instances should not be public | N/A | |
 | EC2.1 | Amazon EBS snapshots should not be public, determined by the ability to be restorable by anyone | N/A | |
 | EC2.2 | The VPC default security group should not allow inbound and outbound traffic | N/A | |
-| EC2.3 | Attached EBS volumes should be encrypted at-rest | N/A | |
+| EC2.3 | Attached EBS volumes should be encrypted at-rest | PARTIAL | This module enabled the encyrption for all newly created EBS by default. |
 | EC2.4 | Stopped EC2 instances should be removed after a specified time period | N/A | |
 | EC2.6 | VPC flow logging should be enabled in all VPCs | N/A | |
-| EC2.7 | EBS default encryption should be enabled | N/A | |
+| EC2.7 | EBS default encryption should be enabled | OK | |
 | EC2.8 | EC2 instances should use IMDSv2 | N/A | |
 | EFS.1 | Amazon EFS should be configured to encrypt file data at-rest using AWS KMS | N/A | |
 | ELBv2.1 | Application Load Balancer should be configured to redirect all HTTP requests to HTTPS | N/A | |
