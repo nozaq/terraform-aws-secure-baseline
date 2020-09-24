@@ -14,7 +14,6 @@ See [Benchmark Compliance](./compliance.md) to check which items in various benc
 ### Identity and Access Management
 
 - Set up IAM Password Policy.
-- Create separated IAM roles for defining privileges and assigning them to entities such as IAM users and groups.
 - Create an IAM role for contacting AWS support for incident handling.
 - Enable AWS Config rules to audit root account status.
 - Enable IAM Access Analyzer in each region.
