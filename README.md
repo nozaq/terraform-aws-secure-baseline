@@ -118,6 +118,7 @@ This module is composed of several submodules and each of which can be used inde
 | alarm\_namespace | The namespace in which all alarms are set up. | `string` | `"CISBenchmark"` | no |
 | alarm\_sns\_topic\_name | The name of the SNS Topic which will be notified when any alarm is performed. | `string` | `"CISAlarm"` | no |
 | allow\_users\_to\_change\_password | Whether to allow users to change their own password. | `bool` | `true` | no |
+| analyzer\_name | The name for the IAM Access Analyzer resource to be created. | `string` | `"default-analyer"` | no |
 | audit\_log\_bucket\_custom\_policy\_json | Override policy for the audit log bucket. Allows addition of extra policies. | `string` | `"{}"` | no |
 | audit\_log\_bucket\_force\_destroy | A boolean that indicates all objects should be deleted from the audit log bucket so that the bucket can be destroyed without error. These objects are not recoverable. | `bool` | `false` | no |
 | audit\_log\_bucket\_name | The name of the S3 bucket to store various audit logs. | `any` | n/a | yes |
@@ -130,6 +131,7 @@ This module is composed of several submodules and each of which can be used inde
 | cloudtrail\_key\_deletion\_window\_in\_days | Duration in days after which the key is deleted after destruction of the resource, must be between 7 and 30 days. Defaults to 30 days. | `number` | `10` | no |
 | cloudtrail\_name | The name of the trail. | `string` | `"cloudtrail-multi-region"` | no |
 | cloudtrail\_s3\_key\_prefix | The prefix used when CloudTrail delivers events to the S3 bucket. | `string` | `"cloudtrail"` | no |
+| cloudtrail\_s3\_object\_level\_logging\_buckets | The list of S3 bucket ARNs on which to enable object-level logging. | `list` | <pre>[<br>  "arn:aws:s3:::"<br>]</pre> | no |
 | cloudtrail\_sns\_topic\_enabled | Specifies whether the trail is delivered to a SNS topic. | `bool` | `true` | no |
 | cloudtrail\_sns\_topic\_name | The name of the SNS topic to link to the trail. | `string` | `"cloudtrail-multi-region-sns-topic"` | no |
 | cloudwatch\_logs\_retention\_in\_days | Number of days to retain logs for. CIS recommends 365 days.  Possible values are: 0, 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1827, and 3653. Set to 0 to keep logs indefinitely. | `number` | `365` | no |
