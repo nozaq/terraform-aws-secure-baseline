@@ -5,7 +5,7 @@ data "aws_iam_policy_document" "access_log_policy" {
     actions = ["s3:*"]
     effect  = "Deny"
     resources = [
-      "${aws_s3_bucket.access_log[0].arn}",
+      aws_s3_bucket.access_log[0].arn,
       "${aws_s3_bucket.access_log[0].arn}/*"
     ]
     condition {

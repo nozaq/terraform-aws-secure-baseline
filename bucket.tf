@@ -116,7 +116,7 @@ data "aws_iam_policy_document" "audit_log" {
     actions = ["s3:*"]
     effect  = "Deny"
     resources = [
-      "${module.audit_log_bucket.this_bucket.arn}",
+      module.audit_log_bucket.this_bucket.arn,
       "${module.audit_log_bucket.this_bucket.arn}/*"
     ]
     condition {
