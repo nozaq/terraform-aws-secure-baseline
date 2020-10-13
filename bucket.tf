@@ -64,8 +64,8 @@ data "aws_iam_policy_document" "audit_log" {
       identifiers = ["config.amazonaws.com"]
     }
     resources = concat(
-      ["${module.audit_log_bucket.this_bucket.arn}/config/AWSLogs/${var.aws_account_id}/Config/*"],
-      local.is_master_account ? [for account in var.member_accounts : "${module.audit_log_bucket.this_bucket.arn}/config/AWSLogs/${account.account_id}/Config/*"] : []
+      ["${module.audit_log_bucket.this_bucket.arn}/${var.config_s3_bucket_key_prefix != "" ? "${var.config_s3_bucket_key_prefix}/" : ""}AWSLogs/${var.aws_account_id}/Config/*"],
+      local.is_master_account ? [for account in var.member_accounts : "${module.audit_log_bucket.this_bucket.arn}/${var.config_s3_bucket_key_prefix != "" ? "${var.config_s3_bucket_key_prefix}/" : ""}AWSLogs/${account.account_id}/Config/*"] : []
     )
     condition {
       test     = "StringEquals"
@@ -102,8 +102,8 @@ data "aws_iam_policy_document" "audit_log" {
       identifiers = ["cloudtrail.amazonaws.com"]
     }
     resources = concat(
-      ["${module.audit_log_bucket.this_bucket.arn}/cloudtrail/AWSLogs/${var.aws_account_id}/*"],
-      local.is_master_account ? ["${module.audit_log_bucket.this_bucket.arn}/cloudtrail/AWSLogs/${data.aws_organizations_organization.org[0].id}/*"] : []
+      ["${module.audit_log_bucket.this_bucket.arn}/${var.cloudtrail_s3_key_prefix != "" ? "${var.cloudtrail_s3_key_prefix}/" : ""}AWSLogs/${var.aws_account_id}/*"],
+      local.is_master_account ? ["${module.audit_log_bucket.this_bucket.arn}/${var.cloudtrail_s3_key_prefix != "" ? "${var.cloudtrail_s3_key_prefix}/" : ""}AWSLogs/${data.aws_organizations_organization.org[0].id}/*"] : []
     )
     condition {
       test     = "StringEquals"
@@ -152,7 +152,7 @@ data "aws_iam_policy_document" "audit_log" {
         identifiers = [for account in statement.value : "arn:aws:iam::${account.account_id}:root"]
       }
       actions   = ["s3:PutObject"]
-      resources = [for account in statement.value : "${module.audit_log_bucket.this_bucket.arn}/config/AWSLogs/${account.account_id}/Config/*"]
+      resources = [for account in statement.value : "${module.audit_log_bucket.this_bucket.arn}/${var.config_s3_bucket_key_prefix != "" ? "${var.config_s3_bucket_key_prefix}/" : ""}AWSLogs/${account.account_id}/Config/*"]
       condition {
         test     = "StringEquals"
         variable = "s3:x-amz-acl"
