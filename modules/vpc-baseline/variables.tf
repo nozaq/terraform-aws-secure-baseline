@@ -3,6 +3,11 @@ variable "enabled" {
   default     = true
 }
 
+variable "enable_flow_logs" {
+  description = "The boolean flag whether to enable VPC Flow Logs in the default VPC"
+  default     = true
+}
+
 variable "vpc_log_group_name" {
   description = "The name of CloudWatch Logs group to which VPC Flow Logs are delivered."
 }
