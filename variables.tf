@@ -209,6 +209,11 @@ variable "vpc_log_retention_in_days" {
   default     = 365
 }
 
+variable "vpc_enable_flow_logs" {
+  description = "The boolean flag whether to enable VPC Flow Logs in default VPCs"
+  default     = true
+}
+
 # --------------------------------------------------------------------------------------------------
 # Variables for config-baseline module.
 # --------------------------------------------------------------------------------------------------
