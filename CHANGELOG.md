@@ -2,6 +2,17 @@
 ## [Unreleased]
 
 
+<a name="0.22.0"></a>
+## [0.22.0] - 2020-11-14
+### Feat
+- apply tags to default network resources ([#133](https://github.com/nozaq/terraform-aws-secure-baseline/issues/133))
+
+### Fix
+- logging policies when using custom prefixes ([#141](https://github.com/nozaq/terraform-aws-secure-baseline/issues/141))
+- deprecation warnings ([#140](https://github.com/nozaq/terraform-aws-secure-baseline/issues/140))
+- prevent AWS Config to fire alarms ([#139](https://github.com/nozaq/terraform-aws-secure-baseline/issues/139))
+
+
 <a name="0.21.0"></a>
 ## [0.21.0] - 2020-09-24
 ### Feat
@@ -238,7 +249,8 @@
 <a name="0.0.1"></a>
 ## 0.0.1 - 2018-02-12
 
-[Unreleased]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.21.0...HEAD
+[Unreleased]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.22.0...HEAD
+[0.22.0]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.21.0...0.22.0
 [0.21.0]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.20.0...0.21.0
 [0.20.0]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.19.0...0.20.0
 [0.19.0]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.18.1...0.19.0
