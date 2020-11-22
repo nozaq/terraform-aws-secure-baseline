@@ -25,9 +25,11 @@
 | enable\_flow\_logs | The boolean flag whether to enable VPC Flow Logs in the default VPC | `bool` | `true` | no |
 | enabled | The boolean flag whether this module is enabled or not. No resources are created when set to false. | `bool` | `true` | no |
 | tags | Specifies object tags key and value. This applies to all resources created by this module. | `map` | <pre>{<br>  "Terraform": true<br>}</pre> | no |
-| vpc\_flow\_logs\_iam\_role\_arn | The ARN of the IAM Role which will be used by VPC Flow Logs. | `any` | n/a | yes |
-| vpc\_log\_group\_name | The name of CloudWatch Logs group to which VPC Flow Logs are delivered. | `any` | n/a | yes |
-| vpc\_log\_retention\_in\_days | Number of days to retain logs for. CIS recommends 365 days.  Possible values are: 0, 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1827, and 3653. Set to 0 to keep logs indefinitely. | `any` | n/a | yes |
+| vpc\_flow\_logs\_iam\_role\_arn | The ARN of the IAM Role which will be used by VPC Flow Logs if vpc\_log\_destination\_type is cloud-watch-logs. | `any` | n/a | yes |
+| vpc\_flow\_logs\_s3\_arn | ARN of the S3 bucket to which VPC Flow Logs are delivered if vpc\_log\_destination\_type is s3. | `string` | `""` | no |
+| vpc\_log\_destination\_type | The type of the logging destination. Valid values: cloud-watch-logs, s3 | `string` | `"cloud-watch-logs"` | no |
+| vpc\_log\_group\_name | The name of CloudWatch Logs group to which VPC Flow Logs are delivered if vpc\_log\_destination\_type is cloud-watch-logs. | `any` | n/a | yes |
+| vpc\_log\_retention\_in\_days | Number of days to retain logs if vpc\_log\_destination\_type is cloud-watch-logs. CIS recommends 365 days. Possible values are: 0, 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1827, and 3653. Set to 0 to keep logs indefinitely. | `any` | n/a | yes |
 
 ## Outputs
 
