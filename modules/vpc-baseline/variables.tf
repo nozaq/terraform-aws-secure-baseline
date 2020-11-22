@@ -15,7 +15,7 @@ variable "vpc_log_destination_type" {
 
 variable "vpc_flow_logs_s3_arn" {
   description = "ARN of the S3 bucket to which VPC Flow Logs are delivered if vpc_log_destination_type is s3."
-  default     = "arn:aws:s3:::some-bucket-name"
+  default     = ""
 }
 
 variable "vpc_log_group_name" {
