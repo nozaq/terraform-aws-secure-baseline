@@ -140,7 +140,7 @@ output "support_iam_role" {
 
 output "vpc_flow_logs_iam_role" {
   description = "The IAM role used for delivering VPC Flow Logs to CloudWatch Logs."
-  value       = local.is_cw_logs ? aws_iam_role.vpc_flow_logs_publisher : null
+  value       = local.is_cw_logs ? aws_iam_role.flow_logs_publisher : null
 }
 
 output "vpc_flow_logs_group" {
