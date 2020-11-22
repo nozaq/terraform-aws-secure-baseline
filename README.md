@@ -91,14 +91,15 @@ This module is composed of several submodules and each of which can be used inde
 [Modules in Package Sub-directories - Terraform] describes how to source a submodule.
 
 - [alarm-baseline](./modules/alarm-baseline)
+- [analyzer-baseline](./modules/analyzer-baseline)
 - [cloudtrail-baseline](./modules/cloudtrail-baseline)
+- [config-baseline](./modules/config-baseline)
+- [ebs-baseline](./modules/ebs-baseline)
 - [guardduty-baseline](./modules/guardduty-baseline)
 - [iam-baseline](./modules/iam-baseline)
-- [vpc-baseline](./modules/vpc-baseline)
 - [secure-bucket](./modules/secure-bucket)
 - [securityhub-baseline](./modules/securityhub-baseline)
-- [analyzer-baseline](./modules/analyzer-baseline)
-- [ebs-baseline](./modules/ebs-baseline)
+- [vpc-baseline](./modules/vpc-baseline)
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
