@@ -2,6 +2,15 @@
 ## [Unreleased]
 
 
+<a name="0.23.0"></a>
+## [0.23.0] - 2020-11-23
+### Feat
+- use the audit log bucket for Flow Logs by default ([#152](https://github.com/nozaq/terraform-aws-secure-baseline/issues/152))
+- add option to publish VPC Flow Logs to either S3 or CW ([#151](https://github.com/nozaq/terraform-aws-secure-baseline/issues/151))
+- associate members to master in SecurityHub ([#147](https://github.com/nozaq/terraform-aws-secure-baseline/issues/147))
+- add a flag to enable/disable VPC Flow Logs ([#146](https://github.com/nozaq/terraform-aws-secure-baseline/issues/146))
+
+
 <a name="0.22.0"></a>
 ## [0.22.0] - 2020-11-14
 ### Feat
@@ -249,7 +258,8 @@
 <a name="0.0.1"></a>
 ## 0.0.1 - 2018-02-12
 
-[Unreleased]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.22.0...HEAD
+[Unreleased]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.23.0...HEAD
+[0.23.0]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.22.0...0.23.0
 [0.22.0]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.21.0...0.22.0
 [0.21.0]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.20.0...0.21.0
 [0.20.0]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.19.0...0.20.0
