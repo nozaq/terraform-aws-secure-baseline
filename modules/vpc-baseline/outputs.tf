@@ -20,5 +20,5 @@ output "default_route_table" {
 
 output "vpc_flow_logs_group" {
   description = "The CloudWatch Logs log group which stores VPC Flow Logs."
-  value       = var.enabled ? aws_cloudwatch_log_group.default_vpc_flow_logs[0] : null
+  value       = var.enabled && local.is_cw_logs ? aws_cloudwatch_log_group.default_vpc_flow_logs[0] : null
 }

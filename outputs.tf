@@ -140,13 +140,13 @@ output "support_iam_role" {
 
 output "vpc_flow_logs_iam_role" {
   description = "The IAM role used for delivering VPC Flow Logs to CloudWatch Logs."
-  value       = aws_iam_role.vpc_flow_logs_publisher
+  value       = local.is_cw_logs ? aws_iam_role.vpc_flow_logs_publisher : null
 }
 
 output "vpc_flow_logs_group" {
   description = "The CloudWatch Logs log group which stores VPC Flow Logs in each region."
 
-  value = {
+  value = local.is_cw_logs ? {
     "ap-northeast-1" = module.vpc_baseline_ap-northeast-1.vpc_flow_logs_group
     "ap-northeast-2" = module.vpc_baseline_ap-northeast-2.vpc_flow_logs_group
     "ap-south-1"     = module.vpc_baseline_ap-south-1.vpc_flow_logs_group
@@ -163,7 +163,7 @@ output "vpc_flow_logs_group" {
     "us-east-2"      = module.vpc_baseline_us-east-2.vpc_flow_logs_group
     "us-west-1"      = module.vpc_baseline_us-west-1.vpc_flow_logs_group
     "us-west-2"      = module.vpc_baseline_us-west-2.vpc_flow_logs_group
-  }
+  } : null
 }
 
 output "default_vpc" {
