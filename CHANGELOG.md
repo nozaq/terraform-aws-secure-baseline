@@ -2,6 +2,12 @@
 ## [Unreleased]
 
 
+<a name="0.23.1"></a>
+## [0.23.1] - 2020-12-13
+### Fix
+- invalid reference when flow logs is disabled ([#157](https://github.com/nozaq/terraform-aws-secure-baseline/issues/157))
+
+
 <a name="0.23.0"></a>
 ## [0.23.0] - 2020-11-23
 ### Feat
@@ -258,7 +264,8 @@
 <a name="0.0.1"></a>
 ## 0.0.1 - 2018-02-12
 
-[Unreleased]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.23.0...HEAD
+[Unreleased]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.23.1...HEAD
+[0.23.1]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.23.0...0.23.1
 [0.23.0]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.22.0...0.23.0
 [0.22.0]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.21.0...0.22.0
 [0.21.0]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.20.0...0.21.0
