@@ -35,7 +35,7 @@
 | require\_uppercase\_characters | Whether to require uppercase characters for user passwords. | `bool` | `true` | no |
 | support\_iam\_role\_name | The name of the the support role. | `string` | `"IAM-Support"` | no |
 | support\_iam\_role\_policy\_name | The name of the support role policy. | `string` | `"IAM-Support-Role"` | no |
-| support\_iam\_role\_principal\_arns | List of ARNs of the IAM principal elements by which the support role could be assumed. | `list` | n/a | yes |
+| support\_iam\_role\_principal\_arns | List of ARNs of the IAM principal elements by which the support role could be assumed. | `list(any)` | n/a | yes |
 | tags | Specifies object tags key and value. This applies to all resources created by this module. | `map` | <pre>{<br>  "Terraform": true<br>}</pre> | no |
 
 ## Outputs

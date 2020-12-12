@@ -142,7 +142,7 @@ variable "support_iam_role_policy_name" {
 }
 
 variable "support_iam_role_principal_arns" {
-  type        = list
+  type        = list(any)
   description = "List of ARNs of the IAM principal elements by which the support role could be assumed."
 }
 

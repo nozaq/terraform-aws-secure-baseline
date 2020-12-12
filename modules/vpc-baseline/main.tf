@@ -1,5 +1,5 @@
 locals {
-  is_cw_logs         = var.flow_logs_destination_type == "cloud-watch-logs"
+  is_cw_logs         = var.enable_flow_logs && var.flow_logs_destination_type == "cloud-watch-logs"
   s3_destination_arn = "${var.flow_logs_s3_arn}/${var.flow_logs_s3_key_prefix}"
 }
 
