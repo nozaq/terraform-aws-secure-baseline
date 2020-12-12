@@ -35,7 +35,7 @@ module "audit_log_bucket" {
   log_bucket_name                   = "${var.audit_log_bucket_name}-access-logs"
   lifecycle_glacier_transition_days = var.audit_log_lifecycle_glacier_transition_days
   force_destroy                     = var.audit_log_bucket_force_destroy
-  enabled                           = ! local.use_external_bucket
+  enabled                           = !local.use_external_bucket
 
   tags = var.tags
 }
@@ -209,7 +209,7 @@ data "aws_iam_policy_document" "audit_log_config" {
 # https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs-s3.html#flow-logs-s3-permissions
 # --------------------------------------------------------------------------------------------------
 data "aws_iam_policy_document" "audit_log_flow_logs" {
-  count = ! local.use_external_bucket && local.flow_logs_use_s3 ? 1 : 0
+  count = !local.use_external_bucket && local.flow_logs_use_s3 ? 1 : 0
 
   source_json = data.aws_iam_policy_document.audit_log_config[0].json
 

@@ -1,6 +1,6 @@
 locals {
-  is_cw_logs = var.vpc_flow_logs_destination_type == "cloud-watch-logs"
-  is_s3      = var.vpc_flow_logs_destination_type == "s3"
+  is_cw_logs = var.vpc_enable_flow_logs && (var.vpc_flow_logs_destination_type == "cloud-watch-logs")
+  is_s3      = var.vpc_enable_flow_logs && (var.vpc_flow_logs_destination_type == "s3")
   flow_logs_s3_arn = local.is_s3 ? (
     var.vpc_flow_logs_s3_arn != "" ? var.vpc_flow_logs_s3_arn : local.audit_log_bucket_arn
   ) : ""
