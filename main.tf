@@ -67,7 +67,7 @@ module "alarm_baseline" {
 
   enabled                   = local.is_cloudtrail_enabled
   alarm_namespace           = var.alarm_namespace
-  cloudtrail_log_group_name = local.is_cloudtrail_enabled ? module.cloudtrail_baseline.log_group.name : ""
+  cloudtrail_log_group_name = local.is_cloudtrail_enabled ? module.cloudtrail_baseline.log_group : ""
   sns_topic_name            = var.alarm_sns_topic_name
 
   tags = var.tags
