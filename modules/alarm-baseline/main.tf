@@ -11,7 +11,7 @@ resource "aws_sns_topic" "alarms" {
 }
 
 # --------------------------------------------------------------------------------------------------
-# CloudWatch metrics and alamrs defined in the CIS benchmark.
+# CloudWatch metrics and alarms defined in the CIS benchmark.
 # --------------------------------------------------------------------------------------------------
 
 resource "aws_cloudwatch_log_metric_filter" "unauthorized_api_calls" {
