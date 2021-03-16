@@ -269,6 +269,11 @@ variable "config_aggregator_name_prefix" {
   default     = "config-for-organization-role"
 }
 
+variable "config_global_resources_all_regions" {
+  description = "Record global resources in all regions. If false, only default region will record global resources."
+  default     = false
+}
+
 # --------------------------------------------------------------------------------------------------
 # Variables for cloudtrail-baseline module.
 # --------------------------------------------------------------------------------------------------
