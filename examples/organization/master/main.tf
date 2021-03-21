@@ -13,6 +13,7 @@ resource "aws_iam_user" "admin" {
 
 resource "aws_organizations_organization" "org" {
   aws_service_access_principals = [
+    "access-analyzer.amazonaws.com",
     "cloudtrail.amazonaws.com",
     "config.amazonaws.com",
   ]
