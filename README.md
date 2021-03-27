@@ -143,6 +143,7 @@ This module is composed of several submodules and each of which can be used inde
 | config\_aggregator\_name | The name of the organizational AWS Config Configuration Aggregator. | `string` | `"organization-aggregator"` | no |
 | config\_aggregator\_name\_prefix | The prefix of the name for the IAM role attached to the organizational AWS Config Configuration Aggregator. | `string` | `"config-for-organization-role"` | no |
 | config\_delivery\_frequency | The frequency which AWS Config sends a snapshot into the S3 bucket. | `string` | `"One_Hour"` | no |
+| config\_global\_resources\_all\_regions | Whether to record global resources in all regions. If false, only the default region (specified in var.region) will record global resources. | bool | `false` | no |
 | config\_iam\_role\_name | The name of the IAM Role which AWS Config will use. | `string` | `"Config-Recorder"` | no |
 | config\_iam\_role\_policy\_name | The name of the IAM Role Policy which AWS Config will use. | `string` | `"Config-Recorder-Policy"` | no |
 | config\_s3\_bucket\_key\_prefix | The prefix used when writing AWS Config snapshots into the S3 bucket. | `string` | `"config"` | no |
