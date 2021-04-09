@@ -189,6 +189,11 @@ variable "allow_users_to_change_password" {
 # --------------------------------------------------------------------------------------------------
 # Variables for vpc-baseline module.
 # --------------------------------------------------------------------------------------------------
+variable "vpc_enable" {
+  description = "Boolean whether the VPC baseline module should be enabled"
+  default     = true
+}
+
 variable "vpc_iam_role_name" {
   description = "The name of the IAM Role which VPC Flow Logs will use."
   default     = "VPC-Flow-Logs-Publisher"

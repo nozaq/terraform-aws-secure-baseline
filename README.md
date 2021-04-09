@@ -178,6 +178,7 @@ This module is composed of several submodules and each of which can be used inde
 | tags | Specifies object tags key and value. This applies to all resources created by this module. | `map` | `{}` | no |
 | target\_regions | A list of regions to set up with this module. | `list` | <pre>[<br>  "ap-northeast-1",<br>  "ap-northeast-2",<br>  "ap-south-1",<br>  "ap-southeast-1",<br>  "ap-southeast-2",<br>  "ca-central-1",<br>  "eu-central-1",<br>  "eu-north-1",<br>  "eu-west-1",<br>  "eu-west-2",<br>  "eu-west-3",<br>  "sa-east-1",<br>  "us-east-1",<br>  "us-east-2",<br>  "us-west-1",<br>  "us-west-2"<br>]</pre> | no |
 | use\_external\_audit\_log\_bucket | A boolean that indicates whether the specific audit log bucket already exists. Create a new S3 bucket if it is set to false. | `bool` | `false` | no |
+| vpc\_enable | The boolean flag whether to enable VPC module | `bool` | `true` | no |
 | vpc\_enable\_flow\_logs | The boolean flag whether to enable VPC Flow Logs in default VPCs | `bool` | `true` | no |
 | vpc\_flow\_logs\_destination\_type | The type of the logging destination. Valid values: cloud-watch-logs, s3 | `string` | `"cloud-watch-logs"` | no |
 | vpc\_flow\_logs\_log\_group\_name | The name of CloudWatch Logs group to which VPC Flow Logs are delivered. | `string` | `"default-vpc-flow-logs"` | no |
