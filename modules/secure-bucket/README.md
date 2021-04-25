@@ -8,12 +8,26 @@ Creates a S3 bucket with access logging enabled.
 | Name | Version |
 |------|---------|
 | terraform | >= 0.12 |
+| aws | >= 3.0.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| aws | n/a |
+| aws | >= 3.0.0 |
+
+## Modules
+
+No Modules.
+
+## Resources
+
+| Name |
+|------|
+| [aws_iam_policy_document](https://registry.terraform.io/providers/hashicorp/aws/3.0.0/docs/data-sources/iam_policy_document) |
+| [aws_s3_bucket](https://registry.terraform.io/providers/hashicorp/aws/3.0.0/docs/resources/s3_bucket) |
+| [aws_s3_bucket_policy](https://registry.terraform.io/providers/hashicorp/aws/3.0.0/docs/resources/s3_bucket_policy) |
+| [aws_s3_bucket_public_access_block](https://registry.terraform.io/providers/hashicorp/aws/3.0.0/docs/resources/s3_bucket_public_access_block) |
 
 ## Inputs
 
@@ -32,5 +46,4 @@ Creates a S3 bucket with access logging enabled.
 |------|-------------|
 | log\_bucket | The S3 bucket used for storing access logs of this bucket. |
 | this\_bucket | This S3 bucket. |
-
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

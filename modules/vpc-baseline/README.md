@@ -11,12 +11,28 @@
 | Name | Version |
 |------|---------|
 | terraform | >= 0.12 |
+| aws | >= 3.0.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| aws | n/a |
+| aws | >= 3.0.0 |
+
+## Modules
+
+No Modules.
+
+## Resources
+
+| Name |
+|------|
+| [aws_cloudwatch_log_group](https://registry.terraform.io/providers/hashicorp/aws/3.0.0/docs/resources/cloudwatch_log_group) |
+| [aws_default_network_acl](https://registry.terraform.io/providers/hashicorp/aws/3.0.0/docs/resources/default_network_acl) |
+| [aws_default_route_table](https://registry.terraform.io/providers/hashicorp/aws/3.0.0/docs/resources/default_route_table) |
+| [aws_default_security_group](https://registry.terraform.io/providers/hashicorp/aws/3.0.0/docs/resources/default_security_group) |
+| [aws_default_vpc](https://registry.terraform.io/providers/hashicorp/aws/3.0.0/docs/resources/default_vpc) |
+| [aws_flow_log](https://registry.terraform.io/providers/hashicorp/aws/3.0.0/docs/resources/flow_log) |
 
 ## Inputs
 
@@ -41,5 +57,4 @@
 | default\_security\_group | The default security group. |
 | default\_vpc | The default VPC. |
 | vpc\_flow\_logs\_group | The CloudWatch Logs log group which stores VPC Flow Logs. |
-
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

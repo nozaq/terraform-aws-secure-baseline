@@ -8,12 +8,26 @@ Enable AWS Config in all regions to automatically take configuration snapshots.
 | Name | Version |
 |------|---------|
 | terraform | >= 0.12 |
+| aws | >= 3.0.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| aws | n/a |
+| aws | >= 3.0.0 |
+
+## Modules
+
+No Modules.
+
+## Resources
+
+| Name |
+|------|
+| [aws_config_configuration_recorder](https://registry.terraform.io/providers/hashicorp/aws/3.0.0/docs/resources/config_configuration_recorder) |
+| [aws_config_configuration_recorder_status](https://registry.terraform.io/providers/hashicorp/aws/3.0.0/docs/resources/config_configuration_recorder_status) |
+| [aws_config_delivery_channel](https://registry.terraform.io/providers/hashicorp/aws/3.0.0/docs/resources/config_delivery_channel) |
+| [aws_sns_topic](https://registry.terraform.io/providers/hashicorp/aws/3.0.0/docs/resources/sns_topic) |
 
 ## Inputs
 
@@ -36,5 +50,4 @@ Enable AWS Config in all regions to automatically take configuration snapshots.
 |------|-------------|
 | config\_sns\_topic | The SNS topic that AWS Config delivers notifications to. |
 | configuration\_recorder | The configuration recorder. |
-
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

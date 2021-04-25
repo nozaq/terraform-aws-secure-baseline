@@ -115,6 +115,125 @@ This module is composed of several submodules and each of which can be used inde
 |------|---------|
 | aws | >= 3.0.0 |
 
+## Modules
+
+| Name | Source | Version |
+|------|--------|---------|
+| alarm_baseline | ./modules/alarm-baseline |  |
+| analyzer_baseline_ap-northeast-1 | ./modules/analyzer-baseline |  |
+| analyzer_baseline_ap-northeast-2 | ./modules/analyzer-baseline |  |
+| analyzer_baseline_ap-south-1 | ./modules/analyzer-baseline |  |
+| analyzer_baseline_ap-southeast-1 | ./modules/analyzer-baseline |  |
+| analyzer_baseline_ap-southeast-2 | ./modules/analyzer-baseline |  |
+| analyzer_baseline_ca-central-1 | ./modules/analyzer-baseline |  |
+| analyzer_baseline_eu-central-1 | ./modules/analyzer-baseline |  |
+| analyzer_baseline_eu-north-1 | ./modules/analyzer-baseline |  |
+| analyzer_baseline_eu-west-1 | ./modules/analyzer-baseline |  |
+| analyzer_baseline_eu-west-2 | ./modules/analyzer-baseline |  |
+| analyzer_baseline_eu-west-3 | ./modules/analyzer-baseline |  |
+| analyzer_baseline_sa-east-1 | ./modules/analyzer-baseline |  |
+| analyzer_baseline_us-east-1 | ./modules/analyzer-baseline |  |
+| analyzer_baseline_us-east-2 | ./modules/analyzer-baseline |  |
+| analyzer_baseline_us-west-1 | ./modules/analyzer-baseline |  |
+| analyzer_baseline_us-west-2 | ./modules/analyzer-baseline |  |
+| audit_log_bucket | ./modules/secure-bucket |  |
+| cloudtrail_baseline | ./modules/cloudtrail-baseline |  |
+| config_baseline_ap-northeast-1 | ./modules/config-baseline |  |
+| config_baseline_ap-northeast-2 | ./modules/config-baseline |  |
+| config_baseline_ap-south-1 | ./modules/config-baseline |  |
+| config_baseline_ap-southeast-1 | ./modules/config-baseline |  |
+| config_baseline_ap-southeast-2 | ./modules/config-baseline |  |
+| config_baseline_ca-central-1 | ./modules/config-baseline |  |
+| config_baseline_eu-central-1 | ./modules/config-baseline |  |
+| config_baseline_eu-north-1 | ./modules/config-baseline |  |
+| config_baseline_eu-west-1 | ./modules/config-baseline |  |
+| config_baseline_eu-west-2 | ./modules/config-baseline |  |
+| config_baseline_eu-west-3 | ./modules/config-baseline |  |
+| config_baseline_sa-east-1 | ./modules/config-baseline |  |
+| config_baseline_us-east-1 | ./modules/config-baseline |  |
+| config_baseline_us-east-2 | ./modules/config-baseline |  |
+| config_baseline_us-west-1 | ./modules/config-baseline |  |
+| config_baseline_us-west-2 | ./modules/config-baseline |  |
+| ebs_baseline_ap-northeast-1 | ./modules/ebs-baseline |  |
+| ebs_baseline_ap-northeast-2 | ./modules/ebs-baseline |  |
+| ebs_baseline_ap-south-1 | ./modules/ebs-baseline |  |
+| ebs_baseline_ap-southeast-1 | ./modules/ebs-baseline |  |
+| ebs_baseline_ap-southeast-2 | ./modules/ebs-baseline |  |
+| ebs_baseline_ca-central-1 | ./modules/ebs-baseline |  |
+| ebs_baseline_eu-central-1 | ./modules/ebs-baseline |  |
+| ebs_baseline_eu-north-1 | ./modules/ebs-baseline |  |
+| ebs_baseline_eu-west-1 | ./modules/ebs-baseline |  |
+| ebs_baseline_eu-west-2 | ./modules/ebs-baseline |  |
+| ebs_baseline_eu-west-3 | ./modules/ebs-baseline |  |
+| ebs_baseline_sa-east-1 | ./modules/ebs-baseline |  |
+| ebs_baseline_us-east-1 | ./modules/ebs-baseline |  |
+| ebs_baseline_us-east-2 | ./modules/ebs-baseline |  |
+| ebs_baseline_us-west-1 | ./modules/ebs-baseline |  |
+| ebs_baseline_us-west-2 | ./modules/ebs-baseline |  |
+| guardduty_baseline_ap-northeast-1 | ./modules/guardduty-baseline |  |
+| guardduty_baseline_ap-northeast-2 | ./modules/guardduty-baseline |  |
+| guardduty_baseline_ap-south-1 | ./modules/guardduty-baseline |  |
+| guardduty_baseline_ap-southeast-1 | ./modules/guardduty-baseline |  |
+| guardduty_baseline_ap-southeast-2 | ./modules/guardduty-baseline |  |
+| guardduty_baseline_ca-central-1 | ./modules/guardduty-baseline |  |
+| guardduty_baseline_eu-central-1 | ./modules/guardduty-baseline |  |
+| guardduty_baseline_eu-north-1 | ./modules/guardduty-baseline |  |
+| guardduty_baseline_eu-west-1 | ./modules/guardduty-baseline |  |
+| guardduty_baseline_eu-west-2 | ./modules/guardduty-baseline |  |
+| guardduty_baseline_eu-west-3 | ./modules/guardduty-baseline |  |
+| guardduty_baseline_sa-east-1 | ./modules/guardduty-baseline |  |
+| guardduty_baseline_us-east-1 | ./modules/guardduty-baseline |  |
+| guardduty_baseline_us-east-2 | ./modules/guardduty-baseline |  |
+| guardduty_baseline_us-west-1 | ./modules/guardduty-baseline |  |
+| guardduty_baseline_us-west-2 | ./modules/guardduty-baseline |  |
+| iam_baseline | ./modules/iam-baseline |  |
+| securityhub_baseline_ap-northeast-1 | ./modules/securityhub-baseline |  |
+| securityhub_baseline_ap-northeast-2 | ./modules/securityhub-baseline |  |
+| securityhub_baseline_ap-south-1 | ./modules/securityhub-baseline |  |
+| securityhub_baseline_ap-southeast-1 | ./modules/securityhub-baseline |  |
+| securityhub_baseline_ap-southeast-2 | ./modules/securityhub-baseline |  |
+| securityhub_baseline_ca-central-1 | ./modules/securityhub-baseline |  |
+| securityhub_baseline_eu-central-1 | ./modules/securityhub-baseline |  |
+| securityhub_baseline_eu-north-1 | ./modules/securityhub-baseline |  |
+| securityhub_baseline_eu-west-1 | ./modules/securityhub-baseline |  |
+| securityhub_baseline_eu-west-2 | ./modules/securityhub-baseline |  |
+| securityhub_baseline_eu-west-3 | ./modules/securityhub-baseline |  |
+| securityhub_baseline_sa-east-1 | ./modules/securityhub-baseline |  |
+| securityhub_baseline_us-east-1 | ./modules/securityhub-baseline |  |
+| securityhub_baseline_us-east-2 | ./modules/securityhub-baseline |  |
+| securityhub_baseline_us-west-1 | ./modules/securityhub-baseline |  |
+| securityhub_baseline_us-west-2 | ./modules/securityhub-baseline |  |
+| vpc_baseline_ap-northeast-1 | ./modules/vpc-baseline |  |
+| vpc_baseline_ap-northeast-2 | ./modules/vpc-baseline |  |
+| vpc_baseline_ap-south-1 | ./modules/vpc-baseline |  |
+| vpc_baseline_ap-southeast-1 | ./modules/vpc-baseline |  |
+| vpc_baseline_ap-southeast-2 | ./modules/vpc-baseline |  |
+| vpc_baseline_ca-central-1 | ./modules/vpc-baseline |  |
+| vpc_baseline_eu-central-1 | ./modules/vpc-baseline |  |
+| vpc_baseline_eu-north-1 | ./modules/vpc-baseline |  |
+| vpc_baseline_eu-west-1 | ./modules/vpc-baseline |  |
+| vpc_baseline_eu-west-2 | ./modules/vpc-baseline |  |
+| vpc_baseline_eu-west-3 | ./modules/vpc-baseline |  |
+| vpc_baseline_sa-east-1 | ./modules/vpc-baseline |  |
+| vpc_baseline_us-east-1 | ./modules/vpc-baseline |  |
+| vpc_baseline_us-east-2 | ./modules/vpc-baseline |  |
+| vpc_baseline_us-west-1 | ./modules/vpc-baseline |  |
+| vpc_baseline_us-west-2 | ./modules/vpc-baseline |  |
+
+## Resources
+
+| Name |
+|------|
+| [aws_config_config_rule](https://registry.terraform.io/providers/hashicorp/aws/3.0.0/docs/resources/config_config_rule) |
+| [aws_config_configuration_aggregator](https://registry.terraform.io/providers/hashicorp/aws/3.0.0/docs/resources/config_configuration_aggregator) |
+| [aws_iam_policy_document](https://registry.terraform.io/providers/hashicorp/aws/3.0.0/docs/data-sources/iam_policy_document) |
+| [aws_iam_role](https://registry.terraform.io/providers/hashicorp/aws/3.0.0/docs/resources/iam_role) |
+| [aws_iam_role_policy](https://registry.terraform.io/providers/hashicorp/aws/3.0.0/docs/resources/iam_role_policy) |
+| [aws_iam_role_policy_attachment](https://registry.terraform.io/providers/hashicorp/aws/3.0.0/docs/resources/iam_role_policy_attachment) |
+| [aws_organizations_organization](https://registry.terraform.io/providers/hashicorp/aws/3.0.0/docs/data-sources/organizations_organization) |
+| [aws_s3_bucket](https://registry.terraform.io/providers/hashicorp/aws/3.0.0/docs/data-sources/s3_bucket) |
+| [aws_s3_bucket_policy](https://registry.terraform.io/providers/hashicorp/aws/3.0.0/docs/resources/s3_bucket_policy) |
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
@@ -143,7 +262,7 @@ This module is composed of several submodules and each of which can be used inde
 | config\_aggregator\_name | The name of the organizational AWS Config Configuration Aggregator. | `string` | `"organization-aggregator"` | no |
 | config\_aggregator\_name\_prefix | The prefix of the name for the IAM role attached to the organizational AWS Config Configuration Aggregator. | `string` | `"config-for-organization-role"` | no |
 | config\_delivery\_frequency | The frequency which AWS Config sends a snapshot into the S3 bucket. | `string` | `"One_Hour"` | no |
-| config\_global\_resources\_all\_regions | Whether to record global resources in all regions. If false, only the default region (specified in var.region) will record global resources. | bool | `false` | no |
+| config\_global\_resources\_all\_regions | Record global resources in all regions. If false, only default region will record global resources. | `bool` | `false` | no |
 | config\_iam\_role\_name | The name of the IAM Role which AWS Config will use. | `string` | `"Config-Recorder"` | no |
 | config\_iam\_role\_policy\_name | The name of the IAM Role Policy which AWS Config will use. | `string` | `"Config-Recorder-Policy"` | no |
 | config\_s3\_bucket\_key\_prefix | The prefix used when writing AWS Config snapshots into the S3 bucket. | `string` | `"config"` | no |
@@ -209,7 +328,6 @@ This module is composed of several submodules and each of which can be used inde
 | support\_iam\_role | The IAM role used for the support user. |
 | vpc\_flow\_logs\_group | The CloudWatch Logs log group which stores VPC Flow Logs in each region. |
 | vpc\_flow\_logs\_iam\_role | The IAM role used for delivering VPC Flow Logs to CloudWatch Logs. |
-
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 ## Compatibility
