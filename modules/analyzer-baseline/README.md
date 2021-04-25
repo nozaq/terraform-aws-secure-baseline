@@ -10,12 +10,23 @@
 | Name | Version |
 |------|---------|
 | terraform | >= 0.12 |
+| aws | >= 3.0.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| aws | n/a |
+| aws | >= 3.0.0 |
+
+## Modules
+
+No Modules.
+
+## Resources
+
+| Name |
+|------|
+| [aws_accessanalyzer_analyzer](https://registry.terraform.io/providers/hashicorp/aws/3.0.0/docs/resources/accessanalyzer_analyzer) |
 
 ## Inputs
 
@@ -29,5 +40,4 @@
 ## Outputs
 
 No output.
-
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

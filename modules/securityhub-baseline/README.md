@@ -13,12 +13,26 @@
 | Name | Version |
 |------|---------|
 | terraform | >= 0.12 |
+| aws | >= 3.0.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| aws | n/a |
+| aws | >= 3.0.0 |
+
+## Modules
+
+No Modules.
+
+## Resources
+
+| Name |
+|------|
+| [aws_region](https://registry.terraform.io/providers/hashicorp/aws/3.0.0/docs/data-sources/region) |
+| [aws_securityhub_account](https://registry.terraform.io/providers/hashicorp/aws/3.0.0/docs/resources/securityhub_account) |
+| [aws_securityhub_member](https://registry.terraform.io/providers/hashicorp/aws/3.0.0/docs/resources/securityhub_member) |
+| [aws_securityhub_standards_subscription](https://registry.terraform.io/providers/hashicorp/aws/3.0.0/docs/resources/securityhub_standards_subscription) |
 
 ## Inputs
 
@@ -33,5 +47,4 @@
 ## Outputs
 
 No output.
-
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

@@ -8,12 +8,25 @@ Enable GuardDuty in all regions.
 | Name | Version |
 |------|---------|
 | terraform | >= 0.12 |
+| aws | >= 3.0.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| aws | n/a |
+| aws | >= 3.0.0 |
+
+## Modules
+
+No Modules.
+
+## Resources
+
+| Name |
+|------|
+| [aws_guardduty_detector](https://registry.terraform.io/providers/hashicorp/aws/3.0.0/docs/resources/guardduty_detector) |
+| [aws_guardduty_invite_accepter](https://registry.terraform.io/providers/hashicorp/aws/3.0.0/docs/resources/guardduty_invite_accepter) |
+| [aws_guardduty_member](https://registry.terraform.io/providers/hashicorp/aws/3.0.0/docs/resources/guardduty_member) |
 
 ## Inputs
 
@@ -32,5 +45,4 @@ Enable GuardDuty in all regions.
 | Name | Description |
 |------|-------------|
 | guardduty\_detector | The GuardDuty detector. |
-
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

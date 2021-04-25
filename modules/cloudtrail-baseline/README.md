@@ -8,12 +8,30 @@ Enable CloudTrail in all regions and deliver events to CloudWatch Logs. CloudTra
 | Name | Version |
 |------|---------|
 | terraform | >= 0.12 |
+| aws | >= 3.0.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| aws | n/a |
+| aws | >= 3.0.0 |
+
+## Modules
+
+No Modules.
+
+## Resources
+
+| Name |
+|------|
+| [aws_cloudtrail](https://registry.terraform.io/providers/hashicorp/aws/3.0.0/docs/resources/cloudtrail) |
+| [aws_cloudwatch_log_group](https://registry.terraform.io/providers/hashicorp/aws/3.0.0/docs/resources/cloudwatch_log_group) |
+| [aws_iam_policy_document](https://registry.terraform.io/providers/hashicorp/aws/3.0.0/docs/data-sources/iam_policy_document) |
+| [aws_iam_role](https://registry.terraform.io/providers/hashicorp/aws/3.0.0/docs/resources/iam_role) |
+| [aws_iam_role_policy](https://registry.terraform.io/providers/hashicorp/aws/3.0.0/docs/resources/iam_role_policy) |
+| [aws_kms_key](https://registry.terraform.io/providers/hashicorp/aws/3.0.0/docs/resources/kms_key) |
+| [aws_sns_topic](https://registry.terraform.io/providers/hashicorp/aws/3.0.0/docs/resources/sns_topic) |
+| [aws_sns_topic_policy](https://registry.terraform.io/providers/hashicorp/aws/3.0.0/docs/resources/sns_topic_policy) |
 
 ## Inputs
 
@@ -47,5 +65,4 @@ Enable CloudTrail in all regions and deliver events to CloudWatch Logs. CloudTra
 | kms\_key | The  KMS key used for encrypting CloudTrail events. |
 | log\_delivery\_iam\_role | The IAM role used for delivering CloudTrail events to CloudWatch Logs. |
 | log\_group | The CloudWatch Logs log group which stores CloudTrail events. |
-
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
