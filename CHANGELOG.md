@@ -2,6 +2,20 @@
 ## [Unreleased]
 
 
+<a name="0.24.0"></a>
+## [0.24.0] - 2021-04-25
+### Feat
+- add flag to allow recording global resources in all regions ([#168](https://github.com/nozaq/terraform-aws-secure-baseline/issues/168))
+- enable access analyzer for org ([#167](https://github.com/nozaq/terraform-aws-secure-baseline/issues/167))
+- allow enabling/disabling individual alarms ([#164](https://github.com/nozaq/terraform-aws-secure-baseline/issues/164))
+
+### Fix
+- edge case when not logging to cloudwatch ([#161](https://github.com/nozaq/terraform-aws-secure-baseline/issues/161))
+
+### Refactor
+- define required providers for submodules ([#171](https://github.com/nozaq/terraform-aws-secure-baseline/issues/171))
+
+
 <a name="0.23.1"></a>
 ## [0.23.1] - 2020-12-13
 ### Fix
@@ -264,7 +278,8 @@
 <a name="0.0.1"></a>
 ## 0.0.1 - 2018-02-12
 
-[Unreleased]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.23.1...HEAD
+[Unreleased]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.24.0...HEAD
+[0.24.0]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.23.1...0.24.0
 [0.23.1]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.23.0...0.23.1
 [0.23.0]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.22.0...0.23.0
 [0.22.0]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.21.0...0.22.0
