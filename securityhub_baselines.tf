@@ -32,6 +32,20 @@ module "securityhub_baseline_ap-northeast-2" {
   member_accounts                  = local.securityhub_member_accounts
 }
 
+module "securityhub_baseline_ap-northeast-3" {
+  source = "./modules/securityhub-baseline"
+
+  providers = {
+    aws = aws.ap-northeast-3
+  }
+
+  enabled                          = contains(var.target_regions, "ap-northeast-3")
+  enable_cis_standard              = var.securityhub_enable_cis_standard
+  enable_pci_dss_standard          = var.securityhub_enable_pci_dss_standard
+  enable_aws_foundational_standard = var.securityhub_enable_aws_foundational_standard
+  member_accounts                  = local.securityhub_member_accounts
+}
+
 module "securityhub_baseline_ap-south-1" {
   source = "./modules/securityhub-baseline"
 

@@ -42,6 +42,23 @@ module "guardduty_baseline_ap-northeast-2" {
   tags = var.tags
 }
 
+module "guardduty_baseline_ap-northeast-3" {
+  source = "./modules/guardduty-baseline"
+
+  providers = {
+    aws = aws.ap-northeast-3
+  }
+
+  enabled                      = contains(var.target_regions, "ap-northeast-3")
+  disable_email_notification   = var.guardduty_disable_email_notification
+  finding_publishing_frequency = var.guardduty_finding_publishing_frequency
+  invitation_message           = var.guardduty_invitation_message
+  master_account_id            = local.guardduty_master_account_id
+  member_accounts              = local.guardduty_member_accounts
+
+  tags = var.tags
+}
+
 module "guardduty_baseline_ap-south-1" {
   source = "./modules/guardduty-baseline"
 

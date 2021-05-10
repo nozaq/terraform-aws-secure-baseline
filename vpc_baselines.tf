@@ -100,6 +100,26 @@ module "vpc_baseline_ap-northeast-2" {
   tags = var.tags
 }
 
+module "vpc_baseline_ap-northeast-3" {
+  source = "./modules/vpc-baseline"
+
+  providers = {
+    aws = aws.ap-northeast-3
+  }
+
+  enabled                     = contains(var.target_regions, "ap-northeast-3")
+  enable_flow_logs            = var.vpc_enable_flow_logs
+  flow_logs_destination_type  = var.vpc_flow_logs_destination_type
+  flow_logs_log_group_name    = var.vpc_flow_logs_log_group_name
+  flow_logs_iam_role_arn      = local.is_cw_logs ? aws_iam_role.flow_logs_publisher[0].arn : null
+  flow_logs_retention_in_days = var.vpc_flow_logs_retention_in_days
+  flow_logs_s3_arn            = local.flow_logs_s3_arn
+  flow_logs_s3_key_prefix     = var.vpc_flow_logs_s3_key_prefix
+
+
+  tags = var.tags
+}
+
 module "vpc_baseline_ap-south-1" {
   source = "./modules/vpc-baseline"
 
