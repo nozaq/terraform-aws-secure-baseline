@@ -20,6 +20,16 @@ module "ebs_baseline_ap-northeast-2" {
   enabled = contains(var.target_regions, "ap-northeast-2")
 }
 
+module "ebs_baseline_ap-northeast-3" {
+  source = "./modules/ebs-baseline"
+
+  providers = {
+    aws = aws.ap-northeast-3
+  }
+
+  enabled = contains(var.target_regions, "ap-northeast-3")
+}
+
 module "ebs_baseline_ap-south-1" {
   source = "./modules/ebs-baseline"
 
