@@ -87,6 +87,11 @@ variable "cloudtrail_log_group_name" {
   description = "The name of the CloudWatch Logs group to which CloudTrail events are delivered."
 }
 
+variable "kms_master_key_id" {
+  description = "ID of kms master key"
+  default     = "kms-master-key-id"
+}
+
 variable "sns_topic_name" {
   description = "The name of the SNS Topic which will be notified when any alarm is performed."
   default     = "CISAlarm"

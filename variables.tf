@@ -250,6 +250,11 @@ variable "config_iam_role_policy_name" {
   default     = "Config-Recorder-Policy"
 }
 
+variable "config_kms_master_key_id" {
+  description = "ID of kms master key"
+  default     = "kms-master-key-id"
+}
+
 variable "config_s3_bucket_key_prefix" {
   description = "The prefix used when writing AWS Config snapshots into the S3 bucket."
   default     = "config"
@@ -338,6 +343,11 @@ variable "cloudtrail_s3_object_level_logging_buckets" {
 # --------------------------------------------------------------------------------------------------
 # Variables for alarm-baseline module.
 # --------------------------------------------------------------------------------------------------
+
+variable "alarm_kms_master_key_id" {
+  description = "ID of kms master key"
+  default     = "kms-master-key-id"
+}
 
 variable "alarm_namespace" {
   description = "The namespace in which all alarms are set up."
