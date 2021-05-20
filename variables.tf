@@ -250,9 +250,9 @@ variable "config_iam_role_policy_name" {
   default     = "Config-Recorder-Policy"
 }
 
-variable "config_kms_master_key_id" {
-  description = "ID of kms master key"
-  default     = "kms-master-key-id"
+variable "config_sns_topic_kms_master_key_id" {
+  description = "To enable SNS Topic encryption enter value with the ID or an alias (eg. alias/aws/sns) of a custom master KMS key that is used for encryption"
+  default     = null
 }
 
 variable "config_s3_bucket_key_prefix" {
@@ -344,9 +344,9 @@ variable "cloudtrail_s3_object_level_logging_buckets" {
 # Variables for alarm-baseline module.
 # --------------------------------------------------------------------------------------------------
 
-variable "alarm_kms_master_key_id" {
-  description = "ID of kms master key"
-  default     = "kms-master-key-id"
+variable "alarm_sns_topic_kms_master_key_id" {
+  description = "To enable SNS Topic encryption enter value with the ID or an alias (eg. alias/aws/sns) of a custom master KMS key that is used for encryption"
+  default     = null
 }
 
 variable "alarm_namespace" {

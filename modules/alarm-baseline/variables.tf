@@ -87,9 +87,9 @@ variable "cloudtrail_log_group_name" {
   description = "The name of the CloudWatch Logs group to which CloudTrail events are delivered."
 }
 
-variable "kms_master_key_id" {
-  description = "ID of kms master key"
-  default     = "kms-master-key-id"
+variable "sns_topic_kms_master_key_id" {
+  description = "To enable SNS Topic encryption enter value with the ID or an alias (eg. alias/aws/sns) of a custom master KMS key that is used for encryption"
+  default     = null
 }
 
 variable "sns_topic_name" {

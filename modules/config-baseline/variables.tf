@@ -7,9 +7,9 @@ variable "iam_role_arn" {
   description = "The ARN of the IAM Role which AWS Config will use."
 }
 
-variable "kms_master_key_id" {
-  description = "ID of kms master key"
-  default     = "MISSING"
+variable "sns_topic_kms_master_key_id" {
+  description = "To enable SNS Topic encryption enter value with the ID or an alias (eg. alias/aws/sns) of a custom master KMS key that is used for encryption"
+  default     = null
 }
 
 variable "s3_bucket_name" {
