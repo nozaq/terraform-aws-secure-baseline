@@ -190,6 +190,11 @@ variable "allow_users_to_change_password" {
 # --------------------------------------------------------------------------------------------------
 # Variables for vpc-baseline module.
 # --------------------------------------------------------------------------------------------------
+variable "vpc_enable" {
+  description = "Boolean whether the VPC baseline module should be enabled"
+  default     = true
+}
+
 variable "vpc_iam_role_name" {
   description = "The name of the IAM Role which VPC Flow Logs will use."
   default     = "VPC-Flow-Logs-Publisher"
@@ -248,6 +253,11 @@ variable "config_iam_role_name" {
 variable "config_iam_role_policy_name" {
   description = "The name of the IAM Role Policy which AWS Config will use."
   default     = "Config-Recorder-Policy"
+}
+
+variable "config_sns_topic_kms_master_key_id" {
+  description = "To enable SNS Topic encryption enter value with the ID or an alias (eg. alias/aws/sns) of a custom master KMS key that is used for encryption"
+  default     = null
 }
 
 variable "config_s3_bucket_key_prefix" {
@@ -339,6 +349,11 @@ variable "cloudtrail_s3_object_level_logging_buckets" {
 # Variables for alarm-baseline module.
 # --------------------------------------------------------------------------------------------------
 
+variable "alarm_sns_topic_kms_master_key_id" {
+  description = "To enable SNS Topic encryption enter value with the ID or an alias (eg. alias/aws/sns) of a custom master KMS key that is used for encryption"
+  default     = null
+}
+
 variable "alarm_namespace" {
   description = "The namespace in which all alarms are set up."
   default     = "CISBenchmark"
@@ -352,6 +367,11 @@ variable "alarm_sns_topic_name" {
 # --------------------------------------------------------------------------------------------------
 # Variables for guardduty-baseline module.
 # --------------------------------------------------------------------------------------------------
+variable "guardduty_enabled" {
+  description = "Boolean whether the guardduty-baseline module is enabled or disabled"
+  default     = true
+}
+
 variable "guardduty_disable_email_notification" {
   description = "Boolean whether an email notification is sent to the accounts."
   default     = false
