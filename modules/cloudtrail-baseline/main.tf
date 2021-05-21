@@ -261,6 +261,10 @@ resource "aws_cloudtrail" "global" {
     }
   }
 
+  insight_selector {
+    insight_type = var.cloudtrail_insight_selector_type
+  }
+
   tags = var.tags
 
   depends_on = [var.cloudtrail_depends_on]

@@ -314,6 +314,11 @@ variable "cloudtrail_name" {
   default     = "cloudtrail-multi-region"
 }
 
+variable "cloudtrail_insight_selector_type" {
+  description = "The type of insight selector for identifying unusual operational activity"
+  default     = null
+}
+
 variable "cloudtrail_sns_topic_enabled" {
   description = "Specifies whether the trail is delivered to a SNS topic."
   default     = true
