@@ -65,10 +65,10 @@ module "cloudtrail_baseline" {
 module "alarm_baseline" {
   source = "./modules/alarm-baseline"
 
-  enabled                   = local.is_cloudtrail_enabled && var.cloudtrail_cloudwatch_logs_enabled
-  alarm_namespace           = var.alarm_namespace
-  cloudtrail_log_group_name = local.is_cloudtrail_enabled ? module.cloudtrail_baseline.log_group : ""
-  sns_topic_name            = var.alarm_sns_topic_name
+  enabled                     = local.is_cloudtrail_enabled && var.cloudtrail_cloudwatch_logs_enabled
+  alarm_namespace             = var.alarm_namespace
+  cloudtrail_log_group_name   = local.is_cloudtrail_enabled ? module.cloudtrail_baseline.log_group : ""
+  sns_topic_name              = var.alarm_sns_topic_name
   sns_topic_kms_master_key_id = var.alarm_sns_topic_kms_master_key_id
 
   tags = var.tags
