@@ -352,6 +352,11 @@ variable "alarm_sns_topic_name" {
 # --------------------------------------------------------------------------------------------------
 # Variables for guardduty-baseline module.
 # --------------------------------------------------------------------------------------------------
+variable "guardduty_enabled" {
+  description = "Boolean whether the guardduty-baseline module is enabled or disabled"
+  default     = true
+}
+
 variable "guardduty_disable_email_notification" {
   description = "Boolean whether an email notification is sent to the accounts."
   default     = false
