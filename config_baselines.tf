@@ -2,6 +2,7 @@ locals {
   config_topics = [
     module.config_baseline_ap-northeast-1.config_sns_topic,
     module.config_baseline_ap-northeast-2.config_sns_topic,
+    module.config_baseline_ap-northeast-3.config_sns_topic,
     module.config_baseline_ap-south-1.config_sns_topic,
     module.config_baseline_ap-southeast-1.config_sns_topic,
     module.config_baseline_ap-southeast-2.config_sns_topic,
@@ -112,6 +113,23 @@ module "config_baseline_ap-northeast-2" {
   delivery_frequency            = var.config_delivery_frequency
   sns_topic_name                = var.config_sns_topic_name
   include_global_resource_types = var.config_global_resources_all_regions ? true : var.region == "ap-northeast-2"
+  tags                          = var.tags
+}
+
+module "config_baseline_ap-northeast-3" {
+  source = "./modules/config-baseline"
+
+  providers = {
+    aws = aws.ap-northeast-3
+  }
+
+  enabled                       = contains(var.target_regions, "ap-northeast-3")
+  iam_role_arn                  = aws_iam_role.recorder.arn
+  s3_bucket_name                = local.audit_log_bucket_id
+  s3_key_prefix                 = var.config_s3_bucket_key_prefix
+  delivery_frequency            = var.config_delivery_frequency
+  sns_topic_name                = var.config_sns_topic_name
+  include_global_resource_types = var.config_global_resources_all_regions ? true : var.region == "ap-northeast-3"
   tags                          = var.tags
 }
 
@@ -371,6 +389,7 @@ resource "aws_config_config_rule" "iam_mfa" {
   depends_on = [
     module.config_baseline_ap-northeast-1,
     module.config_baseline_ap-northeast-2,
+    module.config_baseline_ap-northeast-3,
     module.config_baseline_ap-south-1,
     module.config_baseline_ap-southeast-1,
     module.config_baseline_ap-southeast-2,
@@ -404,6 +423,7 @@ resource "aws_config_config_rule" "unused_credentials" {
   depends_on = [
     module.config_baseline_ap-northeast-1,
     module.config_baseline_ap-northeast-2,
+    module.config_baseline_ap-northeast-3,
     module.config_baseline_ap-south-1,
     module.config_baseline_ap-southeast-1,
     module.config_baseline_ap-southeast-2,
@@ -441,6 +461,7 @@ resource "aws_config_config_rule" "user_no_policies" {
   depends_on = [
     module.config_baseline_ap-northeast-1,
     module.config_baseline_ap-northeast-2,
+    module.config_baseline_ap-northeast-3,
     module.config_baseline_ap-south-1,
     module.config_baseline_ap-southeast-1,
     module.config_baseline_ap-southeast-2,
@@ -478,6 +499,7 @@ resource "aws_config_config_rule" "no_policies_with_full_admin_access" {
   depends_on = [
     module.config_baseline_ap-northeast-1,
     module.config_baseline_ap-northeast-2,
+    module.config_baseline_ap-northeast-3,
     module.config_baseline_ap-south-1,
     module.config_baseline_ap-southeast-1,
     module.config_baseline_ap-southeast-2,

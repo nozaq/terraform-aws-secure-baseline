@@ -43,6 +43,19 @@ module "analyzer_baseline_ap-south-1" {
   tags            = var.tags
 }
 
+module "analyzer_baseline_ap-northeast-3" {
+  source = "./modules/analyzer-baseline"
+
+  providers = {
+    aws = aws.ap-northeast-3
+  }
+
+  enabled         = local.is_analyzer_enabled && contains(var.target_regions, "ap-northeast-3")
+  analyzer_name   = var.analyzer_name
+  is_organization = local.is_master_account
+  tags            = var.tags
+}
+
 module "analyzer_baseline_ap-southeast-1" {
   source = "./modules/analyzer-baseline"
 

@@ -60,6 +60,7 @@ output "config_configuration_recorder" {
   value = {
     "ap-northeast-1" = module.config_baseline_ap-northeast-1.configuration_recorder
     "ap-northeast-2" = module.config_baseline_ap-northeast-2.configuration_recorder
+    "ap-northeast-3" = module.config_baseline_ap-northeast-3.configuration_recorder
     "ap-south-1"     = module.config_baseline_ap-south-1.configuration_recorder
     "ap-southeast-1" = module.config_baseline_ap-southeast-1.configuration_recorder
     "ap-southeast-2" = module.config_baseline_ap-southeast-2.configuration_recorder
@@ -82,6 +83,7 @@ output "config_sns_topic" {
   value = {
     "ap-northeast-1" = module.config_baseline_ap-northeast-1.config_sns_topic
     "ap-northeast-2" = module.config_baseline_ap-northeast-2.config_sns_topic
+    "ap-northeast-3" = module.config_baseline_ap-northeast-3.config_sns_topic
     "ap-south-1"     = module.config_baseline_ap-south-1.config_sns_topic
     "ap-southeast-1" = module.config_baseline_ap-southeast-1.config_sns_topic
     "ap-southeast-2" = module.config_baseline_ap-southeast-2.config_sns_topic
@@ -109,6 +111,7 @@ output "guardduty_detector" {
   value = {
     "ap-northeast-1" = module.guardduty_baseline_ap-northeast-1.guardduty_detector
     "ap-northeast-2" = module.guardduty_baseline_ap-northeast-2.guardduty_detector
+    "ap-northeast-3" = module.guardduty_baseline_ap-northeast-3.guardduty_detector
     "ap-south-1"     = module.guardduty_baseline_ap-south-1.guardduty_detector
     "ap-southeast-1" = module.guardduty_baseline_ap-southeast-1.guardduty_detector
     "ap-southeast-2" = module.guardduty_baseline_ap-southeast-2.guardduty_detector
@@ -149,6 +152,7 @@ output "vpc_flow_logs_group" {
   value = local.is_cw_logs ? {
     "ap-northeast-1" = module.vpc_baseline_ap-northeast-1.vpc_flow_logs_group
     "ap-northeast-2" = module.vpc_baseline_ap-northeast-2.vpc_flow_logs_group
+    "ap-northeast-3" = module.vpc_baseline_ap-northeast-3.vpc_flow_logs_group
     "ap-south-1"     = module.vpc_baseline_ap-south-1.vpc_flow_logs_group
     "ap-southeast-1" = module.vpc_baseline_ap-southeast-1.vpc_flow_logs_group
     "ap-southeast-2" = module.vpc_baseline_ap-southeast-2.vpc_flow_logs_group
@@ -172,6 +176,7 @@ output "default_vpc" {
   value = {
     "ap-northeast-1" = module.vpc_baseline_ap-northeast-1.default_vpc
     "ap-northeast-2" = module.vpc_baseline_ap-northeast-2.default_vpc
+    "ap-northeast-3" = module.vpc_baseline_ap-northeast-3.default_vpc
     "ap-south-1"     = module.vpc_baseline_ap-south-1.default_vpc
     "ap-southeast-1" = module.vpc_baseline_ap-southeast-1.default_vpc
     "ap-southeast-2" = module.vpc_baseline_ap-southeast-2.default_vpc
@@ -195,6 +200,7 @@ output "default_security_group" {
   value = {
     "ap-northeast-1" = module.vpc_baseline_ap-northeast-1.default_security_group
     "ap-northeast-2" = module.vpc_baseline_ap-northeast-2.default_security_group
+    "ap-northeast-3" = module.vpc_baseline_ap-northeast-3.default_security_group
     "ap-south-1"     = module.vpc_baseline_ap-south-1.default_security_group
     "ap-southeast-1" = module.vpc_baseline_ap-southeast-1.default_security_group
     "ap-southeast-2" = module.vpc_baseline_ap-southeast-2.default_security_group
@@ -218,6 +224,7 @@ output "default_network_acl" {
   value = {
     "ap-northeast-1" = module.vpc_baseline_ap-northeast-1.default_network_acl
     "ap-northeast-2" = module.vpc_baseline_ap-northeast-2.default_network_acl
+    "ap-northeast-3" = module.vpc_baseline_ap-northeast-3.default_network_acl
     "ap-south-1"     = module.vpc_baseline_ap-south-1.default_network_acl
     "ap-southeast-1" = module.vpc_baseline_ap-southeast-1.default_network_acl
     "ap-southeast-2" = module.vpc_baseline_ap-southeast-2.default_network_acl
@@ -241,6 +248,7 @@ output "default_route_table" {
   value = {
     "ap-northeast-1" = module.vpc_baseline_ap-northeast-1.default_route_table
     "ap-northeast-2" = module.vpc_baseline_ap-northeast-2.default_route_table
+    "ap-northeast-3" = module.vpc_baseline_ap-northeast-3.default_route_table
     "ap-south-1"     = module.vpc_baseline_ap-south-1.default_route_table
     "ap-southeast-1" = module.vpc_baseline_ap-southeast-1.default_route_table
     "ap-southeast-2" = module.vpc_baseline_ap-southeast-2.default_route_table
