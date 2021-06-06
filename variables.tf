@@ -452,6 +452,29 @@ variable "guardduty_invitation_message" {
 }
 
 # --------------------------------------------------------------------------------------------------
+# Variables for s3-baseline module.
+# --------------------------------------------------------------------------------------------------
+variable "s3_block_public_acls" {
+  description = "Whether Amazon S3 should block public ACLs for buckets in this account. Defaults to true."
+  default     = true
+}
+
+variable "s3_block_public_policy" {
+  description = "Whether Amazon S3 should block public bucket policies for buckets in this account. Defaults to true."
+  default     = true
+}
+
+variable "s3_ignore_public_acls" {
+  description = "Whether Amazon S3 should ignore public ACLs for buckets in this account. Defaults to true."
+  default     = true
+}
+
+variable "s3_restrict_public_buckets" {
+  description = "Whether Amazon S3 should restrict public bucket policies for buckets in this account. Defaults to true."
+  default     = true
+}
+
+# --------------------------------------------------------------------------------------------------
 # Variables for securityhub-baseline module.
 # --------------------------------------------------------------------------------------------------
 variable "securityhub_enable_cis_standard" {

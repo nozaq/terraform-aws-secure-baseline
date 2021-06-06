@@ -87,3 +87,17 @@ module "alarm_baseline" {
 
   tags = var.tags
 }
+
+# --------------------------------------------------------------------------------------------------
+# S3 Baseline
+# --------------------------------------------------------------------------------------------------
+
+module "s3_baseline" {
+  source = "./modules/s3-baseline"
+
+  block_public_acls       = var.s3_block_public_acls
+  block_public_policy     = var.s3_block_public_policy
+  ignore_public_acls      = var.s3_ignore_public_acls
+  restrict_public_buckets = var.s3_restrict_public_buckets
+}
+
