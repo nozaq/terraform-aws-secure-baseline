@@ -262,7 +262,7 @@ resource "aws_cloudtrail" "global" {
   }
 
   insight_selector {
-    insight_type = var.cloudtrail_insight_selector_type
+    insight_type = "ApiCallRateInsight"
   }
 
   tags = var.tags
