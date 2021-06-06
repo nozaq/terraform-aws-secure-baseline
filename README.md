@@ -35,6 +35,7 @@ See [Benchmark Compliance](./compliance.md) to check which items in various benc
 ### Networking & Computing
 
 - Remove all rules associated with default route tables, default network ACLs and default security groups in the default VPC in all regions.
+- Disable automatic public IP assignments in default subnets.
 - Enable AWS Config rules to audit unrestricted common ports in Security Group rules.
 - Enable VPC Flow Logs with the default VPC in all regions.
 - Enable default EBS encryption for newly created volumes.

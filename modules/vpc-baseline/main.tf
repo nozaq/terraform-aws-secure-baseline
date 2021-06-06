@@ -3,6 +3,9 @@ locals {
   s3_destination_arn = "${var.flow_logs_s3_arn}/${var.flow_logs_s3_key_prefix}"
 }
 
+data "aws_availability_zones" "all" {
+}
+
 # --------------------------------------------------------------------------------------------------
 # Enable VPC Flow Logs for the default VPC.
 # --------------------------------------------------------------------------------------------------
@@ -38,6 +41,18 @@ resource "aws_default_vpc" "default" {
   tags = merge(
     var.tags,
     { Name = "Default VPC" }
+  )
+}
+
+resource "aws_default_subnet" "default" {
+  count = var.enabled ? length(data.aws_availability_zones.all.names) : 0
+
+  availability_zone       = data.aws_availability_zones.all.names[count.index]
+  map_public_ip_on_launch = false
+
+  tags = merge(
+    var.tags,
+    { Name = "Default Subnet" }
   )
 }
 
