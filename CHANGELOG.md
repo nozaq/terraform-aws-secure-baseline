@@ -2,6 +2,21 @@
 ## [Unreleased]
 
 
+<a name="0.26.0"></a>
+## [0.26.0] - 2021-06-06
+### Feat
+- disable automatic public ip assignments in default subnets ([#189](https://github.com/nozaq/terraform-aws-secure-baseline/issues/189))
+- enable S3 account-level public block ([#188](https://github.com/nozaq/terraform-aws-secure-baseline/issues/188))
+- add functionality to manually enable/disable guardduty-baseline module ([#183](https://github.com/nozaq/terraform-aws-secure-baseline/issues/183))
+- enable Insights event logging by default ([#185](https://github.com/nozaq/terraform-aws-secure-baseline/issues/185))
+- add cloudtrail insight selector type specification ([#180](https://github.com/nozaq/terraform-aws-secure-baseline/issues/180))
+- add vpc_enable variable ([#170](https://github.com/nozaq/terraform-aws-secure-baseline/issues/170))
+- add/enable ap-northeast-3 (Osaka) region ([#177](https://github.com/nozaq/terraform-aws-secure-baseline/issues/177))
+
+### Fix
+- allow alarm variables to be set at top level module ([#178](https://github.com/nozaq/terraform-aws-secure-baseline/issues/178))
+
+
 <a name="0.24.0"></a>
 ## [0.24.0] - 2021-04-25
 ### Feat
@@ -278,7 +293,8 @@
 <a name="0.0.1"></a>
 ## 0.0.1 - 2018-02-12
 
-[Unreleased]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.24.0...HEAD
+[Unreleased]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.26.0...HEAD
+[0.26.0]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.24.0...0.26.0
 [0.24.0]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.23.1...0.24.0
 [0.23.1]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.23.0...0.23.1
 [0.23.0]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.22.0...0.23.0
