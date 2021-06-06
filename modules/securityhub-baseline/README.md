@@ -12,39 +12,41 @@
 
 | Name | Version |
 |------|---------|
-| terraform | >= 0.12 |
-| aws | >= 3.0.0 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.12 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 3.0.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| aws | >= 3.0.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 3.0.0 |
 
 ## Modules
 
-No Modules.
+No modules.
 
 ## Resources
 
-| Name |
-|------|
-| [aws_region](https://registry.terraform.io/providers/hashicorp/aws/3.0.0/docs/data-sources/region) |
-| [aws_securityhub_account](https://registry.terraform.io/providers/hashicorp/aws/3.0.0/docs/resources/securityhub_account) |
-| [aws_securityhub_member](https://registry.terraform.io/providers/hashicorp/aws/3.0.0/docs/resources/securityhub_member) |
-| [aws_securityhub_standards_subscription](https://registry.terraform.io/providers/hashicorp/aws/3.0.0/docs/resources/securityhub_standards_subscription) |
+| Name | Type |
+|------|------|
+| [aws_securityhub_account.main](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/securityhub_account) | resource |
+| [aws_securityhub_member.members](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/securityhub_member) | resource |
+| [aws_securityhub_standards_subscription.aws_foundational](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/securityhub_standards_subscription) | resource |
+| [aws_securityhub_standards_subscription.cis](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/securityhub_standards_subscription) | resource |
+| [aws_securityhub_standards_subscription.pci_dss](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/securityhub_standards_subscription) | resource |
+| [aws_region.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/region) | data source |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| enable\_aws\_foundational\_standard | Boolean whether AWS Foundations standard is enabled. | `bool` | `true` | no |
-| enable\_cis\_standard | Boolean whether CIS standard is enabled. | `bool` | `true` | no |
-| enable\_pci\_dss\_standard | Boolean whether PCI DSS standard is enabled. | `bool` | `true` | no |
-| enabled | The boolean flag whether this module is enabled or not. No resources are created when set to false. | `bool` | `true` | no |
-| member\_accounts | A list of IDs and emails of AWS accounts which associated as member accounts. | <pre>list(object({<br>    account_id = string<br>    email      = string<br>  }))</pre> | `[]` | no |
+| <a name="input_enable_aws_foundational_standard"></a> [enable\_aws\_foundational\_standard](#input\_enable\_aws\_foundational\_standard) | Boolean whether AWS Foundations standard is enabled. | `bool` | `true` | no |
+| <a name="input_enable_cis_standard"></a> [enable\_cis\_standard](#input\_enable\_cis\_standard) | Boolean whether CIS standard is enabled. | `bool` | `true` | no |
+| <a name="input_enable_pci_dss_standard"></a> [enable\_pci\_dss\_standard](#input\_enable\_pci\_dss\_standard) | Boolean whether PCI DSS standard is enabled. | `bool` | `true` | no |
+| <a name="input_enabled"></a> [enabled](#input\_enabled) | The boolean flag whether this module is enabled or not. No resources are created when set to false. | `bool` | `true` | no |
+| <a name="input_member_accounts"></a> [member\_accounts](#input\_member\_accounts) | A list of IDs and emails of AWS accounts which associated as member accounts. | <pre>list(object({<br>    account_id = string<br>    email      = string<br>  }))</pre> | `[]` | no |
 
 ## Outputs
 
-No output.
+No outputs.
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

@@ -22,6 +22,7 @@ See [Benchmark Compliance](./compliance.md) to check which items in various benc
 
 - Enable CloudTrail in all regions and deliver events to CloudWatch Logs.
 - Object-level logging for all S3 buckets is enabled by default.
+- CloudTrail Insights event logging is enabled by default.
 - CloudTrail logs are encrypted using AWS Key Management Service.
 - All logs are stored in the S3 bucket with access logging enabled.
 - Logs are automatically archived into Amazon Glacier after the given period(defaults to 90 days).
@@ -106,229 +107,266 @@ This module is composed of several submodules and each of which can be used inde
 
 | Name | Version |
 |------|---------|
-| terraform | >= 0.12 |
-| aws | >= 3.0.0 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.12 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 3.39.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| aws | >= 3.0.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 3.39.0 |
 
 ## Modules
 
 | Name | Source | Version |
 |------|--------|---------|
-| alarm_baseline | ./modules/alarm-baseline |  |
-| analyzer_baseline_ap-northeast-1 | ./modules/analyzer-baseline |  |
-| analyzer_baseline_ap-northeast-2 | ./modules/analyzer-baseline |  |
-| analyzer_baseline_ap-south-1 | ./modules/analyzer-baseline |  |
-| analyzer_baseline_ap-southeast-1 | ./modules/analyzer-baseline |  |
-| analyzer_baseline_ap-southeast-2 | ./modules/analyzer-baseline |  |
-| analyzer_baseline_ca-central-1 | ./modules/analyzer-baseline |  |
-| analyzer_baseline_eu-central-1 | ./modules/analyzer-baseline |  |
-| analyzer_baseline_eu-north-1 | ./modules/analyzer-baseline |  |
-| analyzer_baseline_eu-west-1 | ./modules/analyzer-baseline |  |
-| analyzer_baseline_eu-west-2 | ./modules/analyzer-baseline |  |
-| analyzer_baseline_eu-west-3 | ./modules/analyzer-baseline |  |
-| analyzer_baseline_sa-east-1 | ./modules/analyzer-baseline |  |
-| analyzer_baseline_us-east-1 | ./modules/analyzer-baseline |  |
-| analyzer_baseline_us-east-2 | ./modules/analyzer-baseline |  |
-| analyzer_baseline_us-west-1 | ./modules/analyzer-baseline |  |
-| analyzer_baseline_us-west-2 | ./modules/analyzer-baseline |  |
-| audit_log_bucket | ./modules/secure-bucket |  |
-| cloudtrail_baseline | ./modules/cloudtrail-baseline |  |
-| config_baseline_ap-northeast-1 | ./modules/config-baseline |  |
-| config_baseline_ap-northeast-2 | ./modules/config-baseline |  |
-| config_baseline_ap-south-1 | ./modules/config-baseline |  |
-| config_baseline_ap-southeast-1 | ./modules/config-baseline |  |
-| config_baseline_ap-southeast-2 | ./modules/config-baseline |  |
-| config_baseline_ca-central-1 | ./modules/config-baseline |  |
-| config_baseline_eu-central-1 | ./modules/config-baseline |  |
-| config_baseline_eu-north-1 | ./modules/config-baseline |  |
-| config_baseline_eu-west-1 | ./modules/config-baseline |  |
-| config_baseline_eu-west-2 | ./modules/config-baseline |  |
-| config_baseline_eu-west-3 | ./modules/config-baseline |  |
-| config_baseline_sa-east-1 | ./modules/config-baseline |  |
-| config_baseline_us-east-1 | ./modules/config-baseline |  |
-| config_baseline_us-east-2 | ./modules/config-baseline |  |
-| config_baseline_us-west-1 | ./modules/config-baseline |  |
-| config_baseline_us-west-2 | ./modules/config-baseline |  |
-| ebs_baseline_ap-northeast-1 | ./modules/ebs-baseline |  |
-| ebs_baseline_ap-northeast-2 | ./modules/ebs-baseline |  |
-| ebs_baseline_ap-south-1 | ./modules/ebs-baseline |  |
-| ebs_baseline_ap-southeast-1 | ./modules/ebs-baseline |  |
-| ebs_baseline_ap-southeast-2 | ./modules/ebs-baseline |  |
-| ebs_baseline_ca-central-1 | ./modules/ebs-baseline |  |
-| ebs_baseline_eu-central-1 | ./modules/ebs-baseline |  |
-| ebs_baseline_eu-north-1 | ./modules/ebs-baseline |  |
-| ebs_baseline_eu-west-1 | ./modules/ebs-baseline |  |
-| ebs_baseline_eu-west-2 | ./modules/ebs-baseline |  |
-| ebs_baseline_eu-west-3 | ./modules/ebs-baseline |  |
-| ebs_baseline_sa-east-1 | ./modules/ebs-baseline |  |
-| ebs_baseline_us-east-1 | ./modules/ebs-baseline |  |
-| ebs_baseline_us-east-2 | ./modules/ebs-baseline |  |
-| ebs_baseline_us-west-1 | ./modules/ebs-baseline |  |
-| ebs_baseline_us-west-2 | ./modules/ebs-baseline |  |
-| guardduty_baseline_ap-northeast-1 | ./modules/guardduty-baseline |  |
-| guardduty_baseline_ap-northeast-2 | ./modules/guardduty-baseline |  |
-| guardduty_baseline_ap-south-1 | ./modules/guardduty-baseline |  |
-| guardduty_baseline_ap-southeast-1 | ./modules/guardduty-baseline |  |
-| guardduty_baseline_ap-southeast-2 | ./modules/guardduty-baseline |  |
-| guardduty_baseline_ca-central-1 | ./modules/guardduty-baseline |  |
-| guardduty_baseline_eu-central-1 | ./modules/guardduty-baseline |  |
-| guardduty_baseline_eu-north-1 | ./modules/guardduty-baseline |  |
-| guardduty_baseline_eu-west-1 | ./modules/guardduty-baseline |  |
-| guardduty_baseline_eu-west-2 | ./modules/guardduty-baseline |  |
-| guardduty_baseline_eu-west-3 | ./modules/guardduty-baseline |  |
-| guardduty_baseline_sa-east-1 | ./modules/guardduty-baseline |  |
-| guardduty_baseline_us-east-1 | ./modules/guardduty-baseline |  |
-| guardduty_baseline_us-east-2 | ./modules/guardduty-baseline |  |
-| guardduty_baseline_us-west-1 | ./modules/guardduty-baseline |  |
-| guardduty_baseline_us-west-2 | ./modules/guardduty-baseline |  |
-| iam_baseline | ./modules/iam-baseline |  |
-| securityhub_baseline_ap-northeast-1 | ./modules/securityhub-baseline |  |
-| securityhub_baseline_ap-northeast-2 | ./modules/securityhub-baseline |  |
-| securityhub_baseline_ap-south-1 | ./modules/securityhub-baseline |  |
-| securityhub_baseline_ap-southeast-1 | ./modules/securityhub-baseline |  |
-| securityhub_baseline_ap-southeast-2 | ./modules/securityhub-baseline |  |
-| securityhub_baseline_ca-central-1 | ./modules/securityhub-baseline |  |
-| securityhub_baseline_eu-central-1 | ./modules/securityhub-baseline |  |
-| securityhub_baseline_eu-north-1 | ./modules/securityhub-baseline |  |
-| securityhub_baseline_eu-west-1 | ./modules/securityhub-baseline |  |
-| securityhub_baseline_eu-west-2 | ./modules/securityhub-baseline |  |
-| securityhub_baseline_eu-west-3 | ./modules/securityhub-baseline |  |
-| securityhub_baseline_sa-east-1 | ./modules/securityhub-baseline |  |
-| securityhub_baseline_us-east-1 | ./modules/securityhub-baseline |  |
-| securityhub_baseline_us-east-2 | ./modules/securityhub-baseline |  |
-| securityhub_baseline_us-west-1 | ./modules/securityhub-baseline |  |
-| securityhub_baseline_us-west-2 | ./modules/securityhub-baseline |  |
-| vpc_baseline_ap-northeast-1 | ./modules/vpc-baseline |  |
-| vpc_baseline_ap-northeast-2 | ./modules/vpc-baseline |  |
-| vpc_baseline_ap-south-1 | ./modules/vpc-baseline |  |
-| vpc_baseline_ap-southeast-1 | ./modules/vpc-baseline |  |
-| vpc_baseline_ap-southeast-2 | ./modules/vpc-baseline |  |
-| vpc_baseline_ca-central-1 | ./modules/vpc-baseline |  |
-| vpc_baseline_eu-central-1 | ./modules/vpc-baseline |  |
-| vpc_baseline_eu-north-1 | ./modules/vpc-baseline |  |
-| vpc_baseline_eu-west-1 | ./modules/vpc-baseline |  |
-| vpc_baseline_eu-west-2 | ./modules/vpc-baseline |  |
-| vpc_baseline_eu-west-3 | ./modules/vpc-baseline |  |
-| vpc_baseline_sa-east-1 | ./modules/vpc-baseline |  |
-| vpc_baseline_us-east-1 | ./modules/vpc-baseline |  |
-| vpc_baseline_us-east-2 | ./modules/vpc-baseline |  |
-| vpc_baseline_us-west-1 | ./modules/vpc-baseline |  |
-| vpc_baseline_us-west-2 | ./modules/vpc-baseline |  |
+| <a name="module_alarm_baseline"></a> [alarm\_baseline](#module\_alarm\_baseline) | ./modules/alarm-baseline |  |
+| <a name="module_analyzer_baseline_ap-northeast-1"></a> [analyzer\_baseline\_ap-northeast-1](#module\_analyzer\_baseline\_ap-northeast-1) | ./modules/analyzer-baseline |  |
+| <a name="module_analyzer_baseline_ap-northeast-2"></a> [analyzer\_baseline\_ap-northeast-2](#module\_analyzer\_baseline\_ap-northeast-2) | ./modules/analyzer-baseline |  |
+| <a name="module_analyzer_baseline_ap-northeast-3"></a> [analyzer\_baseline\_ap-northeast-3](#module\_analyzer\_baseline\_ap-northeast-3) | ./modules/analyzer-baseline |  |
+| <a name="module_analyzer_baseline_ap-south-1"></a> [analyzer\_baseline\_ap-south-1](#module\_analyzer\_baseline\_ap-south-1) | ./modules/analyzer-baseline |  |
+| <a name="module_analyzer_baseline_ap-southeast-1"></a> [analyzer\_baseline\_ap-southeast-1](#module\_analyzer\_baseline\_ap-southeast-1) | ./modules/analyzer-baseline |  |
+| <a name="module_analyzer_baseline_ap-southeast-2"></a> [analyzer\_baseline\_ap-southeast-2](#module\_analyzer\_baseline\_ap-southeast-2) | ./modules/analyzer-baseline |  |
+| <a name="module_analyzer_baseline_ca-central-1"></a> [analyzer\_baseline\_ca-central-1](#module\_analyzer\_baseline\_ca-central-1) | ./modules/analyzer-baseline |  |
+| <a name="module_analyzer_baseline_eu-central-1"></a> [analyzer\_baseline\_eu-central-1](#module\_analyzer\_baseline\_eu-central-1) | ./modules/analyzer-baseline |  |
+| <a name="module_analyzer_baseline_eu-north-1"></a> [analyzer\_baseline\_eu-north-1](#module\_analyzer\_baseline\_eu-north-1) | ./modules/analyzer-baseline |  |
+| <a name="module_analyzer_baseline_eu-west-1"></a> [analyzer\_baseline\_eu-west-1](#module\_analyzer\_baseline\_eu-west-1) | ./modules/analyzer-baseline |  |
+| <a name="module_analyzer_baseline_eu-west-2"></a> [analyzer\_baseline\_eu-west-2](#module\_analyzer\_baseline\_eu-west-2) | ./modules/analyzer-baseline |  |
+| <a name="module_analyzer_baseline_eu-west-3"></a> [analyzer\_baseline\_eu-west-3](#module\_analyzer\_baseline\_eu-west-3) | ./modules/analyzer-baseline |  |
+| <a name="module_analyzer_baseline_sa-east-1"></a> [analyzer\_baseline\_sa-east-1](#module\_analyzer\_baseline\_sa-east-1) | ./modules/analyzer-baseline |  |
+| <a name="module_analyzer_baseline_us-east-1"></a> [analyzer\_baseline\_us-east-1](#module\_analyzer\_baseline\_us-east-1) | ./modules/analyzer-baseline |  |
+| <a name="module_analyzer_baseline_us-east-2"></a> [analyzer\_baseline\_us-east-2](#module\_analyzer\_baseline\_us-east-2) | ./modules/analyzer-baseline |  |
+| <a name="module_analyzer_baseline_us-west-1"></a> [analyzer\_baseline\_us-west-1](#module\_analyzer\_baseline\_us-west-1) | ./modules/analyzer-baseline |  |
+| <a name="module_analyzer_baseline_us-west-2"></a> [analyzer\_baseline\_us-west-2](#module\_analyzer\_baseline\_us-west-2) | ./modules/analyzer-baseline |  |
+| <a name="module_audit_log_bucket"></a> [audit\_log\_bucket](#module\_audit\_log\_bucket) | ./modules/secure-bucket |  |
+| <a name="module_cloudtrail_baseline"></a> [cloudtrail\_baseline](#module\_cloudtrail\_baseline) | ./modules/cloudtrail-baseline |  |
+| <a name="module_config_baseline_ap-northeast-1"></a> [config\_baseline\_ap-northeast-1](#module\_config\_baseline\_ap-northeast-1) | ./modules/config-baseline |  |
+| <a name="module_config_baseline_ap-northeast-2"></a> [config\_baseline\_ap-northeast-2](#module\_config\_baseline\_ap-northeast-2) | ./modules/config-baseline |  |
+| <a name="module_config_baseline_ap-northeast-3"></a> [config\_baseline\_ap-northeast-3](#module\_config\_baseline\_ap-northeast-3) | ./modules/config-baseline |  |
+| <a name="module_config_baseline_ap-south-1"></a> [config\_baseline\_ap-south-1](#module\_config\_baseline\_ap-south-1) | ./modules/config-baseline |  |
+| <a name="module_config_baseline_ap-southeast-1"></a> [config\_baseline\_ap-southeast-1](#module\_config\_baseline\_ap-southeast-1) | ./modules/config-baseline |  |
+| <a name="module_config_baseline_ap-southeast-2"></a> [config\_baseline\_ap-southeast-2](#module\_config\_baseline\_ap-southeast-2) | ./modules/config-baseline |  |
+| <a name="module_config_baseline_ca-central-1"></a> [config\_baseline\_ca-central-1](#module\_config\_baseline\_ca-central-1) | ./modules/config-baseline |  |
+| <a name="module_config_baseline_eu-central-1"></a> [config\_baseline\_eu-central-1](#module\_config\_baseline\_eu-central-1) | ./modules/config-baseline |  |
+| <a name="module_config_baseline_eu-north-1"></a> [config\_baseline\_eu-north-1](#module\_config\_baseline\_eu-north-1) | ./modules/config-baseline |  |
+| <a name="module_config_baseline_eu-west-1"></a> [config\_baseline\_eu-west-1](#module\_config\_baseline\_eu-west-1) | ./modules/config-baseline |  |
+| <a name="module_config_baseline_eu-west-2"></a> [config\_baseline\_eu-west-2](#module\_config\_baseline\_eu-west-2) | ./modules/config-baseline |  |
+| <a name="module_config_baseline_eu-west-3"></a> [config\_baseline\_eu-west-3](#module\_config\_baseline\_eu-west-3) | ./modules/config-baseline |  |
+| <a name="module_config_baseline_sa-east-1"></a> [config\_baseline\_sa-east-1](#module\_config\_baseline\_sa-east-1) | ./modules/config-baseline |  |
+| <a name="module_config_baseline_us-east-1"></a> [config\_baseline\_us-east-1](#module\_config\_baseline\_us-east-1) | ./modules/config-baseline |  |
+| <a name="module_config_baseline_us-east-2"></a> [config\_baseline\_us-east-2](#module\_config\_baseline\_us-east-2) | ./modules/config-baseline |  |
+| <a name="module_config_baseline_us-west-1"></a> [config\_baseline\_us-west-1](#module\_config\_baseline\_us-west-1) | ./modules/config-baseline |  |
+| <a name="module_config_baseline_us-west-2"></a> [config\_baseline\_us-west-2](#module\_config\_baseline\_us-west-2) | ./modules/config-baseline |  |
+| <a name="module_ebs_baseline_ap-northeast-1"></a> [ebs\_baseline\_ap-northeast-1](#module\_ebs\_baseline\_ap-northeast-1) | ./modules/ebs-baseline |  |
+| <a name="module_ebs_baseline_ap-northeast-2"></a> [ebs\_baseline\_ap-northeast-2](#module\_ebs\_baseline\_ap-northeast-2) | ./modules/ebs-baseline |  |
+| <a name="module_ebs_baseline_ap-northeast-3"></a> [ebs\_baseline\_ap-northeast-3](#module\_ebs\_baseline\_ap-northeast-3) | ./modules/ebs-baseline |  |
+| <a name="module_ebs_baseline_ap-south-1"></a> [ebs\_baseline\_ap-south-1](#module\_ebs\_baseline\_ap-south-1) | ./modules/ebs-baseline |  |
+| <a name="module_ebs_baseline_ap-southeast-1"></a> [ebs\_baseline\_ap-southeast-1](#module\_ebs\_baseline\_ap-southeast-1) | ./modules/ebs-baseline |  |
+| <a name="module_ebs_baseline_ap-southeast-2"></a> [ebs\_baseline\_ap-southeast-2](#module\_ebs\_baseline\_ap-southeast-2) | ./modules/ebs-baseline |  |
+| <a name="module_ebs_baseline_ca-central-1"></a> [ebs\_baseline\_ca-central-1](#module\_ebs\_baseline\_ca-central-1) | ./modules/ebs-baseline |  |
+| <a name="module_ebs_baseline_eu-central-1"></a> [ebs\_baseline\_eu-central-1](#module\_ebs\_baseline\_eu-central-1) | ./modules/ebs-baseline |  |
+| <a name="module_ebs_baseline_eu-north-1"></a> [ebs\_baseline\_eu-north-1](#module\_ebs\_baseline\_eu-north-1) | ./modules/ebs-baseline |  |
+| <a name="module_ebs_baseline_eu-west-1"></a> [ebs\_baseline\_eu-west-1](#module\_ebs\_baseline\_eu-west-1) | ./modules/ebs-baseline |  |
+| <a name="module_ebs_baseline_eu-west-2"></a> [ebs\_baseline\_eu-west-2](#module\_ebs\_baseline\_eu-west-2) | ./modules/ebs-baseline |  |
+| <a name="module_ebs_baseline_eu-west-3"></a> [ebs\_baseline\_eu-west-3](#module\_ebs\_baseline\_eu-west-3) | ./modules/ebs-baseline |  |
+| <a name="module_ebs_baseline_sa-east-1"></a> [ebs\_baseline\_sa-east-1](#module\_ebs\_baseline\_sa-east-1) | ./modules/ebs-baseline |  |
+| <a name="module_ebs_baseline_us-east-1"></a> [ebs\_baseline\_us-east-1](#module\_ebs\_baseline\_us-east-1) | ./modules/ebs-baseline |  |
+| <a name="module_ebs_baseline_us-east-2"></a> [ebs\_baseline\_us-east-2](#module\_ebs\_baseline\_us-east-2) | ./modules/ebs-baseline |  |
+| <a name="module_ebs_baseline_us-west-1"></a> [ebs\_baseline\_us-west-1](#module\_ebs\_baseline\_us-west-1) | ./modules/ebs-baseline |  |
+| <a name="module_ebs_baseline_us-west-2"></a> [ebs\_baseline\_us-west-2](#module\_ebs\_baseline\_us-west-2) | ./modules/ebs-baseline |  |
+| <a name="module_guardduty_baseline_ap-northeast-1"></a> [guardduty\_baseline\_ap-northeast-1](#module\_guardduty\_baseline\_ap-northeast-1) | ./modules/guardduty-baseline |  |
+| <a name="module_guardduty_baseline_ap-northeast-2"></a> [guardduty\_baseline\_ap-northeast-2](#module\_guardduty\_baseline\_ap-northeast-2) | ./modules/guardduty-baseline |  |
+| <a name="module_guardduty_baseline_ap-northeast-3"></a> [guardduty\_baseline\_ap-northeast-3](#module\_guardduty\_baseline\_ap-northeast-3) | ./modules/guardduty-baseline |  |
+| <a name="module_guardduty_baseline_ap-south-1"></a> [guardduty\_baseline\_ap-south-1](#module\_guardduty\_baseline\_ap-south-1) | ./modules/guardduty-baseline |  |
+| <a name="module_guardduty_baseline_ap-southeast-1"></a> [guardduty\_baseline\_ap-southeast-1](#module\_guardduty\_baseline\_ap-southeast-1) | ./modules/guardduty-baseline |  |
+| <a name="module_guardduty_baseline_ap-southeast-2"></a> [guardduty\_baseline\_ap-southeast-2](#module\_guardduty\_baseline\_ap-southeast-2) | ./modules/guardduty-baseline |  |
+| <a name="module_guardduty_baseline_ca-central-1"></a> [guardduty\_baseline\_ca-central-1](#module\_guardduty\_baseline\_ca-central-1) | ./modules/guardduty-baseline |  |
+| <a name="module_guardduty_baseline_eu-central-1"></a> [guardduty\_baseline\_eu-central-1](#module\_guardduty\_baseline\_eu-central-1) | ./modules/guardduty-baseline |  |
+| <a name="module_guardduty_baseline_eu-north-1"></a> [guardduty\_baseline\_eu-north-1](#module\_guardduty\_baseline\_eu-north-1) | ./modules/guardduty-baseline |  |
+| <a name="module_guardduty_baseline_eu-west-1"></a> [guardduty\_baseline\_eu-west-1](#module\_guardduty\_baseline\_eu-west-1) | ./modules/guardduty-baseline |  |
+| <a name="module_guardduty_baseline_eu-west-2"></a> [guardduty\_baseline\_eu-west-2](#module\_guardduty\_baseline\_eu-west-2) | ./modules/guardduty-baseline |  |
+| <a name="module_guardduty_baseline_eu-west-3"></a> [guardduty\_baseline\_eu-west-3](#module\_guardduty\_baseline\_eu-west-3) | ./modules/guardduty-baseline |  |
+| <a name="module_guardduty_baseline_sa-east-1"></a> [guardduty\_baseline\_sa-east-1](#module\_guardduty\_baseline\_sa-east-1) | ./modules/guardduty-baseline |  |
+| <a name="module_guardduty_baseline_us-east-1"></a> [guardduty\_baseline\_us-east-1](#module\_guardduty\_baseline\_us-east-1) | ./modules/guardduty-baseline |  |
+| <a name="module_guardduty_baseline_us-east-2"></a> [guardduty\_baseline\_us-east-2](#module\_guardduty\_baseline\_us-east-2) | ./modules/guardduty-baseline |  |
+| <a name="module_guardduty_baseline_us-west-1"></a> [guardduty\_baseline\_us-west-1](#module\_guardduty\_baseline\_us-west-1) | ./modules/guardduty-baseline |  |
+| <a name="module_guardduty_baseline_us-west-2"></a> [guardduty\_baseline\_us-west-2](#module\_guardduty\_baseline\_us-west-2) | ./modules/guardduty-baseline |  |
+| <a name="module_iam_baseline"></a> [iam\_baseline](#module\_iam\_baseline) | ./modules/iam-baseline |  |
+| <a name="module_securityhub_baseline_ap-northeast-1"></a> [securityhub\_baseline\_ap-northeast-1](#module\_securityhub\_baseline\_ap-northeast-1) | ./modules/securityhub-baseline |  |
+| <a name="module_securityhub_baseline_ap-northeast-2"></a> [securityhub\_baseline\_ap-northeast-2](#module\_securityhub\_baseline\_ap-northeast-2) | ./modules/securityhub-baseline |  |
+| <a name="module_securityhub_baseline_ap-northeast-3"></a> [securityhub\_baseline\_ap-northeast-3](#module\_securityhub\_baseline\_ap-northeast-3) | ./modules/securityhub-baseline |  |
+| <a name="module_securityhub_baseline_ap-south-1"></a> [securityhub\_baseline\_ap-south-1](#module\_securityhub\_baseline\_ap-south-1) | ./modules/securityhub-baseline |  |
+| <a name="module_securityhub_baseline_ap-southeast-1"></a> [securityhub\_baseline\_ap-southeast-1](#module\_securityhub\_baseline\_ap-southeast-1) | ./modules/securityhub-baseline |  |
+| <a name="module_securityhub_baseline_ap-southeast-2"></a> [securityhub\_baseline\_ap-southeast-2](#module\_securityhub\_baseline\_ap-southeast-2) | ./modules/securityhub-baseline |  |
+| <a name="module_securityhub_baseline_ca-central-1"></a> [securityhub\_baseline\_ca-central-1](#module\_securityhub\_baseline\_ca-central-1) | ./modules/securityhub-baseline |  |
+| <a name="module_securityhub_baseline_eu-central-1"></a> [securityhub\_baseline\_eu-central-1](#module\_securityhub\_baseline\_eu-central-1) | ./modules/securityhub-baseline |  |
+| <a name="module_securityhub_baseline_eu-north-1"></a> [securityhub\_baseline\_eu-north-1](#module\_securityhub\_baseline\_eu-north-1) | ./modules/securityhub-baseline |  |
+| <a name="module_securityhub_baseline_eu-west-1"></a> [securityhub\_baseline\_eu-west-1](#module\_securityhub\_baseline\_eu-west-1) | ./modules/securityhub-baseline |  |
+| <a name="module_securityhub_baseline_eu-west-2"></a> [securityhub\_baseline\_eu-west-2](#module\_securityhub\_baseline\_eu-west-2) | ./modules/securityhub-baseline |  |
+| <a name="module_securityhub_baseline_eu-west-3"></a> [securityhub\_baseline\_eu-west-3](#module\_securityhub\_baseline\_eu-west-3) | ./modules/securityhub-baseline |  |
+| <a name="module_securityhub_baseline_sa-east-1"></a> [securityhub\_baseline\_sa-east-1](#module\_securityhub\_baseline\_sa-east-1) | ./modules/securityhub-baseline |  |
+| <a name="module_securityhub_baseline_us-east-1"></a> [securityhub\_baseline\_us-east-1](#module\_securityhub\_baseline\_us-east-1) | ./modules/securityhub-baseline |  |
+| <a name="module_securityhub_baseline_us-east-2"></a> [securityhub\_baseline\_us-east-2](#module\_securityhub\_baseline\_us-east-2) | ./modules/securityhub-baseline |  |
+| <a name="module_securityhub_baseline_us-west-1"></a> [securityhub\_baseline\_us-west-1](#module\_securityhub\_baseline\_us-west-1) | ./modules/securityhub-baseline |  |
+| <a name="module_securityhub_baseline_us-west-2"></a> [securityhub\_baseline\_us-west-2](#module\_securityhub\_baseline\_us-west-2) | ./modules/securityhub-baseline |  |
+| <a name="module_vpc_baseline_ap-northeast-1"></a> [vpc\_baseline\_ap-northeast-1](#module\_vpc\_baseline\_ap-northeast-1) | ./modules/vpc-baseline |  |
+| <a name="module_vpc_baseline_ap-northeast-2"></a> [vpc\_baseline\_ap-northeast-2](#module\_vpc\_baseline\_ap-northeast-2) | ./modules/vpc-baseline |  |
+| <a name="module_vpc_baseline_ap-northeast-3"></a> [vpc\_baseline\_ap-northeast-3](#module\_vpc\_baseline\_ap-northeast-3) | ./modules/vpc-baseline |  |
+| <a name="module_vpc_baseline_ap-south-1"></a> [vpc\_baseline\_ap-south-1](#module\_vpc\_baseline\_ap-south-1) | ./modules/vpc-baseline |  |
+| <a name="module_vpc_baseline_ap-southeast-1"></a> [vpc\_baseline\_ap-southeast-1](#module\_vpc\_baseline\_ap-southeast-1) | ./modules/vpc-baseline |  |
+| <a name="module_vpc_baseline_ap-southeast-2"></a> [vpc\_baseline\_ap-southeast-2](#module\_vpc\_baseline\_ap-southeast-2) | ./modules/vpc-baseline |  |
+| <a name="module_vpc_baseline_ca-central-1"></a> [vpc\_baseline\_ca-central-1](#module\_vpc\_baseline\_ca-central-1) | ./modules/vpc-baseline |  |
+| <a name="module_vpc_baseline_eu-central-1"></a> [vpc\_baseline\_eu-central-1](#module\_vpc\_baseline\_eu-central-1) | ./modules/vpc-baseline |  |
+| <a name="module_vpc_baseline_eu-north-1"></a> [vpc\_baseline\_eu-north-1](#module\_vpc\_baseline\_eu-north-1) | ./modules/vpc-baseline |  |
+| <a name="module_vpc_baseline_eu-west-1"></a> [vpc\_baseline\_eu-west-1](#module\_vpc\_baseline\_eu-west-1) | ./modules/vpc-baseline |  |
+| <a name="module_vpc_baseline_eu-west-2"></a> [vpc\_baseline\_eu-west-2](#module\_vpc\_baseline\_eu-west-2) | ./modules/vpc-baseline |  |
+| <a name="module_vpc_baseline_eu-west-3"></a> [vpc\_baseline\_eu-west-3](#module\_vpc\_baseline\_eu-west-3) | ./modules/vpc-baseline |  |
+| <a name="module_vpc_baseline_sa-east-1"></a> [vpc\_baseline\_sa-east-1](#module\_vpc\_baseline\_sa-east-1) | ./modules/vpc-baseline |  |
+| <a name="module_vpc_baseline_us-east-1"></a> [vpc\_baseline\_us-east-1](#module\_vpc\_baseline\_us-east-1) | ./modules/vpc-baseline |  |
+| <a name="module_vpc_baseline_us-east-2"></a> [vpc\_baseline\_us-east-2](#module\_vpc\_baseline\_us-east-2) | ./modules/vpc-baseline |  |
+| <a name="module_vpc_baseline_us-west-1"></a> [vpc\_baseline\_us-west-1](#module\_vpc\_baseline\_us-west-1) | ./modules/vpc-baseline |  |
+| <a name="module_vpc_baseline_us-west-2"></a> [vpc\_baseline\_us-west-2](#module\_vpc\_baseline\_us-west-2) | ./modules/vpc-baseline |  |
 
 ## Resources
 
-| Name |
-|------|
-| [aws_config_config_rule](https://registry.terraform.io/providers/hashicorp/aws/3.0.0/docs/resources/config_config_rule) |
-| [aws_config_configuration_aggregator](https://registry.terraform.io/providers/hashicorp/aws/3.0.0/docs/resources/config_configuration_aggregator) |
-| [aws_iam_policy_document](https://registry.terraform.io/providers/hashicorp/aws/3.0.0/docs/data-sources/iam_policy_document) |
-| [aws_iam_role](https://registry.terraform.io/providers/hashicorp/aws/3.0.0/docs/resources/iam_role) |
-| [aws_iam_role_policy](https://registry.terraform.io/providers/hashicorp/aws/3.0.0/docs/resources/iam_role_policy) |
-| [aws_iam_role_policy_attachment](https://registry.terraform.io/providers/hashicorp/aws/3.0.0/docs/resources/iam_role_policy_attachment) |
-| [aws_organizations_organization](https://registry.terraform.io/providers/hashicorp/aws/3.0.0/docs/data-sources/organizations_organization) |
-| [aws_s3_bucket](https://registry.terraform.io/providers/hashicorp/aws/3.0.0/docs/data-sources/s3_bucket) |
-| [aws_s3_bucket_policy](https://registry.terraform.io/providers/hashicorp/aws/3.0.0/docs/resources/s3_bucket_policy) |
+| Name | Type |
+|------|------|
+| [aws_config_config_rule.iam_mfa](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/config_config_rule) | resource |
+| [aws_config_config_rule.no_policies_with_full_admin_access](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/config_config_rule) | resource |
+| [aws_config_config_rule.unused_credentials](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/config_config_rule) | resource |
+| [aws_config_config_rule.user_no_policies](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/config_config_rule) | resource |
+| [aws_config_configuration_aggregator.organization](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/config_configuration_aggregator) | resource |
+| [aws_iam_role.config_organization](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role) | resource |
+| [aws_iam_role.flow_logs_publisher](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role) | resource |
+| [aws_iam_role.recorder](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role) | resource |
+| [aws_iam_role_policy.flow_logs_publish_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy) | resource |
+| [aws_iam_role_policy.recorder_publish_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy) | resource |
+| [aws_iam_role_policy_attachment.config_organization](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment) | resource |
+| [aws_iam_role_policy_attachment.recorder_read_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment) | resource |
+| [aws_s3_bucket_policy.audit_log](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_policy) | resource |
+| [aws_iam_policy_document.audit_log](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
+| [aws_iam_policy_document.audit_log_base](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
+| [aws_iam_policy_document.audit_log_cloud_trail](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
+| [aws_iam_policy_document.audit_log_config](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
+| [aws_iam_policy_document.audit_log_flow_logs](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
+| [aws_iam_policy_document.config_organization_assume_role_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
+| [aws_iam_policy_document.flow_logs_publish_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
+| [aws_iam_policy_document.flow_logs_publisher_assume_role_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
+| [aws_iam_policy_document.recorder_assume_role_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
+| [aws_iam_policy_document.recorder_publish_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
+| [aws_organizations_organization.org](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/organizations_organization) | data source |
+| [aws_s3_bucket.external](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/s3_bucket) | data source |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| account\_type | The type of the AWS account. The possible values are `individual`, `master` and `member` . Specify `master` and `member` to set up centalized logging for multiple accounts in AWS Organization. Use individual` otherwise.` | `string` | `"individual"` | no |
-| alarm\_namespace | The namespace in which all alarms are set up. | `string` | `"CISBenchmark"` | no |
-| alarm\_sns\_topic\_name | The name of the SNS Topic which will be notified when any alarm is performed. | `string` | `"CISAlarm"` | no |
-| allow\_users\_to\_change\_password | Whether to allow users to change their own password. | `bool` | `true` | no |
-| analyzer\_name | The name for the IAM Access Analyzer resource to be created. | `string` | `"default-analyer"` | no |
-| audit\_log\_bucket\_custom\_policy\_json | Override policy for the audit log bucket. Allows addition of extra policies. | `string` | `"{}"` | no |
-| audit\_log\_bucket\_force\_destroy | A boolean that indicates all objects should be deleted from the audit log bucket so that the bucket can be destroyed without error. These objects are not recoverable. | `bool` | `false` | no |
-| audit\_log\_bucket\_name | The name of the S3 bucket to store various audit logs. | `any` | n/a | yes |
-| audit\_log\_lifecycle\_glacier\_transition\_days | The number of days after log creation when the log file is archived into Glacier. | `number` | `90` | no |
-| aws\_account\_id | The AWS Account ID number of the account. | `any` | n/a | yes |
-| cloudtrail\_cloudwatch\_logs\_enabled | Specifies whether the trail is delivered to CloudWatch Logs. | `bool` | `true` | no |
-| cloudtrail\_cloudwatch\_logs\_group\_name | The name of CloudWatch Logs group to which CloudTrail events are delivered. | `string` | `"cloudtrail-multi-region"` | no |
-| cloudtrail\_iam\_role\_name | The name of the IAM Role to be used by CloudTrail to delivery logs to CloudWatch Logs group. | `string` | `"CloudTrail-CloudWatch-Delivery-Role"` | no |
-| cloudtrail\_iam\_role\_policy\_name | The name of the IAM Role Policy to be used by CloudTrail to delivery logs to CloudWatch Logs group. | `string` | `"CloudTrail-CloudWatch-Delivery-Policy"` | no |
-| cloudtrail\_key\_deletion\_window\_in\_days | Duration in days after which the key is deleted after destruction of the resource, must be between 7 and 30 days. Defaults to 30 days. | `number` | `10` | no |
-| cloudtrail\_name | The name of the trail. | `string` | `"cloudtrail-multi-region"` | no |
-| cloudtrail\_s3\_key\_prefix | The prefix used when CloudTrail delivers events to the S3 bucket. | `string` | `"cloudtrail"` | no |
-| cloudtrail\_s3\_object\_level\_logging\_buckets | The list of S3 bucket ARNs on which to enable object-level logging. | `list` | <pre>[<br>  "arn:aws:s3:::"<br>]</pre> | no |
-| cloudtrail\_sns\_topic\_enabled | Specifies whether the trail is delivered to a SNS topic. | `bool` | `true` | no |
-| cloudtrail\_sns\_topic\_name | The name of the SNS topic to link to the trail. | `string` | `"cloudtrail-multi-region-sns-topic"` | no |
-| cloudwatch\_logs\_retention\_in\_days | Number of days to retain logs for. CIS recommends 365 days.  Possible values are: 0, 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1827, and 3653. Set to 0 to keep logs indefinitely. | `number` | `365` | no |
-| config\_aggregator\_name | The name of the organizational AWS Config Configuration Aggregator. | `string` | `"organization-aggregator"` | no |
-| config\_aggregator\_name\_prefix | The prefix of the name for the IAM role attached to the organizational AWS Config Configuration Aggregator. | `string` | `"config-for-organization-role"` | no |
-| config\_delivery\_frequency | The frequency which AWS Config sends a snapshot into the S3 bucket. | `string` | `"One_Hour"` | no |
-| config\_global\_resources\_all\_regions | Record global resources in all regions. If false, only default region will record global resources. | `bool` | `false` | no |
-| config\_iam\_role\_name | The name of the IAM Role which AWS Config will use. | `string` | `"Config-Recorder"` | no |
-| config\_iam\_role\_policy\_name | The name of the IAM Role Policy which AWS Config will use. | `string` | `"Config-Recorder-Policy"` | no |
-| config\_s3\_bucket\_key\_prefix | The prefix used when writing AWS Config snapshots into the S3 bucket. | `string` | `"config"` | no |
-| config\_sns\_topic\_name | The name of the SNS Topic to be used to notify configuration changes. | `string` | `"ConfigChanges"` | no |
-| create\_manager\_role | Define if the manager role should be created. | `bool` | `true` | no |
-| create\_master\_role | Define if the master role should be created. | `bool` | `true` | no |
-| create\_password\_policy | Define if the password policy should be created. | `bool` | `true` | no |
-| create\_support\_role | Define if the support role should be created. | `bool` | `true` | no |
-| guardduty\_disable\_email\_notification | Boolean whether an email notification is sent to the accounts. | `bool` | `false` | no |
-| guardduty\_finding\_publishing\_frequency | Specifies the frequency of notifications sent for subsequent finding occurrences. | `string` | `"SIX_HOURS"` | no |
-| guardduty\_invitation\_message | Message for invitation. | `string` | `"This is an automatic invitation message from guardduty-baseline module."` | no |
-| manager\_iam\_role\_name | The name of the IAM Manager role. | `string` | `"IAM-Manager"` | no |
-| manager\_iam\_role\_policy\_name | The name of the IAM Manager role policy. | `string` | `"IAM-Manager-Policy"` | no |
-| master\_account\_id | The ID of the master AWS account to which the current AWS account is associated. Required if `account_type` is `member`. | `string` | `""` | no |
-| master\_iam\_role\_name | The name of the IAM Master role. | `string` | `"IAM-Master"` | no |
-| master\_iam\_role\_policy\_name | The name of the IAM Master role policy. | `string` | `"IAM-Master-Policy"` | no |
-| max\_password\_age | The number of days that an user password is valid. | `number` | `90` | no |
-| member\_accounts | A list of IDs and emails of AWS accounts which associated as member accounts. | <pre>list(object({<br>    account_id = string<br>    email      = string<br>  }))</pre> | `[]` | no |
-| minimum\_password\_length | Minimum length to require for user passwords. | `number` | `14` | no |
-| password\_reuse\_prevention | The number of previous passwords that users are prevented from reusing. | `number` | `24` | no |
-| region | The AWS region in which global resources are set up. | `any` | n/a | yes |
-| require\_lowercase\_characters | Whether to require lowercase characters for user passwords. | `bool` | `true` | no |
-| require\_numbers | Whether to require numbers for user passwords. | `bool` | `true` | no |
-| require\_symbols | Whether to require symbols for user passwords. | `bool` | `true` | no |
-| require\_uppercase\_characters | Whether to require uppercase characters for user passwords. | `bool` | `true` | no |
-| securityhub\_enable\_aws\_foundational\_standard | Boolean whether AWS Foundations standard is enabled. | `bool` | `true` | no |
-| securityhub\_enable\_cis\_standard | Boolean whether CIS standard is enabled. | `bool` | `true` | no |
-| securityhub\_enable\_pci\_dss\_standard | Boolean whether PCI DSS standard is enabled. | `bool` | `false` | no |
-| support\_iam\_role\_name | The name of the the support role. | `string` | `"IAM-Support"` | no |
-| support\_iam\_role\_policy\_name | The name of the support role policy. | `string` | `"IAM-Support-Role"` | no |
-| support\_iam\_role\_principal\_arns | List of ARNs of the IAM principal elements by which the support role could be assumed. | `list(any)` | n/a | yes |
-| tags | Specifies object tags key and value. This applies to all resources created by this module. | `map` | `{}` | no |
-| target\_regions | A list of regions to set up with this module. | `list` | <pre>[<br>  "ap-northeast-1",<br>  "ap-northeast-2",<br>  "ap-south-1",<br>  "ap-southeast-1",<br>  "ap-southeast-2",<br>  "ca-central-1",<br>  "eu-central-1",<br>  "eu-north-1",<br>  "eu-west-1",<br>  "eu-west-2",<br>  "eu-west-3",<br>  "sa-east-1",<br>  "us-east-1",<br>  "us-east-2",<br>  "us-west-1",<br>  "us-west-2"<br>]</pre> | no |
-| use\_external\_audit\_log\_bucket | A boolean that indicates whether the specific audit log bucket already exists. Create a new S3 bucket if it is set to false. | `bool` | `false` | no |
-| vpc\_enable | The boolean flag whether to enable VPC module | `bool` | `true` | no |
-| vpc\_enable\_flow\_logs | The boolean flag whether to enable VPC Flow Logs in default VPCs | `bool` | `true` | no |
-| vpc\_flow\_logs\_destination\_type | The type of the logging destination. Valid values: cloud-watch-logs, s3 | `string` | `"cloud-watch-logs"` | no |
-| vpc\_flow\_logs\_log\_group\_name | The name of CloudWatch Logs group to which VPC Flow Logs are delivered. | `string` | `"default-vpc-flow-logs"` | no |
-| vpc\_flow\_logs\_retention\_in\_days | Number of days to retain logs if vpc\_log\_destination\_type is cloud-watch-logs. CIS recommends 365 days. Possible values are: 0, 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1827, and 3653. Set to 0 to keep logs indefinitely. | `number` | `365` | no |
-| vpc\_flow\_logs\_s3\_arn | ARN of the S3 bucket to which VPC Flow Logs are delivered if vpc\_log\_destination\_type is s3. | `string` | `""` | no |
-| vpc\_flow\_logs\_s3\_key\_prefix | The prefix used when VPC Flow Logs delivers logs to the S3 bucket. | `string` | `"flow-logs"` | no |
-| vpc\_iam\_role\_name | The name of the IAM Role which VPC Flow Logs will use. | `string` | `"VPC-Flow-Logs-Publisher"` | no |
-| vpc\_iam\_role\_policy\_name | The name of the IAM Role Policy which VPC Flow Logs will use. | `string` | `"VPC-Flow-Logs-Publish-Policy"` | no |
+| <a name="input_account_type"></a> [account\_type](#input\_account\_type) | The type of the AWS account. The possible values are `individual`, `master` and `member` . Specify `master` and `member` to set up centalized logging for multiple accounts in AWS Organization. Use individual` otherwise.` | `string` | `"individual"` | no |
+| <a name="input_alarm_namespace"></a> [alarm\_namespace](#input\_alarm\_namespace) | The namespace in which all alarms are set up. | `string` | `"CISBenchmark"` | no |
+| <a name="input_alarm_sns_topic_name"></a> [alarm\_sns\_topic\_name](#input\_alarm\_sns\_topic\_name) | The name of the SNS Topic which will be notified when any alarm is performed. | `string` | `"CISAlarm"` | no |
+| <a name="input_allow_users_to_change_password"></a> [allow\_users\_to\_change\_password](#input\_allow\_users\_to\_change\_password) | Whether to allow users to change their own password. | `bool` | `true` | no |
+| <a name="input_analyzer_name"></a> [analyzer\_name](#input\_analyzer\_name) | The name for the IAM Access Analyzer resource to be created. | `string` | `"default-analyer"` | no |
+| <a name="input_audit_log_bucket_custom_policy_json"></a> [audit\_log\_bucket\_custom\_policy\_json](#input\_audit\_log\_bucket\_custom\_policy\_json) | Override policy for the audit log bucket. Allows addition of extra policies. | `string` | `"{}"` | no |
+| <a name="input_audit_log_bucket_force_destroy"></a> [audit\_log\_bucket\_force\_destroy](#input\_audit\_log\_bucket\_force\_destroy) | A boolean that indicates all objects should be deleted from the audit log bucket so that the bucket can be destroyed without error. These objects are not recoverable. | `bool` | `false` | no |
+| <a name="input_audit_log_bucket_name"></a> [audit\_log\_bucket\_name](#input\_audit\_log\_bucket\_name) | The name of the S3 bucket to store various audit logs. | `any` | n/a | yes |
+| <a name="input_audit_log_lifecycle_glacier_transition_days"></a> [audit\_log\_lifecycle\_glacier\_transition\_days](#input\_audit\_log\_lifecycle\_glacier\_transition\_days) | The number of days after log creation when the log file is archived into Glacier. | `number` | `90` | no |
+| <a name="input_aws_account_id"></a> [aws\_account\_id](#input\_aws\_account\_id) | The AWS Account ID number of the account. | `any` | n/a | yes |
+| <a name="input_aws_config_changes_enabled"></a> [aws\_config\_changes\_enabled](#input\_aws\_config\_changes\_enabled) | The boolean flag whether the aws\_config\_changes alarm is enabled or not. No resources are created when set to false. | `bool` | `true` | no |
+| <a name="input_cloudtrail_cfg_changes_enabled"></a> [cloudtrail\_cfg\_changes\_enabled](#input\_cloudtrail\_cfg\_changes\_enabled) | The boolean flag whether the cloudtrail\_cfg\_changes alarm is enabled or not. No resources are created when set to false. | `bool` | `true` | no |
+| <a name="input_cloudtrail_cloudwatch_logs_enabled"></a> [cloudtrail\_cloudwatch\_logs\_enabled](#input\_cloudtrail\_cloudwatch\_logs\_enabled) | Specifies whether the trail is delivered to CloudWatch Logs. | `bool` | `true` | no |
+| <a name="input_cloudtrail_cloudwatch_logs_group_name"></a> [cloudtrail\_cloudwatch\_logs\_group\_name](#input\_cloudtrail\_cloudwatch\_logs\_group\_name) | The name of CloudWatch Logs group to which CloudTrail events are delivered. | `string` | `"cloudtrail-multi-region"` | no |
+| <a name="input_cloudtrail_iam_role_name"></a> [cloudtrail\_iam\_role\_name](#input\_cloudtrail\_iam\_role\_name) | The name of the IAM Role to be used by CloudTrail to delivery logs to CloudWatch Logs group. | `string` | `"CloudTrail-CloudWatch-Delivery-Role"` | no |
+| <a name="input_cloudtrail_iam_role_policy_name"></a> [cloudtrail\_iam\_role\_policy\_name](#input\_cloudtrail\_iam\_role\_policy\_name) | The name of the IAM Role Policy to be used by CloudTrail to delivery logs to CloudWatch Logs group. | `string` | `"CloudTrail-CloudWatch-Delivery-Policy"` | no |
+| <a name="input_cloudtrail_key_deletion_window_in_days"></a> [cloudtrail\_key\_deletion\_window\_in\_days](#input\_cloudtrail\_key\_deletion\_window\_in\_days) | Duration in days after which the key is deleted after destruction of the resource, must be between 7 and 30 days. Defaults to 30 days. | `number` | `10` | no |
+| <a name="input_cloudtrail_name"></a> [cloudtrail\_name](#input\_cloudtrail\_name) | The name of the trail. | `string` | `"cloudtrail-multi-region"` | no |
+| <a name="input_cloudtrail_s3_key_prefix"></a> [cloudtrail\_s3\_key\_prefix](#input\_cloudtrail\_s3\_key\_prefix) | The prefix used when CloudTrail delivers events to the S3 bucket. | `string` | `"cloudtrail"` | no |
+| <a name="input_cloudtrail_s3_object_level_logging_buckets"></a> [cloudtrail\_s3\_object\_level\_logging\_buckets](#input\_cloudtrail\_s3\_object\_level\_logging\_buckets) | The list of S3 bucket ARNs on which to enable object-level logging. | `list` | <pre>[<br>  "arn:aws:s3:::"<br>]</pre> | no |
+| <a name="input_cloudtrail_sns_topic_enabled"></a> [cloudtrail\_sns\_topic\_enabled](#input\_cloudtrail\_sns\_topic\_enabled) | Specifies whether the trail is delivered to a SNS topic. | `bool` | `true` | no |
+| <a name="input_cloudtrail_sns_topic_name"></a> [cloudtrail\_sns\_topic\_name](#input\_cloudtrail\_sns\_topic\_name) | The name of the SNS topic to link to the trail. | `string` | `"cloudtrail-multi-region-sns-topic"` | no |
+| <a name="input_cloudwatch_logs_retention_in_days"></a> [cloudwatch\_logs\_retention\_in\_days](#input\_cloudwatch\_logs\_retention\_in\_days) | Number of days to retain logs for. CIS recommends 365 days.  Possible values are: 0, 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1827, and 3653. Set to 0 to keep logs indefinitely. | `number` | `365` | no |
+| <a name="input_config_aggregator_name"></a> [config\_aggregator\_name](#input\_config\_aggregator\_name) | The name of the organizational AWS Config Configuration Aggregator. | `string` | `"organization-aggregator"` | no |
+| <a name="input_config_aggregator_name_prefix"></a> [config\_aggregator\_name\_prefix](#input\_config\_aggregator\_name\_prefix) | The prefix of the name for the IAM role attached to the organizational AWS Config Configuration Aggregator. | `string` | `"config-for-organization-role"` | no |
+| <a name="input_config_delivery_frequency"></a> [config\_delivery\_frequency](#input\_config\_delivery\_frequency) | The frequency which AWS Config sends a snapshot into the S3 bucket. | `string` | `"One_Hour"` | no |
+| <a name="input_config_global_resources_all_regions"></a> [config\_global\_resources\_all\_regions](#input\_config\_global\_resources\_all\_regions) | Record global resources in all regions. If false, only default region will record global resources. | `bool` | `false` | no |
+| <a name="input_config_iam_role_name"></a> [config\_iam\_role\_name](#input\_config\_iam\_role\_name) | The name of the IAM Role which AWS Config will use. | `string` | `"Config-Recorder"` | no |
+| <a name="input_config_iam_role_policy_name"></a> [config\_iam\_role\_policy\_name](#input\_config\_iam\_role\_policy\_name) | The name of the IAM Role Policy which AWS Config will use. | `string` | `"Config-Recorder-Policy"` | no |
+| <a name="input_config_s3_bucket_key_prefix"></a> [config\_s3\_bucket\_key\_prefix](#input\_config\_s3\_bucket\_key\_prefix) | The prefix used when writing AWS Config snapshots into the S3 bucket. | `string` | `"config"` | no |
+| <a name="input_config_sns_topic_name"></a> [config\_sns\_topic\_name](#input\_config\_sns\_topic\_name) | The name of the SNS Topic to be used to notify configuration changes. | `string` | `"ConfigChanges"` | no |
+| <a name="input_console_signin_failures_enabled"></a> [console\_signin\_failures\_enabled](#input\_console\_signin\_failures\_enabled) | The boolean flag whether the console\_signin\_failures alarm is enabled or not. No resources are created when set to false. | `bool` | `true` | no |
+| <a name="input_create_manager_role"></a> [create\_manager\_role](#input\_create\_manager\_role) | Define if the manager role should be created. | `bool` | `true` | no |
+| <a name="input_create_master_role"></a> [create\_master\_role](#input\_create\_master\_role) | Define if the master role should be created. | `bool` | `true` | no |
+| <a name="input_create_password_policy"></a> [create\_password\_policy](#input\_create\_password\_policy) | Define if the password policy should be created. | `bool` | `true` | no |
+| <a name="input_create_support_role"></a> [create\_support\_role](#input\_create\_support\_role) | Define if the support role should be created. | `bool` | `true` | no |
+| <a name="input_disable_or_delete_cmk_enabled"></a> [disable\_or\_delete\_cmk\_enabled](#input\_disable\_or\_delete\_cmk\_enabled) | The boolean flag whether the disable\_or\_delete\_cmk alarm is enabled or not. No resources are created when set to false. | `bool` | `true` | no |
+| <a name="input_guardduty_disable_email_notification"></a> [guardduty\_disable\_email\_notification](#input\_guardduty\_disable\_email\_notification) | Boolean whether an email notification is sent to the accounts. | `bool` | `false` | no |
+| <a name="input_guardduty_finding_publishing_frequency"></a> [guardduty\_finding\_publishing\_frequency](#input\_guardduty\_finding\_publishing\_frequency) | Specifies the frequency of notifications sent for subsequent finding occurrences. | `string` | `"SIX_HOURS"` | no |
+| <a name="input_guardduty_invitation_message"></a> [guardduty\_invitation\_message](#input\_guardduty\_invitation\_message) | Message for invitation. | `string` | `"This is an automatic invitation message from guardduty-baseline module."` | no |
+| <a name="input_iam_changes_enabled"></a> [iam\_changes\_enabled](#input\_iam\_changes\_enabled) | The boolean flag whether the iam\_changes alarm is enabled or not. No resources are created when set to false. | `bool` | `true` | no |
+| <a name="input_manager_iam_role_name"></a> [manager\_iam\_role\_name](#input\_manager\_iam\_role\_name) | The name of the IAM Manager role. | `string` | `"IAM-Manager"` | no |
+| <a name="input_manager_iam_role_policy_name"></a> [manager\_iam\_role\_policy\_name](#input\_manager\_iam\_role\_policy\_name) | The name of the IAM Manager role policy. | `string` | `"IAM-Manager-Policy"` | no |
+| <a name="input_master_account_id"></a> [master\_account\_id](#input\_master\_account\_id) | The ID of the master AWS account to which the current AWS account is associated. Required if `account_type` is `member`. | `string` | `""` | no |
+| <a name="input_master_iam_role_name"></a> [master\_iam\_role\_name](#input\_master\_iam\_role\_name) | The name of the IAM Master role. | `string` | `"IAM-Master"` | no |
+| <a name="input_master_iam_role_policy_name"></a> [master\_iam\_role\_policy\_name](#input\_master\_iam\_role\_policy\_name) | The name of the IAM Master role policy. | `string` | `"IAM-Master-Policy"` | no |
+| <a name="input_max_password_age"></a> [max\_password\_age](#input\_max\_password\_age) | The number of days that an user password is valid. | `number` | `90` | no |
+| <a name="input_member_accounts"></a> [member\_accounts](#input\_member\_accounts) | A list of IDs and emails of AWS accounts which associated as member accounts. | <pre>list(object({<br>    account_id = string<br>    email      = string<br>  }))</pre> | `[]` | no |
+| <a name="input_minimum_password_length"></a> [minimum\_password\_length](#input\_minimum\_password\_length) | Minimum length to require for user passwords. | `number` | `14` | no |
+| <a name="input_nacl_changes_enabled"></a> [nacl\_changes\_enabled](#input\_nacl\_changes\_enabled) | The boolean flag whether the nacl\_changes alarm is enabled or not. No resources are created when set to false. | `bool` | `true` | no |
+| <a name="input_network_gw_changes_enabled"></a> [network\_gw\_changes\_enabled](#input\_network\_gw\_changes\_enabled) | The boolean flag whether the network\_gw\_changes alarm is enabled or not. No resources are created when set to false. | `bool` | `true` | no |
+| <a name="input_no_mfa_console_signin_enabled"></a> [no\_mfa\_console\_signin\_enabled](#input\_no\_mfa\_console\_signin\_enabled) | The boolean flag whether the no\_mfa\_console\_signin alarm is enabled or not. No resources are created when set to false. | `bool` | `true` | no |
+| <a name="input_organizations_changes_enabled"></a> [organizations\_changes\_enabled](#input\_organizations\_changes\_enabled) | The boolean flag whether the organizations\_changes alarm is enabled or not. No resources are created when set to false. | `bool` | `true` | no |
+| <a name="input_password_reuse_prevention"></a> [password\_reuse\_prevention](#input\_password\_reuse\_prevention) | The number of previous passwords that users are prevented from reusing. | `number` | `24` | no |
+| <a name="input_region"></a> [region](#input\_region) | The AWS region in which global resources are set up. | `any` | n/a | yes |
+| <a name="input_require_lowercase_characters"></a> [require\_lowercase\_characters](#input\_require\_lowercase\_characters) | Whether to require lowercase characters for user passwords. | `bool` | `true` | no |
+| <a name="input_require_numbers"></a> [require\_numbers](#input\_require\_numbers) | Whether to require numbers for user passwords. | `bool` | `true` | no |
+| <a name="input_require_symbols"></a> [require\_symbols](#input\_require\_symbols) | Whether to require symbols for user passwords. | `bool` | `true` | no |
+| <a name="input_require_uppercase_characters"></a> [require\_uppercase\_characters](#input\_require\_uppercase\_characters) | Whether to require uppercase characters for user passwords. | `bool` | `true` | no |
+| <a name="input_root_usage_enabled"></a> [root\_usage\_enabled](#input\_root\_usage\_enabled) | The boolean flag whether the root\_usage alarm is enabled or not. No resources are created when set to false. | `bool` | `true` | no |
+| <a name="input_route_table_changes_enabled"></a> [route\_table\_changes\_enabled](#input\_route\_table\_changes\_enabled) | The boolean flag whether the route\_table\_changes alarm is enabled or not. No resources are created when set to false. | `bool` | `true` | no |
+| <a name="input_s3_bucket_policy_changes_enabled"></a> [s3\_bucket\_policy\_changes\_enabled](#input\_s3\_bucket\_policy\_changes\_enabled) | The boolean flag whether the s3\_bucket\_policy\_changes alarm is enabled or not. No resources are created when set to false. | `bool` | `true` | no |
+| <a name="input_security_group_changes_enabled"></a> [security\_group\_changes\_enabled](#input\_security\_group\_changes\_enabled) | The boolean flag whether the security\_group\_changes alarm is enabled or not. No resources are created when set to false. | `bool` | `true` | no |
+| <a name="input_securityhub_enable_aws_foundational_standard"></a> [securityhub\_enable\_aws\_foundational\_standard](#input\_securityhub\_enable\_aws\_foundational\_standard) | Boolean whether AWS Foundations standard is enabled. | `bool` | `true` | no |
+| <a name="input_securityhub_enable_cis_standard"></a> [securityhub\_enable\_cis\_standard](#input\_securityhub\_enable\_cis\_standard) | Boolean whether CIS standard is enabled. | `bool` | `true` | no |
+| <a name="input_securityhub_enable_pci_dss_standard"></a> [securityhub\_enable\_pci\_dss\_standard](#input\_securityhub\_enable\_pci\_dss\_standard) | Boolean whether PCI DSS standard is enabled. | `bool` | `false` | no |
+| <a name="input_support_iam_role_name"></a> [support\_iam\_role\_name](#input\_support\_iam\_role\_name) | The name of the the support role. | `string` | `"IAM-Support"` | no |
+| <a name="input_support_iam_role_policy_name"></a> [support\_iam\_role\_policy\_name](#input\_support\_iam\_role\_policy\_name) | The name of the support role policy. | `string` | `"IAM-Support-Role"` | no |
+| <a name="input_support_iam_role_principal_arns"></a> [support\_iam\_role\_principal\_arns](#input\_support\_iam\_role\_principal\_arns) | List of ARNs of the IAM principal elements by which the support role could be assumed. | `list(any)` | n/a | yes |
+| <a name="input_tags"></a> [tags](#input\_tags) | Specifies object tags key and value. This applies to all resources created by this module. | `map` | `{}` | no |
+| <a name="input_target_regions"></a> [target\_regions](#input\_target\_regions) | A list of regions to set up with this module. | `list` | <pre>[<br>  "ap-northeast-1",<br>  "ap-northeast-2",<br>  "ap-northeast-3",<br>  "ap-south-1",<br>  "ap-southeast-1",<br>  "ap-southeast-2",<br>  "ca-central-1",<br>  "eu-central-1",<br>  "eu-north-1",<br>  "eu-west-1",<br>  "eu-west-2",<br>  "eu-west-3",<br>  "sa-east-1",<br>  "us-east-1",<br>  "us-east-2",<br>  "us-west-1",<br>  "us-west-2"<br>]</pre> | no |
+| <a name="input_unauthorized_api_calls_enabled"></a> [unauthorized\_api\_calls\_enabled](#input\_unauthorized\_api\_calls\_enabled) | The boolean flag whether the unauthorized\_api\_calls alarm is enabled or not. No resources are created when set to false. | `bool` | `true` | no |
+| <a name="input_use_external_audit_log_bucket"></a> [use\_external\_audit\_log\_bucket](#input\_use\_external\_audit\_log\_bucket) | A boolean that indicates whether the specific audit log bucket already exists. Create a new S3 bucket if it is set to false. | `bool` | `false` | no |
+| <a name="input_vpc_changes_enabled"></a> [vpc\_changes\_enabled](#input\_vpc\_changes\_enabled) | The boolean flag whether the vpc\_changes alarm is enabled or not. No resources are created when set to false. | `bool` | `true` | no |
+| <a name="input_vpc_enable"></a> [vpc\_enable](#input\_vpc\_enable) | Boolean whether the VPC baseline module should be enabled | `bool` | `true` | no |
+| <a name="input_vpc_enable_flow_logs"></a> [vpc\_enable\_flow\_logs](#input\_vpc\_enable\_flow\_logs) | The boolean flag whether to enable VPC Flow Logs in default VPCs | `bool` | `true` | no |
+| <a name="input_vpc_flow_logs_destination_type"></a> [vpc\_flow\_logs\_destination\_type](#input\_vpc\_flow\_logs\_destination\_type) | The type of the logging destination. Valid values: cloud-watch-logs, s3 | `string` | `"cloud-watch-logs"` | no |
+| <a name="input_vpc_flow_logs_log_group_name"></a> [vpc\_flow\_logs\_log\_group\_name](#input\_vpc\_flow\_logs\_log\_group\_name) | The name of CloudWatch Logs group to which VPC Flow Logs are delivered. | `string` | `"default-vpc-flow-logs"` | no |
+| <a name="input_vpc_flow_logs_retention_in_days"></a> [vpc\_flow\_logs\_retention\_in\_days](#input\_vpc\_flow\_logs\_retention\_in\_days) | Number of days to retain logs if vpc\_log\_destination\_type is cloud-watch-logs. CIS recommends 365 days. Possible values are: 0, 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1827, and 3653. Set to 0 to keep logs indefinitely. | `number` | `365` | no |
+| <a name="input_vpc_flow_logs_s3_arn"></a> [vpc\_flow\_logs\_s3\_arn](#input\_vpc\_flow\_logs\_s3\_arn) | ARN of the S3 bucket to which VPC Flow Logs are delivered if vpc\_log\_destination\_type is s3. | `string` | `""` | no |
+| <a name="input_vpc_flow_logs_s3_key_prefix"></a> [vpc\_flow\_logs\_s3\_key\_prefix](#input\_vpc\_flow\_logs\_s3\_key\_prefix) | The prefix used when VPC Flow Logs delivers logs to the S3 bucket. | `string` | `"flow-logs"` | no |
+| <a name="input_vpc_iam_role_name"></a> [vpc\_iam\_role\_name](#input\_vpc\_iam\_role\_name) | The name of the IAM Role which VPC Flow Logs will use. | `string` | `"VPC-Flow-Logs-Publisher"` | no |
+| <a name="input_vpc_iam_role_policy_name"></a> [vpc\_iam\_role\_policy\_name](#input\_vpc\_iam\_role\_policy\_name) | The name of the IAM Role Policy which VPC Flow Logs will use. | `string` | `"VPC-Flow-Logs-Publish-Policy"` | no |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| alarm\_sns\_topic | The SNS topic to which CloudWatch Alarms will be sent. |
-| audit\_bucket | The S3 bucket used for storing audit logs. |
-| cloudtrail | The trail for recording events in all regions. |
-| cloudtrail\_kms\_key | The KMS key used for encrypting CloudTrail events. |
-| cloudtrail\_log\_delivery\_iam\_role | The IAM role used for delivering CloudTrail events to CloudWatch Logs. |
-| cloudtrail\_log\_group | The CloudWatch Logs log group which stores CloudTrail events. |
-| cloudtrail\_sns\_topic | The sns topic linked to the cloudtrail. |
-| config\_configuration\_recorder | The configuration recorder in each region. |
-| config\_iam\_role | The IAM role used for delivering AWS Config records to CloudWatch Logs. |
-| config\_sns\_topic | The SNS topic that AWS Config delivers notifications to. |
-| default\_network\_acl | The default network ACL. |
-| default\_route\_table | The default route table. |
-| default\_security\_group | The ID of the default security group. |
-| default\_vpc | The default VPC. |
-| guardduty\_detector | The GuardDuty detector in each region. |
-| support\_iam\_role | The IAM role used for the support user. |
-| vpc\_flow\_logs\_group | The CloudWatch Logs log group which stores VPC Flow Logs in each region. |
-| vpc\_flow\_logs\_iam\_role | The IAM role used for delivering VPC Flow Logs to CloudWatch Logs. |
+| <a name="output_alarm_sns_topic"></a> [alarm\_sns\_topic](#output\_alarm\_sns\_topic) | The SNS topic to which CloudWatch Alarms will be sent. |
+| <a name="output_audit_bucket"></a> [audit\_bucket](#output\_audit\_bucket) | The S3 bucket used for storing audit logs. |
+| <a name="output_cloudtrail"></a> [cloudtrail](#output\_cloudtrail) | The trail for recording events in all regions. |
+| <a name="output_cloudtrail_kms_key"></a> [cloudtrail\_kms\_key](#output\_cloudtrail\_kms\_key) | The KMS key used for encrypting CloudTrail events. |
+| <a name="output_cloudtrail_log_delivery_iam_role"></a> [cloudtrail\_log\_delivery\_iam\_role](#output\_cloudtrail\_log\_delivery\_iam\_role) | The IAM role used for delivering CloudTrail events to CloudWatch Logs. |
+| <a name="output_cloudtrail_log_group"></a> [cloudtrail\_log\_group](#output\_cloudtrail\_log\_group) | The CloudWatch Logs log group which stores CloudTrail events. |
+| <a name="output_cloudtrail_sns_topic"></a> [cloudtrail\_sns\_topic](#output\_cloudtrail\_sns\_topic) | The sns topic linked to the cloudtrail. |
+| <a name="output_config_configuration_recorder"></a> [config\_configuration\_recorder](#output\_config\_configuration\_recorder) | The configuration recorder in each region. |
+| <a name="output_config_iam_role"></a> [config\_iam\_role](#output\_config\_iam\_role) | The IAM role used for delivering AWS Config records to CloudWatch Logs. |
+| <a name="output_config_sns_topic"></a> [config\_sns\_topic](#output\_config\_sns\_topic) | The SNS topic that AWS Config delivers notifications to. |
+| <a name="output_default_network_acl"></a> [default\_network\_acl](#output\_default\_network\_acl) | The default network ACL. |
+| <a name="output_default_route_table"></a> [default\_route\_table](#output\_default\_route\_table) | The default route table. |
+| <a name="output_default_security_group"></a> [default\_security\_group](#output\_default\_security\_group) | The ID of the default security group. |
+| <a name="output_default_vpc"></a> [default\_vpc](#output\_default\_vpc) | The default VPC. |
+| <a name="output_guardduty_detector"></a> [guardduty\_detector](#output\_guardduty\_detector) | The GuardDuty detector in each region. |
+| <a name="output_support_iam_role"></a> [support\_iam\_role](#output\_support\_iam\_role) | The IAM role used for the support user. |
+| <a name="output_vpc_flow_logs_group"></a> [vpc\_flow\_logs\_group](#output\_vpc\_flow\_logs\_group) | The CloudWatch Logs log group which stores VPC Flow Logs in each region. |
+| <a name="output_vpc_flow_logs_iam_role"></a> [vpc\_flow\_logs\_iam\_role](#output\_vpc\_flow\_logs\_iam\_role) | The IAM role used for delivering VPC Flow Logs to CloudWatch Logs. |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 ## Compatibility
@@ -336,8 +374,7 @@ This module is composed of several submodules and each of which can be used inde
 - Starting from v0.20, this module requires [Terraform Provider for AWS](https://github.com/terraform-providers/terraform-provider-aws) v3.0 or later. Please use v0.19 if you need to use v2.x or earlier.
 - Starting from v0.10, this module requires Terraform v0.12 or later. Please use v0.9 if you need to use Terraform v0.11 or ealier.
 
-
-[CIS Amazon Web Services Foundations v1.3.0]: https://www.cisecurity.org/benchmark/amazon_web_services/
-[AWS Foundational Security Best Practices v1.0.0]: https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-standards-fsbp.html
-[Providers within Modules - Terraform Docs]: https://www.terraform.io/docs/modules/usage.html#providers-within-modules
-[Modules in Package Sub-directories - Terraform]: https://www.terraform.io/docs/modules/sources.html#modules-in-package-sub-directories
+[cis amazon web services foundations v1.3.0]: https://www.cisecurity.org/benchmark/amazon_web_services/
+[aws foundational security best practices v1.0.0]: https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-standards-fsbp.html
+[providers within modules - terraform docs]: https://www.terraform.io/docs/modules/usage.html#providers-within-modules
+[modules in package sub-directories - terraform]: https://www.terraform.io/docs/modules/sources.html#modules-in-package-sub-directories
