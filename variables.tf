@@ -239,6 +239,10 @@ variable "vpc_flow_logs_s3_key_prefix" {
 # --------------------------------------------------------------------------------------------------
 # Variables for config-baseline module.
 # --------------------------------------------------------------------------------------------------
+variable "config_baseline_enabled" {
+  description = "Boolean whether config-baseline is enabled."
+  default     = true
+}
 
 variable "config_delivery_frequency" {
   description = "The frequency which AWS Config sends a snapshot into the S3 bucket."
