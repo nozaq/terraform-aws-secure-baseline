@@ -108,7 +108,7 @@ module "vpc_baseline_ap-northeast-3" {
     aws = aws.ap-northeast-3
   }
 
-  enabled                     = contains(var.target_regions, "ap-northeast-3")
+  enabled                     = local.is_enabled && contains(var.target_regions, "ap-northeast-3")
   enable_flow_logs            = var.vpc_enable_flow_logs
   flow_logs_destination_type  = var.vpc_flow_logs_destination_type
   flow_logs_log_group_name    = var.vpc_flow_logs_log_group_name
