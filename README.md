@@ -377,7 +377,7 @@ This module is composed of several submodules and each of which can be used inde
 | <a name="output_cloudtrail_sns_topic"></a> [cloudtrail\_sns\_topic](#output\_cloudtrail\_sns\_topic) | The sns topic linked to the cloudtrail. |
 | <a name="output_config_configuration_recorder"></a> [config\_configuration\_recorder](#output\_config\_configuration\_recorder) | The configuration recorder in each region. |
 | <a name="output_config_iam_role"></a> [config\_iam\_role](#output\_config\_iam\_role) | The IAM role used for delivering AWS Config records to CloudWatch Logs. |
-| <a name="output_config_sns_topic"></a> [config\_sns\_topic](#output\_config\_sns\_topic) | The SNS topic that AWS Config delivers notifications to. |
+| <a name="output_config_sns_topic"></a> [config\_sns\_topic](#output\_config\_sns\_topic) | The SNS topic) that AWS Config delivers notifications to. |
 | <a name="output_default_network_acl"></a> [default\_network\_acl](#output\_default\_network\_acl) | The default network ACL. |
 | <a name="output_default_route_table"></a> [default\_route\_table](#output\_default\_route\_table) | The default route table. |
 | <a name="output_default_security_group"></a> [default\_security\_group](#output\_default\_security\_group) | The ID of the default security group. |
