@@ -33,7 +33,6 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_disable_email_notification"></a> [disable\_email\_notification](#input\_disable\_email\_notification) | Boolean whether an email notification is sent to the accounts. | `bool` | `false` | no |
-| <a name="input_enabled"></a> [enabled](#input\_enabled) | The boolean flag whether this module is enabled or not. No resources are created when set to false. | `bool` | `true` | no |
 | <a name="input_finding_publishing_frequency"></a> [finding\_publishing\_frequency](#input\_finding\_publishing\_frequency) | Specifies the frequency of notifications sent for subsequent finding occurrences. | `string` | `"SIX_HOURS"` | no |
 | <a name="input_invitation_message"></a> [invitation\_message](#input\_invitation\_message) | Message for invitation. | `string` | `"This is an automatic invitation message from guardduty-baseline module."` | no |
 | <a name="input_master_account_id"></a> [master\_account\_id](#input\_master\_account\_id) | AWS account ID for master account. | `string` | `""` | no |
