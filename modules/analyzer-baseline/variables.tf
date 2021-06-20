@@ -1,8 +1,3 @@
-variable "enabled" {
-  description = "The boolean flag whether this module is enabled or not. No resources are created when set to false."
-  default     = true
-}
-
 variable "analyzer_name" {
   description = "The name for the IAM Access Analyzer resource to be created."
   default     = "default-analyer"
