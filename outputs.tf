@@ -13,7 +13,7 @@ output "audit_bucket" {
 
 output "alarm_sns_topic" {
   description = "The SNS topic to which CloudWatch Alarms will be sent."
-  value       = module.alarm_baseline.alarm_sns_topic
+  value       = one(module.alarm_baseline[*].alarm_sns_topic)
 }
 
 # --------------------------------------------------------------------------------------------------

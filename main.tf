@@ -93,9 +93,9 @@ module "cloudtrail_baseline" {
 # --------------------------------------------------------------------------------------------------
 
 module "alarm_baseline" {
+  count  = local.is_cloudtrail_enabled && var.cloudtrail_cloudwatch_logs_enabled ? 1 : 0
   source = "./modules/alarm-baseline"
 
-  enabled                          = local.is_cloudtrail_enabled && var.cloudtrail_cloudwatch_logs_enabled
   unauthorized_api_calls_enabled   = var.unauthorized_api_calls_enabled
   no_mfa_console_signin_enabled    = var.no_mfa_console_signin_enabled
   mfa_console_signin_allow_sso     = var.mfa_console_signin_allow_sso
