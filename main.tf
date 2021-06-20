@@ -64,9 +64,9 @@ module "iam_baseline" {
 # --------------------------------------------------------------------------------------------------
 
 module "cloudtrail_baseline" {
+  count  = local.is_cloudtrail_enabled ? 1 : 0
   source = "./modules/cloudtrail-baseline"
 
-  enabled                           = local.is_cloudtrail_enabled
   aws_account_id                    = var.aws_account_id
   cloudtrail_depends_on             = [aws_s3_bucket_policy.audit_log]
   cloudtrail_name                   = var.cloudtrail_name
@@ -113,7 +113,7 @@ module "alarm_baseline" {
   vpc_changes_enabled              = var.vpc_changes_enabled
   organizations_changes_enabled    = var.organizations_changes_enabled
   alarm_namespace                  = var.alarm_namespace
-  cloudtrail_log_group_name        = local.is_cloudtrail_enabled ? module.cloudtrail_baseline.log_group : ""
+  cloudtrail_log_group_name        = local.is_cloudtrail_enabled ? module.cloudtrail_baseline[0].log_group : ""
   sns_topic_name                   = var.alarm_sns_topic_name
   sns_topic_kms_master_key_id      = var.alarm_sns_topic_kms_master_key_id
 
