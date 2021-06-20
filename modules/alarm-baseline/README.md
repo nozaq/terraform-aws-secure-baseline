@@ -7,7 +7,7 @@ Set up CloudWatch alarms to notify you when critical changes happen in your AWS 
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.12 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.13 |
 | <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 3.0.0 |
 
 ## Providers

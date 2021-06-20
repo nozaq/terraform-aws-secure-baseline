@@ -71,13 +71,13 @@ data "aws_iam_policy_document" "recorder_publish_policy" {
 resource "aws_iam_role_policy" "recorder_publish_policy" {
   count  = var.config_baseline_enabled ? 1 : 0
   name   = var.config_iam_role_policy_name
-  role   = join("", aws_iam_role.recorder.*.id)
+  role   = one(aws_iam_role.recorder[*].id)
   policy = data.aws_iam_policy_document.recorder_publish_policy[0].json
 }
 
 resource "aws_iam_role_policy_attachment" "recorder_read_policy" {
   count      = var.config_baseline_enabled ? 1 : 0
-  role       = join("", aws_iam_role.recorder.*.id)
+  role       = one(aws_iam_role.recorder[*].id)
   policy_arn = "arn:aws:iam::aws:policy/service-role/AWS_ConfigRole"
 }
 
@@ -94,7 +94,7 @@ module "config_baseline_ap-northeast-1" {
   }
 
   enabled                       = var.config_baseline_enabled && contains(var.target_regions, "ap-northeast-1")
-  iam_role_arn                  = join("", aws_iam_role.recorder.*.arn)
+  iam_role_arn                  = one(aws_iam_role.recorder[*].arn)
   s3_bucket_name                = local.audit_log_bucket_id
   s3_key_prefix                 = var.config_s3_bucket_key_prefix
   delivery_frequency            = var.config_delivery_frequency
@@ -111,7 +111,7 @@ module "config_baseline_ap-northeast-2" {
   }
 
   enabled                       = var.config_baseline_enabled && contains(var.target_regions, "ap-northeast-2")
-  iam_role_arn                  = join("", aws_iam_role.recorder.*.arn)
+  iam_role_arn                  = one(aws_iam_role.recorder[*].arn)
   s3_bucket_name                = local.audit_log_bucket_id
   s3_key_prefix                 = var.config_s3_bucket_key_prefix
   delivery_frequency            = var.config_delivery_frequency
@@ -128,7 +128,7 @@ module "config_baseline_ap-northeast-3" {
   }
 
   enabled                       = var.config_baseline_enabled && contains(var.target_regions, "ap-northeast-3")
-  iam_role_arn                  = join("", aws_iam_role.recorder.*.arn)
+  iam_role_arn                  = one(aws_iam_role.recorder[*].arn)
   s3_bucket_name                = local.audit_log_bucket_id
   s3_key_prefix                 = var.config_s3_bucket_key_prefix
   delivery_frequency            = var.config_delivery_frequency
@@ -145,7 +145,7 @@ module "config_baseline_ap-south-1" {
   }
 
   enabled                       = var.config_baseline_enabled && contains(var.target_regions, "ap-south-1")
-  iam_role_arn                  = join("", aws_iam_role.recorder.*.arn)
+  iam_role_arn                  = one(aws_iam_role.recorder[*].arn)
   s3_bucket_name                = local.audit_log_bucket_id
   s3_key_prefix                 = var.config_s3_bucket_key_prefix
   delivery_frequency            = var.config_delivery_frequency
@@ -162,7 +162,7 @@ module "config_baseline_ap-southeast-1" {
   }
 
   enabled                       = var.config_baseline_enabled && contains(var.target_regions, "ap-southeast-1")
-  iam_role_arn                  = join("", aws_iam_role.recorder.*.arn)
+  iam_role_arn                  = one(aws_iam_role.recorder[*].arn)
   s3_bucket_name                = local.audit_log_bucket_id
   s3_key_prefix                 = var.config_s3_bucket_key_prefix
   delivery_frequency            = var.config_delivery_frequency
@@ -179,7 +179,7 @@ module "config_baseline_ap-southeast-2" {
   }
 
   enabled                       = var.config_baseline_enabled && contains(var.target_regions, "ap-southeast-2")
-  iam_role_arn                  = join("", aws_iam_role.recorder.*.arn)
+  iam_role_arn                  = one(aws_iam_role.recorder[*].arn)
   s3_bucket_name                = local.audit_log_bucket_id
   s3_key_prefix                 = var.config_s3_bucket_key_prefix
   delivery_frequency            = var.config_delivery_frequency
@@ -196,7 +196,7 @@ module "config_baseline_ca-central-1" {
   }
 
   enabled                       = var.config_baseline_enabled && contains(var.target_regions, "ca-central-1")
-  iam_role_arn                  = join("", aws_iam_role.recorder.*.arn)
+  iam_role_arn                  = one(aws_iam_role.recorder[*].arn)
   s3_bucket_name                = local.audit_log_bucket_id
   s3_key_prefix                 = var.config_s3_bucket_key_prefix
   delivery_frequency            = var.config_delivery_frequency
@@ -213,7 +213,7 @@ module "config_baseline_eu-central-1" {
   }
 
   enabled                       = var.config_baseline_enabled && contains(var.target_regions, "eu-central-1")
-  iam_role_arn                  = join("", aws_iam_role.recorder.*.arn)
+  iam_role_arn                  = one(aws_iam_role.recorder[*].arn)
   s3_bucket_name                = local.audit_log_bucket_id
   s3_key_prefix                 = var.config_s3_bucket_key_prefix
   delivery_frequency            = var.config_delivery_frequency
@@ -230,7 +230,7 @@ module "config_baseline_eu-north-1" {
   }
 
   enabled                       = var.config_baseline_enabled && contains(var.target_regions, "eu-north-1")
-  iam_role_arn                  = join("", aws_iam_role.recorder.*.arn)
+  iam_role_arn                  = one(aws_iam_role.recorder[*].arn)
   s3_bucket_name                = local.audit_log_bucket_id
   s3_key_prefix                 = var.config_s3_bucket_key_prefix
   delivery_frequency            = var.config_delivery_frequency
@@ -247,7 +247,7 @@ module "config_baseline_eu-west-1" {
   }
 
   enabled                       = var.config_baseline_enabled && contains(var.target_regions, "eu-west-1")
-  iam_role_arn                  = join("", aws_iam_role.recorder.*.arn)
+  iam_role_arn                  = one(aws_iam_role.recorder[*].arn)
   s3_bucket_name                = local.audit_log_bucket_id
   s3_key_prefix                 = var.config_s3_bucket_key_prefix
   delivery_frequency            = var.config_delivery_frequency
@@ -264,7 +264,7 @@ module "config_baseline_eu-west-2" {
   }
 
   enabled                       = var.config_baseline_enabled && contains(var.target_regions, "eu-west-2")
-  iam_role_arn                  = join("", aws_iam_role.recorder.*.arn)
+  iam_role_arn                  = one(aws_iam_role.recorder[*].arn)
   s3_bucket_name                = local.audit_log_bucket_id
   s3_key_prefix                 = var.config_s3_bucket_key_prefix
   delivery_frequency            = var.config_delivery_frequency
@@ -281,7 +281,7 @@ module "config_baseline_eu-west-3" {
   }
 
   enabled                       = var.config_baseline_enabled && contains(var.target_regions, "eu-west-3")
-  iam_role_arn                  = join("", aws_iam_role.recorder.*.arn)
+  iam_role_arn                  = one(aws_iam_role.recorder[*].arn)
   s3_bucket_name                = local.audit_log_bucket_id
   s3_key_prefix                 = var.config_s3_bucket_key_prefix
   delivery_frequency            = var.config_delivery_frequency
@@ -298,7 +298,7 @@ module "config_baseline_sa-east-1" {
   }
 
   enabled                       = var.config_baseline_enabled && contains(var.target_regions, "sa-east-1")
-  iam_role_arn                  = join("", aws_iam_role.recorder.*.arn)
+  iam_role_arn                  = one(aws_iam_role.recorder[*].arn)
   s3_bucket_name                = local.audit_log_bucket_id
   s3_key_prefix                 = var.config_s3_bucket_key_prefix
   delivery_frequency            = var.config_delivery_frequency
@@ -315,7 +315,7 @@ module "config_baseline_us-east-1" {
   }
 
   enabled                       = var.config_baseline_enabled && contains(var.target_regions, "us-east-1")
-  iam_role_arn                  = join("", aws_iam_role.recorder.*.arn)
+  iam_role_arn                  = one(aws_iam_role.recorder[*].arn)
   s3_bucket_name                = local.audit_log_bucket_id
   s3_key_prefix                 = var.config_s3_bucket_key_prefix
   delivery_frequency            = var.config_delivery_frequency
@@ -332,7 +332,7 @@ module "config_baseline_us-east-2" {
   }
 
   enabled                       = var.config_baseline_enabled && contains(var.target_regions, "us-east-2")
-  iam_role_arn                  = join("", aws_iam_role.recorder.*.arn)
+  iam_role_arn                  = one(aws_iam_role.recorder[*].arn)
   s3_bucket_name                = local.audit_log_bucket_id
   s3_key_prefix                 = var.config_s3_bucket_key_prefix
   delivery_frequency            = var.config_delivery_frequency
@@ -349,7 +349,7 @@ module "config_baseline_us-west-1" {
   }
 
   enabled                       = var.config_baseline_enabled && contains(var.target_regions, "us-west-1")
-  iam_role_arn                  = join("", aws_iam_role.recorder.*.arn)
+  iam_role_arn                  = one(aws_iam_role.recorder[*].arn)
   s3_bucket_name                = local.audit_log_bucket_id
   s3_key_prefix                 = var.config_s3_bucket_key_prefix
   delivery_frequency            = var.config_delivery_frequency
@@ -366,7 +366,7 @@ module "config_baseline_us-west-2" {
   }
 
   enabled                       = var.config_baseline_enabled && contains(var.target_regions, "us-west-2")
-  iam_role_arn                  = join("", aws_iam_role.recorder.*.arn)
+  iam_role_arn                  = one(aws_iam_role.recorder[*].arn)
   s3_bucket_name                = local.audit_log_bucket_id
   s3_key_prefix                 = var.config_s3_bucket_key_prefix
   delivery_frequency            = var.config_delivery_frequency
