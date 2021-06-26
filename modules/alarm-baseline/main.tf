@@ -14,18 +14,15 @@ resource "aws_sns_topic" "alarms" {
 }
 
 resource "aws_sns_topic_policy" "alarms" {
-  count = var.enabled ? 1 : 0
-  arn   = aws_sns_topic.alarms[0].arn
+  arn = aws_sns_topic.alarms.arn
 
-  policy = data.aws_iam_policy_document.alarms-sns-policy[0].json
+  policy = data.aws_iam_policy_document.alarms-sns-policy.json
 }
 
 data "aws_iam_policy_document" "alarms-sns-policy" {
-  count = var.enabled ? 1 : 0
-
   statement {
     actions   = ["sns:Publish"]
-    resources = [aws_sns_topic.alarms[0].arn]
+    resources = [aws_sns_topic.alarms.arn]
 
     principals {
       type        = "Service"

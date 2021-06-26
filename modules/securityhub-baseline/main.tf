@@ -54,7 +54,7 @@ resource "aws_securityhub_standards_subscription" "pci_dss" {
 # Subscribe to 3rd party products
 # --------------------------------------------------------------------------------------------------
 resource "aws_securityhub_product_subscription" "products" {
-  count = var.enabled ? length(var.enable_product_arns) : 0
+  count = length(var.enable_product_arns)
 
   product_arn = replace(var.enable_product_arns[count.index], "<REGION>", data.aws_region.current.name)
 

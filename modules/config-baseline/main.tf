@@ -14,18 +14,15 @@ resource "aws_sns_topic" "config" {
 }
 
 resource "aws_sns_topic_policy" "config" {
-  count = var.enabled ? 1 : 0
-  arn   = aws_sns_topic.config[0].arn
+  arn = aws_sns_topic.config.arn
 
-  policy = data.aws_iam_policy_document.config-sns-policy[0].json
+  policy = data.aws_iam_policy_document.config-sns-policy.json
 }
 
 data "aws_iam_policy_document" "config-sns-policy" {
-  count = var.enabled ? 1 : 0
-
   statement {
     actions   = ["sns:Publish"]
-    resources = [aws_sns_topic.config[0].arn]
+    resources = [aws_sns_topic.config.arn]
 
     principals {
       type        = "Service"
