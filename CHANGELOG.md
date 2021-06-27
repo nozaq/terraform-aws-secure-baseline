@@ -2,6 +2,19 @@
 ## [Unreleased]
 
 
+<a name="0.27.0"></a>
+## [0.27.0] - 2021-06-27
+### Feat
+- add flag for disabling config-baseline ([#190](https://github.com/nozaq/terraform-aws-secure-baseline/issues/190))
+
+### Fix
+- is_enabled flag with ap-northeast-3 ([#192](https://github.com/nozaq/terraform-aws-secure-baseline/issues/192))
+
+### Refactor
+- define `configuration_aliases` ([#196](https://github.com/nozaq/terraform-aws-secure-baseline/issues/196))
+- use `one` instead of `join` to pick the first element ([#194](https://github.com/nozaq/terraform-aws-secure-baseline/issues/194))
+
+
 <a name="0.26.0"></a>
 ## [0.26.0] - 2021-06-06
 ### Feat
@@ -293,7 +306,8 @@
 <a name="0.0.1"></a>
 ## 0.0.1 - 2018-02-12
 
-[Unreleased]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.26.0...HEAD
+[Unreleased]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.27.0...HEAD
+[0.27.0]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.26.0...0.27.0
 [0.26.0]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.24.0...0.26.0
 [0.24.0]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.23.1...0.24.0
 [0.23.1]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.23.0...0.23.1
