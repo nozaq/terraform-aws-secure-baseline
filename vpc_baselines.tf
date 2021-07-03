@@ -1,7 +1,7 @@
 locals {
   is_enabled = var.vpc_enable
-  is_cw_logs = var.vpc_enable_flow_logs && (var.vpc_flow_logs_destination_type == "cloud-watch-logs")
-  is_s3      = var.vpc_enable_flow_logs && (var.vpc_flow_logs_destination_type == "s3")
+  is_cw_logs = local.is_enabled && var.vpc_enable_flow_logs && (var.vpc_flow_logs_destination_type == "cloud-watch-logs")
+  is_s3      = local.is_enabled && var.vpc_enable_flow_logs && (var.vpc_flow_logs_destination_type == "s3")
   flow_logs_s3_arn = local.is_s3 ? (
     var.vpc_flow_logs_s3_arn != "" ? var.vpc_flow_logs_s3_arn : local.audit_log_bucket_arn
   ) : ""
@@ -12,7 +12,7 @@ locals {
 # Reference: https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/flow-logs.html#flow-logs-iam
 # --------------------------------------------------------------------------------------------------
 data "aws_iam_policy_document" "flow_logs_publisher_assume_role_policy" {
-  count = local.is_enabled && var.vpc_enable_flow_logs && local.is_cw_logs ? 1 : 0
+  count = local.is_cw_logs ? 1 : 0
 
   statement {
     principals {
@@ -24,7 +24,7 @@ data "aws_iam_policy_document" "flow_logs_publisher_assume_role_policy" {
 }
 
 resource "aws_iam_role" "flow_logs_publisher" {
-  count = local.is_enabled && var.vpc_enable_flow_logs && local.is_cw_logs ? 1 : 0
+  count = local.is_cw_logs ? 1 : 0
 
   name               = var.vpc_iam_role_name
   assume_role_policy = data.aws_iam_policy_document.flow_logs_publisher_assume_role_policy[0].json
@@ -33,7 +33,7 @@ resource "aws_iam_role" "flow_logs_publisher" {
 }
 
 data "aws_iam_policy_document" "flow_logs_publish_policy" {
-  count = local.is_enabled && var.vpc_enable_flow_logs && local.is_cw_logs ? 1 : 0
+  count = local.is_cw_logs ? 1 : 0
 
   statement {
     actions = [
@@ -48,7 +48,7 @@ data "aws_iam_policy_document" "flow_logs_publish_policy" {
 }
 
 resource "aws_iam_role_policy" "flow_logs_publish_policy" {
-  count = local.is_enabled && var.vpc_enable_flow_logs && local.is_cw_logs ? 1 : 0
+  count = local.is_cw_logs ? 1 : 0
 
   name = var.vpc_iam_role_policy_name
   role = aws_iam_role.flow_logs_publisher[0].id
