@@ -481,6 +481,11 @@ variable "s3_restrict_public_buckets" {
 # --------------------------------------------------------------------------------------------------
 # Variables for securityhub-baseline module.
 # --------------------------------------------------------------------------------------------------
+variable "securityhub_enabled" {
+  description = "Boolean whether the securityhub-baseline module is enabled or disabled"
+  default     = true
+}
+
 variable "securityhub_enable_cis_standard" {
   description = "Boolean whether CIS standard is enabled."
   default     = true
