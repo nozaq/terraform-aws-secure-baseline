@@ -11,7 +11,7 @@ module "securityhub_baseline_ap-northeast-1" {
   providers = {
     aws = aws.ap-northeast-1
   }
-  enabled                          = contains(var.target_regions, "ap-northeast-1")
+  enabled                          = contains(var.target_regions, "ap-northeast-1") && var.securityhub_enabled
   enable_cis_standard              = var.securityhub_enable_cis_standard
   enable_pci_dss_standard          = var.securityhub_enable_pci_dss_standard
   enable_aws_foundational_standard = var.securityhub_enable_aws_foundational_standard
@@ -25,7 +25,7 @@ module "securityhub_baseline_ap-northeast-2" {
     aws = aws.ap-northeast-2
   }
 
-  enabled                          = contains(var.target_regions, "ap-northeast-2")
+  enabled                          = contains(var.target_regions, "ap-northeast-2") && var.securityhub_enabled
   enable_cis_standard              = var.securityhub_enable_cis_standard
   enable_pci_dss_standard          = var.securityhub_enable_pci_dss_standard
   enable_aws_foundational_standard = var.securityhub_enable_aws_foundational_standard
@@ -39,7 +39,7 @@ module "securityhub_baseline_ap-northeast-3" {
     aws = aws.ap-northeast-3
   }
 
-  enabled                          = contains(var.target_regions, "ap-northeast-3")
+  enabled                          = contains(var.target_regions, "ap-northeast-3") && var.securityhub_enabled
   enable_cis_standard              = var.securityhub_enable_cis_standard
   enable_pci_dss_standard          = var.securityhub_enable_pci_dss_standard
   enable_aws_foundational_standard = var.securityhub_enable_aws_foundational_standard
@@ -53,7 +53,7 @@ module "securityhub_baseline_ap-south-1" {
     aws = aws.ap-south-1
   }
 
-  enabled                          = contains(var.target_regions, "ap-south-1")
+  enabled                          = contains(var.target_regions, "ap-south-1") && var.securityhub_enabled
   enable_cis_standard              = var.securityhub_enable_cis_standard
   enable_pci_dss_standard          = var.securityhub_enable_pci_dss_standard
   enable_aws_foundational_standard = var.securityhub_enable_aws_foundational_standard
@@ -67,7 +67,7 @@ module "securityhub_baseline_ap-southeast-1" {
     aws = aws.ap-southeast-1
   }
 
-  enabled                          = contains(var.target_regions, "ap-southeast-1")
+  enabled                          = contains(var.target_regions, "ap-southeast-1") && var.securityhub_enabled
   enable_cis_standard              = var.securityhub_enable_cis_standard
   enable_pci_dss_standard          = var.securityhub_enable_pci_dss_standard
   enable_aws_foundational_standard = var.securityhub_enable_aws_foundational_standard
@@ -81,7 +81,7 @@ module "securityhub_baseline_ap-southeast-2" {
     aws = aws.ap-southeast-2
   }
 
-  enabled                          = contains(var.target_regions, "ap-southeast-2")
+  enabled                          = contains(var.target_regions, "ap-southeast-2") && var.securityhub_enabled
   enable_cis_standard              = var.securityhub_enable_cis_standard
   enable_pci_dss_standard          = var.securityhub_enable_pci_dss_standard
   enable_aws_foundational_standard = var.securityhub_enable_aws_foundational_standard
@@ -95,7 +95,7 @@ module "securityhub_baseline_ca-central-1" {
     aws = aws.ca-central-1
   }
 
-  enabled                          = contains(var.target_regions, "ca-central-1")
+  enabled                          = contains(var.target_regions, "ca-central-1") && var.securityhub_enabled
   enable_cis_standard              = var.securityhub_enable_cis_standard
   enable_pci_dss_standard          = var.securityhub_enable_pci_dss_standard
   enable_aws_foundational_standard = var.securityhub_enable_aws_foundational_standard
@@ -109,7 +109,7 @@ module "securityhub_baseline_eu-central-1" {
     aws = aws.eu-central-1
   }
 
-  enabled                          = contains(var.target_regions, "eu-central-1")
+  enabled                          = contains(var.target_regions, "eu-central-1") && var.securityhub_enabled
   enable_cis_standard              = var.securityhub_enable_cis_standard
   enable_pci_dss_standard          = var.securityhub_enable_pci_dss_standard
   enable_aws_foundational_standard = var.securityhub_enable_aws_foundational_standard
@@ -123,7 +123,7 @@ module "securityhub_baseline_eu-north-1" {
     aws = aws.eu-north-1
   }
 
-  enabled                          = contains(var.target_regions, "eu-north-1")
+  enabled                          = contains(var.target_regions, "eu-north-1") && var.securityhub_enabled
   enable_cis_standard              = var.securityhub_enable_cis_standard
   enable_pci_dss_standard          = var.securityhub_enable_pci_dss_standard
   enable_aws_foundational_standard = var.securityhub_enable_aws_foundational_standard
@@ -137,7 +137,7 @@ module "securityhub_baseline_eu-west-1" {
     aws = aws.eu-west-1
   }
 
-  enabled                          = contains(var.target_regions, "eu-west-1")
+  enabled                          = contains(var.target_regions, "eu-west-1") && var.securityhub_enabled
   enable_cis_standard              = var.securityhub_enable_cis_standard
   enable_pci_dss_standard          = var.securityhub_enable_pci_dss_standard
   enable_aws_foundational_standard = var.securityhub_enable_aws_foundational_standard
@@ -151,7 +151,7 @@ module "securityhub_baseline_eu-west-2" {
     aws = aws.eu-west-2
   }
 
-  enabled                          = contains(var.target_regions, "eu-west-2")
+  enabled                          = contains(var.target_regions, "eu-west-2") && var.securityhub_enabled
   enable_cis_standard              = var.securityhub_enable_cis_standard
   enable_pci_dss_standard          = var.securityhub_enable_pci_dss_standard
   enable_aws_foundational_standard = var.securityhub_enable_aws_foundational_standard
@@ -165,7 +165,7 @@ module "securityhub_baseline_eu-west-3" {
     aws = aws.eu-west-3
   }
 
-  enabled                          = contains(var.target_regions, "eu-west-3")
+  enabled                          = contains(var.target_regions, "eu-west-3") && var.securityhub_enabled
   enable_cis_standard              = var.securityhub_enable_cis_standard
   enable_pci_dss_standard          = var.securityhub_enable_pci_dss_standard
   enable_aws_foundational_standard = var.securityhub_enable_aws_foundational_standard
@@ -179,7 +179,7 @@ module "securityhub_baseline_sa-east-1" {
     aws = aws.sa-east-1
   }
 
-  enabled                          = contains(var.target_regions, "sa-east-1")
+  enabled                          = contains(var.target_regions, "sa-east-1") && var.securityhub_enabled
   enable_cis_standard              = var.securityhub_enable_cis_standard
   enable_pci_dss_standard          = var.securityhub_enable_pci_dss_standard
   enable_aws_foundational_standard = var.securityhub_enable_aws_foundational_standard
@@ -193,7 +193,7 @@ module "securityhub_baseline_us-east-1" {
     aws = aws.us-east-1
   }
 
-  enabled                          = contains(var.target_regions, "us-east-1")
+  enabled                          = contains(var.target_regions, "us-east-1") && var.securityhub_enabled
   enable_cis_standard              = var.securityhub_enable_cis_standard
   enable_pci_dss_standard          = var.securityhub_enable_pci_dss_standard
   enable_aws_foundational_standard = var.securityhub_enable_aws_foundational_standard
@@ -207,7 +207,7 @@ module "securityhub_baseline_us-east-2" {
     aws = aws.us-east-2
   }
 
-  enabled                          = contains(var.target_regions, "us-east-2")
+  enabled                          = contains(var.target_regions, "us-east-2") && var.securityhub_enabled
   enable_cis_standard              = var.securityhub_enable_cis_standard
   enable_pci_dss_standard          = var.securityhub_enable_pci_dss_standard
   enable_aws_foundational_standard = var.securityhub_enable_aws_foundational_standard
@@ -221,7 +221,7 @@ module "securityhub_baseline_us-west-1" {
     aws = aws.us-west-1
   }
 
-  enabled                          = contains(var.target_regions, "us-west-1")
+  enabled                          = contains(var.target_regions, "us-west-1") && var.securityhub_enabled
   enable_cis_standard              = var.securityhub_enable_cis_standard
   enable_pci_dss_standard          = var.securityhub_enable_pci_dss_standard
   enable_aws_foundational_standard = var.securityhub_enable_aws_foundational_standard
@@ -235,7 +235,7 @@ module "securityhub_baseline_us-west-2" {
     aws = aws.us-west-2
   }
 
-  enabled                          = contains(var.target_regions, "us-west-2")
+  enabled                          = contains(var.target_regions, "us-west-2") && var.securityhub_enabled
   enable_cis_standard              = var.securityhub_enable_cis_standard
   enable_pci_dss_standard          = var.securityhub_enable_pci_dss_standard
   enable_aws_foundational_standard = var.securityhub_enable_aws_foundational_standard
