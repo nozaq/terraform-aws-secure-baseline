@@ -506,5 +506,5 @@ variable "securityhub_enable_aws_foundational_standard" {
 # --------------------------------------------------------------------------------------------------
 variable "analyzer_name" {
   description = "The name for the IAM Access Analyzer resource to be created."
-  default     = "default-analyer"
+  default     = "default-analyzer"
 }
