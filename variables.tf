@@ -343,6 +343,10 @@ variable "cloudtrail_s3_object_level_logging_buckets" {
   default     = ["arn:aws:s3:::"] # All S3 buckets
 }
 
+variable "cloudtrail_dynamodb_event_logging_tables" {
+  description = "The list of DynamoDB table ARNs on which to enable event logging."
+  default     = ["arn:aws:dynamodb"] # All DynamoDB tables
+}
 
 # --------------------------------------------------------------------------------------------------
 # Variables for alarm-baseline module.
