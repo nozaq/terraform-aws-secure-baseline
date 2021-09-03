@@ -92,6 +92,10 @@ variable "sns_topic_name" {
   default     = "CISAlarm"
 }
 
+variable "sns_topic_kms_master_key_id" {
+  description = "To enable SNS Topic encryption enter value with the ID of a custom master KMS key that is used for encryption"
+}
+
 variable "tags" {
   description = "Specifies object tags key and value. This applies to all resources created by this module."
   default = {

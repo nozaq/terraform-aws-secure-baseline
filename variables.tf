@@ -269,6 +269,11 @@ variable "config_sns_topic_name" {
   default     = "ConfigChanges"
 }
 
+variable "config_sns_topic_kms_master_key_id" {
+  description = "To enable SNS Topic encryption enter value with the ID of a custom master KMS key that is used for encryption"
+  default     = null
+}
+
 variable "config_aggregator_name" {
   description = "The name of the organizational AWS Config Configuration Aggregator."
   default     = "organization-aggregator"
@@ -357,6 +362,12 @@ variable "alarm_sns_topic_name" {
   description = "The name of the SNS Topic which will be notified when any alarm is performed."
   default     = "CISAlarm"
 }
+
+variable "alarm_sns_topic_kms_master_key_id" {
+  description = "To enable SNS Topic encryption enter value with the ID of a custom master KMS key that is used for encryption"
+  default     = null
+}
+
 variable "unauthorized_api_calls_enabled" {
   description = "The boolean flag whether the unauthorized_api_calls alarm is enabled or not. No resources are created when set to false."
   default     = true

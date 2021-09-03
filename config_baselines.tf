@@ -99,6 +99,7 @@ module "config_baseline_ap-northeast-1" {
   s3_key_prefix                 = var.config_s3_bucket_key_prefix
   delivery_frequency            = var.config_delivery_frequency
   sns_topic_name                = var.config_sns_topic_name
+  sns_topic_kms_master_key_id   = var.config_sns_topic_kms_master_key_id
   include_global_resource_types = var.config_global_resources_all_regions ? true : var.region == "ap-northeast-1"
   tags                          = var.tags
 }
@@ -116,6 +117,7 @@ module "config_baseline_ap-northeast-2" {
   s3_key_prefix                 = var.config_s3_bucket_key_prefix
   delivery_frequency            = var.config_delivery_frequency
   sns_topic_name                = var.config_sns_topic_name
+  sns_topic_kms_master_key_id   = var.config_sns_topic_kms_master_key_id
   include_global_resource_types = var.config_global_resources_all_regions ? true : var.region == "ap-northeast-2"
   tags                          = var.tags
 }
@@ -133,6 +135,7 @@ module "config_baseline_ap-northeast-3" {
   s3_key_prefix                 = var.config_s3_bucket_key_prefix
   delivery_frequency            = var.config_delivery_frequency
   sns_topic_name                = var.config_sns_topic_name
+  sns_topic_kms_master_key_id   = var.config_sns_topic_kms_master_key_id
   include_global_resource_types = var.config_global_resources_all_regions ? true : var.region == "ap-northeast-3"
   tags                          = var.tags
 }
@@ -150,6 +153,7 @@ module "config_baseline_ap-south-1" {
   s3_key_prefix                 = var.config_s3_bucket_key_prefix
   delivery_frequency            = var.config_delivery_frequency
   sns_topic_name                = var.config_sns_topic_name
+  sns_topic_kms_master_key_id   = var.config_sns_topic_kms_master_key_id
   include_global_resource_types = var.config_global_resources_all_regions ? true : var.region == "ap-south-1"
   tags                          = var.tags
 }
@@ -167,6 +171,7 @@ module "config_baseline_ap-southeast-1" {
   s3_key_prefix                 = var.config_s3_bucket_key_prefix
   delivery_frequency            = var.config_delivery_frequency
   sns_topic_name                = var.config_sns_topic_name
+  sns_topic_kms_master_key_id   = var.config_sns_topic_kms_master_key_id
   include_global_resource_types = var.config_global_resources_all_regions ? true : var.region == "ap-southeast-1"
   tags                          = var.tags
 }
@@ -184,6 +189,7 @@ module "config_baseline_ap-southeast-2" {
   s3_key_prefix                 = var.config_s3_bucket_key_prefix
   delivery_frequency            = var.config_delivery_frequency
   sns_topic_name                = var.config_sns_topic_name
+  sns_topic_kms_master_key_id   = var.config_sns_topic_kms_master_key_id
   include_global_resource_types = var.config_global_resources_all_regions ? true : var.region == "ap-southeast-2"
   tags                          = var.tags
 }
@@ -201,6 +207,7 @@ module "config_baseline_ca-central-1" {
   s3_key_prefix                 = var.config_s3_bucket_key_prefix
   delivery_frequency            = var.config_delivery_frequency
   sns_topic_name                = var.config_sns_topic_name
+  sns_topic_kms_master_key_id   = var.config_sns_topic_kms_master_key_id
   include_global_resource_types = var.config_global_resources_all_regions ? true : var.region == "ca-central-1"
   tags                          = var.tags
 }
@@ -218,6 +225,7 @@ module "config_baseline_eu-central-1" {
   s3_key_prefix                 = var.config_s3_bucket_key_prefix
   delivery_frequency            = var.config_delivery_frequency
   sns_topic_name                = var.config_sns_topic_name
+  sns_topic_kms_master_key_id   = var.config_sns_topic_kms_master_key_id
   include_global_resource_types = var.config_global_resources_all_regions ? true : var.region == "eu-central-1"
   tags                          = var.tags
 }
@@ -235,6 +243,7 @@ module "config_baseline_eu-north-1" {
   s3_key_prefix                 = var.config_s3_bucket_key_prefix
   delivery_frequency            = var.config_delivery_frequency
   sns_topic_name                = var.config_sns_topic_name
+  sns_topic_kms_master_key_id   = var.config_sns_topic_kms_master_key_id
   include_global_resource_types = var.config_global_resources_all_regions ? true : var.region == "eu-north-1"
   tags                          = var.tags
 }
@@ -252,6 +261,7 @@ module "config_baseline_eu-west-1" {
   s3_key_prefix                 = var.config_s3_bucket_key_prefix
   delivery_frequency            = var.config_delivery_frequency
   sns_topic_name                = var.config_sns_topic_name
+  sns_topic_kms_master_key_id   = var.config_sns_topic_kms_master_key_id
   include_global_resource_types = var.config_global_resources_all_regions ? true : var.region == "eu-west-1"
   tags                          = var.tags
 }
@@ -269,6 +279,7 @@ module "config_baseline_eu-west-2" {
   s3_key_prefix                 = var.config_s3_bucket_key_prefix
   delivery_frequency            = var.config_delivery_frequency
   sns_topic_name                = var.config_sns_topic_name
+  sns_topic_kms_master_key_id   = var.config_sns_topic_kms_master_key_id
   include_global_resource_types = var.config_global_resources_all_regions ? true : var.region == "eu-west-2"
   tags                          = var.tags
 }
@@ -286,6 +297,7 @@ module "config_baseline_eu-west-3" {
   s3_key_prefix                 = var.config_s3_bucket_key_prefix
   delivery_frequency            = var.config_delivery_frequency
   sns_topic_name                = var.config_sns_topic_name
+  sns_topic_kms_master_key_id   = var.config_sns_topic_kms_master_key_id
   include_global_resource_types = var.config_global_resources_all_regions ? true : var.region == "eu-west-3"
   tags                          = var.tags
 }
@@ -303,6 +315,7 @@ module "config_baseline_sa-east-1" {
   s3_key_prefix                 = var.config_s3_bucket_key_prefix
   delivery_frequency            = var.config_delivery_frequency
   sns_topic_name                = var.config_sns_topic_name
+  sns_topic_kms_master_key_id   = var.config_sns_topic_kms_master_key_id
   include_global_resource_types = var.config_global_resources_all_regions ? true : var.region == "sa-east-1"
   tags                          = var.tags
 }
@@ -320,6 +333,7 @@ module "config_baseline_us-east-1" {
   s3_key_prefix                 = var.config_s3_bucket_key_prefix
   delivery_frequency            = var.config_delivery_frequency
   sns_topic_name                = var.config_sns_topic_name
+  sns_topic_kms_master_key_id   = var.config_sns_topic_kms_master_key_id
   include_global_resource_types = var.config_global_resources_all_regions ? true : var.region == "us-east-1"
   tags                          = var.tags
 }
@@ -337,6 +351,7 @@ module "config_baseline_us-east-2" {
   s3_key_prefix                 = var.config_s3_bucket_key_prefix
   delivery_frequency            = var.config_delivery_frequency
   sns_topic_name                = var.config_sns_topic_name
+  sns_topic_kms_master_key_id   = var.config_sns_topic_kms_master_key_id
   include_global_resource_types = var.config_global_resources_all_regions ? true : var.region == "us-east-2"
   tags                          = var.tags
 }
@@ -354,6 +369,7 @@ module "config_baseline_us-west-1" {
   s3_key_prefix                 = var.config_s3_bucket_key_prefix
   delivery_frequency            = var.config_delivery_frequency
   sns_topic_name                = var.config_sns_topic_name
+  sns_topic_kms_master_key_id   = var.config_sns_topic_kms_master_key_id
   include_global_resource_types = var.config_global_resources_all_regions ? true : var.region == "us-west-1"
   tags                          = var.tags
 }
@@ -371,6 +387,7 @@ module "config_baseline_us-west-2" {
   s3_key_prefix                 = var.config_s3_bucket_key_prefix
   delivery_frequency            = var.config_delivery_frequency
   sns_topic_name                = var.config_sns_topic_name
+  sns_topic_kms_master_key_id   = var.config_sns_topic_kms_master_key_id
   include_global_resource_types = var.config_global_resources_all_regions ? true : var.region == "us-west-2"
   tags                          = var.tags
 }

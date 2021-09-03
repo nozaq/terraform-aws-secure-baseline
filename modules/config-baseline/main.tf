@@ -6,7 +6,9 @@ resource "aws_sns_topic" "config" {
   count = var.enabled ? 1 : 0
 
   name = var.sns_topic_name
-
+  
+  kms_master_key_id = var.sns_topic_kms_master_key_id
+  
   tags = var.tags
 }
 
