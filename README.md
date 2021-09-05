@@ -31,6 +31,7 @@ See [Benchmark Compliance](./compliance.md) to check which items in various benc
 - Enable AWS Config in each regions to automatically take configuration snapshots.
 - Enable SecurityHub and subscribe available standards.
 - Enable GuardDuty in each regions.
+- Enable Macie.
 
 ### Networking & Computing
 
@@ -100,6 +101,7 @@ This module is composed of several submodules and each of which can be used inde
 - [ebs-baseline](./modules/ebs-baseline)
 - [guardduty-baseline](./modules/guardduty-baseline)
 - [iam-baseline](./modules/iam-baseline)
+- [macie-baseline](./modules/macie-baseline)
 - [s3-baseline](./modules/s3-baseline)
 - [secure-bucket](./modules/secure-bucket)
 - [securityhub-baseline](./modules/securityhub-baseline)
@@ -195,6 +197,7 @@ This module is composed of several submodules and each of which can be used inde
 | <a name="module_guardduty_baseline_us-west-1"></a> [guardduty\_baseline\_us-west-1](#module\_guardduty\_baseline\_us-west-1) | ./modules/guardduty-baseline | n/a |
 | <a name="module_guardduty_baseline_us-west-2"></a> [guardduty\_baseline\_us-west-2](#module\_guardduty\_baseline\_us-west-2) | ./modules/guardduty-baseline | n/a |
 | <a name="module_iam_baseline"></a> [iam\_baseline](#module\_iam\_baseline) | ./modules/iam-baseline | n/a |
+| <a name="module_macie_baseline"></a> [macie\_baseline](#module\_macie\_baseline) | ./modules/macie-baseline | n/a |
 | <a name="module_s3_baseline"></a> [s3\_baseline](#module\_s3\_baseline) | ./modules/s3-baseline | n/a |
 | <a name="module_securityhub_baseline_ap-northeast-1"></a> [securityhub\_baseline\_ap-northeast-1](#module\_securityhub\_baseline\_ap-northeast-1) | ./modules/securityhub-baseline | n/a |
 | <a name="module_securityhub_baseline_ap-northeast-2"></a> [securityhub\_baseline\_ap-northeast-2](#module\_securityhub\_baseline\_ap-northeast-2) | ./modules/securityhub-baseline | n/a |
@@ -328,6 +331,10 @@ This module is composed of several submodules and each of which can be used inde
 | <a name="input_require_uppercase_characters"></a> [require\_uppercase\_characters](#input\_require\_uppercase\_characters) | Whether to require uppercase characters for user passwords. | `bool` | `true` | no |
 | <a name="input_root_usage_enabled"></a> [root\_usage\_enabled](#input\_root\_usage\_enabled) | The boolean flag whether the root\_usage alarm is enabled or not. No resources are created when set to false. | `bool` | `true` | no |
 | <a name="input_route_table_changes_enabled"></a> [route\_table\_changes\_enabled](#input\_route\_table\_changes\_enabled) | The boolean flag whether the route\_table\_changes alarm is enabled or not. No resources are created when set to false. | `bool` | `true` | no |
+| <a name="input_macie_disable_email_notification"></a> [macie\_disable\_email\_notification](#input\_macie\_disable\_email\_notification) | Boolean whether an email notification is sent to the accounts. | `bool` | `false` | no |
+| <a name="input_macie_enabled"></a> [macie\_enabled](#input\_macie\_enabled) | Boolean whether the macie-baseline module is enabled or disabled | `bool` | `true` | no |
+| <a name="input_macie_finding_publishing_frequency"></a> [macie\_finding\_publishing\_frequency](#input\_macie\_finding\_publishing\_frequency) | Specifies the frequency of notifications sent for subsequent finding occurrences. | `string` | `"SIX_HOURS"` | no |
+| <a name="input_macie_invitation_message"></a> [macie\_invitation\_message](#input\_macie\_invitation\_message) | Message for invitation. | `string` | `"This is an automatic invitation message from macie-baseline module."` | no |
 | <a name="input_s3_block_public_acls"></a> [s3\_block\_public\_acls](#input\_s3\_block\_public\_acls) | Whether Amazon S3 should block public ACLs for buckets in this account. Defaults to true. | `bool` | `true` | no |
 | <a name="input_s3_block_public_policy"></a> [s3\_block\_public\_policy](#input\_s3\_block\_public\_policy) | Whether Amazon S3 should block public bucket policies for buckets in this account. Defaults to true. | `bool` | `true` | no |
 | <a name="input_s3_bucket_policy_changes_enabled"></a> [s3\_bucket\_policy\_changes\_enabled](#input\_s3\_bucket\_policy\_changes\_enabled) | The boolean flag whether the s3\_bucket\_policy\_changes alarm is enabled or not. No resources are created when set to false. | `bool` | `true` | no |
