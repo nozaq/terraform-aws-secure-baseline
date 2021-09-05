@@ -64,10 +64,15 @@ data "aws_iam_policy_document" "recorder_publish_policy" {
 
   statement {
     actions = ["sns:Publish"]
-
     resources = [for topic in local.config_topics : topic.arn if topic != null]
   }
+  
+  statement {
+    actions = ["kms:Decrypt","kms:GenerateDataKey"]
+    resources = ["arn:aws:kms:*:${data.aws_caller_identity.current.account_id}:key/${var.config_sns_topic_kms_master_key_id != null ? var.config_sns_topic_kms_master_key_id : ""}"]
+  }
 }
+
 resource "aws_iam_role_policy" "recorder_publish_policy" {
   count  = var.config_baseline_enabled ? 1 : 0
   name   = var.config_iam_role_policy_name

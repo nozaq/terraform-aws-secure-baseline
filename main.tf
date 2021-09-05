@@ -24,6 +24,8 @@ terraform {
   }
 }
 
+data "aws_caller_identity" "current" {}
+
 locals {
   is_individual_account = var.account_type == "individual"
   is_master_account     = var.account_type == "master"

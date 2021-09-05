@@ -1,3 +1,6 @@
+data "aws_caller_identity" "current" {}
+data "aws_region" "current" {}
+
 # --------------------------------------------------------------------------------------------------
 # The SNS topic to which CloudWatch alarms send events.
 # --------------------------------------------------------------------------------------------------
@@ -10,6 +13,33 @@ resource "aws_sns_topic" "alarms" {
   kms_master_key_id = var.sns_topic_kms_master_key_id
   
   tags = var.tags
+}
+
+resource "aws_sns_topic_policy" "alarms" {
+  count = var.enabled ? 1 : 0
+  arn = aws_sns_topic.alarms[0].arn
+  
+  policy = data.aws_iam_policy_document.alarms-sns-policy[0].json
+}
+
+data "aws_iam_policy_document" "alarms-sns-policy" {
+  count = var.enabled ? 1 : 0
+  
+  statement {
+    actions   = ["sns:Publish"]
+    resources = [aws_sns_topic.alarms[0].arn]
+    
+    principals {
+      type        = "Service"
+      identifiers = ["cloudwatch.amazonaws.com"]
+    }
+  
+    condition {
+      test = "ArnLike"
+      variable = "AWS:SourceArn"
+      values = ["arn:aws:cloudwatch:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:alarm:*"]
+    }
+  }
 }
 
 # --------------------------------------------------------------------------------------------------
