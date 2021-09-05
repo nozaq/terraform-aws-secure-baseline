@@ -9,35 +9,35 @@ resource "aws_sns_topic" "config" {
   count = var.enabled ? 1 : 0
 
   name = var.sns_topic_name
-  
+
   kms_master_key_id = var.sns_topic_kms_master_key_id
-  
+
   tags = var.tags
 }
 
 resource "aws_sns_topic_policy" "config" {
   count = var.enabled ? 1 : 0
-  arn = aws_sns_topic.config[0].arn
-  
+  arn   = aws_sns_topic.config[0].arn
+
   policy = data.aws_iam_policy_document.config-sns-policy[0].json
 }
 
 data "aws_iam_policy_document" "config-sns-policy" {
   count = var.enabled ? 1 : 0
-  
+
   statement {
     actions   = ["sns:Publish"]
     resources = [aws_sns_topic.config[0].arn]
-    
+
     principals {
       type        = "Service"
       identifiers = ["config.amazonaws.com"]
     }
-    
+
     condition {
-      test = "ArnLike"
+      test     = "ArnLike"
       variable = "aws:SourceArn"
-      values = ["arn:aws:config:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:*"]
+      values   = ["arn:aws:config:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:*"]
     }
   }
 }
