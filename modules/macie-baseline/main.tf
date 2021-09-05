@@ -7,8 +7,6 @@ resource "aws_macie2_account" "default" {
 
   status                       = "ENABLED"
   finding_publishing_frequency = var.finding_publishing_frequency
-
-  tags = var.tags
 }
 
 resource "aws_macie2_member" "members" {

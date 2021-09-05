@@ -115,6 +115,23 @@ module "alarm_baseline" {
 }
 
 # --------------------------------------------------------------------------------------------------
+# Macie Baseline
+# --------------------------------------------------------------------------------------------------
+
+module "macie_baseline" {
+  source = "./modules/macie-baseline"
+
+  enabled                      = contains(var.target_regions, "ap-northeast-1") && var.macie_enabled
+  disable_email_notification   = var.macie_disable_email_notification
+  finding_publishing_frequency = var.macie_finding_publishing_frequency
+  invitation_message           = var.macie_invitation_message
+  master_account_id            = var.master_account_id
+  member_accounts              = var.member_accounts
+
+  tags = var.tags
+}
+
+# --------------------------------------------------------------------------------------------------
 # S3 Baseline
 # --------------------------------------------------------------------------------------------------
 
