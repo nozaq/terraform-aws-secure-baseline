@@ -343,6 +343,11 @@ variable "cloudtrail_s3_object_level_logging_buckets" {
   default     = ["arn:aws:s3:::"] # All S3 buckets
 }
 
+variable "cloudtrail_lambda_invocation_logging_lambdas" {
+  description = "The list of lambda ARNs on which to enable invocation logging."
+  default     = ["arn:aws:lambda"] # All lambdas
+}
+
 
 # --------------------------------------------------------------------------------------------------
 # Variables for alarm-baseline module.
