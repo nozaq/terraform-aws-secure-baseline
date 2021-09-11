@@ -57,6 +57,7 @@ No modules.
 | <a name="input_s3_bucket_name"></a> [s3\_bucket\_name](#input\_s3\_bucket\_name) | The name of the S3 bucket which will store configuration snapshots. | `any` | n/a | yes |
 | <a name="input_s3_key_prefix"></a> [s3\_key\_prefix](#input\_s3\_key\_prefix) | The prefix for the specified S3 bucket. | `string` | `""` | no |
 | <a name="input_s3_object_level_logging_buckets"></a> [s3\_object\_level\_logging\_buckets](#input\_s3\_object\_level\_logging\_buckets) | The list of S3 bucket ARNs on which to enable object-level logging. | `list` | <pre>[<br>  "arn:aws:s3:::"<br>]</pre> | no |
+| <a name="input_lambda_invocation_logging_lambdas"></a> [lambda\_invocation\_logging\_lambdas](#input\_lambda\_invocation\_logging\_lambdas) | The list of lambda ARNs on which to enable invocation logging. | `list` | <pre>[<br>  "arn:aws:lambda"<br>]</pre> | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | Specifies object tags key and value. This applies to all resources created by this module. | `map` | <pre>{<br>  "Terraform": true<br>}</pre> | no |
 
 ## Outputs
