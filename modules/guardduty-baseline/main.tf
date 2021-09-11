@@ -8,6 +8,17 @@ resource "aws_guardduty_detector" "default" {
   enable                       = true
   finding_publishing_frequency = var.finding_publishing_frequency
 
+  # datasources can't be individually managed in each member account.
+  dynamic "datasources" {
+    for_each = var.master_account_id == "" ? [var.master_account_id] : []
+
+    content {
+      s3_logs {
+        enable = true
+      }
+    }
+  }
+
   tags = var.tags
 }
 

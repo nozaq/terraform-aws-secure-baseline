@@ -29,6 +29,7 @@ module "securityhub_baseline_ap-northeast-2" {
   enable_cis_standard              = var.securityhub_enable_cis_standard
   enable_pci_dss_standard          = var.securityhub_enable_pci_dss_standard
   enable_aws_foundational_standard = var.securityhub_enable_aws_foundational_standard
+  enable_product_arns              = var.securityhub_enable_product_arns
   member_accounts                  = local.securityhub_member_accounts
 }
 
@@ -43,6 +44,7 @@ module "securityhub_baseline_ap-northeast-3" {
   enable_cis_standard              = var.securityhub_enable_cis_standard
   enable_pci_dss_standard          = var.securityhub_enable_pci_dss_standard
   enable_aws_foundational_standard = var.securityhub_enable_aws_foundational_standard
+  enable_product_arns              = var.securityhub_enable_product_arns
   member_accounts                  = local.securityhub_member_accounts
 }
 
@@ -57,6 +59,7 @@ module "securityhub_baseline_ap-south-1" {
   enable_cis_standard              = var.securityhub_enable_cis_standard
   enable_pci_dss_standard          = var.securityhub_enable_pci_dss_standard
   enable_aws_foundational_standard = var.securityhub_enable_aws_foundational_standard
+  enable_product_arns              = var.securityhub_enable_product_arns
   member_accounts                  = local.securityhub_member_accounts
 }
 
@@ -71,6 +74,7 @@ module "securityhub_baseline_ap-southeast-1" {
   enable_cis_standard              = var.securityhub_enable_cis_standard
   enable_pci_dss_standard          = var.securityhub_enable_pci_dss_standard
   enable_aws_foundational_standard = var.securityhub_enable_aws_foundational_standard
+  enable_product_arns              = var.securityhub_enable_product_arns
   member_accounts                  = local.securityhub_member_accounts
 }
 
@@ -85,6 +89,7 @@ module "securityhub_baseline_ap-southeast-2" {
   enable_cis_standard              = var.securityhub_enable_cis_standard
   enable_pci_dss_standard          = var.securityhub_enable_pci_dss_standard
   enable_aws_foundational_standard = var.securityhub_enable_aws_foundational_standard
+  enable_product_arns              = var.securityhub_enable_product_arns
   member_accounts                  = local.securityhub_member_accounts
 }
 
@@ -99,6 +104,7 @@ module "securityhub_baseline_ca-central-1" {
   enable_cis_standard              = var.securityhub_enable_cis_standard
   enable_pci_dss_standard          = var.securityhub_enable_pci_dss_standard
   enable_aws_foundational_standard = var.securityhub_enable_aws_foundational_standard
+  enable_product_arns              = var.securityhub_enable_product_arns
   member_accounts                  = local.securityhub_member_accounts
 }
 
@@ -113,6 +119,7 @@ module "securityhub_baseline_eu-central-1" {
   enable_cis_standard              = var.securityhub_enable_cis_standard
   enable_pci_dss_standard          = var.securityhub_enable_pci_dss_standard
   enable_aws_foundational_standard = var.securityhub_enable_aws_foundational_standard
+  enable_product_arns              = var.securityhub_enable_product_arns
   member_accounts                  = local.securityhub_member_accounts
 }
 
@@ -127,6 +134,7 @@ module "securityhub_baseline_eu-north-1" {
   enable_cis_standard              = var.securityhub_enable_cis_standard
   enable_pci_dss_standard          = var.securityhub_enable_pci_dss_standard
   enable_aws_foundational_standard = var.securityhub_enable_aws_foundational_standard
+  enable_product_arns              = var.securityhub_enable_product_arns
   member_accounts                  = local.securityhub_member_accounts
 }
 
@@ -141,6 +149,7 @@ module "securityhub_baseline_eu-west-1" {
   enable_cis_standard              = var.securityhub_enable_cis_standard
   enable_pci_dss_standard          = var.securityhub_enable_pci_dss_standard
   enable_aws_foundational_standard = var.securityhub_enable_aws_foundational_standard
+  enable_product_arns              = var.securityhub_enable_product_arns
   member_accounts                  = local.securityhub_member_accounts
 }
 
@@ -155,6 +164,7 @@ module "securityhub_baseline_eu-west-2" {
   enable_cis_standard              = var.securityhub_enable_cis_standard
   enable_pci_dss_standard          = var.securityhub_enable_pci_dss_standard
   enable_aws_foundational_standard = var.securityhub_enable_aws_foundational_standard
+  enable_product_arns              = var.securityhub_enable_product_arns
   member_accounts                  = local.securityhub_member_accounts
 }
 
@@ -169,6 +179,7 @@ module "securityhub_baseline_eu-west-3" {
   enable_cis_standard              = var.securityhub_enable_cis_standard
   enable_pci_dss_standard          = var.securityhub_enable_pci_dss_standard
   enable_aws_foundational_standard = var.securityhub_enable_aws_foundational_standard
+  enable_product_arns              = var.securityhub_enable_product_arns
   member_accounts                  = local.securityhub_member_accounts
 }
 
@@ -183,6 +194,7 @@ module "securityhub_baseline_sa-east-1" {
   enable_cis_standard              = var.securityhub_enable_cis_standard
   enable_pci_dss_standard          = var.securityhub_enable_pci_dss_standard
   enable_aws_foundational_standard = var.securityhub_enable_aws_foundational_standard
+  enable_product_arns              = var.securityhub_enable_product_arns
   member_accounts                  = local.securityhub_member_accounts
 }
 
@@ -197,6 +209,7 @@ module "securityhub_baseline_us-east-1" {
   enable_cis_standard              = var.securityhub_enable_cis_standard
   enable_pci_dss_standard          = var.securityhub_enable_pci_dss_standard
   enable_aws_foundational_standard = var.securityhub_enable_aws_foundational_standard
+  enable_product_arns              = var.securityhub_enable_product_arns
   member_accounts                  = local.securityhub_member_accounts
 }
 
@@ -211,6 +224,7 @@ module "securityhub_baseline_us-east-2" {
   enable_cis_standard              = var.securityhub_enable_cis_standard
   enable_pci_dss_standard          = var.securityhub_enable_pci_dss_standard
   enable_aws_foundational_standard = var.securityhub_enable_aws_foundational_standard
+  enable_product_arns              = var.securityhub_enable_product_arns
   member_accounts                  = local.securityhub_member_accounts
 }
 
@@ -225,6 +239,7 @@ module "securityhub_baseline_us-west-1" {
   enable_cis_standard              = var.securityhub_enable_cis_standard
   enable_pci_dss_standard          = var.securityhub_enable_pci_dss_standard
   enable_aws_foundational_standard = var.securityhub_enable_aws_foundational_standard
+  enable_product_arns              = var.securityhub_enable_product_arns
   member_accounts                  = local.securityhub_member_accounts
 }
 
@@ -239,5 +254,6 @@ module "securityhub_baseline_us-west-2" {
   enable_cis_standard              = var.securityhub_enable_cis_standard
   enable_pci_dss_standard          = var.securityhub_enable_pci_dss_standard
   enable_aws_foundational_standard = var.securityhub_enable_aws_foundational_standard
+  enable_product_arns              = var.securityhub_enable_product_arns
   member_accounts                  = local.securityhub_member_accounts
 }
