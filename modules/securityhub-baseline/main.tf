@@ -50,3 +50,14 @@ resource "aws_securityhub_standards_subscription" "pci_dss" {
 
   depends_on = [aws_securityhub_account.main]
 }
+
+# --------------------------------------------------------------------------------------------------
+# Subscribe to 3rd party products
+# --------------------------------------------------------------------------------------------------
+resource "aws_securityhub_product_subscription" "products" {
+  count = var.enabled ? length(var.enable_product_arns) : 0
+
+  product_arn = replace(var.enable_product_arns[count.index], "<REGION>", data.aws_region.current.name)
+
+  depends_on = [aws_securityhub_account.main]
+}
