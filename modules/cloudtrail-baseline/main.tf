@@ -269,7 +269,7 @@ resource "aws_cloudtrail" "global" {
       type   = "AWS::DynamoDB::Table"
       values = var.dynamodb_event_logging_tables
     }
-      
+
     data_resource {
       type   = "AWS::Lambda::Function"
       values = var.lambda_invocation_logging_lambdas
