@@ -506,6 +506,12 @@ variable "securityhub_enable_aws_foundational_standard" {
   default     = true
 }
 
+variable "securityhub_enable_product_arns" {
+  description = "List of Security Hub product ARNs, `<REGION>` will be replaced. See https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-partner-providers.html for list."
+  type        = list(string)
+  default     = []
+}
+
 # --------------------------------------------------------------------------------------------------
 # Variables for analyzer-baseline module.
 # --------------------------------------------------------------------------------------------------
