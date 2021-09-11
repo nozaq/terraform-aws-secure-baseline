@@ -19,7 +19,7 @@ variable "support_iam_role_principal_arns" {
 
 variable "max_password_age" {
   description = "The number of days that an user password is valid."
-  default     = 90
+  default     = 0
 }
 
 variable "minimum_password_length" {
@@ -34,22 +34,22 @@ variable "password_reuse_prevention" {
 
 variable "require_lowercase_characters" {
   description = "Whether to require lowercase characters for user passwords."
-  default     = true
+  default     = false
 }
 
 variable "require_numbers" {
   description = "Whether to require numbers for user passwords."
-  default     = true
+  default     = false
 }
 
 variable "require_uppercase_characters" {
   description = "Whether to require uppercase characters for user passwords."
-  default     = true
+  default     = false
 }
 
 variable "require_symbols" {
   description = "Whether to require symbols for user passwords."
-  default     = true
+  default     = false
 }
 
 variable "allow_users_to_change_password" {
