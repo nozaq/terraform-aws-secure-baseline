@@ -2,6 +2,29 @@
 ## [Unreleased]
 
 
+<a name="0.28.0"></a>
+## [0.28.0] - 2021-09-11
+### Feat
+- GuardDuty: Enable S3 events sources ([#209](https://github.com/nozaq/terraform-aws-secure-baseline/issues/209))
+- add support for logging dynamodb events ([#207](https://github.com/nozaq/terraform-aws-secure-baseline/issues/207))
+- add in support to enable 3rd party products ([#206](https://github.com/nozaq/terraform-aws-secure-baseline/issues/206))
+- adds lambda function invocation logging ([#205](https://github.com/nozaq/terraform-aws-secure-baseline/issues/205))
+- add a flag to toggle Security Hub ([#201](https://github.com/nozaq/terraform-aws-secure-baseline/issues/201))
+
+### Fix
+- do not manage `datasources` in member accounts. ([#215](https://github.com/nozaq/terraform-aws-secure-baseline/issues/215))
+- adjust passwort policy to match CIS 1.3+ ([#214](https://github.com/nozaq/terraform-aws-secure-baseline/issues/214))
+- adjust filter pattern for unauthorized_api_calls alarm ([#212](https://github.com/nozaq/terraform-aws-secure-baseline/issues/212))
+- adjust passwort policy to match CIS 1.3+ ([#213](https://github.com/nozaq/terraform-aws-secure-baseline/issues/213))
+- typo ([#203](https://github.com/nozaq/terraform-aws-secure-baseline/issues/203))
+
+
+<a name="0.27.1"></a>
+## [0.27.1] - 2021-07-03
+### Fix
+- when VPC is disabled, disable vpc logging for it ([#197](https://github.com/nozaq/terraform-aws-secure-baseline/issues/197))
+
+
 <a name="0.27.0"></a>
 ## [0.27.0] - 2021-06-27
 ### Feat
@@ -306,7 +329,9 @@
 <a name="0.0.1"></a>
 ## 0.0.1 - 2018-02-12
 
-[Unreleased]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.27.0...HEAD
+[Unreleased]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.28.0...HEAD
+[0.28.0]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.27.1...0.28.0
+[0.27.1]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.27.0...0.27.1
 [0.27.0]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.26.0...0.27.0
 [0.26.0]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.24.0...0.26.0
 [0.24.0]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.23.1...0.24.0
