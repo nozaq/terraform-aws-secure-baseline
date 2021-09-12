@@ -24,6 +24,8 @@ terraform {
   }
 }
 
+data "aws_caller_identity" "current" {}
+
 locals {
   is_individual_account = var.account_type == "individual"
   is_master_account     = var.account_type == "master"
@@ -112,6 +114,7 @@ module "alarm_baseline" {
   alarm_namespace                  = var.alarm_namespace
   cloudtrail_log_group_name        = local.is_cloudtrail_enabled ? module.cloudtrail_baseline.log_group : ""
   sns_topic_name                   = var.alarm_sns_topic_name
+  sns_topic_kms_master_key_id      = var.alarm_sns_topic_kms_master_key_id
 
   tags = var.tags
 }
@@ -128,4 +131,3 @@ module "s3_baseline" {
   ignore_public_acls      = var.s3_ignore_public_acls
   restrict_public_buckets = var.s3_restrict_public_buckets
 }
-
