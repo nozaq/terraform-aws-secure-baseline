@@ -2,6 +2,12 @@
 ## [Unreleased]
 
 
+<a name="0.29.0"></a>
+## [0.29.0] - 2021-09-12
+### Feat
+- add kms_master_key_id to alarm baseline and config-baseline module ([#216](https://github.com/nozaq/terraform-aws-secure-baseline/issues/216))
+
+
 <a name="0.28.0"></a>
 ## [0.28.0] - 2021-09-11
 ### Feat
@@ -13,9 +19,9 @@
 
 ### Fix
 - do not manage `datasources` in member accounts. ([#215](https://github.com/nozaq/terraform-aws-secure-baseline/issues/215))
-- adjust password policy to match CIS 1.3+ ([#214](https://github.com/nozaq/terraform-aws-secure-baseline/issues/214))
+- adjust passwort policy to match CIS 1.3+ ([#214](https://github.com/nozaq/terraform-aws-secure-baseline/issues/214))
 - adjust filter pattern for unauthorized_api_calls alarm ([#212](https://github.com/nozaq/terraform-aws-secure-baseline/issues/212))
-- adjust password policy to match CIS 1.3+ ([#213](https://github.com/nozaq/terraform-aws-secure-baseline/issues/213))
+- adjust passwort policy to match CIS 1.3+ ([#213](https://github.com/nozaq/terraform-aws-secure-baseline/issues/213))
 - typo ([#203](https://github.com/nozaq/terraform-aws-secure-baseline/issues/203))
 
 
@@ -329,7 +335,8 @@
 <a name="0.0.1"></a>
 ## 0.0.1 - 2018-02-12
 
-[Unreleased]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.28.0...HEAD
+[Unreleased]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.29.0...HEAD
+[0.29.0]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.28.0...0.29.0
 [0.28.0]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.27.1...0.28.0
 [0.27.1]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.27.0...0.27.1
 [0.27.0]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.26.0...0.27.0
