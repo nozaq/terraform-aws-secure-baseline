@@ -2,8 +2,14 @@
 ## [Unreleased]
 
 
+<a name="0.29.1"></a>
+## [0.29.1] - 2021-09-18
+### Fix
+- make `sns_topic_kms_master_key_id` optional ([#219](https://github.com/nozaq/terraform-aws-secure-baseline/issues/219))
+
+
 <a name="0.29.0"></a>
-## [0.29.0] - 2021-09-12
+## [0.29.0] - 2021-09-17
 ### Feat
 - add kms_master_key_id to alarm baseline and config-baseline module ([#216](https://github.com/nozaq/terraform-aws-secure-baseline/issues/216))
 
@@ -335,7 +341,8 @@
 <a name="0.0.1"></a>
 ## 0.0.1 - 2018-02-12
 
-[Unreleased]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.29.0...HEAD
+[Unreleased]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.29.1...HEAD
+[0.29.1]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.29.0...0.29.1
 [0.29.0]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.28.0...0.29.0
 [0.28.0]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.27.1...0.28.0
 [0.27.1]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.27.0...0.27.1
