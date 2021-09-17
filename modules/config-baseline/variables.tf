@@ -23,6 +23,7 @@ variable "sns_topic_name" {
 
 variable "sns_topic_kms_master_key_id" {
   description = "To enable SNS Topic encryption enter value with the ID of a custom master KMS key that is used for encryption"
+  default     = null
 }
 
 variable "delivery_frequency" {
