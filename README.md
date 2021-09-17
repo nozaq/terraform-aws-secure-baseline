@@ -248,6 +248,7 @@ This module is composed of several submodules and each of which can be used inde
 | [aws_iam_role_policy_attachment.config_organization](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment) | resource |
 | [aws_iam_role_policy_attachment.recorder_read_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment) | resource |
 | [aws_s3_bucket_policy.audit_log](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_policy) | resource |
+| [aws_caller_identity.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/caller_identity) | data source |
 | [aws_iam_policy_document.audit_log](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
 | [aws_iam_policy_document.audit_log_base](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
 | [aws_iam_policy_document.audit_log_cloud_trail](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
@@ -267,6 +268,7 @@ This module is composed of several submodules and each of which can be used inde
 |------|-------------|------|---------|:--------:|
 | <a name="input_account_type"></a> [account\_type](#input\_account\_type) | The type of the AWS account. The possible values are `individual`, `master` and `member` . Specify `master` and `member` to set up centalized logging for multiple accounts in AWS Organization. Use individual` otherwise.` | `string` | `"individual"` | no |
 | <a name="input_alarm_namespace"></a> [alarm\_namespace](#input\_alarm\_namespace) | The namespace in which all alarms are set up. | `string` | `"CISBenchmark"` | no |
+| <a name="input_alarm_sns_topic_kms_master_key_id"></a> [alarm\_sns\_topic\_kms\_master\_key\_id](#input\_alarm\_sns\_topic\_kms\_master\_key\_id) | To enable SNS Topic encryption enter value with the ID of a custom master KMS key that is used for encryption | `any` | `null` | no |
 | <a name="input_alarm_sns_topic_name"></a> [alarm\_sns\_topic\_name](#input\_alarm\_sns\_topic\_name) | The name of the SNS Topic which will be notified when any alarm is performed. | `string` | `"CISAlarm"` | no |
 | <a name="input_allow_users_to_change_password"></a> [allow\_users\_to\_change\_password](#input\_allow\_users\_to\_change\_password) | Whether to allow users to change their own password. | `bool` | `true` | no |
 | <a name="input_analyzer_name"></a> [analyzer\_name](#input\_analyzer\_name) | The name for the IAM Access Analyzer resource to be created. | `string` | `"default-analyzer"` | no |
@@ -298,6 +300,7 @@ This module is composed of several submodules and each of which can be used inde
 | <a name="input_config_iam_role_name"></a> [config\_iam\_role\_name](#input\_config\_iam\_role\_name) | The name of the IAM Role which AWS Config will use. | `string` | `"Config-Recorder"` | no |
 | <a name="input_config_iam_role_policy_name"></a> [config\_iam\_role\_policy\_name](#input\_config\_iam\_role\_policy\_name) | The name of the IAM Role Policy which AWS Config will use. | `string` | `"Config-Recorder-Policy"` | no |
 | <a name="input_config_s3_bucket_key_prefix"></a> [config\_s3\_bucket\_key\_prefix](#input\_config\_s3\_bucket\_key\_prefix) | The prefix used when writing AWS Config snapshots into the S3 bucket. | `string` | `"config"` | no |
+| <a name="input_config_sns_topic_kms_master_key_id"></a> [config\_sns\_topic\_kms\_master\_key\_id](#input\_config\_sns\_topic\_kms\_master\_key\_id) | To enable SNS Topic encryption enter value with the ID of a custom master KMS key that is used for encryption | `any` | `null` | no |
 | <a name="input_config_sns_topic_name"></a> [config\_sns\_topic\_name](#input\_config\_sns\_topic\_name) | The name of the SNS Topic to be used to notify configuration changes. | `string` | `"ConfigChanges"` | no |
 | <a name="input_console_signin_failures_enabled"></a> [console\_signin\_failures\_enabled](#input\_console\_signin\_failures\_enabled) | The boolean flag whether the console\_signin\_failures alarm is enabled or not. No resources are created when set to false. | `bool` | `true` | no |
 | <a name="input_create_manager_role"></a> [create\_manager\_role](#input\_create\_manager\_role) | Define if the manager role should be created. | `bool` | `true` | no |
