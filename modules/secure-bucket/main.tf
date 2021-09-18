@@ -56,6 +56,10 @@ resource "aws_s3_bucket_policy" "access_log_policy" {
 
   bucket = aws_s3_bucket.access_log[0].id
   policy = data.aws_iam_policy_document.access_log_policy[0].json
+
+  depends_on = [
+    aws_s3_bucket_public_access_block.access_log,
+  ]
 }
 
 resource "aws_s3_bucket_public_access_block" "access_log" {
@@ -114,6 +118,10 @@ resource "aws_s3_bucket" "content" {
   }
 
   tags = var.tags
+
+  depends_on = [
+    aws_s3_bucket_public_access_block.access_log
+  ]
 }
 
 resource "aws_s3_bucket_public_access_block" "content" {

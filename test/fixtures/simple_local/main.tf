@@ -1,6 +1,10 @@
 terraform {
   required_version = ">= 0.15"
 
+  backend "local" {
+    path = "../terraform.tfstate"
+  }
+
   required_providers {
     aws = {
       source  = "hashicorp/aws"
@@ -21,7 +25,7 @@ resource "aws_iam_user" "admin" {
 }
 
 module "secure_baseline" {
-  source = "../../"
+  source = "../../../"
 
   audit_log_bucket_name           = var.audit_s3_bucket_name
   aws_account_id                  = data.aws_caller_identity.current.account_id
