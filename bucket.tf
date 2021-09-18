@@ -38,6 +38,8 @@ module "audit_log_bucket" {
   enabled                           = !local.use_external_bucket
 
   tags = var.tags
+
+  depends_on = [module.s3_baseline]
 }
 
 data "aws_organizations_organization" "org" {
