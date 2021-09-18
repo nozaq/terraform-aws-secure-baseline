@@ -2,18 +2,18 @@ name: Terraform
 on:
   push:
     branches:
-    - master
+      - main
   pull_request:
 jobs:
   check-format:
     name: Check format
     runs-on: ubuntu-latest
     steps:
-    - uses: hashicorp/setup-terraform@v1
-    - name: Checkout
-      uses: actions/checkout@master
-    - name: 'Terraform Format'
-      run: terraform fmt -check -recursive
+      - uses: hashicorp/setup-terraform@v1
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: "Terraform Format"
+        run: terraform fmt -check -recursive
 
   validate-examples:
     name: Validate examples
@@ -23,15 +23,15 @@ jobs:
         shell: bash
         working-directory: examples
     steps:
-    - uses: hashicorp/setup-terraform@v1
-    - name: Checkout
-      uses: actions/checkout@master
-    - name: Check examples
-      env:
-        EXAMPLES: simple external-bucket select-region organization/master organization/member
-      run: |
-        for EXAMPLE in ${EXAMPLES}
-        do
-          echo "Validating $EXAMPLE"...
-          cd $EXAMPLE && terraform init && terraform validate && cd -
-        done
+      - uses: hashicorp/setup-terraform@v1
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Check examples
+        env:
+          EXAMPLES: simple external-bucket select-region organization/master organization/member
+        run: |
+          for EXAMPLE in ${EXAMPLES}
+          do
+            echo "Validating $EXAMPLE"...
+            cd $EXAMPLE && terraform init && terraform validate && cd -
+          done
