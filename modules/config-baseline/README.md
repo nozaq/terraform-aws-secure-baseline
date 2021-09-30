@@ -8,13 +8,13 @@ Enable AWS Config in all regions to automatically take configuration snapshots.
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.13 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 3.0.0 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 3.50.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 3.0.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 3.60.0 |
 
 ## Modules
 
