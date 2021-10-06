@@ -2,8 +2,10 @@
 # Enables GuardDuty.
 # --------------------------------------------------------------------------------------------------
 
+# Used for master account setup
+
 resource "aws_guardduty_detector" "default" {
-  count = var.enabled ? 1 : 0
+  count = var.enabled && var.master_account_id == "" ? 1 : 0
 
   enable                       = true
   finding_publishing_frequency = var.finding_publishing_frequency
@@ -23,7 +25,7 @@ resource "aws_guardduty_detector" "default" {
 }
 
 resource "aws_guardduty_member" "members" {
-  count = var.enabled ? length(var.member_accounts) : 0
+  count = var.enabled && var.master_account_id == "" ? length(var.member_accounts) : 0
 
   detector_id = aws_guardduty_detector.default[0].id
   invite      = true
@@ -34,9 +36,15 @@ resource "aws_guardduty_member" "members" {
   invitation_message         = var.invitation_message
 }
 
+# Used for member account setup
+
 resource "aws_guardduty_invite_accepter" "master" {
   count = var.enabled && var.master_account_id != "" ? 1 : 0
 
-  detector_id       = aws_guardduty_detector.default[0].id
+  detector_id       = data.aws_guardduty_detector.default[0].id # aws_guardduty_detector.default[0].id
   master_account_id = var.master_account_id
+}
+
+data "aws_guardduty_detector" "default" {
+  count = var.enabled && var.master_account_id != "" ? 1 : 0
 }
