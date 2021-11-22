@@ -70,6 +70,11 @@ variable "audit_log_bucket_custom_policy_json" {
   default     = "{}"
 }
 
+variable "audit_log_bucket_key_enabled" {
+  description = "Whether or not to use Amazon S3 Bucket Keys for encrypting the audit log bucket."
+  default     = false
+}
+
 variable "audit_log_lifecycle_glacier_transition_days" {
   description = "The number of days after log creation when the log file is archived into Glacier."
   default     = 90

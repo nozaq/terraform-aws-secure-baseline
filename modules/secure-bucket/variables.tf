@@ -25,3 +25,8 @@ variable "tags" {
     "Terraform" = true
   }
 }
+
+variable "bucket_key_enabled" {
+  description = "Whether or not to use Amazon S3 Bucket Keys for this bucket."
+  default     = false
+}
