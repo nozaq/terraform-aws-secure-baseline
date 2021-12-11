@@ -82,8 +82,11 @@ resource "aws_cloudwatch_metric_alarm" "unauthorized_api_calls" {
 resource "aws_cloudwatch_log_metric_filter" "no_mfa_console_signin" {
   count = var.enabled && var.no_mfa_console_signin_enabled ? 1 : 0
 
-  name           = "NoMFAConsoleSignin"
-  pattern        = join(" ", ["{ ($.eventName = \"ConsoleLogin\") && ($.additionalEventData.MFAUsed != \"Yes\")", var.mfa_console_signin_allow_sso == true ? "&& ($.userIdentity.arn != \"*assumed-role/AWSReservedSSO*\") }" : "}"])
+  name = "NoMFAConsoleSignin"
+  pattern = join(" ", [
+    "{ ($.eventName = \"ConsoleLogin\") && ($.additionalEventData.MFAUsed != \"Yes\")",
+    var.mfa_console_signin_allow_sso ? "&& ($.userIdentity.type = \"IAMUser\") && ($.responseElements.ConsoleLogin = \"Success\") }" : "}",
+  ])
   log_group_name = var.cloudtrail_log_group_name
 
   metric_transformation {
