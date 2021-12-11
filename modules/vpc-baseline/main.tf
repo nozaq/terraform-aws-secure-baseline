@@ -8,11 +8,6 @@ data "aws_availability_zones" "all" {
 
 data "aws_subnets" "default" {
   filter {
-    name   = "vpc-id"
-    values = var.enabled ? [aws_default_vpc.default[0].id] : []
-  }
-
-  filter {
     name   = "default-for-az"
     values = [true]
   }
