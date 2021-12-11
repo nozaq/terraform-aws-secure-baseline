@@ -6,6 +6,18 @@ locals {
 data "aws_availability_zones" "all" {
 }
 
+data "aws_subnets" "default" {
+  filter {
+    name   = "default-for-az"
+    values = [true]
+  }
+}
+
+data "aws_subnet" "default" {
+  for_each = toset(data.aws_subnets.default.ids)
+  id       = each.value
+}
+
 # --------------------------------------------------------------------------------------------------
 # Enable VPC Flow Logs for the default VPC.
 # --------------------------------------------------------------------------------------------------
@@ -45,9 +57,9 @@ resource "aws_default_vpc" "default" {
 }
 
 resource "aws_default_subnet" "default" {
-  count = var.enabled ? length(data.aws_availability_zones.all.names) : 0
+  for_each = data.aws_subnet.default
 
-  availability_zone       = data.aws_availability_zones.all.names[count.index]
+  availability_zone       = each.value.availability_zone
   map_public_ip_on_launch = false
 
   tags = merge(
