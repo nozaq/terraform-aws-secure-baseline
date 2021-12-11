@@ -98,6 +98,7 @@ module "alarm_baseline" {
   enabled                          = local.is_cloudtrail_enabled && var.cloudtrail_cloudwatch_logs_enabled
   unauthorized_api_calls_enabled   = var.unauthorized_api_calls_enabled
   no_mfa_console_signin_enabled    = var.no_mfa_console_signin_enabled
+  mfa_console_signin_allow_sso     = var.mfa_console_signin_allow_sso
   root_usage_enabled               = var.root_usage_enabled
   iam_changes_enabled              = var.iam_changes_enabled
   cloudtrail_cfg_changes_enabled   = var.cloudtrail_cfg_changes_enabled

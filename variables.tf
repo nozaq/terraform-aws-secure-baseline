@@ -392,6 +392,11 @@ variable "no_mfa_console_signin_enabled" {
   default     = true
 }
 
+variable "mfa_console_signin_allow_sso" {
+  description = "The boolean flag whether the no_mfa_console_signin alarm allows SSO auth to be ignored."
+  default     = false
+}
+
 variable "root_usage_enabled" {
   description = "The boolean flag whether the root_usage alarm is enabled or not. No resources are created when set to false."
   default     = true
