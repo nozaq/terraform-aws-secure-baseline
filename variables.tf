@@ -486,6 +486,29 @@ variable "guardduty_invitation_message" {
 }
 
 # --------------------------------------------------------------------------------------------------
+# Variables for macie-baseline module.
+# --------------------------------------------------------------------------------------------------
+variable "macie_enabled" {
+  description = "Boolean whether the macie-baseline module is enabled or disabled"
+  default     = true
+}
+
+variable "macie_disable_email_notification" {
+  description = "Boolean whether an email notification is sent to the accounts."
+  default     = false
+}
+
+variable "macie_finding_publishing_frequency" {
+  description = "Specifies the frequency of notifications sent for subsequent finding occurrences."
+  default     = "SIX_HOURS"
+}
+
+variable "macie_invitation_message" {
+  description = "Message for invitation."
+  default     = "This is an automatic invitation message from macie-baseline module."
+}
+
+# --------------------------------------------------------------------------------------------------
 # Variables for s3-baseline module.
 # --------------------------------------------------------------------------------------------------
 variable "s3_block_public_acls" {
