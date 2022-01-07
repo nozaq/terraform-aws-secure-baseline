@@ -6,8 +6,6 @@ data "aws_region" "current" {}
 # --------------------------------------------------------------------------------------------------
 
 resource "aws_sns_topic" "config" {
-  count = var.enabled ? 1 : 0
-
   name = var.sns_topic_name
 
   kms_master_key_id = var.sns_topic_kms_master_key_id
@@ -16,18 +14,15 @@ resource "aws_sns_topic" "config" {
 }
 
 resource "aws_sns_topic_policy" "config" {
-  count = var.enabled ? 1 : 0
-  arn   = aws_sns_topic.config[0].arn
+  arn = aws_sns_topic.config.arn
 
-  policy = data.aws_iam_policy_document.config-sns-policy[0].json
+  policy = data.aws_iam_policy_document.config-sns-policy.json
 }
 
 data "aws_iam_policy_document" "config-sns-policy" {
-  count = var.enabled ? 1 : 0
-
   statement {
     actions   = ["sns:Publish"]
-    resources = [aws_sns_topic.config[0].arn]
+    resources = [aws_sns_topic.config.arn]
 
     principals {
       type        = "Service"
@@ -43,8 +38,6 @@ data "aws_iam_policy_document" "config-sns-policy" {
 }
 
 resource "aws_config_configuration_recorder" "recorder" {
-  count = var.enabled ? 1 : 0
-
   name = var.recorder_name
 
   role_arn = var.iam_role_arn
@@ -56,26 +49,22 @@ resource "aws_config_configuration_recorder" "recorder" {
 }
 
 resource "aws_config_delivery_channel" "bucket" {
-  count = var.enabled ? 1 : 0
-
   name = var.delivery_channel_name
 
   s3_bucket_name = var.s3_bucket_name
   s3_key_prefix  = var.s3_key_prefix
-  sns_topic_arn  = aws_sns_topic.config[0].arn
+  sns_topic_arn  = aws_sns_topic.config.arn
 
   snapshot_delivery_properties {
     delivery_frequency = var.delivery_frequency
   }
 
-  depends_on = [aws_config_configuration_recorder.recorder[0]]
+  depends_on = [aws_config_configuration_recorder.recorder]
 }
 
 resource "aws_config_configuration_recorder_status" "recorder" {
-  count = var.enabled ? 1 : 0
-
-  name = aws_config_configuration_recorder.recorder[0].id
+  name = aws_config_configuration_recorder.recorder.id
 
   is_enabled = true
-  depends_on = [aws_config_delivery_channel.bucket[0]]
+  depends_on = [aws_config_delivery_channel.bucket]
 }

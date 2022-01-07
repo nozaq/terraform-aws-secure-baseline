@@ -11,7 +11,7 @@
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.13 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.1.3 |
 | <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 3.55.0 |
 
 ## Providers
@@ -44,7 +44,6 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_enable_flow_logs"></a> [enable\_flow\_logs](#input\_enable\_flow\_logs) | The boolean flag whether to enable VPC Flow Logs in the default VPC | `bool` | `true` | no |
-| <a name="input_enabled"></a> [enabled](#input\_enabled) | The boolean flag whether this module is enabled or not. No resources are created when set to false. | `bool` | `true` | no |
 | <a name="input_flow_logs_destination_type"></a> [flow\_logs\_destination\_type](#input\_flow\_logs\_destination\_type) | The type of the logging destination. Valid values: cloud-watch-logs, s3 | `string` | `"cloud-watch-logs"` | no |
 | <a name="input_flow_logs_iam_role_arn"></a> [flow\_logs\_iam\_role\_arn](#input\_flow\_logs\_iam\_role\_arn) | The ARN of the IAM Role which will be used by VPC Flow Logs if vpc\_log\_destination\_type is cloud-watch-logs. | `string` | `""` | no |
 | <a name="input_flow_logs_log_group_name"></a> [flow\_logs\_log\_group\_name](#input\_flow\_logs\_log\_group\_name) | The name of CloudWatch Logs group to which VPC Flow Logs are delivered if vpc\_log\_destination\_type is cloud-watch-logs. | `string` | `""` | no |

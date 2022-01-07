@@ -1,8 +1,3 @@
-variable "enabled" {
-  description = "The boolean flag whether this module is enabled or not. No resources are created when set to false."
-  default     = true
-}
-
 variable "aws_account_id" {
   description = "The AWS Account ID number of the account."
 }

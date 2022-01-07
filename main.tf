@@ -1,5 +1,5 @@
 terraform {
-  required_version = ">= 0.15"
+  required_version = ">= 1.1.3"
 
   required_providers {
     aws = {
@@ -64,9 +64,9 @@ module "iam_baseline" {
 # --------------------------------------------------------------------------------------------------
 
 module "cloudtrail_baseline" {
+  count  = local.is_cloudtrail_enabled ? 1 : 0
   source = "./modules/cloudtrail-baseline"
 
-  enabled                           = local.is_cloudtrail_enabled
   aws_account_id                    = var.aws_account_id
   cloudtrail_depends_on             = [aws_s3_bucket_policy.audit_log]
   cloudtrail_name                   = var.cloudtrail_name
@@ -93,9 +93,9 @@ module "cloudtrail_baseline" {
 # --------------------------------------------------------------------------------------------------
 
 module "alarm_baseline" {
+  count  = local.is_cloudtrail_enabled && var.cloudtrail_cloudwatch_logs_enabled ? 1 : 0
   source = "./modules/alarm-baseline"
 
-  enabled                          = local.is_cloudtrail_enabled && var.cloudtrail_cloudwatch_logs_enabled
   unauthorized_api_calls_enabled   = var.unauthorized_api_calls_enabled
   no_mfa_console_signin_enabled    = var.no_mfa_console_signin_enabled
   mfa_console_signin_allow_sso     = var.mfa_console_signin_allow_sso
@@ -113,7 +113,7 @@ module "alarm_baseline" {
   vpc_changes_enabled              = var.vpc_changes_enabled
   organizations_changes_enabled    = var.organizations_changes_enabled
   alarm_namespace                  = var.alarm_namespace
-  cloudtrail_log_group_name        = local.is_cloudtrail_enabled ? module.cloudtrail_baseline.log_group : ""
+  cloudtrail_log_group_name        = local.is_cloudtrail_enabled ? module.cloudtrail_baseline[0].log_group : ""
   sns_topic_name                   = var.alarm_sns_topic_name
   sns_topic_kms_master_key_id      = var.alarm_sns_topic_kms_master_key_id
 

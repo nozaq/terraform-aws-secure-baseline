@@ -1,6 +1,8 @@
 # --------------------------------------------------------------------------------------------------
-# Enable Default EBS Encryption
+# Migrations to 0.31.0
+# Removing `enabled` argument.
 # --------------------------------------------------------------------------------------------------
-resource "aws_ebs_encryption_by_default" "this" {
-  enabled = true
+moved {
+  from = aws_guardduty_detector.default[0]
+  to   = aws_guardduty_detector.default
 }
