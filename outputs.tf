@@ -134,7 +134,7 @@ output "guardduty_detector" {
 
 output "support_iam_role" {
   description = "The IAM role used for the support user."
-  value       = module.iam_baseline.support_iam_role
+  value       = one(module.iam_baseline[*].support_iam_role)
 }
 
 # --------------------------------------------------------------------------------------------------

@@ -31,7 +31,7 @@ locals {
   is_master_account     = var.account_type == "master"
   is_member_account     = var.account_type == "member"
 
-  is_cloudtrail_enabled = local.is_individual_account || local.is_master_account
+  is_cloudtrail_enabled = var.cloudtrail_baseline_enabled && (local.is_individual_account || local.is_master_account)
 }
 
 # --------------------------------------------------------------------------------------------------
@@ -39,6 +39,7 @@ locals {
 # --------------------------------------------------------------------------------------------------
 
 module "iam_baseline" {
+  count  = var.iam_baseline_enabled ? 1 : 0
   source = "./modules/iam-baseline"
 
   aws_account_id                  = var.aws_account_id
@@ -93,7 +94,7 @@ module "cloudtrail_baseline" {
 # --------------------------------------------------------------------------------------------------
 
 module "alarm_baseline" {
-  count  = local.is_cloudtrail_enabled && var.cloudtrail_cloudwatch_logs_enabled ? 1 : 0
+  count  = var.alarm_baseline_enabled && local.is_cloudtrail_enabled && var.cloudtrail_cloudwatch_logs_enabled ? 1 : 0
   source = "./modules/alarm-baseline"
 
   unauthorized_api_calls_enabled   = var.unauthorized_api_calls_enabled
@@ -125,6 +126,7 @@ module "alarm_baseline" {
 # --------------------------------------------------------------------------------------------------
 
 module "s3_baseline" {
+  count  = var.s3_baseline_enabled ? 1 : 0
   source = "./modules/s3-baseline"
 
   block_public_acls       = var.s3_block_public_acls

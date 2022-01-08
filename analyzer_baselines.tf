@@ -1,5 +1,5 @@
 locals {
-  is_analyzer_enabled = local.is_individual_account || local.is_master_account
+  is_analyzer_enabled = var.analyzer_baseline_enabled && (local.is_individual_account || local.is_master_account)
 }
 
 # --------------------------------------------------------------------------------------------------
