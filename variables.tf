@@ -93,6 +93,11 @@ variable "use_external_audit_log_bucket" {
 # --------------------------------------------------------------------------------------------------
 # Variables for iam-baseline module.
 # --------------------------------------------------------------------------------------------------
+variable "iam_baseline_enabled" {
+  description = "Boolean whether iam-baseline is enabled."
+  default     = true
+}
+
 variable "create_password_policy" {
   type        = bool
   description = "Define if the password policy should be created."
@@ -297,6 +302,10 @@ variable "config_global_resources_all_regions" {
 # --------------------------------------------------------------------------------------------------
 # Variables for cloudtrail-baseline module.
 # --------------------------------------------------------------------------------------------------
+variable "cloudtrail_baseline_enabled" {
+  description = "Boolean whether cloudtrail-baseline is enabled."
+  default     = true
+}
 
 variable "cloudtrail_cloudwatch_logs_enabled" {
   description = "Specifies whether the trail is delivered to CloudWatch Logs."
@@ -366,6 +375,10 @@ variable "cloudtrail_lambda_invocation_logging_lambdas" {
 # --------------------------------------------------------------------------------------------------
 # Variables for alarm-baseline module.
 # --------------------------------------------------------------------------------------------------
+variable "alarm_baseline_enabled" {
+  description = "Boolean whether alarm-baseline is enabled."
+  default     = true
+}
 
 variable "alarm_namespace" {
   description = "The namespace in which all alarms are set up."
@@ -488,6 +501,11 @@ variable "guardduty_invitation_message" {
 # --------------------------------------------------------------------------------------------------
 # Variables for s3-baseline module.
 # --------------------------------------------------------------------------------------------------
+variable "s3_baseline_enabled" {
+  description = "Boolean whether s3-baseline is enabled."
+  default     = true
+}
+
 variable "s3_block_public_acls" {
   description = "Whether Amazon S3 should block public ACLs for buckets in this account. Defaults to true."
   default     = true
@@ -540,6 +558,11 @@ variable "securityhub_enable_product_arns" {
 # --------------------------------------------------------------------------------------------------
 # Variables for analyzer-baseline module.
 # --------------------------------------------------------------------------------------------------
+variable "analyzer_baseline_enabled" {
+  description = "Boolean whether analyzer-baseline is enabled."
+  default     = true
+}
+
 variable "analyzer_name" {
   description = "The name for the IAM Access Analyzer resource to be created."
   default     = "default-analyzer"

@@ -12,6 +12,21 @@ moved {
   to   = module.alarm_baseline[0]
 }
 
+moved {
+  from = module.s3_baseline
+  to   = module.s3_baseline[0]
+}
+
+moved {
+  from = module.iam_baseline
+  to   = module.iam_baseline[0]
+}
+
+moved {
+  from = module.analyzer_baseline
+  to   = module.analyzer_baseline[0]
+}
+
 # Config baseline
 moved {
   from = module.config_baseline_ap-northeast-1
