@@ -2,6 +2,22 @@
 ## [Unreleased]
 
 
+<a name="0.32.0"></a>
+## [0.32.0] - 2022-01-08
+### Feat
+- enable finding aggregator in the main region ([#241](https://github.com/nozaq/terraform-aws-secure-baseline/issues/241))
+- add inputs to toggle submodules ([#240](https://github.com/nozaq/terraform-aws-secure-baseline/issues/240))
+- optionally ignore SSO logins for MFA alarms ([#234](https://github.com/nozaq/terraform-aws-secure-baseline/issues/234))
+- apply default subnet changes to existing subnets ([#237](https://github.com/nozaq/terraform-aws-secure-baseline/issues/237))
+
+### Fix
+- use CIS recommended filter pattern ([#239](https://github.com/nozaq/terraform-aws-secure-baseline/issues/239))
+- remove `aws_default_vpc` dependency ([#238](https://github.com/nozaq/terraform-aws-secure-baseline/issues/238))
+
+### Refactor
+- use module count instead of having ennabled variable in each submodule. ([#195](https://github.com/nozaq/terraform-aws-secure-baseline/issues/195))
+
+
 <a name="0.30.0"></a>
 ## [0.30.0] - 2021-11-23
 ### Feat
@@ -353,7 +369,8 @@
 <a name="0.0.1"></a>
 ## 0.0.1 - 2018-02-12
 
-[Unreleased]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.30.0...HEAD
+[Unreleased]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.32.0...HEAD
+[0.32.0]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.30.0...0.32.0
 [0.30.0]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.29.2...0.30.0
 [0.29.2]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.29.1...0.29.2
 [0.29.1]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.29.0...0.29.1
