@@ -1,3 +1,8 @@
+variable "aggregate_findings" {
+  description = "Boolean whether to enable finding aggregator for every region"
+  default     = false
+}
+
 variable "enable_cis_standard" {
   description = "Boolean whether CIS standard is enabled."
   default     = true
