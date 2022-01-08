@@ -1,8 +1,17 @@
 data "aws_region" "current" {}
+
 # --------------------------------------------------------------------------------------------------
 # Enable SecurityHub
 # --------------------------------------------------------------------------------------------------
 resource "aws_securityhub_account" "main" {
+}
+
+resource "aws_securityhub_finding_aggregator" "main" {
+  count = var.aggregate_findings ? 1 : 0
+
+  linking_mode = "ALL_REGIONS"
+
+  depends_on = [aws_securityhub_account.main]
 }
 
 # --------------------------------------------------------------------------------------------------
