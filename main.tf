@@ -29,8 +29,6 @@ data "aws_caller_identity" "current" {}
 locals {
   is_individual_account = var.account_type == "individual"
   is_master_account     = var.account_type == "master"
-  is_member_account     = var.account_type == "member"
-
   is_cloudtrail_enabled = var.cloudtrail_baseline_enabled && (local.is_individual_account || local.is_master_account)
 }
 
@@ -42,9 +40,7 @@ module "iam_baseline" {
   count  = var.iam_baseline_enabled ? 1 : 0
   source = "./modules/iam-baseline"
 
-  aws_account_id                  = var.aws_account_id
   support_iam_role_name           = var.support_iam_role_name
-  support_iam_role_policy_name    = var.support_iam_role_policy_name
   support_iam_role_principal_arns = var.support_iam_role_principal_arns
   minimum_password_length         = var.minimum_password_length
   password_reuse_prevention       = var.password_reuse_prevention

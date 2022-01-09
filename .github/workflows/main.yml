@@ -5,16 +5,20 @@ on:
       - main
   pull_request:
 jobs:
-  check-format:
-    name: Check format
+  pre-commit-checks:
+    name: Pre-commit checks
     runs-on: ubuntu-latest
     steps:
-      - uses: hashicorp/setup-terraform@v1
       - name: Checkout
         uses: actions/checkout@v2
-      - name: "Terraform Format"
-        run: terraform fmt -check -recursive
-
+      - name: Terraform min/max versions
+        id: minMax
+        uses: clowdhaus/terraform-min-max@v1.0.4
+      - name: Pre-commit Terraform ${{ steps.minMax.outputs.maxVersion }}
+        uses: clowdhaus/terraform-composite-actions/pre-commit@v1.4.1
+        with:
+          terraform-version: ${{ steps.minMax.outputs.maxVersion }}
+          terraform-docs-version: v0.16.0
   validate-examples:
     name: Validate examples
     runs-on: ubuntu-latest
