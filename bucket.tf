@@ -18,7 +18,8 @@ locals {
 # Case 1. Use the external S3 bucket.
 # --------------------------------------------------------------------------------------------------
 data "aws_s3_bucket" "external" {
-  count  = local.use_external_bucket ? 1 : 0
+  count = local.use_external_bucket ? 1 : 0
+
   bucket = var.audit_log_bucket_name
 }
 

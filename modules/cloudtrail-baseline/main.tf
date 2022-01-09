@@ -53,9 +53,8 @@ data "aws_iam_policy_document" "cloudwatch_delivery_policy" {
 resource "aws_iam_role_policy" "cloudwatch_delivery_policy" {
   count = var.cloudwatch_logs_enabled ? 1 : 0
 
-  name = var.iam_role_policy_name
-  role = aws_iam_role.cloudwatch_delivery[0].id
-
+  name   = var.iam_role_policy_name
+  role   = aws_iam_role.cloudwatch_delivery[0].id
   policy = data.aws_iam_policy_document.cloudwatch_delivery_policy[0].json
 }
 
@@ -190,8 +189,7 @@ resource "aws_kms_key" "cloudtrail" {
   description             = "A KMS key to encrypt CloudTrail events."
   deletion_window_in_days = var.key_deletion_window_in_days
   enable_key_rotation     = "true"
-
-  policy = data.aws_iam_policy_document.cloudtrail_key_policy.json
+  policy                  = data.aws_iam_policy_document.cloudtrail_key_policy.json
 
   tags = var.tags
 }
@@ -234,8 +232,7 @@ resource "aws_sns_topic_policy" "local-account-cloudtrail" {
 # --------------------------------------------------------------------------------------------------
 
 resource "aws_cloudtrail" "global" {
-  name = var.cloudtrail_name
-
+  name                          = var.cloudtrail_name
   cloud_watch_logs_group_arn    = var.cloudwatch_logs_enabled ? "${aws_cloudwatch_log_group.cloudtrail_events[0].arn}:*" : null
   cloud_watch_logs_role_arn     = var.cloudwatch_logs_enabled ? aws_iam_role.cloudwatch_delivery[0].arn : null
   enable_log_file_validation    = true

@@ -6,16 +6,14 @@ data "aws_region" "current" {}
 # --------------------------------------------------------------------------------------------------
 
 resource "aws_sns_topic" "alarms" {
-  name = var.sns_topic_name
-
+  name              = var.sns_topic_name
   kms_master_key_id = var.sns_topic_kms_master_key_id
 
   tags = var.tags
 }
 
 resource "aws_sns_topic_policy" "alarms" {
-  arn = aws_sns_topic.alarms.arn
-
+  arn    = aws_sns_topic.alarms.arn
   policy = data.aws_iam_policy_document.alarms-sns-policy.json
 }
 
