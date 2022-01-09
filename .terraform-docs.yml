@@ -13,3 +13,4 @@ sort:
 
 settings:
   default: false
+  lockfile: false

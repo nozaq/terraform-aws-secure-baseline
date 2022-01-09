@@ -4,6 +4,8 @@ repos:
     hooks:
       - id: terraform_fmt
       - id: terraform_docs
+        args:
+          - --args=--config=.terraform-docs.yml
       - id: terraform_tflint
         exclude: "test/"
         args:
