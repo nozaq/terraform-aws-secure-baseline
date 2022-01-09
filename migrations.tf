@@ -2,6 +2,7 @@
 # Migrations to 0.31.0
 # Replacing `enabled` argument in each sub-module with `count` meta-argument.
 # --------------------------------------------------------------------------------------------------
+
 moved {
   from = module.cloudtrail_baseline
   to   = module.cloudtrail_baseline[0]

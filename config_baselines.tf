@@ -24,6 +24,7 @@ locals {
 # Create an IAM Role for AWS Config recorder to publish results and send notifications.
 # Reference: https://docs.aws.amazon.com/config/latest/developerguide/gs-cli-prereq.html#gs-cli-create-iamrole
 # --------------------------------------------------------------------------------------------------
+
 data "aws_iam_policy_document" "recorder_assume_role_policy" {
   count = var.config_baseline_enabled ? 1 : 0
 
@@ -96,6 +97,7 @@ resource "aws_iam_role_policy_attachment" "recorder_read_policy" {
 # Needs to be set up in each region.
 # Global resource types are only recorded in the region specified by var.region.
 # --------------------------------------------------------------------------------------------------
+
 module "config_baseline_ap-northeast-1" {
   count  = var.config_baseline_enabled && contains(var.target_regions, "ap-northeast-1") ? 1 : 0
   source = "./modules/config-baseline"

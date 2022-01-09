@@ -1,6 +1,7 @@
 # --------------------------------------------------------------------------------------------------
 # Variables for root module.
 # --------------------------------------------------------------------------------------------------
+
 variable "aws_account_id" {
   description = "The AWS Account ID number of the account."
 }
@@ -60,6 +61,7 @@ variable "tags" {
 # --------------------------------------------------------------------------------------------------
 # Variables for audit log bucket configurations.
 # --------------------------------------------------------------------------------------------------
+
 variable "audit_log_bucket_name" {
   description = "The name of the S3 bucket to store various audit logs."
 }
@@ -92,6 +94,7 @@ variable "use_external_audit_log_bucket" {
 # --------------------------------------------------------------------------------------------------
 # Variables for iam-baseline module.
 # --------------------------------------------------------------------------------------------------
+
 variable "iam_baseline_enabled" {
   description = "Boolean whether iam-baseline is enabled."
   default     = true
@@ -199,6 +202,7 @@ variable "allow_users_to_change_password" {
 # --------------------------------------------------------------------------------------------------
 # Variables for vpc-baseline module.
 # --------------------------------------------------------------------------------------------------
+
 variable "vpc_enable" {
   description = "Boolean whether the VPC baseline module should be enabled"
   default     = true
@@ -248,6 +252,7 @@ variable "vpc_flow_logs_s3_key_prefix" {
 # --------------------------------------------------------------------------------------------------
 # Variables for config-baseline module.
 # --------------------------------------------------------------------------------------------------
+
 variable "config_baseline_enabled" {
   description = "Boolean whether config-baseline is enabled."
   default     = true
@@ -301,6 +306,7 @@ variable "config_global_resources_all_regions" {
 # --------------------------------------------------------------------------------------------------
 # Variables for cloudtrail-baseline module.
 # --------------------------------------------------------------------------------------------------
+
 variable "cloudtrail_baseline_enabled" {
   description = "Boolean whether cloudtrail-baseline is enabled."
   default     = true
@@ -374,6 +380,7 @@ variable "cloudtrail_lambda_invocation_logging_lambdas" {
 # --------------------------------------------------------------------------------------------------
 # Variables for alarm-baseline module.
 # --------------------------------------------------------------------------------------------------
+
 variable "alarm_baseline_enabled" {
   description = "Boolean whether alarm-baseline is enabled."
   default     = true
@@ -477,6 +484,7 @@ variable "organizations_changes_enabled" {
 # --------------------------------------------------------------------------------------------------
 # Variables for guardduty-baseline module.
 # --------------------------------------------------------------------------------------------------
+
 variable "guardduty_enabled" {
   description = "Boolean whether the guardduty-baseline module is enabled or disabled"
   default     = true
@@ -500,6 +508,7 @@ variable "guardduty_invitation_message" {
 # --------------------------------------------------------------------------------------------------
 # Variables for s3-baseline module.
 # --------------------------------------------------------------------------------------------------
+
 variable "s3_baseline_enabled" {
   description = "Boolean whether s3-baseline is enabled."
   default     = true
@@ -528,6 +537,7 @@ variable "s3_restrict_public_buckets" {
 # --------------------------------------------------------------------------------------------------
 # Variables for securityhub-baseline module.
 # --------------------------------------------------------------------------------------------------
+
 variable "securityhub_enabled" {
   description = "Boolean whether the securityhub-baseline module is enabled or disabled"
   default     = true
@@ -557,6 +567,7 @@ variable "securityhub_enable_product_arns" {
 # --------------------------------------------------------------------------------------------------
 # Variables for analyzer-baseline module.
 # --------------------------------------------------------------------------------------------------
+
 variable "analyzer_baseline_enabled" {
   description = "Boolean whether analyzer-baseline is enabled."
   default     = true

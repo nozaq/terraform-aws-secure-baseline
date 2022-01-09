@@ -10,11 +10,9 @@ resource "aws_cloudwatch_log_group" "cloudtrail_events" {
   tags = var.tags
 }
 
-# --------------------------------------------------------------------------------------------------
 # IAM Role to deliver CloudTrail events to CloudWatch Logs group.
 # The policy was derived from the default key policy descrived in AWS CloudTrail User Guide.
 # https://docs.aws.amazon.com/awscloudtrail/latest/userguide/send-cloudtrail-events-to-cloudwatch-logs.html
-# --------------------------------------------------------------------------------------------------
 data "aws_iam_policy_document" "cloudwatch_delivery_assume_policy" {
   statement {
     principals {
@@ -58,11 +56,9 @@ resource "aws_iam_role_policy" "cloudwatch_delivery_policy" {
   policy = data.aws_iam_policy_document.cloudwatch_delivery_policy[0].json
 }
 
-# --------------------------------------------------------------------------------------------------
 # KMS Key to encrypt CloudTrail events.
 # The policy was derived from the default key policy described in AWS CloudTrail User Guide.
 # https://docs.aws.amazon.com/awscloudtrail/latest/userguide/default-cmk-policy.html
-# --------------------------------------------------------------------------------------------------
 data "aws_iam_policy_document" "cloudtrail_key_policy" {
   policy_id = "Key policy created by CloudTrail"
 

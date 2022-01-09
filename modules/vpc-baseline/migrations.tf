@@ -2,6 +2,7 @@
 # Migrations to 0.31.0
 # Removing `enabled` argument.
 # --------------------------------------------------------------------------------------------------
+
 moved {
   from = aws_default_vpc.default[0]
   to   = aws_default_vpc.default

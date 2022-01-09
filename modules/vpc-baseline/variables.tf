@@ -11,6 +11,7 @@ variable "flow_logs_destination_type" {
 # --------------------------------------------------------------------------------------------------
 # Variables for CloudWatch Logs logging.
 # --------------------------------------------------------------------------------------------------
+
 variable "flow_logs_log_group_name" {
   description = "The name of CloudWatch Logs group to which VPC Flow Logs are delivered if vpc_log_destination_type is cloud-watch-logs."
   default     = ""
@@ -29,6 +30,7 @@ variable "flow_logs_retention_in_days" {
 # --------------------------------------------------------------------------------------------------
 # Variables for S3 logging.
 # --------------------------------------------------------------------------------------------------
+
 variable "flow_logs_s3_arn" {
   description = "The ARN of the S3 bucket to which VPC Flow Logs are delivered if vpc_log_destination_type is s3."
   default     = ""

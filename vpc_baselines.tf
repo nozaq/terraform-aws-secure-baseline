@@ -10,6 +10,7 @@ locals {
 # Create an IAM Role for publishing VPC Flow Logs into CloudWatch Logs group.
 # Reference: https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/flow-logs.html#flow-logs-iam
 # --------------------------------------------------------------------------------------------------
+
 data "aws_iam_policy_document" "flow_logs_publisher_assume_role_policy" {
   count = local.flow_logs_to_cw_logs ? 1 : 0
 

@@ -3,6 +3,7 @@ data "aws_region" "current" {}
 # --------------------------------------------------------------------------------------------------
 # Enable SecurityHub
 # --------------------------------------------------------------------------------------------------
+
 resource "aws_securityhub_account" "main" {
 }
 
@@ -17,6 +18,7 @@ resource "aws_securityhub_finding_aggregator" "main" {
 # --------------------------------------------------------------------------------------------------
 # Add member accounts
 # --------------------------------------------------------------------------------------------------
+
 resource "aws_securityhub_member" "members" {
   count = length(var.member_accounts)
 
@@ -27,8 +29,9 @@ resource "aws_securityhub_member" "members" {
 }
 
 # --------------------------------------------------------------------------------------------------
-# Subscribe CIS benchmark
+# Subscribe standards
 # --------------------------------------------------------------------------------------------------
+
 resource "aws_securityhub_standards_subscription" "cis" {
   count = var.enable_cis_standard ? 1 : 0
 
@@ -37,9 +40,6 @@ resource "aws_securityhub_standards_subscription" "cis" {
   depends_on = [aws_securityhub_account.main]
 }
 
-# --------------------------------------------------------------------------------------------------
-# Subscribe AWS foundational security best practices standard
-# --------------------------------------------------------------------------------------------------
 resource "aws_securityhub_standards_subscription" "aws_foundational" {
   count = var.enable_aws_foundational_standard ? 1 : 0
 
@@ -48,9 +48,6 @@ resource "aws_securityhub_standards_subscription" "aws_foundational" {
   depends_on = [aws_securityhub_account.main]
 }
 
-# --------------------------------------------------------------------------------------------------
-# Subscribe PCI DSS standard
-# --------------------------------------------------------------------------------------------------
 resource "aws_securityhub_standards_subscription" "pci_dss" {
   count = var.enable_pci_dss_standard ? 1 : 0
 
@@ -59,9 +56,7 @@ resource "aws_securityhub_standards_subscription" "pci_dss" {
   depends_on = [aws_securityhub_account.main]
 }
 
-# --------------------------------------------------------------------------------------------------
-# Subscribe to 3rd party products
-# --------------------------------------------------------------------------------------------------
+# 3rd party products
 resource "aws_securityhub_product_subscription" "products" {
   count = length(var.enable_product_arns)
 
