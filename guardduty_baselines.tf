@@ -3,6 +3,7 @@
 # Needs to be set up in each region.
 # This is an extra configuration which is not included in CIS benchmark.
 # --------------------------------------------------------------------------------------------------
+
 locals {
   guardduty_master_account_id = var.master_account_id
   guardduty_member_accounts   = var.member_accounts

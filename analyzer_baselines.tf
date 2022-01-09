@@ -5,6 +5,7 @@ locals {
 # --------------------------------------------------------------------------------------------------
 # Analyzer Baseline
 # --------------------------------------------------------------------------------------------------
+
 module "analyzer_baseline_ap-northeast-1" {
   count  = local.is_analyzer_enabled && contains(var.target_regions, "ap-northeast-1") ? 1 : 0
   source = "./modules/analyzer-baseline"

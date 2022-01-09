@@ -1,6 +1,7 @@
 # --------------------------------------------------------------------------------------------------
-# SecurityHub Baseline
+# EBS Baseline
 # --------------------------------------------------------------------------------------------------
+
 module "ebs_baseline_ap-northeast-1" {
   count  = contains(var.target_regions, "ap-northeast-1") ? 1 : 0
   source = "./modules/ebs-baseline"

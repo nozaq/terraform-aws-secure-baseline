@@ -1,6 +1,7 @@
 # --------------------------------------------------------------------------------------------------
 # Configure the S3 bucket to store audit logs.
 # --------------------------------------------------------------------------------------------------
+
 locals {
   use_external_bucket = var.use_external_audit_log_bucket
 
@@ -15,6 +16,7 @@ locals {
 # --------------------------------------------------------------------------------------------------
 # Case 1. Use the external S3 bucket.
 # --------------------------------------------------------------------------------------------------
+
 data "aws_s3_bucket" "external" {
   count = local.use_external_bucket ? 1 : 0
 
@@ -27,6 +29,7 @@ data "aws_s3_bucket" "external" {
 # Create a S3 bucket to store various audit logs.
 # Bucket policies are derived from the default bucket policy and official AWS documents.
 # --------------------------------------------------------------------------------------------------
+
 module "audit_log_bucket" {
   source = "./modules/secure-bucket"
 
@@ -46,10 +49,8 @@ data "aws_organizations_organization" "org" {
   count = local.is_individual_account ? 0 : 1
 }
 
-# --------------------------------------------------------------------------------------------------
 # Apply policies to enforce SSL connections.
 # https://docs.aws.amazon.com/config/latest/developerguide/s3-bucket-ssl-requests-only.html
-# --------------------------------------------------------------------------------------------------
 data "aws_iam_policy_document" "audit_log_base" {
   count = local.use_external_bucket ? 0 : 1
 
@@ -72,10 +73,8 @@ data "aws_iam_policy_document" "audit_log_base" {
   }
 }
 
-# --------------------------------------------------------------------------------------------------
 # Apply policies for CloudTrail log delivery based on AWS CloudTrail User Guide.
 # https://docs.aws.amazon.com/awscloudtrail/latest/userguide/create-s3-bucket-policy-for-cloudtrail.html
-# --------------------------------------------------------------------------------------------------
 data "aws_iam_policy_document" "audit_log_cloud_trail" {
   count = local.use_external_bucket ? 0 : 1
 
@@ -110,10 +109,8 @@ data "aws_iam_policy_document" "audit_log_cloud_trail" {
   }
 }
 
-# --------------------------------------------------------------------------------------------------
 # Apply policies for AWS Config log delivery based on AWS Config Developer Guide.
 # https://docs.aws.amazon.com/config/latest/developerguide/s3-bucket-policy.html
-# --------------------------------------------------------------------------------------------------
 data "aws_iam_policy_document" "audit_log_config" {
   count = local.use_external_bucket ? 0 : 1
 
@@ -205,11 +202,9 @@ data "aws_iam_policy_document" "audit_log_config" {
   }
 }
 
-# --------------------------------------------------------------------------------------------------
 # Apply policies for AWS Config log delivery based on Amazon Virtual Private Cloud User Guide.
 # This policy is necessary only when the log destination of VPC Flow Logs is set to S3.
 # https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs-s3.html#flow-logs-s3-permissions
-# --------------------------------------------------------------------------------------------------
 data "aws_iam_policy_document" "audit_log_flow_logs" {
   count = !local.use_external_bucket && local.flow_logs_to_s3 ? 1 : 0
 

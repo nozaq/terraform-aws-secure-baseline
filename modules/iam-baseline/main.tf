@@ -18,6 +18,7 @@ resource "aws_iam_account_password_policy" "default" {
 # --------------------------------------------------------------------------------------------------
 # Support Role
 # --------------------------------------------------------------------------------------------------
+
 data "aws_iam_policy_document" "support_assume_policy" {
   statement {
     principals {
