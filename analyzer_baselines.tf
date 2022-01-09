@@ -15,7 +15,8 @@ module "analyzer_baseline_ap-northeast-1" {
 
   analyzer_name   = var.analyzer_name
   is_organization = local.is_master_account
-  tags            = var.tags
+
+  tags = var.tags
 }
 
 module "analyzer_baseline_ap-northeast-2" {
@@ -28,7 +29,8 @@ module "analyzer_baseline_ap-northeast-2" {
 
   analyzer_name   = var.analyzer_name
   is_organization = local.is_master_account
-  tags            = var.tags
+
+  tags = var.tags
 }
 
 module "analyzer_baseline_ap-south-1" {
@@ -41,7 +43,8 @@ module "analyzer_baseline_ap-south-1" {
 
   analyzer_name   = var.analyzer_name
   is_organization = local.is_master_account
-  tags            = var.tags
+
+  tags = var.tags
 }
 
 module "analyzer_baseline_ap-northeast-3" {
@@ -54,7 +57,8 @@ module "analyzer_baseline_ap-northeast-3" {
 
   analyzer_name   = var.analyzer_name
   is_organization = local.is_master_account
-  tags            = var.tags
+
+  tags = var.tags
 }
 
 module "analyzer_baseline_ap-southeast-1" {
@@ -67,7 +71,8 @@ module "analyzer_baseline_ap-southeast-1" {
 
   analyzer_name   = var.analyzer_name
   is_organization = local.is_master_account
-  tags            = var.tags
+
+  tags = var.tags
 }
 
 module "analyzer_baseline_ap-southeast-2" {
@@ -80,7 +85,8 @@ module "analyzer_baseline_ap-southeast-2" {
 
   analyzer_name   = var.analyzer_name
   is_organization = local.is_master_account
-  tags            = var.tags
+
+  tags = var.tags
 }
 
 module "analyzer_baseline_ca-central-1" {
@@ -93,7 +99,8 @@ module "analyzer_baseline_ca-central-1" {
 
   analyzer_name   = var.analyzer_name
   is_organization = local.is_master_account
-  tags            = var.tags
+
+  tags = var.tags
 }
 
 module "analyzer_baseline_eu-central-1" {
@@ -106,7 +113,8 @@ module "analyzer_baseline_eu-central-1" {
 
   analyzer_name   = var.analyzer_name
   is_organization = local.is_master_account
-  tags            = var.tags
+
+  tags = var.tags
 }
 
 module "analyzer_baseline_eu-north-1" {
@@ -119,7 +127,8 @@ module "analyzer_baseline_eu-north-1" {
 
   analyzer_name   = var.analyzer_name
   is_organization = local.is_master_account
-  tags            = var.tags
+
+  tags = var.tags
 }
 
 module "analyzer_baseline_eu-west-1" {
@@ -132,7 +141,8 @@ module "analyzer_baseline_eu-west-1" {
 
   analyzer_name   = var.analyzer_name
   is_organization = local.is_master_account
-  tags            = var.tags
+
+  tags = var.tags
 }
 
 module "analyzer_baseline_eu-west-2" {
@@ -145,7 +155,8 @@ module "analyzer_baseline_eu-west-2" {
 
   analyzer_name   = var.analyzer_name
   is_organization = local.is_master_account
-  tags            = var.tags
+
+  tags = var.tags
 }
 
 module "analyzer_baseline_eu-west-3" {
@@ -158,7 +169,8 @@ module "analyzer_baseline_eu-west-3" {
 
   analyzer_name   = var.analyzer_name
   is_organization = local.is_master_account
-  tags            = var.tags
+
+  tags = var.tags
 }
 
 module "analyzer_baseline_sa-east-1" {
@@ -171,7 +183,8 @@ module "analyzer_baseline_sa-east-1" {
 
   analyzer_name   = var.analyzer_name
   is_organization = local.is_master_account
-  tags            = var.tags
+
+  tags = var.tags
 }
 
 module "analyzer_baseline_us-east-1" {
@@ -184,7 +197,8 @@ module "analyzer_baseline_us-east-1" {
 
   analyzer_name   = var.analyzer_name
   is_organization = local.is_master_account
-  tags            = var.tags
+
+  tags = var.tags
 }
 
 module "analyzer_baseline_us-east-2" {
@@ -197,7 +211,8 @@ module "analyzer_baseline_us-east-2" {
 
   analyzer_name   = var.analyzer_name
   is_organization = local.is_master_account
-  tags            = var.tags
+
+  tags = var.tags
 }
 
 module "analyzer_baseline_us-west-1" {
@@ -210,7 +225,8 @@ module "analyzer_baseline_us-west-1" {
 
   analyzer_name   = var.analyzer_name
   is_organization = local.is_master_account
-  tags            = var.tags
+
+  tags = var.tags
 }
 
 module "analyzer_baseline_us-west-2" {
@@ -223,5 +239,6 @@ module "analyzer_baseline_us-west-2" {
 
   analyzer_name   = var.analyzer_name
   is_organization = local.is_master_account
-  tags            = var.tags
+
+  tags = var.tags
 }

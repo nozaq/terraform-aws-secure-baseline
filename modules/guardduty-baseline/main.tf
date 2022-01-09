@@ -23,9 +23,8 @@ resource "aws_guardduty_detector" "default" {
 resource "aws_guardduty_member" "members" {
   count = length(var.member_accounts)
 
-  detector_id = aws_guardduty_detector.default.id
-  invite      = true
-
+  detector_id                = aws_guardduty_detector.default.id
+  invite                     = true
   account_id                 = var.member_accounts[count.index].account_id
   disable_email_notification = var.disable_email_notification
   email                      = var.member_accounts[count.index].email

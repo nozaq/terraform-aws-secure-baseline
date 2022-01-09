@@ -77,7 +77,6 @@ module "vpc_baseline_ap-northeast-1" {
   flow_logs_s3_arn            = local.flow_logs_s3_arn
   flow_logs_s3_key_prefix     = var.vpc_flow_logs_s3_key_prefix
 
-
   tags = var.tags
 }
 
@@ -96,7 +95,6 @@ module "vpc_baseline_ap-northeast-2" {
   flow_logs_retention_in_days = var.vpc_flow_logs_retention_in_days
   flow_logs_s3_arn            = local.flow_logs_s3_arn
   flow_logs_s3_key_prefix     = var.vpc_flow_logs_s3_key_prefix
-
 
   tags = var.tags
 }
@@ -117,7 +115,6 @@ module "vpc_baseline_ap-northeast-3" {
   flow_logs_s3_arn            = local.flow_logs_s3_arn
   flow_logs_s3_key_prefix     = var.vpc_flow_logs_s3_key_prefix
 
-
   tags = var.tags
 }
 
@@ -136,7 +133,6 @@ module "vpc_baseline_ap-south-1" {
   flow_logs_retention_in_days = var.vpc_flow_logs_retention_in_days
   flow_logs_s3_arn            = local.flow_logs_s3_arn
   flow_logs_s3_key_prefix     = var.vpc_flow_logs_s3_key_prefix
-
 
   tags = var.tags
 }
@@ -157,7 +153,6 @@ module "vpc_baseline_ap-southeast-1" {
   flow_logs_s3_arn            = local.flow_logs_s3_arn
   flow_logs_s3_key_prefix     = var.vpc_flow_logs_s3_key_prefix
 
-
   tags = var.tags
 }
 
@@ -176,7 +171,6 @@ module "vpc_baseline_ap-southeast-2" {
   flow_logs_retention_in_days = var.vpc_flow_logs_retention_in_days
   flow_logs_s3_arn            = local.flow_logs_s3_arn
   flow_logs_s3_key_prefix     = var.vpc_flow_logs_s3_key_prefix
-
 
   tags = var.tags
 }
@@ -197,7 +191,6 @@ module "vpc_baseline_ca-central-1" {
   flow_logs_s3_arn            = local.flow_logs_s3_arn
   flow_logs_s3_key_prefix     = var.vpc_flow_logs_s3_key_prefix
 
-
   tags = var.tags
 }
 
@@ -216,7 +209,6 @@ module "vpc_baseline_eu-central-1" {
   flow_logs_retention_in_days = var.vpc_flow_logs_retention_in_days
   flow_logs_s3_arn            = local.flow_logs_s3_arn
   flow_logs_s3_key_prefix     = var.vpc_flow_logs_s3_key_prefix
-
 
   tags = var.tags
 }
@@ -237,7 +229,6 @@ module "vpc_baseline_eu-north-1" {
   flow_logs_s3_arn            = local.flow_logs_s3_arn
   flow_logs_s3_key_prefix     = var.vpc_flow_logs_s3_key_prefix
 
-
   tags = var.tags
 }
 
@@ -256,7 +247,6 @@ module "vpc_baseline_eu-west-1" {
   flow_logs_retention_in_days = var.vpc_flow_logs_retention_in_days
   flow_logs_s3_arn            = local.flow_logs_s3_arn
   flow_logs_s3_key_prefix     = var.vpc_flow_logs_s3_key_prefix
-
 
   tags = var.tags
 }
@@ -277,7 +267,6 @@ module "vpc_baseline_eu-west-2" {
   flow_logs_s3_arn            = local.flow_logs_s3_arn
   flow_logs_s3_key_prefix     = var.vpc_flow_logs_s3_key_prefix
 
-
   tags = var.tags
 }
 
@@ -296,7 +285,6 @@ module "vpc_baseline_eu-west-3" {
   flow_logs_retention_in_days = var.vpc_flow_logs_retention_in_days
   flow_logs_s3_arn            = local.flow_logs_s3_arn
   flow_logs_s3_key_prefix     = var.vpc_flow_logs_s3_key_prefix
-
 
   tags = var.tags
 }
@@ -317,7 +305,6 @@ module "vpc_baseline_sa-east-1" {
   flow_logs_s3_arn            = local.flow_logs_s3_arn
   flow_logs_s3_key_prefix     = var.vpc_flow_logs_s3_key_prefix
 
-
   tags = var.tags
 }
 
@@ -336,7 +323,6 @@ module "vpc_baseline_us-east-1" {
   flow_logs_retention_in_days = var.vpc_flow_logs_retention_in_days
   flow_logs_s3_arn            = local.flow_logs_s3_arn
   flow_logs_s3_key_prefix     = var.vpc_flow_logs_s3_key_prefix
-
 
   tags = var.tags
 }
@@ -357,7 +343,6 @@ module "vpc_baseline_us-east-2" {
   flow_logs_s3_arn            = local.flow_logs_s3_arn
   flow_logs_s3_key_prefix     = var.vpc_flow_logs_s3_key_prefix
 
-
   tags = var.tags
 }
 
@@ -377,7 +362,6 @@ module "vpc_baseline_us-west-1" {
   flow_logs_s3_arn            = local.flow_logs_s3_arn
   flow_logs_s3_key_prefix     = var.vpc_flow_logs_s3_key_prefix
 
-
   tags = var.tags
 }
 
@@ -396,7 +380,6 @@ module "vpc_baseline_us-west-2" {
   flow_logs_retention_in_days = var.vpc_flow_logs_retention_in_days
   flow_logs_s3_arn            = local.flow_logs_s3_arn
   flow_logs_s3_key_prefix     = var.vpc_flow_logs_s3_key_prefix
-
 
   tags = var.tags
 }
