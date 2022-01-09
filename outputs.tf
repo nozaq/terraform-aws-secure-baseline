@@ -143,13 +143,13 @@ output "support_iam_role" {
 
 output "vpc_flow_logs_iam_role" {
   description = "The IAM role used for delivering VPC Flow Logs to CloudWatch Logs."
-  value       = local.is_cw_logs ? aws_iam_role.flow_logs_publisher : null
+  value       = local.flow_logs_to_cw_logs ? aws_iam_role.flow_logs_publisher : null
 }
 
 output "vpc_flow_logs_group" {
   description = "The CloudWatch Logs log group which stores VPC Flow Logs in each region."
 
-  value = local.is_cw_logs ? {
+  value = local.flow_logs_to_cw_logs ? {
     "ap-northeast-1" = one(module.vpc_baseline_ap-northeast-1[*].vpc_flow_logs_group)
     "ap-northeast-2" = one(module.vpc_baseline_ap-northeast-2[*].vpc_flow_logs_group)
     "ap-northeast-3" = one(module.vpc_baseline_ap-northeast-3[*].vpc_flow_logs_group)

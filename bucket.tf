@@ -10,8 +10,6 @@ locals {
   audit_log_cloudtrail_destination = join("/", [local.audit_log_bucket_arn, trim(var.cloudtrail_s3_key_prefix, "/")])
   audit_log_config_destination     = join("/", [local.audit_log_bucket_arn, trim(var.config_s3_bucket_key_prefix, "/")])
   audit_log_flow_logs_destination  = join("/", [local.audit_log_bucket_arn, trim(var.vpc_flow_logs_s3_key_prefix, "/")])
-
-  flow_logs_use_s3 = var.vpc_flow_logs_destination_type == "s3"
 }
 
 # --------------------------------------------------------------------------------------------------
@@ -213,7 +211,7 @@ data "aws_iam_policy_document" "audit_log_config" {
 # https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs-s3.html#flow-logs-s3-permissions
 # --------------------------------------------------------------------------------------------------
 data "aws_iam_policy_document" "audit_log_flow_logs" {
-  count = !local.use_external_bucket && local.flow_logs_use_s3 ? 1 : 0
+  count = !local.use_external_bucket && local.flow_logs_to_s3 ? 1 : 0
 
   source_json = data.aws_iam_policy_document.audit_log_config[0].json
 
@@ -250,7 +248,7 @@ data "aws_iam_policy_document" "audit_log_flow_logs" {
 data "aws_iam_policy_document" "audit_log" {
   count = local.use_external_bucket ? 0 : 1
 
-  source_json   = local.flow_logs_use_s3 ? data.aws_iam_policy_document.audit_log_flow_logs[0].json : data.aws_iam_policy_document.audit_log_config[0].json
+  source_json   = local.flow_logs_to_s3 ? data.aws_iam_policy_document.audit_log_flow_logs[0].json : data.aws_iam_policy_document.audit_log_config[0].json
   override_json = var.audit_log_bucket_custom_policy_json
 }
 
