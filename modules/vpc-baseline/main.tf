@@ -74,9 +74,9 @@ resource "aws_default_route_table" "default" {
   )
 }
 
-// Ignore "subnet_ids" changes to avoid the known issue below.
-// https://github.com/hashicorp/terraform/issues/9824
-// https://github.com/terraform-providers/terraform-provider-aws/issues/346
+# Ignore "subnet_ids" changes to avoid the known issue below.
+# https://github.com/hashicorp/terraform/issues/9824
+# https://github.com/terraform-providers/terraform-provider-aws/issues/346
 resource "aws_default_network_acl" "default" {
   default_network_acl_id = aws_default_vpc.default.default_network_acl_id
 
