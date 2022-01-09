@@ -164,8 +164,6 @@ This module is composed of several submodules and each of which can be used inde
 | <a name="input_config_sns_topic_kms_master_key_id"></a> [config\_sns\_topic\_kms\_master\_key\_id](#input\_config\_sns\_topic\_kms\_master\_key\_id) | To enable SNS Topic encryption enter value with the ID of a custom master KMS key that is used for encryption | `any` | no |
 | <a name="input_config_sns_topic_name"></a> [config\_sns\_topic\_name](#input\_config\_sns\_topic\_name) | The name of the SNS Topic to be used to notify configuration changes. | `string` | no |
 | <a name="input_console_signin_failures_enabled"></a> [console\_signin\_failures\_enabled](#input\_console\_signin\_failures\_enabled) | The boolean flag whether the console\_signin\_failures alarm is enabled or not. No resources are created when set to false. | `bool` | no |
-| <a name="input_create_manager_role"></a> [create\_manager\_role](#input\_create\_manager\_role) | Define if the manager role should be created. | `bool` | no |
-| <a name="input_create_master_role"></a> [create\_master\_role](#input\_create\_master\_role) | Define if the master role should be created. | `bool` | no |
 | <a name="input_create_password_policy"></a> [create\_password\_policy](#input\_create\_password\_policy) | Define if the password policy should be created. | `bool` | no |
 | <a name="input_create_support_role"></a> [create\_support\_role](#input\_create\_support\_role) | Define if the support role should be created. | `bool` | no |
 | <a name="input_disable_or_delete_cmk_enabled"></a> [disable\_or\_delete\_cmk\_enabled](#input\_disable\_or\_delete\_cmk\_enabled) | The boolean flag whether the disable\_or\_delete\_cmk alarm is enabled or not. No resources are created when set to false. | `bool` | no |
@@ -175,11 +173,7 @@ This module is composed of several submodules and each of which can be used inde
 | <a name="input_guardduty_invitation_message"></a> [guardduty\_invitation\_message](#input\_guardduty\_invitation\_message) | Message for invitation. | `string` | no |
 | <a name="input_iam_baseline_enabled"></a> [iam\_baseline\_enabled](#input\_iam\_baseline\_enabled) | Boolean whether iam-baseline is enabled. | `bool` | no |
 | <a name="input_iam_changes_enabled"></a> [iam\_changes\_enabled](#input\_iam\_changes\_enabled) | The boolean flag whether the iam\_changes alarm is enabled or not. No resources are created when set to false. | `bool` | no |
-| <a name="input_manager_iam_role_name"></a> [manager\_iam\_role\_name](#input\_manager\_iam\_role\_name) | The name of the IAM Manager role. | `string` | no |
-| <a name="input_manager_iam_role_policy_name"></a> [manager\_iam\_role\_policy\_name](#input\_manager\_iam\_role\_policy\_name) | The name of the IAM Manager role policy. | `string` | no |
 | <a name="input_master_account_id"></a> [master\_account\_id](#input\_master\_account\_id) | The ID of the master AWS account to which the current AWS account is associated. Required if `account_type` is `member`. | `string` | no |
-| <a name="input_master_iam_role_name"></a> [master\_iam\_role\_name](#input\_master\_iam\_role\_name) | The name of the IAM Master role. | `string` | no |
-| <a name="input_master_iam_role_policy_name"></a> [master\_iam\_role\_policy\_name](#input\_master\_iam\_role\_policy\_name) | The name of the IAM Master role policy. | `string` | no |
 | <a name="input_max_password_age"></a> [max\_password\_age](#input\_max\_password\_age) | The number of days that an user password is valid. | `number` | no |
 | <a name="input_member_accounts"></a> [member\_accounts](#input\_member\_accounts) | A list of IDs and emails of AWS accounts which associated as member accounts. | <pre>list(object({<br>    account_id = string<br>    email      = string<br>  }))</pre> | no |
 | <a name="input_mfa_console_signin_allow_sso"></a> [mfa\_console\_signin\_allow\_sso](#input\_mfa\_console\_signin\_allow\_sso) | The boolean flag whether the no\_mfa\_console\_signin alarm allows SSO auth to be ignored. | `bool` | no |
@@ -209,7 +203,6 @@ This module is composed of several submodules and each of which can be used inde
 | <a name="input_securityhub_enable_product_arns"></a> [securityhub\_enable\_product\_arns](#input\_securityhub\_enable\_product\_arns) | List of Security Hub product ARNs, `<REGION>` will be replaced. See https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-partner-providers.html for list. | `list(string)` | no |
 | <a name="input_securityhub_enabled"></a> [securityhub\_enabled](#input\_securityhub\_enabled) | Boolean whether the securityhub-baseline module is enabled or disabled | `bool` | no |
 | <a name="input_support_iam_role_name"></a> [support\_iam\_role\_name](#input\_support\_iam\_role\_name) | The name of the the support role. | `string` | no |
-| <a name="input_support_iam_role_policy_name"></a> [support\_iam\_role\_policy\_name](#input\_support\_iam\_role\_policy\_name) | The name of the support role policy. | `string` | no |
 | <a name="input_support_iam_role_principal_arns"></a> [support\_iam\_role\_principal\_arns](#input\_support\_iam\_role\_principal\_arns) | List of ARNs of the IAM principal elements by which the support role could be assumed. | `list(any)` | yes |
 | <a name="input_tags"></a> [tags](#input\_tags) | Specifies object tags key and value. This applies to all resources created by this module. | `map` | no |
 | <a name="input_target_regions"></a> [target\_regions](#input\_target\_regions) | A list of regions to set up with this module. | `list` | no |

@@ -106,52 +106,15 @@ variable "create_password_policy" {
   default     = true
 }
 
-variable "create_master_role" {
-  type        = bool
-  description = "Define if the master role should be created."
-  default     = true
-}
-
-variable "create_manager_role" {
-  type        = bool
-  description = "Define if the manager role should be created."
-  default     = true
-}
-
 variable "create_support_role" {
   type        = bool
   description = "Define if the support role should be created."
   default     = true
 }
 
-variable "master_iam_role_name" {
-  description = "The name of the IAM Master role."
-  default     = "IAM-Master"
-}
-
-variable "master_iam_role_policy_name" {
-  description = "The name of the IAM Master role policy."
-  default     = "IAM-Master-Policy"
-}
-
-variable "manager_iam_role_name" {
-  description = "The name of the IAM Manager role."
-  default     = "IAM-Manager"
-}
-
-variable "manager_iam_role_policy_name" {
-  description = "The name of the IAM Manager role policy."
-  default     = "IAM-Manager-Policy"
-}
-
 variable "support_iam_role_name" {
   description = "The name of the the support role."
   default     = "IAM-Support"
-}
-
-variable "support_iam_role_policy_name" {
-  description = "The name of the support role policy."
-  default     = "IAM-Support-Role"
 }
 
 variable "support_iam_role_principal_arns" {

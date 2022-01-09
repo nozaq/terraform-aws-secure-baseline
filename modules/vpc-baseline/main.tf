@@ -2,9 +2,6 @@ locals {
   flow_logs_to_cw_logs = var.enable_flow_logs && var.flow_logs_destination_type == "cloud-watch-logs"
 }
 
-data "aws_availability_zones" "all" {
-}
-
 data "aws_subnets" "default" {
   filter {
     name   = "default-for-az"

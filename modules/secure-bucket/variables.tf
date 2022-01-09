@@ -1,7 +1,9 @@
 variable "bucket_name" {
+  description = "The name of the S3 bucket to create."
 }
 
 variable "log_bucket_name" {
+  description = "The name of the S3 bucket to store access logs to the main bucket."
 }
 
 variable "lifecycle_glacier_transition_days" {

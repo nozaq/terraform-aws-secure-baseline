@@ -1,15 +1,6 @@
-variable "aws_account_id" {
-  description = "The AWS Account ID number of the account."
-}
-
 variable "support_iam_role_name" {
   description = "The name of the the support role."
   default     = "IAM-Support"
-}
-
-variable "support_iam_role_policy_name" {
-  description = "The name of the support role policy."
-  default     = "IAM-Support-Role"
 }
 
 variable "support_iam_role_principal_arns" {
