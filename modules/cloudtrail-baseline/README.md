@@ -21,6 +21,8 @@ Enable CloudTrail in all regions and deliver events to CloudWatch Logs. CloudTra
 | Name | Description | Type | Required |
 |------|-------------|------|:--------:|
 | <a name="input_aws_account_id"></a> [aws\_account\_id](#input\_aws\_account\_id) | The AWS Account ID number of the account. | `string` | yes |
+| <a name="input_region"></a> [region](#input\_region) | The AWS region in which CloudTrail is set up. | `string` | yes |
+| <a name="input_s3_bucket_name"></a> [s3\_bucket\_name](#input\_s3\_bucket\_name) | The name of the S3 bucket which will store configuration snapshots. | `string` | yes |
 | <a name="input_cloudtrail_depends_on"></a> [cloudtrail\_depends\_on](#input\_cloudtrail\_depends\_on) | External resources which should be set up before CloudTrail. | `list(any)` | no |
 | <a name="input_cloudtrail_name"></a> [cloudtrail\_name](#input\_cloudtrail\_name) | The name of the trail. | `string` | no |
 | <a name="input_cloudtrail_sns_topic_enabled"></a> [cloudtrail\_sns\_topic\_enabled](#input\_cloudtrail\_sns\_topic\_enabled) | Specifies whether the trail is delivered to a SNS topic. | `bool` | no |
@@ -34,8 +36,6 @@ Enable CloudTrail in all regions and deliver events to CloudWatch Logs. CloudTra
 | <a name="input_is_organization_trail"></a> [is\_organization\_trail](#input\_is\_organization\_trail) | Specifies whether the trail is an AWS Organizations trail. Organization trails log events for the master account and all member accounts. Can only be created in the organization master account. | `bool` | no |
 | <a name="input_key_deletion_window_in_days"></a> [key\_deletion\_window\_in\_days](#input\_key\_deletion\_window\_in\_days) | Duration in days after which the key is deleted after destruction of the resource, must be between 7 and 30 days. Defaults to 30 days. | `number` | no |
 | <a name="input_lambda_invocation_logging_lambdas"></a> [lambda\_invocation\_logging\_lambdas](#input\_lambda\_invocation\_logging\_lambdas) | The list of lambda ARNs on which to enable invocation logging. | `list(string)` | no |
-| <a name="input_region"></a> [region](#input\_region) | The AWS region in which CloudTrail is set up. | `string` | yes |
-| <a name="input_s3_bucket_name"></a> [s3\_bucket\_name](#input\_s3\_bucket\_name) | The name of the S3 bucket which will store configuration snapshots. | `string` | yes |
 | <a name="input_s3_key_prefix"></a> [s3\_key\_prefix](#input\_s3\_key\_prefix) | The prefix for the specified S3 bucket. | `string` | no |
 | <a name="input_s3_object_level_logging_buckets"></a> [s3\_object\_level\_logging\_buckets](#input\_s3\_object\_level\_logging\_buckets) | The list of S3 bucket ARNs on which to enable object-level logging. | `list(string)` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | Specifies object tags key and value. This applies to all resources created by this module. | `map(string)` | no |

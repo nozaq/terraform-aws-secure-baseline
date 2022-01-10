@@ -123,6 +123,10 @@ This module is composed of several submodules and each of which can be used inde
 
 | Name | Description | Type | Required |
 |------|-------------|------|:--------:|
+| <a name="input_audit_log_bucket_name"></a> [audit\_log\_bucket\_name](#input\_audit\_log\_bucket\_name) | The name of the S3 bucket to store various audit logs. | `string` | yes |
+| <a name="input_aws_account_id"></a> [aws\_account\_id](#input\_aws\_account\_id) | The AWS Account ID number of the account. | `string` | yes |
+| <a name="input_region"></a> [region](#input\_region) | The AWS region in which global resources are set up. | `string` | yes |
+| <a name="input_support_iam_role_principal_arns"></a> [support\_iam\_role\_principal\_arns](#input\_support\_iam\_role\_principal\_arns) | List of ARNs of the IAM principal elements by which the support role could be assumed. | `list(string)` | yes |
 | <a name="input_account_type"></a> [account\_type](#input\_account\_type) | The type of the AWS account. The possible values are `individual`, `master` and `member` . Specify `master` and `member` to set up centalized logging for multiple accounts in AWS Organization. Use individual` otherwise.` | `string` | no |
 | <a name="input_alarm_baseline_enabled"></a> [alarm\_baseline\_enabled](#input\_alarm\_baseline\_enabled) | Boolean whether alarm-baseline is enabled. | `bool` | no |
 | <a name="input_alarm_namespace"></a> [alarm\_namespace](#input\_alarm\_namespace) | The namespace in which all alarms are set up. | `string` | no |
@@ -134,9 +138,7 @@ This module is composed of several submodules and each of which can be used inde
 | <a name="input_audit_log_bucket_custom_policy_json"></a> [audit\_log\_bucket\_custom\_policy\_json](#input\_audit\_log\_bucket\_custom\_policy\_json) | Override policy for the audit log bucket. Allows addition of extra policies. | `string` | no |
 | <a name="input_audit_log_bucket_force_destroy"></a> [audit\_log\_bucket\_force\_destroy](#input\_audit\_log\_bucket\_force\_destroy) | A boolean that indicates all objects should be deleted from the audit log bucket so that the bucket can be destroyed without error. These objects are not recoverable. | `bool` | no |
 | <a name="input_audit_log_bucket_key_enabled"></a> [audit\_log\_bucket\_key\_enabled](#input\_audit\_log\_bucket\_key\_enabled) | Whether or not to use Amazon S3 Bucket Keys for encrypting the audit log bucket. | `bool` | no |
-| <a name="input_audit_log_bucket_name"></a> [audit\_log\_bucket\_name](#input\_audit\_log\_bucket\_name) | The name of the S3 bucket to store various audit logs. | `string` | yes |
 | <a name="input_audit_log_lifecycle_glacier_transition_days"></a> [audit\_log\_lifecycle\_glacier\_transition\_days](#input\_audit\_log\_lifecycle\_glacier\_transition\_days) | The number of days after log creation when the log file is archived into Glacier. | `number` | no |
-| <a name="input_aws_account_id"></a> [aws\_account\_id](#input\_aws\_account\_id) | The AWS Account ID number of the account. | `string` | yes |
 | <a name="input_aws_config_changes_enabled"></a> [aws\_config\_changes\_enabled](#input\_aws\_config\_changes\_enabled) | The boolean flag whether the aws\_config\_changes alarm is enabled or not. No resources are created when set to false. | `bool` | no |
 | <a name="input_cloudtrail_baseline_enabled"></a> [cloudtrail\_baseline\_enabled](#input\_cloudtrail\_baseline\_enabled) | Boolean whether cloudtrail-baseline is enabled. | `bool` | no |
 | <a name="input_cloudtrail_cfg_changes_enabled"></a> [cloudtrail\_cfg\_changes\_enabled](#input\_cloudtrail\_cfg\_changes\_enabled) | The boolean flag whether the cloudtrail\_cfg\_changes alarm is enabled or not. No resources are created when set to false. | `bool` | no |
@@ -183,7 +185,6 @@ This module is composed of several submodules and each of which can be used inde
 | <a name="input_no_mfa_console_signin_enabled"></a> [no\_mfa\_console\_signin\_enabled](#input\_no\_mfa\_console\_signin\_enabled) | The boolean flag whether the no\_mfa\_console\_signin alarm is enabled or not. No resources are created when set to false. | `bool` | no |
 | <a name="input_organizations_changes_enabled"></a> [organizations\_changes\_enabled](#input\_organizations\_changes\_enabled) | The boolean flag whether the organizations\_changes alarm is enabled or not. No resources are created when set to false. | `bool` | no |
 | <a name="input_password_reuse_prevention"></a> [password\_reuse\_prevention](#input\_password\_reuse\_prevention) | The number of previous passwords that users are prevented from reusing. | `number` | no |
-| <a name="input_region"></a> [region](#input\_region) | The AWS region in which global resources are set up. | `string` | yes |
 | <a name="input_require_lowercase_characters"></a> [require\_lowercase\_characters](#input\_require\_lowercase\_characters) | Whether to require lowercase characters for user passwords. | `bool` | no |
 | <a name="input_require_numbers"></a> [require\_numbers](#input\_require\_numbers) | Whether to require numbers for user passwords. | `bool` | no |
 | <a name="input_require_symbols"></a> [require\_symbols](#input\_require\_symbols) | Whether to require symbols for user passwords. | `bool` | no |
@@ -203,7 +204,6 @@ This module is composed of several submodules and each of which can be used inde
 | <a name="input_securityhub_enable_product_arns"></a> [securityhub\_enable\_product\_arns](#input\_securityhub\_enable\_product\_arns) | List of Security Hub product ARNs, `<REGION>` will be replaced. See https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-partner-providers.html for list. | `list(string)` | no |
 | <a name="input_securityhub_enabled"></a> [securityhub\_enabled](#input\_securityhub\_enabled) | Boolean whether the securityhub-baseline module is enabled or disabled | `bool` | no |
 | <a name="input_support_iam_role_name"></a> [support\_iam\_role\_name](#input\_support\_iam\_role\_name) | The name of the the support role. | `string` | no |
-| <a name="input_support_iam_role_principal_arns"></a> [support\_iam\_role\_principal\_arns](#input\_support\_iam\_role\_principal\_arns) | List of ARNs of the IAM principal elements by which the support role could be assumed. | `list(string)` | yes |
 | <a name="input_tags"></a> [tags](#input\_tags) | Specifies object tags key and value. This applies to all resources created by this module. | `map(string)` | no |
 | <a name="input_target_regions"></a> [target\_regions](#input\_target\_regions) | A list of regions to set up with this module. | `list(string)` | no |
 | <a name="input_unauthorized_api_calls_enabled"></a> [unauthorized\_api\_calls\_enabled](#input\_unauthorized\_api\_calls\_enabled) | The boolean flag whether the unauthorized\_api\_calls alarm is enabled or not. No resources are created when set to false. | `bool` | no |
