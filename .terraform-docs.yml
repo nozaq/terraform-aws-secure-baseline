@@ -9,7 +9,7 @@ sections:
 
 sort:
   enabled: true
-  by: name
+  by: required
 
 settings:
   default: false
