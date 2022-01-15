@@ -157,25 +157,25 @@ variable "password_reuse_prevention" {
 variable "require_lowercase_characters" {
   description = "Whether to require lowercase characters for user passwords."
   type        = bool
-  default     = false
+  default     = true
 }
 
 variable "require_numbers" {
   description = "Whether to require numbers for user passwords."
   type        = bool
-  default     = false
+  default     = true
 }
 
 variable "require_uppercase_characters" {
   description = "Whether to require uppercase characters for user passwords."
   type        = bool
-  default     = false
+  default     = true
 }
 
 variable "require_symbols" {
   description = "Whether to require symbols for user passwords."
   type        = bool
-  default     = false
+  default     = true
 }
 
 variable "allow_users_to_change_password" {
