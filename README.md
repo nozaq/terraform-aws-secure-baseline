@@ -110,7 +110,7 @@ This module is composed of several submodules and each of which can be used inde
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.1.3 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.1.4 |
 | <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 3.66.0 |
 
 ## Providers
