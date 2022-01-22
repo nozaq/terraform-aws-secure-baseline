@@ -28,6 +28,12 @@ variable "enable_product_arns" {
   default     = []
 }
 
+variable "master_account_id" {
+  description = "AWS account ID for master account."
+  type        = string
+  default     = ""
+}
+
 variable "member_accounts" {
   description = "A list of IDs and emails of AWS accounts which associated as member accounts."
   type = list(object({
