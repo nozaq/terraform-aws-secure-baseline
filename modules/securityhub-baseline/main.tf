@@ -28,6 +28,14 @@ resource "aws_securityhub_member" "members" {
   invite     = true
 }
 
+resource "aws_securityhub_invite_accepter" "invitee" {
+  count = var.master_account_id != "" ? 1 : 0
+
+  master_id = var.master_account_id
+
+  depends_on = [aws_securityhub_account.main]
+}
+
 # --------------------------------------------------------------------------------------------------
 # Subscribe standards
 # --------------------------------------------------------------------------------------------------
