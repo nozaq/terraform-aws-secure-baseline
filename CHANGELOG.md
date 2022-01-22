@@ -2,6 +2,18 @@
 ## [Unreleased]
 
 
+<a name="0.34.0"></a>
+## [0.34.0] - 2022-01-22
+### Feat
+- automatically accepts invite from the master ([#256](https://github.com/nozaq/terraform-aws-secure-baseline/issues/256))
+- enforce strong password policy by default ([#252](https://github.com/nozaq/terraform-aws-secure-baseline/issues/252))
+
+### Fix
+- no findings aggregator for member accounts ([#257](https://github.com/nozaq/terraform-aws-secure-baseline/issues/257))
+- set the minimum terraform version to 1.1.4 ([#255](https://github.com/nozaq/terraform-aws-secure-baseline/issues/255))
+- upgrade minimum provider requirements ([#248](https://github.com/nozaq/terraform-aws-secure-baseline/issues/248))
+
+
 <a name="0.33.0"></a>
 ## [0.33.0] - 2022-01-10
 ### Refactor
@@ -381,7 +393,8 @@
 <a name="0.0.1"></a>
 ## 0.0.1 - 2018-02-12
 
-[Unreleased]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.33.0...HEAD
+[Unreleased]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.34.0...HEAD
+[0.34.0]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.33.0...0.34.0
 [0.33.0]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.32.0...0.33.0
 [0.32.0]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.31.0...0.32.0
 [0.31.0]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.30.0...0.31.0
