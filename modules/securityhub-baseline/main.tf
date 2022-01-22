@@ -8,7 +8,7 @@ resource "aws_securityhub_account" "main" {
 }
 
 resource "aws_securityhub_finding_aggregator" "main" {
-  count = var.aggregate_findings ? 1 : 0
+  count = var.aggregate_findings && var.master_account_id == "" ? 1 : 0
 
   linking_mode = "ALL_REGIONS"
 
