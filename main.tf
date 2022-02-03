@@ -81,7 +81,7 @@ module "cloudtrail_baseline" {
   s3_object_level_logging_buckets   = var.cloudtrail_s3_object_level_logging_buckets
   dynamodb_event_logging_tables     = var.cloudtrail_dynamodb_event_logging_tables
   lambda_invocation_logging_lambdas = var.cloudtrail_lambda_invocation_logging_lambdas
-  is_organization_trail             = local.is_master_account
+  is_organization_trail             = var.is_organization_trail
 
   tags = var.tags
 }

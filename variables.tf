@@ -317,6 +317,12 @@ variable "cloudtrail_baseline_enabled" {
   default     = true
 }
 
+variable "is_organization_trail" {
+  description = "Specifies whether the trail is an AWS Organizations trail. Organization trails log events for the master account and all member accounts. Can only be created in the organization master account."
+  type        = bool
+  default     = false
+}
+
 variable "cloudtrail_cloudwatch_logs_enabled" {
   description = "Specifies whether the trail is delivered to CloudWatch Logs."
   type        = bool
