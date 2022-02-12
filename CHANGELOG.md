@@ -1,6 +1,19 @@
 <a name="unreleased"></a>
 ## [Unreleased]
 
+### Feat
+- add new S3 bucket configuration resources ([#261](https://github.com/nozaq/terraform-aws-secure-baseline/issues/261))
+- allow use of organization trail to be toggled via variable ([#259](https://github.com/nozaq/terraform-aws-secure-baseline/issues/259))
+
+### Fix
+- the condition to use the organization trail ([#265](https://github.com/nozaq/terraform-aws-secure-baseline/issues/265))
+- use count instead of `var.enabled` ([#262](https://github.com/nozaq/terraform-aws-secure-baseline/issues/262))
+
+### Refactor
+- remove `destination_options` ([#267](https://github.com/nozaq/terraform-aws-secure-baseline/issues/267))
+- explicitly define a format for FlowLogs ([#264](https://github.com/nozaq/terraform-aws-secure-baseline/issues/264))
+- replace deprecated arguments ([#263](https://github.com/nozaq/terraform-aws-secure-baseline/issues/263))
+
 
 <a name="0.34.0"></a>
 ## [0.34.0] - 2022-01-22
