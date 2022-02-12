@@ -78,7 +78,7 @@ data "aws_iam_policy_document" "audit_log_base" {
 data "aws_iam_policy_document" "audit_log_cloud_trail" {
   count = local.use_external_bucket ? 0 : 1
 
-  source_json = data.aws_iam_policy_document.audit_log_base[0].json
+  source_policy_documents = [data.aws_iam_policy_document.audit_log_base[0].json]
 
   statement {
     sid     = "AWSCloudTrailAclCheck20150319"
@@ -114,7 +114,7 @@ data "aws_iam_policy_document" "audit_log_cloud_trail" {
 data "aws_iam_policy_document" "audit_log_config" {
   count = local.use_external_bucket ? 0 : 1
 
-  source_json = data.aws_iam_policy_document.audit_log_cloud_trail[0].json
+  source_policy_documents = [data.aws_iam_policy_document.audit_log_cloud_trail[0].json]
 
   statement {
     sid     = "AWSConfigBucketPermissionsCheck"
@@ -208,7 +208,7 @@ data "aws_iam_policy_document" "audit_log_config" {
 data "aws_iam_policy_document" "audit_log_flow_logs" {
   count = !local.use_external_bucket && local.flow_logs_to_s3 ? 1 : 0
 
-  source_json = data.aws_iam_policy_document.audit_log_config[0].json
+  source_policy_documents = [data.aws_iam_policy_document.audit_log_config[0].json]
 
   statement {
     sid     = "AWSLogDeliveryAclCheck"
@@ -243,8 +243,8 @@ data "aws_iam_policy_document" "audit_log_flow_logs" {
 data "aws_iam_policy_document" "audit_log" {
   count = local.use_external_bucket ? 0 : 1
 
-  source_json   = local.flow_logs_to_s3 ? data.aws_iam_policy_document.audit_log_flow_logs[0].json : data.aws_iam_policy_document.audit_log_config[0].json
-  override_json = var.audit_log_bucket_custom_policy_json
+  source_policy_documents   = [local.flow_logs_to_s3 ? data.aws_iam_policy_document.audit_log_flow_logs[0].json : data.aws_iam_policy_document.audit_log_config[0].json]
+  override_policy_documents = [var.audit_log_bucket_custom_policy_json]
 }
 
 resource "aws_s3_bucket_policy" "audit_log" {
