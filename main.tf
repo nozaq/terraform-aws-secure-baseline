@@ -30,6 +30,7 @@ locals {
   is_individual_account = var.account_type == "individual"
   is_master_account     = var.account_type == "master"
   is_cloudtrail_enabled = var.cloudtrail_baseline_enabled && (local.is_individual_account || local.is_master_account)
+  is_organization_trail = local.is_master_account && var.turn_off_organization_trail ? false : true
 }
 
 # --------------------------------------------------------------------------------------------------
@@ -81,7 +82,7 @@ module "cloudtrail_baseline" {
   s3_object_level_logging_buckets   = var.cloudtrail_s3_object_level_logging_buckets
   dynamodb_event_logging_tables     = var.cloudtrail_dynamodb_event_logging_tables
   lambda_invocation_logging_lambdas = var.cloudtrail_lambda_invocation_logging_lambdas
-  is_organization_trail             = local.is_master_account
+  is_organization_trail             = local.is_organization_trail
 
   tags = var.tags
 }
