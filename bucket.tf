@@ -5,8 +5,8 @@
 locals {
   use_external_bucket = var.use_external_audit_log_bucket
 
-  audit_log_bucket_id  = local.use_external_bucket ? data.aws_s3_bucket.external[0].id : module.audit_log_bucket.this_bucket.id
-  audit_log_bucket_arn = local.use_external_bucket ? data.aws_s3_bucket.external[0].arn : module.audit_log_bucket.this_bucket.arn
+  audit_log_bucket_id  = local.use_external_bucket ? data.aws_s3_bucket.external[0].id : module.audit_log_bucket[0].this_bucket.id
+  audit_log_bucket_arn = local.use_external_bucket ? data.aws_s3_bucket.external[0].arn : module.audit_log_bucket[0].this_bucket.arn
 
   audit_log_cloudtrail_destination = join("/", [local.audit_log_bucket_arn, trim(var.cloudtrail_s3_key_prefix, "/")])
   audit_log_config_destination     = join("/", [local.audit_log_bucket_arn, trim(var.config_s3_bucket_key_prefix, "/")])
@@ -31,6 +31,7 @@ data "aws_s3_bucket" "external" {
 # --------------------------------------------------------------------------------------------------
 
 module "audit_log_bucket" {
+  count  = local.use_external_bucket ? 0 : 1
   source = "./modules/secure-bucket"
 
   bucket_name                       = var.audit_log_bucket_name
@@ -38,7 +39,6 @@ module "audit_log_bucket" {
   log_bucket_name                   = "${var.audit_log_bucket_name}-access-logs"
   lifecycle_glacier_transition_days = var.audit_log_lifecycle_glacier_transition_days
   force_destroy                     = var.audit_log_bucket_force_destroy
-  enabled                           = !local.use_external_bucket
 
   tags = var.tags
 
@@ -58,8 +58,8 @@ data "aws_iam_policy_document" "audit_log_base" {
     actions = ["s3:*"]
     effect  = "Deny"
     resources = [
-      module.audit_log_bucket.this_bucket.arn,
-      "${module.audit_log_bucket.this_bucket.arn}/*"
+      module.audit_log_bucket[0].this_bucket.arn,
+      "${module.audit_log_bucket[0].this_bucket.arn}/*"
     ]
     condition {
       test     = "Bool"
@@ -87,7 +87,7 @@ data "aws_iam_policy_document" "audit_log_cloud_trail" {
       type        = "Service"
       identifiers = ["cloudtrail.amazonaws.com"]
     }
-    resources = [module.audit_log_bucket.this_bucket.arn]
+    resources = [module.audit_log_bucket[0].this_bucket.arn]
   }
 
   statement {
@@ -123,7 +123,7 @@ data "aws_iam_policy_document" "audit_log_config" {
       type        = "Service"
       identifiers = ["config.amazonaws.com"]
     }
-    resources = [module.audit_log_bucket.this_bucket.arn]
+    resources = [module.audit_log_bucket[0].this_bucket.arn]
   }
 
   statement {
@@ -133,7 +133,7 @@ data "aws_iam_policy_document" "audit_log_config" {
       type        = "Service"
       identifiers = ["config.amazonaws.com"]
     }
-    resources = [module.audit_log_bucket.this_bucket.arn]
+    resources = [module.audit_log_bucket[0].this_bucket.arn]
   }
 
   statement {
@@ -164,7 +164,7 @@ data "aws_iam_policy_document" "audit_log_config" {
         identifiers = [for account in statement.value : "arn:aws:iam::${account.account_id}:root"]
       }
       actions   = ["s3:GetBucketAcl"]
-      resources = [module.audit_log_bucket.this_bucket.arn]
+      resources = [module.audit_log_bucket[0].this_bucket.arn]
     }
   }
 
@@ -178,7 +178,7 @@ data "aws_iam_policy_document" "audit_log_config" {
         identifiers = [for account in statement.value : "arn:aws:iam::${account.account_id}:root"]
       }
       actions   = ["s3:ListBucket", "s3:GetBucketLocation"]
-      resources = [module.audit_log_bucket.this_bucket.arn]
+      resources = [module.audit_log_bucket[0].this_bucket.arn]
     }
   }
 
@@ -217,7 +217,7 @@ data "aws_iam_policy_document" "audit_log_flow_logs" {
       type        = "Service"
       identifiers = ["delivery.logs.amazonaws.com"]
     }
-    resources = [module.audit_log_bucket.this_bucket.arn]
+    resources = [module.audit_log_bucket[0].this_bucket.arn]
   }
 
   statement {
@@ -250,6 +250,6 @@ data "aws_iam_policy_document" "audit_log" {
 resource "aws_s3_bucket_policy" "audit_log" {
   count = local.use_external_bucket ? 0 : 1
 
-  bucket = module.audit_log_bucket.this_bucket.id
+  bucket = module.audit_log_bucket[0].this_bucket.id
   policy = data.aws_iam_policy_document.audit_log[0].json
 }
