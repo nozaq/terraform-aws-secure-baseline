@@ -1,7 +1,11 @@
 resource "aws_s3_bucket" "logs" {
   bucket        = var.audit_s3_bucket_name
-  acl           = "private"
   force_destroy = true
+}
+
+resource "aws_s3_bucket_acl" "logs" {
+  bucket = aws_s3_bucket.logs.id
+  acl    = "private"
 }
 
 data "aws_iam_policy_document" "logs_bucket_policy" {
