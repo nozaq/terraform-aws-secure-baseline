@@ -36,6 +36,10 @@ resource "aws_flow_log" "default_vpc_flow_logs" {
   vpc_id               = aws_default_vpc.default.id
   traffic_type         = "ALL"
 
+  destination_options {
+    file_format = "plain-text"
+  }
+
   tags = var.tags
 }
 
