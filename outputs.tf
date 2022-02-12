@@ -4,7 +4,7 @@
 
 output "audit_bucket" {
   description = "The S3 bucket used for storing audit logs."
-  value       = module.audit_log_bucket.this_bucket
+  value       = one(module.audit_log_bucket[*].this_bucket)
 }
 
 # --------------------------------------------------------------------------------------------------

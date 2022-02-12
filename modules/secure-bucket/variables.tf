@@ -20,12 +20,6 @@ variable "force_destroy" {
   default     = false
 }
 
-variable "enabled" {
-  description = "A boolean that indicates this module is enabled. Resources are not created if it is set to false."
-  type        = bool
-  default     = true
-}
-
 variable "tags" {
   description = "Specifies object tags key and value. This applies to all resources created by this module."
   type        = map(string)
