@@ -1,11 +1,16 @@
 <a name="unreleased"></a>
 ## [Unreleased]
 
+
+<a name="1.0.0"></a>
+## [1.0.0] - 2022-02-19
 ### Feat
 - add new S3 bucket configuration resources ([#261](https://github.com/nozaq/terraform-aws-secure-baseline/issues/261))
 - allow use of organization trail to be toggled via variable ([#259](https://github.com/nozaq/terraform-aws-secure-baseline/issues/259))
 
 ### Fix
+- require AWS provider v4.2.0 ([#270](https://github.com/nozaq/terraform-aws-secure-baseline/issues/270))
+- require AWS provider v4.1.0 ([#268](https://github.com/nozaq/terraform-aws-secure-baseline/issues/268))
 - the condition to use the organization trail ([#265](https://github.com/nozaq/terraform-aws-secure-baseline/issues/265))
 - use count instead of `var.enabled` ([#262](https://github.com/nozaq/terraform-aws-secure-baseline/issues/262))
 
@@ -13,6 +18,11 @@
 - remove `destination_options` ([#267](https://github.com/nozaq/terraform-aws-secure-baseline/issues/267))
 - explicitly define a format for FlowLogs ([#264](https://github.com/nozaq/terraform-aws-secure-baseline/issues/264))
 - replace deprecated arguments ([#263](https://github.com/nozaq/terraform-aws-secure-baseline/issues/263))
+
+### BREAKING CHANGE
+
+resources regarding S3 bucket configurations need manual import
+after upgrade. See `docs/upgrade-1.0.md` for guidance.
 
 
 <a name="0.34.0"></a>
@@ -406,7 +416,8 @@
 <a name="0.0.1"></a>
 ## 0.0.1 - 2018-02-12
 
-[Unreleased]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.34.0...HEAD
+[Unreleased]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/1.0.0...HEAD
+[1.0.0]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.34.0...1.0.0
 [0.34.0]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.33.0...0.34.0
 [0.33.0]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.32.0...0.33.0
 [0.32.0]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.31.0...0.32.0
