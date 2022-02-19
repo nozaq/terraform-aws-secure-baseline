@@ -72,6 +72,7 @@ github.com/creack/pty v1.1.9/go.mod h1:oKZEueFk5CKHvIhNR5MUki03XCEU+Q6VDXinZuGJ3
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
+github.com/docker/docker v20.10.7+incompatible h1:Z6O9Nhsjv+ayUEeI1IojKbYcsGdgYSNqxe1s2MYzUhQ=
 github.com/envoyproxy/go-control-plane v0.9.0/go.mod h1:YTl/9mNaCwkRvm6d1a2C3ymFceY/DCBVvsKhRF0iEA4=
 github.com/envoyproxy/go-control-plane v0.9.1-0.20191026205805-5f8ba28d4473/go.mod h1:YTl/9mNaCwkRvm6d1a2C3ymFceY/DCBVvsKhRF0iEA4=
 github.com/envoyproxy/go-control-plane v0.9.4/go.mod h1:6rpuAdCZL397s3pYoYcLgu1mIlRU8Am5FuJP05cCM98=
@@ -168,8 +169,8 @@ github.com/googleapis/gax-go/v2 v2.0.5 h1:sjZBwGj9Jlw33ImPtvFviGYvseOtDM7hkSKB7+
 github.com/googleapis/gax-go/v2 v2.0.5/go.mod h1:DWXyrwAJ9X0FpwwEdw+IPEYBICEFu5mhpdKc/us6bOk=
 github.com/gruntwork-io/go-commons v0.8.0 h1:k/yypwrPqSeYHevLlEDmvmgQzcyTwrlZGRaxEM6G0ro=
 github.com/gruntwork-io/go-commons v0.8.0/go.mod h1:gtp0yTtIBExIZp7vyIV9I0XQkVwiQZze678hvDXof78=
-github.com/gruntwork-io/terratest v0.40.1 h1:xh9wniVkV0FujoEy56zWRylhmJEeu1gnKZGYf8+br9E=
-github.com/gruntwork-io/terratest v0.40.1/go.mod h1:CjHsEgP1Pe987X5N8K5qEqCuLtu1bqERGIAF8bTj1s0=
+github.com/gruntwork-io/terratest v0.40.3 h1:M62wBn/5r/8tbMV7WBe+9j91yFgk9f5Vbrx8dj7P1/Q=
+github.com/gruntwork-io/terratest v0.40.3/go.mod h1:CjHsEgP1Pe987X5N8K5qEqCuLtu1bqERGIAF8bTj1s0=
 github.com/hashicorp/errwrap v1.0.0 h1:hLrqtEDnRye3+sgx6z4qVLNuviH3MR5aQ0ykNJa/UYA=
 github.com/hashicorp/errwrap v1.0.0/go.mod h1:YH+1FKiLXxHSkmPseP+kNlulaMuP3n2brvKWEqk/Jc4=
 github.com/hashicorp/go-cleanhttp v0.5.2 h1:035FKYIWjmULyFRBKPs8TBQoi0x6d9G4xc9neXJWAZQ=
