@@ -1,6 +1,7 @@
 # terraform-aws-secure-baseline
 
-[![Github Actions](https://github.com/nozaq/terraform-aws-secure-baseline/workflows/Terraform/badge.svg)](https://github.com/nozaq/terraform-aws-secure-baseline/actions?workflow=Terraform)
+[![Github Actions](https://github.com/nozaq/terraform-aws-secure-baseline/actions/workflows/main.yml/badge.svg)](https://github.com/nozaq/terraform-aws-secure-baseline/actions/workflows/main.yml)
+[![Releases](https://img.shields.io/github/v/release/nozaq/terraform-aws-secure-baseline)](https://github.com/nozaq/terraform-aws-secure-baseline/releases/tag/latest)
 
 [Terraform Module Registry](https://registry.terraform.io/modules/nozaq/secure-baseline/aws)
 
