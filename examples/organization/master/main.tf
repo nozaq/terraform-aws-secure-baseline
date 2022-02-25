@@ -65,7 +65,5 @@ module "secure_baseline" {
     aws.us-west-1      = aws.us-west-1
     aws.us-west-2      = aws.us-west-2
   }
-
-  depends_on = [aws_organizations_organization.org]
 }
 
