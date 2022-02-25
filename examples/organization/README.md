@@ -7,7 +7,7 @@ When it sets to `master`, this module configure the account to be ready to gathe
 
 ## Master Account
 
-In the master account configuration, you need to set `account_type` to `master` and specify member account information in `member accounts`.
+In the master account configuration, you need to set `account_type` to `master` and specify member account information in `member_accounts`.
 
 The following shows a sample usage.
 
