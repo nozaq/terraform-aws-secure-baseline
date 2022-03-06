@@ -1,3 +1,11 @@
+### [1.0.1](https://github.com/nozaq/terraform-aws-secure-baseline/compare/v1.0.0...v1.0.1) (2022-03-06)
+
+
+### Bug Fixes
+
+* avoid for_each key error ([#273](https://github.com/nozaq/terraform-aws-secure-baseline/issues/273)) ([0122d6f](https://github.com/nozaq/terraform-aws-secure-baseline/commit/0122d6fcd00ecd1114a2d5e7853027ebb0322d71))
+* mark `var.member_accounts` required ([#272](https://github.com/nozaq/terraform-aws-secure-baseline/issues/272)) ([8612941](https://github.com/nozaq/terraform-aws-secure-baseline/commit/8612941317db8c5f3eb82fd8c5218b8ef5a5d41f))
+
 ## [1.0.0] - 2022-02-19
 ### Feat
 - add new S3 bucket configuration resources ([#261](https://github.com/nozaq/terraform-aws-secure-baseline/issues/261))
