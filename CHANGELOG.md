@@ -1,4 +1,3 @@
-<a name="1.0.0"></a>
 ## [1.0.0] - 2022-02-19
 ### Feat
 - add new S3 bucket configuration resources ([#261](https://github.com/nozaq/terraform-aws-secure-baseline/issues/261))
