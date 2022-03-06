@@ -1,7 +1,3 @@
-<a name="unreleased"></a>
-## [Unreleased]
-
-
 <a name="1.0.0"></a>
 ## [1.0.0] - 2022-02-19
 ### Feat
