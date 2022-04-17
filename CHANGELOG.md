@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0](https://github.com/nozaq/terraform-aws-secure-baseline/compare/v1.0.1...v1.1.0) (2022-04-16)
+
+
+### Features
+
+* use S3 lifecycle rule V2 ([#285](https://github.com/nozaq/terraform-aws-secure-baseline/issues/285)) ([2b471bd](https://github.com/nozaq/terraform-aws-secure-baseline/commit/2b471bd321f3f7503690076d9321aeca38401796))
+
+
+### Bug Fixes
+
+* upgrade the AWS provider to v4.3 ([#287](https://github.com/nozaq/terraform-aws-secure-baseline/issues/287)) ([271d99e](https://github.com/nozaq/terraform-aws-secure-baseline/commit/271d99ef6206fab0886f6961674340e986b5bc0c))
+
 ## [1.0.1](https://github.com/nozaq/terraform-aws-secure-baseline/compare/v1.0.0...v1.0.1) (2022-03-06)
 ### Bug Fixes
 - avoid for_each key error ([#273](https://github.com/nozaq/terraform-aws-secure-baseline/issues/273)) ([0122d6f](https://github.com/nozaq/terraform-aws-secure-baseline/commit/0122d6fcd00ecd1114a2d5e7853027ebb0322d71))
