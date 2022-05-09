@@ -4,6 +4,12 @@ variable "support_iam_role_name" {
   default     = "IAM-Support"
 }
 
+variable "permissions_boundary_arn" {
+  description = "The permissions boundary ARN for all IAM Roles, provisioned by this module"
+  type        = string
+  default     = ""
+}
+
 variable "support_iam_role_principal_arns" {
   type        = list(any)
   description = "List of ARNs of the IAM principal elements by which the support role could be assumed."

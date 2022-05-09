@@ -51,6 +51,12 @@ variable "iam_role_policy_name" {
   default     = "CloudTrail-CloudWatch-Delivery-Policy"
 }
 
+variable "permissions_boundary_arn" {
+  description = "The permissions boundary ARN for all IAM Roles, provisioned by this module"
+  type        = string
+  default     = ""
+}
+
 variable "key_deletion_window_in_days" {
   description = "Duration in days after which the key is deleted after destruction of the resource, must be between 7 and 30 days. Defaults to 30 days."
   type        = number

@@ -43,6 +43,7 @@ module "iam_baseline" {
 
   support_iam_role_name           = var.support_iam_role_name
   support_iam_role_principal_arns = var.support_iam_role_principal_arns
+  permissions_boundary_arn        = var.permissions_boundary_arn
   minimum_password_length         = var.minimum_password_length
   password_reuse_prevention       = var.password_reuse_prevention
   require_lowercase_characters    = var.require_lowercase_characters
@@ -75,6 +76,7 @@ module "cloudtrail_baseline" {
   cloudwatch_logs_retention_in_days = var.cloudwatch_logs_retention_in_days
   iam_role_name                     = var.cloudtrail_iam_role_name
   iam_role_policy_name              = var.cloudtrail_iam_role_policy_name
+  permissions_boundary_arn          = var.permissions_boundary_arn
   key_deletion_window_in_days       = var.cloudtrail_key_deletion_window_in_days
   region                            = var.region
   s3_bucket_name                    = local.audit_log_bucket_id
