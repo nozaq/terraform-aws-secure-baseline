@@ -41,6 +41,7 @@ $ terraform import "$MODULE_PATH.module.audit_log_bucket[0].aws_s3_bucket_versio
 
 Following configurations from `module.audit_log_bucket[0].aws_s3_bucket.access_log` were extracted to separated resources.
 
+- `module.audit_log_bucket[0].aws_s3_bucket.access_log`
 - `module.audit_log_bucket[0].aws_s3_bucket_acl.access_log`
 - `module.audit_log_bucket[0].aws_s3_bucket_lifecycle_configuration.access_log`
 - `module.audit_log_bucket[0].aws_s3_bucket_server_side_encryption_configuration.access_log`
@@ -48,6 +49,7 @@ Following configurations from `module.audit_log_bucket[0].aws_s3_bucket.access_l
 These resources can be imported by `terraform import` command as well.
 
 ```sh
+$ terraform import "$MODULE_PATH.module.audit_log_bucket[0].aws_s3_bucket.access_log" "$ACCESS_LOG_BUCKET"
 $ terraform import "$MODULE_PATH.module.audit_log_bucket[0].aws_s3_bucket_acl.access_log" "$ACCESS_LOG_BUCKET"
 
 $ terraform import "$MODULE_PATH.module.audit_log_bucket[0].aws_s3_bucket_lifecycle_configuration.access_log" "$ACCESS_LOG_BUCKET"
