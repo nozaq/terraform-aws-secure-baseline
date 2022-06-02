@@ -1,10 +1,10 @@
 module github.com/nozaq/terraform-aws-secure-baseline
 
-go 1.17
+go 1.18
 
 require (
 	github.com/google/uuid v1.3.0
-	github.com/gruntwork-io/terratest v0.40.6
+	github.com/gruntwork-io/terratest v0.40.13
 )
 
 require (
@@ -23,7 +23,6 @@ require (
 	github.com/go-sql-driver/mysql v1.6.0 // indirect
 	github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da // indirect
 	github.com/golang/protobuf v1.5.2 // indirect
-	github.com/golang/snappy v0.0.4 // indirect
 	github.com/google/go-cmp v0.5.7 // indirect
 	github.com/googleapis/gax-go/v2 v2.2.0 // indirect
 	github.com/gruntwork-io/go-commons v0.11.0 // indirect
@@ -37,7 +36,6 @@ require (
 	github.com/hashicorp/terraform-json v0.13.0 // indirect
 	github.com/jinzhu/copier v0.3.5 // indirect
 	github.com/jmespath/go-jmespath v0.4.0 // indirect
-	github.com/jstemmer/go-junit-report v1.0.0 // indirect
 	github.com/klauspost/compress v1.15.1 // indirect
 	github.com/mattn/go-zglob v0.0.3 // indirect
 	github.com/mitchellh/go-homedir v1.1.0 // indirect
@@ -49,18 +47,14 @@ require (
 	github.com/stretchr/testify v1.7.1 // indirect
 	github.com/tmccombs/hcl2json v0.3.4 // indirect
 	github.com/ulikunitz/xz v0.5.10 // indirect
-	github.com/urfave/cli v1.22.5 // indirect
 	github.com/urfave/cli/v2 v2.4.0 // indirect
 	github.com/zclconf/go-cty v1.10.0 // indirect
 	go.opencensus.io v0.23.0 // indirect
 	golang.org/x/crypto v0.0.0-20220321153916-2c7772ba3064 // indirect
-	golang.org/x/lint v0.0.0-20210508222113-6edffad5e616 // indirect
-	golang.org/x/mod v0.6.0-dev.0.20220106191415-9b9b3d81d5e3 // indirect
 	golang.org/x/net v0.0.0-20220325170049-de3da57026de // indirect
 	golang.org/x/oauth2 v0.0.0-20220309155454-6242fa91716a // indirect
 	golang.org/x/sys v0.0.0-20220330033206-e17cdc41300f // indirect
 	golang.org/x/text v0.3.7 // indirect
-	golang.org/x/tools v0.1.10 // indirect
 	golang.org/x/xerrors v0.0.0-20200804184101-5ec99f83aff1 // indirect
 	google.golang.org/api v0.74.0 // indirect
 	google.golang.org/appengine v1.6.7 // indirect
