@@ -41,6 +41,8 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "access_log" {
 }
 
 resource "aws_s3_bucket_lifecycle_configuration" "access_log" {
+  count = var.lifecycle_glacier_transition_days > 0 ? 1 : 0
+
   bucket = aws_s3_bucket.access_log.id
 
   rule {
@@ -108,6 +110,8 @@ resource "aws_s3_bucket_logging" "content" {
 }
 
 resource "aws_s3_bucket_lifecycle_configuration" "content" {
+  count = var.lifecycle_glacier_transition_days > 0 ? 1 : 0
+
   bucket = aws_s3_bucket.content.id
 
   rule {
