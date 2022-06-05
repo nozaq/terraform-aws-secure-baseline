@@ -86,9 +86,9 @@ variable "audit_log_bucket_key_enabled" {
 }
 
 variable "audit_log_lifecycle_glacier_transition_days" {
-  description = "The number of days after log creation when the log file is archived into Glacier."
+  description = "The number of days after log creation when the log file is archived into Glacier. Setting to zero disables the transition."
   type        = number
-  default     = 90
+  default     = 0
 }
 
 variable "audit_log_bucket_force_destroy" {
