@@ -29,6 +29,8 @@ resource "aws_iam_role" "cloudwatch_delivery" {
   name               = var.iam_role_name
   assume_role_policy = data.aws_iam_policy_document.cloudwatch_delivery_assume_policy.json
 
+  permissions_boundary = var.permissions_boundary_arn
+
   tags = var.tags
 }
 

@@ -33,6 +33,12 @@ variable "member_accounts" {
   default = []
 }
 
+variable "permissions_boundary_arn" {
+  description = "The permissions boundary ARN for all IAM Roles, provisioned by this module"
+  type        = string
+  default     = ""
+}
+
 variable "target_regions" {
   description = "A list of regions to set up with this module."
   type        = list(string)

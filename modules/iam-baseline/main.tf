@@ -35,6 +35,8 @@ resource "aws_iam_role" "support" {
   name               = var.support_iam_role_name
   assume_role_policy = data.aws_iam_policy_document.support_assume_policy.json
 
+  permissions_boundary = var.permissions_boundary_arn
+
   tags = var.tags
 }
 

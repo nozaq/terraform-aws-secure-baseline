@@ -43,6 +43,8 @@ resource "aws_iam_role" "recorder" {
   name               = var.config_iam_role_name
   assume_role_policy = data.aws_iam_policy_document.recorder_assume_role_policy[0].json
 
+  permissions_boundary = var.permissions_boundary_arn
+
   tags = var.tags
 }
 
@@ -629,6 +631,8 @@ resource "aws_iam_role" "config_organization" {
 
   name_prefix        = var.config_aggregator_name_prefix
   assume_role_policy = data.aws_iam_policy_document.config_organization_assume_role_policy[0].json
+
+  permissions_boundary = var.permissions_boundary_arn
 
   tags = var.tags
 }
