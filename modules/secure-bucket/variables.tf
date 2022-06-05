@@ -9,9 +9,9 @@ variable "log_bucket_name" {
 }
 
 variable "lifecycle_glacier_transition_days" {
-  description = "The number of days after object creation when the object is archived into Glacier."
+  description = "The number of days after object creation when the object is archived into Glacier.  Setting to zero disables the transition."
   type        = number
-  default     = 90
+  default     = 0
 }
 
 variable "force_destroy" {
