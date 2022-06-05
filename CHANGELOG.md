@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.0](https://github.com/nozaq/terraform-aws-secure-baseline/compare/v1.1.0...v2.0.0) (2022-06-05)
+
+
+### ⚠ BREAKING CHANGES
+
+* this change disables glacier transition rules by default since transitioning small objects is officially not recommended. it can be enabled by setting `var.audit_log_lifecycle_glacier_transition_days` to a positive number.
+
+### Features
+
+* add permissions boundaries for IAM entities support ([#288](https://github.com/nozaq/terraform-aws-secure-baseline/issues/288)) ([219f003](https://github.com/nozaq/terraform-aws-secure-baseline/commit/219f0032626a793b1c7ca304793d924b829b2c18))
+* make glacier transition rules optional ([#293](https://github.com/nozaq/terraform-aws-secure-baseline/issues/293)) ([f0cdf3e](https://github.com/nozaq/terraform-aws-secure-baseline/commit/f0cdf3e6294a97ef455cf5e313aba14bfba38467))
+
 ## [1.1.0](https://github.com/nozaq/terraform-aws-secure-baseline/compare/v1.0.1...v1.1.0) (2022-04-16)
 
 
