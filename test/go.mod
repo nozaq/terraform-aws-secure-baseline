@@ -4,7 +4,7 @@ go 1.18
 
 require (
 	github.com/google/uuid v1.3.0
-	github.com/gruntwork-io/terratest v0.40.15
+	github.com/gruntwork-io/terratest v0.40.17
 )
 
 require (
