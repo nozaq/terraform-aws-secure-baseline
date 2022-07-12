@@ -8,7 +8,7 @@
 A terraform module to set up your AWS account with the reasonably secure configuration baseline.
 Most configurations are based on [CIS Amazon Web Services Foundations v1.4.0] and [AWS Foundational Security Best Practices v1.0.0].
 
-See [Benchmark Compliance](./compliance.md) to check which items in various benchmarks are covered.
+See [Benchmark Compliance](https://github.com/nozaq/terraform-aws-secure-baseline/compliance.md) to check which items in various benchmarks are covered.
 
 ## Features
 
@@ -78,37 +78,37 @@ module "secure_baseline" {
 }
 ```
 
-Check [the example](./examples/simple/regions.tf) to understand how these providers are defined.
+Check [the "simple" example](/examples/simple/regions.tf) to understand how these providers are defined.
 Note that you need to define a provider for each AWS region and pass them to the module. Currently this is the recommended way to handle multiple regions in one module.
 Detailed information can be found at [Providers within Modules - Terraform Docs].
 
-A new S3 bucket to store audit logs is automatically created by default, while the external S3 bucket can be specified. It is useful when you already have a centralized S3 bucket to store all logs. Please see [external-bucket](./examples/external-bucket) example for more detail.
+A new S3 bucket to store audit logs is automatically created by default, while the external S3 bucket can be specified. It is useful when you already have a centralized S3 bucket to store all logs. Please see [external-bucket](https://github.com/nozaq/terraform-aws-secure-baseline/examples/external-bucket) example for more detail.
 
 ### Managing multiple accounts in AWS Organization
 
 When you have multiple AWS accounts in your AWS Organization, `secure-baseline` module configures the separated environment for each AWS account. You can change this behavior to centrally manage security information and audit logs from all accounts in one master account.
-Check [organization](./examples/organization) example for more detail.
+Check [the "organization" example](https://github.com/nozaq/terraform-aws-secure-baseline/examples/organization) for more detail.
 
 ## Submodules
 
 This module is composed of several submodules and each of which can be used independently.
 [Modules in Package Sub-directories - Terraform] describes how to source a submodule.
 
-- [alarm-baseline](./modules/alarm-baseline)
-- [analyzer-baseline](./modules/analyzer-baseline)
-- [cloudtrail-baseline](./modules/cloudtrail-baseline)
-- [config-baseline](./modules/config-baseline)
-- [ebs-baseline](./modules/ebs-baseline)
-- [guardduty-baseline](./modules/guardduty-baseline)
-- [iam-baseline](./modules/iam-baseline)
-- [s3-baseline](./modules/s3-baseline)
-- [secure-bucket](./modules/secure-bucket)
-- [securityhub-baseline](./modules/securityhub-baseline)
-- [vpc-baseline](./modules/vpc-baseline)
+- [alarm-baseline](https://github.com/nozaq/terraform-aws-secure-baseline/modules/alarm-baseline)
+- [analyzer-baseline](https://github.com/nozaq/terraform-aws-secure-baseline/modules/analyzer-baseline)
+- [cloudtrail-baseline](https://github.com/nozaq/terraform-aws-secure-baseline/modules/cloudtrail-baseline)
+- [config-baseline](https://github.com/nozaq/terraform-aws-secure-baseline/modules/config-baseline)
+- [ebs-baseline](https://github.com/nozaq/terraform-aws-secure-baseline/modules/ebs-baseline)
+- [guardduty-baseline](https://github.com/nozaq/terraform-aws-secure-baseline/modules/guardduty-baseline)
+- [iam-baseline](https://github.com/nozaq/terraform-aws-secure-baseline/modules/iam-baseline)
+- [s3-baseline](https://github.com/nozaq/terraform-aws-secure-baseline/modules/s3-baseline)
+- [secure-bucket](https://github.com/nozaq/terraform-aws-secure-baseline/modules/secure-bucket)
+- [securityhub-baseline](https://github.com/nozaq/terraform-aws-secure-baseline/modules/securityhub-baseline)
+- [vpc-baseline](https://github.com/nozaq/terraform-aws-secure-baseline/modules/vpc-baseline)
 
 ## Compatibility
 
-- Starting from v1.0, this module requires [Terraform Provider for AWS](https://github.com/terraform-providers/terraform-provider-aws) v4.0 or later. [Version 1.0 Upgrade Guide](./docs/upgrade-1.0.md) described the recommended procedure after the upgrade.
+- Starting from v1.0, this module requires [Terraform Provider for AWS](https://github.com/terraform-providers/terraform-provider-aws) v4.0 or later. [Version 1.0 Upgrade Guide](https://github.com/nozaq/terraform-aws-secure-baseline/docs/upgrade-1.0.md) described the recommended procedure after the upgrade.
 - Starting from v0.20, this module requires [Terraform Provider for AWS](https://github.com/terraform-providers/terraform-provider-aws) v3.0 or later. Please use v0.19 if you need to use v2.x or earlier.
 - Starting from v0.10, this module requires Terraform v0.12 or later. Please use v0.9 if you need to use Terraform v0.11 or ealier.
 
