@@ -36,7 +36,7 @@ module "audit_log_bucket" {
 
   bucket_name                       = var.audit_log_bucket_name
   bucket_key_enabled                = var.audit_log_bucket_key_enabled
-  log_bucket_name                   = "${var.audit_log_bucket_name}-access-logs"
+  log_bucket_name                   = var.audit_log_bucket_access_logs_name != "" ? var.audit_log_bucket_access_logs_name : "${var.audit_log_bucket_name}-access-logs"
   lifecycle_glacier_transition_days = var.audit_log_lifecycle_glacier_transition_days
   force_destroy                     = var.audit_log_bucket_force_destroy
 

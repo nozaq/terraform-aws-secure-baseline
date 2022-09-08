@@ -79,6 +79,12 @@ variable "audit_log_bucket_name" {
   type        = string
 }
 
+variable "audit_log_bucket_access_logs_name" {
+  description = "The name of the S3 bucket to store various audit logs."
+  type        = string
+  default     = ""
+}
+
 variable "audit_log_bucket_custom_policy_json" {
   description = "Override policy for the audit log bucket. Allows addition of extra policies."
   type        = string
