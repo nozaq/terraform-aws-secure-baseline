@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.1.0](https://github.com/nozaq/terraform-aws-secure-baseline/compare/v2.0.0...v2.1.0) (2022-12-03)
+
+
+### Features
+
+* enable CIS benchmark v1.4.0 standard ([#308](https://github.com/nozaq/terraform-aws-secure-baseline/issues/308)) ([bb724cd](https://github.com/nozaq/terraform-aws-secure-baseline/commit/bb724cd7783ae3e645cbbb4468b367fc5095cb53))
+* make audit log bucket access logs bucket name customizable ([#303](https://github.com/nozaq/terraform-aws-secure-baseline/issues/303)) ([07dc101](https://github.com/nozaq/terraform-aws-secure-baseline/commit/07dc101179fa2d1649cd987e3d8f3d269db546b8))
+
 ## [2.0.0](https://github.com/nozaq/terraform-aws-secure-baseline/compare/v1.1.0...v2.0.0) (2022-06-05)
 
 
