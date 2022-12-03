@@ -43,7 +43,7 @@ resource "aws_securityhub_invite_accepter" "invitee" {
 resource "aws_securityhub_standards_subscription" "cis" {
   count = var.enable_cis_standard ? 1 : 0
 
-  standards_arn = "arn:aws:securityhub:::ruleset/cis-aws-foundations-benchmark/v/1.2.0"
+  standards_arn = "arn:aws:securityhub:${data.aws_region.current.name}::standards/cis-aws-foundations-benchmark/v/1.4.0"
 
   depends_on = [aws_securityhub_account.main]
 }
