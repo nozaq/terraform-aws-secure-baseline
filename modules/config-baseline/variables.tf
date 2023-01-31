@@ -53,7 +53,18 @@ variable "include_global_resource_types" {
 variable "tags" {
   description = "Specifies object tags key and value. This applies to all resources created by this module."
   type        = map(string)
-  default = {
+  default     = {
     "Terraform" = "true"
   }
+}
+
+variable "sns_feedback_iam_role" {
+  type        = string
+  description = "The ARN of the IAM Role which SNS will use to log delivery status"
+}
+
+variable "sns_feedback_sample_rate" {
+  type        = number
+  description = "Percentage of messages to sample for delivery status logging"
+  default     = 100
 }

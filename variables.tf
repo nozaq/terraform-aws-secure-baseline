@@ -319,6 +319,18 @@ variable "config_global_resources_all_regions" {
   default     = false
 }
 
+variable "config_sns_feedback_iam_role_name" {
+  description = "The name of the IAM Role which which SNS will use to log delivery status"
+  type        = string
+  default     = "Config-Feedback"
+}
+
+variable "config_sns_feedback_iam_role_policy_name" {
+  description = "The name of the IAM Role Policy which SNS will use to log delivery status"
+  type        = string
+  default     = "Config-Feedback-Policy"
+}
+
 # --------------------------------------------------------------------------------------------------
 # Variables for cloudtrail-baseline module.
 # --------------------------------------------------------------------------------------------------
