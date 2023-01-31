@@ -29,6 +29,8 @@ Enable AWS Config in all regions to automatically take configuration snapshots.
 | <a name="input_s3_key_prefix"></a> [s3\_key\_prefix](#input\_s3\_key\_prefix) | The prefix for the specified S3 bucket. | `string` | no |
 | <a name="input_sns_topic_kms_master_key_id"></a> [sns\_topic\_kms\_master\_key\_id](#input\_sns\_topic\_kms\_master\_key\_id) | To enable SNS Topic encryption enter value with the ID of a custom master KMS key that is used for encryption | `string` | no |
 | <a name="input_sns_topic_name"></a> [sns\_topic\_name](#input\_sns\_topic\_name) | The name of the SNS Topic to be used to notify configuration changes. | `string` | no |
+| <a name="input_sns_feedback_iam_role"></a> [sns\_feedback\_iam\_role](#input\_sns\_feedback\_iam\_role) | The ARN of the IAM Role which SNS will use to log delivery status. | `string` | yes |
+| <a name="input_sns_feedback_sample_rate"></a> [sns\_feedback\_sample\_rate](#input\_sns\_feedback\_sample\_rate) | Percentage of messages to sample for delivery status logging. | `number` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | Specifies object tags key and value. This applies to all resources created by this module. | `map(string)` | no |
 
 ## Outputs
