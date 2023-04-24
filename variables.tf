@@ -115,6 +115,18 @@ variable "use_external_audit_log_bucket" {
   default     = false
 }
 
+variable "audit_log_bucket_id" {
+  description = "The id of the S3 bucket to store various audit logs."
+  type        = string
+  default     = null
+}
+
+variable "audit_log_bucket_arn" {
+  description = "The arn of the S3 bucket to store various audit logs."
+  type        = string
+  default     = null
+}
+
 # --------------------------------------------------------------------------------------------------
 # Variables for iam-baseline module.
 # --------------------------------------------------------------------------------------------------
