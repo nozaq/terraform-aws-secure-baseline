@@ -58,7 +58,7 @@ variable "permissions_boundary_arn" {
 }
 
 variable "cloudtrail_kms_customer_managed" {
-  description = "Whether to use SSE-KMS encryption for CloudTrail logs KMS encryption type. With this variable set false, CloudTrail logs are encrypted with SSE-S3SSE-KMS creates a customer managed key. SSE-S3 is AWS managed but incurs no cost. Note that if SNS is enabled, a KMS key will be created for that topic regardless of this variable option."
+  description = "Whether to use SSE-KMS encryption for CloudTrail logs KMS encryption type. With this variable set false, CloudTrail logs are encrypted with SSE-S3. SSE-S3 is AWS managed and incurs no cost. Note that if SNS is enabled, a customer managed KMS key will be created for that topic regardless of this variable option."
   type        = bool
   default     = true
 }
