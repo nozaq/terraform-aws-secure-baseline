@@ -8,9 +8,9 @@ locals {
   audit_log_bucket_id  = local.use_external_bucket ? data.aws_s3_bucket.external[0].id : module.audit_log_bucket[0].this_bucket.id
   audit_log_bucket_arn = local.use_external_bucket ? data.aws_s3_bucket.external[0].arn : module.audit_log_bucket[0].this_bucket.arn
 
-  audit_log_cloudtrail_destination = join("/", [local.audit_log_bucket_arn, trim(var.cloudtrail_s3_key_prefix, "/")])
-  audit_log_config_destination     = join("/", [local.audit_log_bucket_arn, trim(var.config_s3_bucket_key_prefix, "/")])
-  audit_log_flow_logs_destination  = join("/", [local.audit_log_bucket_arn, trim(var.vpc_flow_logs_s3_key_prefix, "/")])
+  audit_log_cloudtrail_destination = trimsuffix(join("/", [local.audit_log_bucket_arn, trim(var.cloudtrail_s3_key_prefix, "/")]), "/")
+  audit_log_config_destination     = trimsuffix(join("/", [local.audit_log_bucket_arn, trim(var.config_s3_bucket_key_prefix, "/")]), "/")
+  audit_log_flow_logs_destination  = trimsuffix(join("/", [local.audit_log_bucket_arn, trim(var.vpc_flow_logs_s3_key_prefix, "/")]), "/")
 }
 
 # --------------------------------------------------------------------------------------------------
