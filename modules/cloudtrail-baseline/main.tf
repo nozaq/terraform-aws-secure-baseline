@@ -58,6 +58,8 @@ resource "aws_iam_role_policy" "cloudwatch_delivery_policy" {
   policy = data.aws_iam_policy_document.cloudwatch_delivery_policy[0].json
 }
 
+data "aws_organizations_organization" "org" {}
+
 # KMS Key to encrypt CloudTrail events.
 # The policy was derived from the default key policy described in AWS CloudTrail User Guide.
 # https://docs.aws.amazon.com/awscloudtrail/latest/userguide/default-cmk-policy.html
@@ -164,7 +166,40 @@ data "aws_iam_policy_document" "cloudtrail_key_policy" {
     condition {
       test     = "StringLike"
       variable = "kms:EncryptionContext:aws:cloudtrail:arn"
-      values   = ["arn:aws:cloudtrail:*:${var.aws_account_id}:trail/*"]
+      values   = ["arn:aws:cloudtrail:*:$${var.aws_account_id}:trail/*"]
+    }
+  }
+
+  statement {
+    sid       = "Enable cross account decryption access for AccessAnalyzer"
+    principals {
+      type        = "AWS"
+      identifiers = ["*"]
+    }
+    actions   = ["kms:Decrypt"]
+    resources = ["*"]
+    condition {
+      test     = "StringEquals"
+      variable = "kms:EncryptionContext:aws:cloudtrail:arn"
+      values   = [aws_cloudtrail.global.arn]
+    }
+    condition {
+      test     = "StringEquals"
+      variable = "aws:PrincipalOrgID"
+      values   = [data.aws_organizations_organization.org.id]
+    }
+    condition {
+      test     = "StringLike"
+      variable = "kms:ViaService"
+      values   = [
+        "access-analyzer.*.amazonaws.com",
+        "s3.*.amazonaws.com",
+      ]
+    }
+    condition {
+      test     = "StringLike"
+      variable = "aws:PrincipalArn"
+      values   = ["arn:aws:iam::$${aws:PrincipalAccount}:role/service-role/AccessAnalyzerMonitorServiceRole*"]
     }
   }
 
@@ -187,9 +222,13 @@ resource "aws_kms_key" "cloudtrail" {
   description             = "A KMS key to encrypt CloudTrail events."
   deletion_window_in_days = var.key_deletion_window_in_days
   enable_key_rotation     = "true"
-  policy                  = data.aws_iam_policy_document.cloudtrail_key_policy.json
 
   tags = var.tags
+}
+
+resource "aws_kms_key_policy" "cloudtrail_key_policy" {
+  key_id = aws_kms_key.cloudtrail.id
+  policy = data.aws_iam_policy_document.cloudtrail_key_policy.json
 }
 
 # --------------------------------------------------------------------------------------------------
