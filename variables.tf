@@ -289,6 +289,24 @@ variable "config_s3_bucket_key_prefix" {
   default     = "config"
 }
 
+variable "config_tuning_enabled" {
+  description = "Tune AWS Config frequency & retention using Python local provisioner."
+  type        = bool
+  default     = false
+}
+
+variable "config_retention_days" {
+  description = "AWS Config retention in days. 0 disables setting retention."
+  type        = number
+  default     = 0
+}
+
+variable "config_continuous_recording" {
+  description = "Enable CONTINUOUS Config recorder mode (as opposed to DAILY)"
+  type        = bool
+  default     = true
+}
+
 variable "config_sns_topic_name" {
   description = "The name of the SNS Topic to be used to notify configuration changes."
   type        = string

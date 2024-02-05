@@ -657,3 +657,46 @@ resource "aws_config_configuration_aggregator" "organization" {
   tags = var.tags
 }
 
+
+
+### Provision Config recorder attributes not supported by provider yet:
+# recorder frequency (https://github.com/hashicorp/terraform-provider-aws/pull/35527)
+# Config retention (https://github.com/hashicorp/terraform-provider-aws/issues/13305)
+resource "terraform_data" "recorder_tuning" {
+  count = var.config_baseline_enabled && var.config_tuning_enabled ? 1 : 0
+
+  triggers_replace = concat(
+    module.config_baseline_ap-northeast-1[*].configuration_recorder,
+    module.config_baseline_ap-northeast-2[*].configuration_recorder,
+    module.config_baseline_ap-northeast-3[*].configuration_recorder,
+    module.config_baseline_ap-south-1[*].configuration_recorder,
+    module.config_baseline_ap-southeast-1[*].configuration_recorder,
+    module.config_baseline_ap-southeast-2[*].configuration_recorder,
+    module.config_baseline_ca-central-1[*].configuration_recorder,
+    module.config_baseline_eu-central-1[*].configuration_recorder,
+    module.config_baseline_eu-north-1[*].configuration_recorder,
+    module.config_baseline_eu-west-1[*].configuration_recorder,
+    module.config_baseline_eu-west-2[*].configuration_recorder,
+    module.config_baseline_eu-west-3[*].configuration_recorder,
+    module.config_baseline_sa-east-1[*].configuration_recorder,
+    module.config_baseline_us-east-1[*].configuration_recorder,
+    module.config_baseline_us-east-2[*].configuration_recorder,
+    module.config_baseline_us-west-1[*].configuration_recorder,
+    module.config_baseline_us-west-2[*].configuration_recorder,
+    [
+      var.config_continuous_recording,
+      var.config_retention_days
+    ],
+  )
+
+  provisioner "local-exec" {
+    command     = "${path.module}/resources/config_recorder.py"
+    interpreter = ["python3"]
+    environment = {
+      CONFIG_RECORDER_FREQUENCY = var.config_continuous_recording ? "CONTINUOUS" : "DAILY"
+      CONFIG_RECORDER_RETENTION = var.config_retention_days
+      CONFIG_REGIONS            = join(",", var.target_regions)
+      TF_AWS_ROLE               = data.aws_iam_session_context.current.issuer_arn
+    }
+  }
+}
