@@ -253,3 +253,27 @@ resource "aws_s3_bucket_policy" "audit_log" {
   bucket = module.audit_log_bucket[0].this_bucket.id
   policy = data.aws_iam_policy_document.audit_log[0].json
 }
+
+# Add lifecycle rule for AWS Config logs retention.
+resource "aws_s3_bucket_lifecycle_configuration" "config" {
+  count = !local.use_external_bucket && var.config_s3_bucket_retention_days > 0 ? 1 : 0
+
+  bucket = module.audit_log_bucket[0].this_bucket.id
+
+  rule {
+    id     = "config"
+    status = "Enabled"
+
+    filter {
+      prefix = "${var.config_s3_bucket_key_prefix}/"
+    }
+
+    expiration {
+      days = var.config_s3_bucket_retention_days
+    }
+
+    noncurrent_version_expiration {
+      noncurrent_days = var.config_s3_bucket_retention_days
+    }
+  }
+}

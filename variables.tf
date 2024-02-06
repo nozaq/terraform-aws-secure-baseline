@@ -289,6 +289,12 @@ variable "config_s3_bucket_key_prefix" {
   default     = "config"
 }
 
+variable "config_s3_bucket_retention_days" {
+  description = "Config logs retention in S3 bucket in days. 0 disables the lifecycle rule."
+  type        = number
+  default     = 0
+}
+
 variable "config_tuning_enabled" {
   description = "Tune AWS Config frequency & retention using Python local provisioner."
   type        = bool
