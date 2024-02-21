@@ -10,6 +10,12 @@ variable "is_organization" {
   default     = false
 }
 
+variable "delegated_admin_account_id" {
+  description = "AWS account ID withing AWS Organization that should become delegated administrator of Access Analyzer."
+  type        = string
+  default     = ""
+}
+
 variable "tags" {
   description = "Specifies object tags key and value. This applies to all resources created by this module."
   type        = map(string)

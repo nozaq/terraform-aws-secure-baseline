@@ -1,10 +1,22 @@
 data "aws_region" "current" {}
 
+data "aws_caller_identity" "current" {}
+
+data "aws_organizations_organization" "org" {}
+
+locals {
+  is_org_root_account           = data.aws_caller_identity.current.account_id == data.aws_organizations_organization.org.master_account_id
+  is_delegated_admin_account    = data.aws_caller_identity.current.account_id == var.delegated_admin_account_id
+  is_securityhub_master_account = var.master_account_id == "" || (var.master_account_id == var.delegated_admin_account_id && local.is_delegated_admin_account)
+  is_worker_account             = var.master_account_id != "" && !local.is_delegated_admin_account && !local.is_org_root_account
+}
+
 # --------------------------------------------------------------------------------------------------
 # Enable SecurityHub
 # --------------------------------------------------------------------------------------------------
 
 resource "aws_securityhub_account" "main" {
+  control_finding_generator = "SECURITY_CONTROL"
 }
 
 resource "aws_securityhub_finding_aggregator" "main" {
@@ -20,18 +32,31 @@ resource "aws_securityhub_finding_aggregator" "main" {
 # --------------------------------------------------------------------------------------------------
 
 resource "aws_securityhub_member" "members" {
-  count = length(var.member_accounts)
+  count = local.is_securityhub_master_account ? length(var.member_accounts) : 0
 
   depends_on = [aws_securityhub_account.main]
   account_id = var.member_accounts[count.index].account_id
-  email      = var.member_accounts[count.index].email
+  email      = !local.is_delegated_admin_account ? var.member_accounts[count.index].email : null
+  # invite     = !local.is_delegated_admin_account ? true : false
   invite     = true
 }
 
 resource "aws_securityhub_invite_accepter" "invitee" {
-  count = var.master_account_id != "" ? 1 : 0
+  count = local.is_worker_account && var.delegated_admin_account_id == "" ? 1 : 0
 
   master_id = var.master_account_id
+
+  depends_on = [aws_securityhub_account.main]
+}
+
+# --------------------------------------------------------------------------------------------------
+# Delegate administration to another account
+# --------------------------------------------------------------------------------------------------
+
+resource "aws_securityhub_organization_admin_account" "securityhub_baseline_delegated_admin" {
+  count = local.is_org_root_account && var.delegated_admin_account_id != "" ? 1 : 0
+
+  admin_account_id = var.delegated_admin_account_id
 
   depends_on = [aws_securityhub_account.main]
 }

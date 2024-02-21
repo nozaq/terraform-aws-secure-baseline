@@ -10,6 +10,12 @@ variable "finding_publishing_frequency" {
   default     = "SIX_HOURS"
 }
 
+variable "detector_features" {
+  description = "List of enabled detector features. Valid values: `S3_DATA_EVENTS`, `EKS_AUDIT_LOGS`, `EBS_MALWARE_PROTECTION`, `RDS_LOGIN_EVENTS`, `EKS_RUNTIME_MONITORING`, `LAMBDA_NETWORK_LOGS`."
+  type        = list(string)
+  default     = ["S3_DATA_EVENTS"]
+}
+
 variable "invitation_message" {
   description = "Message for invitation."
   type        = string
@@ -29,6 +35,12 @@ variable "member_accounts" {
     email      = string
   }))
   default = []
+}
+
+variable "delegated_admin_account_id" {
+  description = "AWS account ID withing AWS Organization that should become delegated administrator of GuardDuty. This overrides the global `master_account_id` for GuardDuty and enforces AWS Organization-based account management instead of invite-based."
+  type        = string
+  default     = ""
 }
 
 variable "tags" {

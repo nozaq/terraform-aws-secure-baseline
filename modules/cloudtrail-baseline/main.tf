@@ -171,7 +171,7 @@ data "aws_iam_policy_document" "cloudtrail_key_policy" {
   }
 
   statement {
-    sid       = "Enable cross account decryption access for AccessAnalyzer"
+    sid = "Enable cross account decryption access for AccessAnalyzer"
     principals {
       type        = "AWS"
       identifiers = ["*"]
@@ -191,7 +191,7 @@ data "aws_iam_policy_document" "cloudtrail_key_policy" {
     condition {
       test     = "StringLike"
       variable = "kms:ViaService"
-      values   = [
+      values = [
         "access-analyzer.*.amazonaws.com",
         "s3.*.amazonaws.com",
       ]

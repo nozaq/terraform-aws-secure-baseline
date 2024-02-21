@@ -42,3 +42,9 @@ variable "member_accounts" {
   }))
   default = []
 }
+
+variable "delegated_admin_account_id" {
+  description = "AWS account ID withing AWS Organization that should become delegated administrator of SecurityHub. This overrides the global `master_account_id` for SecurityHub and enforces AWS Organization-based account management instead of invite-based."
+  type        = string
+  default     = ""
+}

@@ -601,6 +601,21 @@ variable "guardduty_invitation_message" {
   default     = "This is an automatic invitation message from guardduty-baseline module."
 }
 
+variable "guardduty_member_accounts" {
+  description = "A list of IDs and emails of AWS accounts which associated as member accounts for GuardDuty. This overrides `member_accounts` for GuardDuty."
+  type = list(object({
+    account_id = string
+    email      = string
+  }))
+  default = []
+}
+
+variable "guardduty_delegated_admin_account_id" {
+  description = "AWS account ID withing AWS Organization that should become delegated administrator of GuardDuty. This overrides the global `master_account_id` for GuardDuty and enforces AWS Organization-based account management instead of invite-based."
+  type        = string
+  default     = ""
+}
+
 # --------------------------------------------------------------------------------------------------
 # Variables for s3-baseline module.
 # --------------------------------------------------------------------------------------------------
@@ -669,6 +684,21 @@ variable "securityhub_enable_product_arns" {
   default     = []
 }
 
+variable "securityhub_member_accounts" {
+  description = "A list of IDs and emails of AWS accounts which associated as member accounts for Security Hub. This overrides `member_accounts` for Security Hub."
+  type = list(object({
+    account_id = string
+    email      = string
+  }))
+  default = []
+}
+
+variable "securityhub_delegated_admin_account_id" {
+  description = "AWS account ID withing AWS Organization that should become delegated administrator of SecurityHub. This overrides the global `master_account_id` for SecurityHub and enforces AWS Organization-based account management instead of invite-based."
+  type        = string
+  default     = ""
+}
+
 # --------------------------------------------------------------------------------------------------
 # Variables for analyzer-baseline module.
 # --------------------------------------------------------------------------------------------------
@@ -683,4 +713,10 @@ variable "analyzer_name" {
   description = "The name for the IAM Access Analyzer resource to be created."
   type        = string
   default     = "default-analyzer"
+}
+
+variable "analyzer_delegated_admin_account_id" {
+  description = "AWS account ID withing AWS Organization that should become delegated administrator of Access Analyzer. This overrides the global `master_account_id` for Access Analyzer."
+  type        = string
+  default     = ""
 }
