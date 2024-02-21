@@ -685,8 +685,9 @@ resource "terraform_data" "recorder_tuning" {
     module.config_baseline_us-west-2[*].configuration_recorder,
     [
       var.config_continuous_recording,
-      var.config_retention_days
+      var.config_retention_days,
     ],
+    var.config_continuous_recording_regions,
   )
 
   provisioner "local-exec" {
@@ -694,6 +695,7 @@ resource "terraform_data" "recorder_tuning" {
     interpreter = ["python3"]
     environment = {
       CONFIG_RECORDER_FREQUENCY = var.config_continuous_recording ? "CONTINUOUS" : "DAILY"
+      CONFIG_CONTINUOUS_REGIONS = join(",", var.config_continuous_recording_regions)
       CONFIG_RECORDER_RETENTION = var.config_retention_days
       CONFIG_REGIONS            = join(",", var.target_regions)
       TF_AWS_ROLE               = data.aws_iam_session_context.current.issuer_arn

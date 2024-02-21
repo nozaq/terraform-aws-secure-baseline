@@ -4,6 +4,7 @@ import boto3
 import os
 
 frequency = os.environ["CONFIG_RECORDER_FREQUENCY"]
+continuous_regions = os.environ["CONFIG_CONTINUOUS_REGIONS"]
 retention = int(os.getenv("CONFIG_RECORDER_RETENTION", "0"))
 role_arn = os.environ["TF_AWS_ROLE"]
 target_regions = os.environ["CONFIG_REGIONS"].split(",")
@@ -28,7 +29,17 @@ for region in target_regions:
 
     recorder = config.describe_configuration_recorders()["ConfigurationRecorders"][0]
     recordingMode = recorder.get("recordingMode", {})
-    if recordingMode.get("recordingFrequency") != frequency:
+
+    if (
+        frequency == "CONTINUOUS"
+        and continuous_regions
+        and region not in continuous_regions
+    ):
+        expectedFrequency = "DAILY"
+    else:
+        expectedFrequency = frequency
+
+    if recordingMode.get("recordingFrequency") != expectedFrequency:
         print(f"Setting {region} Config recorder frequency to {frequency}")
         recordingMode["recordingFrequency"] = frequency
         recorder["recordingMode"] = recordingMode

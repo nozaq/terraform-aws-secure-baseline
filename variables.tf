@@ -313,6 +313,12 @@ variable "config_continuous_recording" {
   default     = true
 }
 
+variable "config_continuous_recording_regions" {
+  description = "Limit CONTINUOUS Config recording to these regions (ALL regions if empty)"
+  type        = list(string)
+  default     = []
+}
+
 variable "config_sns_topic_name" {
   description = "The name of the SNS Topic to be used to notify configuration changes."
   type        = string
