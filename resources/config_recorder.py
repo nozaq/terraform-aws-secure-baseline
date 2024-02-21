@@ -35,11 +35,14 @@ for region in target_regions:
         and continuous_regions
         and region not in continuous_regions
     ):
-        frequency = "DAILY"
+        expectedFrequency = "DAILY"
+    else:
+        expectedFrequency = frequency
+    print(frequency, expectedFrequency, continuous_regions, region)
 
-    if recordingMode.get("recordingFrequency") != frequency:
-        print(f"Setting {region} Config recorder frequency to {frequency}")
-        recordingMode["recordingFrequency"] = frequency
+    if recordingMode.get("recordingFrequency") != expectedFrequency:
+        print(f"Setting {region} Config recorder frequency to {expectedFrequency}")
+        recordingMode["recordingFrequency"] = expectedFrequency
         recorder["recordingMode"] = recordingMode
         config.put_configuration_recorder(ConfigurationRecorder=recorder)
 
