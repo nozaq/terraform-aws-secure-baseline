@@ -44,6 +44,12 @@ variable "delivery_channel_name" {
   default     = "default"
 }
 
+variable "continuous_recording" {
+  description = "Enable CONTINUOUS recording (as opposed to DAILY)."
+  type        = bool
+  default     = true
+}
+
 variable "include_global_resource_types" {
   description = "Specifies whether AWS Config includes all supported types of global resources with the resources that it records."
   type        = bool

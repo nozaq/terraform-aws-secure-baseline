@@ -43,6 +43,10 @@ resource "aws_config_configuration_recorder" "recorder" {
     all_supported                 = true
     include_global_resource_types = var.include_global_resource_types
   }
+
+  recording_mode {
+    recording_frequency = var.continuous_recording ? "CONTINUOUS" : "DAILY"
+  }
 }
 
 resource "aws_config_delivery_channel" "bucket" {

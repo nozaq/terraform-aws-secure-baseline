@@ -115,6 +115,7 @@ module "config_baseline_ap-northeast-1" {
   sns_topic_name                = var.config_sns_topic_name
   sns_topic_kms_master_key_id   = var.config_sns_topic_kms_master_key_id
   include_global_resource_types = var.config_global_resources_all_regions ? true : var.region == "ap-northeast-1"
+  continuous_recording          = var.config_continuous_recording ? contains(var.config_continuous_recording_regions, "ap-northeast-1") : false
 
   tags = var.tags
 
@@ -136,6 +137,7 @@ module "config_baseline_ap-northeast-2" {
   sns_topic_name                = var.config_sns_topic_name
   sns_topic_kms_master_key_id   = var.config_sns_topic_kms_master_key_id
   include_global_resource_types = var.config_global_resources_all_regions ? true : var.region == "ap-northeast-2"
+  continuous_recording          = var.config_continuous_recording ? contains(var.config_continuous_recording_regions, "ap-northeast-2") : false
 
   tags = var.tags
 
@@ -157,6 +159,7 @@ module "config_baseline_ap-northeast-3" {
   sns_topic_name                = var.config_sns_topic_name
   sns_topic_kms_master_key_id   = var.config_sns_topic_kms_master_key_id
   include_global_resource_types = var.config_global_resources_all_regions ? true : var.region == "ap-northeast-3"
+  continuous_recording          = var.config_continuous_recording ? contains(var.config_continuous_recording_regions, "ap-northeast-3") : false
 
   tags = var.tags
 
@@ -178,6 +181,7 @@ module "config_baseline_ap-south-1" {
   sns_topic_name                = var.config_sns_topic_name
   sns_topic_kms_master_key_id   = var.config_sns_topic_kms_master_key_id
   include_global_resource_types = var.config_global_resources_all_regions ? true : var.region == "ap-south-1"
+  continuous_recording          = var.config_continuous_recording ? contains(var.config_continuous_recording_regions, "ap-south-1") : false
 
   tags = var.tags
 
@@ -199,6 +203,7 @@ module "config_baseline_ap-southeast-1" {
   sns_topic_name                = var.config_sns_topic_name
   sns_topic_kms_master_key_id   = var.config_sns_topic_kms_master_key_id
   include_global_resource_types = var.config_global_resources_all_regions ? true : var.region == "ap-southeast-1"
+  continuous_recording          = var.config_continuous_recording ? contains(var.config_continuous_recording_regions, "ap-southeast-1") : false
 
   tags = var.tags
 
@@ -220,6 +225,7 @@ module "config_baseline_ap-southeast-2" {
   sns_topic_name                = var.config_sns_topic_name
   sns_topic_kms_master_key_id   = var.config_sns_topic_kms_master_key_id
   include_global_resource_types = var.config_global_resources_all_regions ? true : var.region == "ap-southeast-2"
+  continuous_recording          = var.config_continuous_recording ? contains(var.config_continuous_recording_regions, "ap-southeast-2") : false
 
   tags = var.tags
 
@@ -241,6 +247,7 @@ module "config_baseline_ca-central-1" {
   sns_topic_name                = var.config_sns_topic_name
   sns_topic_kms_master_key_id   = var.config_sns_topic_kms_master_key_id
   include_global_resource_types = var.config_global_resources_all_regions ? true : var.region == "ca-central-1"
+  continuous_recording          = var.config_continuous_recording ? contains(var.config_continuous_recording_regions, "ca-central-1") : false
 
   tags = var.tags
 
@@ -262,6 +269,7 @@ module "config_baseline_eu-central-1" {
   sns_topic_name                = var.config_sns_topic_name
   sns_topic_kms_master_key_id   = var.config_sns_topic_kms_master_key_id
   include_global_resource_types = var.config_global_resources_all_regions ? true : var.region == "eu-central-1"
+  continuous_recording          = var.config_continuous_recording ? contains(var.config_continuous_recording_regions, "eu-central-1") : false
 
   tags = var.tags
 
@@ -283,6 +291,7 @@ module "config_baseline_eu-north-1" {
   sns_topic_name                = var.config_sns_topic_name
   sns_topic_kms_master_key_id   = var.config_sns_topic_kms_master_key_id
   include_global_resource_types = var.config_global_resources_all_regions ? true : var.region == "eu-north-1"
+  continuous_recording          = var.config_continuous_recording ? contains(var.config_continuous_recording_regions, "eu-north-1") : false
 
   tags = var.tags
 
@@ -304,6 +313,7 @@ module "config_baseline_eu-west-1" {
   sns_topic_name                = var.config_sns_topic_name
   sns_topic_kms_master_key_id   = var.config_sns_topic_kms_master_key_id
   include_global_resource_types = var.config_global_resources_all_regions ? true : var.region == "eu-west-1"
+  continuous_recording          = var.config_continuous_recording ? contains(var.config_continuous_recording_regions, "eu-west-1") : false
 
   tags = var.tags
 
@@ -325,6 +335,7 @@ module "config_baseline_eu-west-2" {
   sns_topic_name                = var.config_sns_topic_name
   sns_topic_kms_master_key_id   = var.config_sns_topic_kms_master_key_id
   include_global_resource_types = var.config_global_resources_all_regions ? true : var.region == "eu-west-2"
+  continuous_recording          = var.config_continuous_recording ? contains(var.config_continuous_recording_regions, "eu-west-2") : false
 
   tags = var.tags
 
@@ -346,6 +357,7 @@ module "config_baseline_eu-west-3" {
   sns_topic_name                = var.config_sns_topic_name
   sns_topic_kms_master_key_id   = var.config_sns_topic_kms_master_key_id
   include_global_resource_types = var.config_global_resources_all_regions ? true : var.region == "eu-west-3"
+  continuous_recording          = var.config_continuous_recording ? contains(var.config_continuous_recording_regions, "eu-west-3") : false
 
   tags = var.tags
 
@@ -367,6 +379,7 @@ module "config_baseline_sa-east-1" {
   sns_topic_name                = var.config_sns_topic_name
   sns_topic_kms_master_key_id   = var.config_sns_topic_kms_master_key_id
   include_global_resource_types = var.config_global_resources_all_regions ? true : var.region == "sa-east-1"
+  continuous_recording          = var.config_continuous_recording ? contains(var.config_continuous_recording_regions, "sa-east-1") : false
 
   tags = var.tags
 
@@ -388,6 +401,7 @@ module "config_baseline_us-east-1" {
   sns_topic_name                = var.config_sns_topic_name
   sns_topic_kms_master_key_id   = var.config_sns_topic_kms_master_key_id
   include_global_resource_types = var.config_global_resources_all_regions ? true : var.region == "us-east-1"
+  continuous_recording          = var.config_continuous_recording ? contains(var.config_continuous_recording_regions, "us-east-1") : false
 
   tags = var.tags
 
@@ -409,6 +423,7 @@ module "config_baseline_us-east-2" {
   sns_topic_name                = var.config_sns_topic_name
   sns_topic_kms_master_key_id   = var.config_sns_topic_kms_master_key_id
   include_global_resource_types = var.config_global_resources_all_regions ? true : var.region == "us-east-2"
+  continuous_recording          = var.config_continuous_recording ? contains(var.config_continuous_recording_regions, "us-east-2") : false
 
   tags = var.tags
 
@@ -430,6 +445,7 @@ module "config_baseline_us-west-1" {
   sns_topic_name                = var.config_sns_topic_name
   sns_topic_kms_master_key_id   = var.config_sns_topic_kms_master_key_id
   include_global_resource_types = var.config_global_resources_all_regions ? true : var.region == "us-west-1"
+  continuous_recording          = var.config_continuous_recording ? contains(var.config_continuous_recording_regions, "us-west-1") : false
 
   tags = var.tags
 
@@ -451,6 +467,7 @@ module "config_baseline_us-west-2" {
   sns_topic_name                = var.config_sns_topic_name
   sns_topic_kms_master_key_id   = var.config_sns_topic_kms_master_key_id
   include_global_resource_types = var.config_global_resources_all_regions ? true : var.region == "us-west-2"
+  continuous_recording          = var.config_continuous_recording ? contains(var.config_continuous_recording_regions, "us-west-2") : false
 
   tags = var.tags
 
@@ -684,18 +701,14 @@ resource "terraform_data" "recorder_tuning" {
     module.config_baseline_us-west-1[*].configuration_recorder,
     module.config_baseline_us-west-2[*].configuration_recorder,
     [
-      var.config_continuous_recording,
       var.config_retention_days,
     ],
-    var.config_continuous_recording_regions,
   )
 
   provisioner "local-exec" {
     command     = "${path.module}/resources/config_recorder.py"
     interpreter = ["python3"]
     environment = {
-      CONFIG_RECORDER_FREQUENCY = var.config_continuous_recording ? "CONTINUOUS" : "DAILY"
-      CONFIG_CONTINUOUS_REGIONS = join(",", var.config_continuous_recording_regions)
       CONFIG_RECORDER_RETENTION = var.config_retention_days
       CONFIG_REGIONS            = join(",", var.target_regions)
       TF_AWS_ROLE               = data.aws_iam_session_context.current.issuer_arn

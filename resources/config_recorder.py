@@ -2,12 +2,15 @@
 
 import boto3
 import os
+import sys
 
-frequency = os.environ["CONFIG_RECORDER_FREQUENCY"]
-continuous_regions = os.environ["CONFIG_CONTINUOUS_REGIONS"].split(",")
 retention = int(os.getenv("CONFIG_RECORDER_RETENTION", "0"))
 role_arn = os.environ["TF_AWS_ROLE"]
 target_regions = os.environ["CONFIG_REGIONS"].split(",")
+
+if not retention:
+  print("No retention config, nothing to do, bye.")
+  sys.exit(0)
 
 # assume terraform role
 sts_client = boto3.client("sts")
@@ -28,30 +31,12 @@ for region in target_regions:
     )
 
     recorder = config.describe_configuration_recorders()["ConfigurationRecorders"][0]
-    recordingMode = recorder.get("recordingMode", {})
 
-    if (
-        frequency == "CONTINUOUS"
-        and continuous_regions
-        and region not in continuous_regions
-    ):
-        expectedFrequency = "DAILY"
-    else:
-        expectedFrequency = frequency
-    print(frequency, expectedFrequency, continuous_regions, region)
-
-    if recordingMode.get("recordingFrequency") != expectedFrequency:
-        print(f"Setting {region} Config recorder frequency to {expectedFrequency}")
-        recordingMode["recordingFrequency"] = expectedFrequency
-        recorder["recordingMode"] = recordingMode
-        config.put_configuration_recorder(ConfigurationRecorder=recorder)
-
-    if retention:
-        current_retention = config.describe_retention_configurations()[
-            "RetentionConfigurations"
-        ]
-        if current_retention != [
-            {"Name": recorder["name"], "RetentionPeriodInDays": retention}
-        ]:
-            print(f"Setting {region} Config retention to {retention} days")
-            config.put_retention_configuration(RetentionPeriodInDays=retention)
+    current_retention = config.describe_retention_configurations()[
+        "RetentionConfigurations"
+    ]
+    if current_retention != [
+        {"Name": recorder["name"], "RetentionPeriodInDays": retention}
+    ]:
+        print(f"Setting {region} Config retention to {retention} days")
+        config.put_retention_configuration(RetentionPeriodInDays=retention)
