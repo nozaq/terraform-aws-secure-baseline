@@ -41,7 +41,7 @@ resource "aws_config_configuration_recorder" "recorder" {
 
   recording_group {
     all_supported                 = length(var.limit_resource_types) == 0
-    include_global_resource_types = var.include_global_resource_types
+    include_global_resource_types = length(var.limit_resource_types) == 0 ? var.include_global_resource_types : false
     resource_types                = var.limit_resource_types
     recording_strategy {
       use_only = length(var.limit_resource_types) == 0 ? "ALL_SUPPORTED_RESOURCE_TYPES" : "INCLUSION_BY_RESOURCE_TYPES"
