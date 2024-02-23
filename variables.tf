@@ -349,6 +349,12 @@ variable "config_global_resources_all_regions" {
   default     = false
 }
 
+variable "config_limit_resource_types" {
+  description = "Only record changes for listed resource types. Records all if empty."
+  type        = list(string)
+  default     = []
+}
+
 # --------------------------------------------------------------------------------------------------
 # Variables for cloudtrail-baseline module.
 # --------------------------------------------------------------------------------------------------

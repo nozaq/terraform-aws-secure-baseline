@@ -50,6 +50,12 @@ variable "continuous_recording" {
   default     = true
 }
 
+variable "limit_resource_types" {
+  description = "Only record changes for listed resource types. Records all if empty."
+  type        = list(string)
+  default     = []
+}
+
 variable "include_global_resource_types" {
   description = "Specifies whether AWS Config includes all supported types of global resources with the resources that it records."
   type        = bool
