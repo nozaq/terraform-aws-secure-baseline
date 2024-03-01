@@ -49,7 +49,7 @@ resource "aws_cloudwatch_log_metric_filter" "unauthorized_api_calls" {
   metric_transformation {
     name      = "UnauthorizedAPICalls"
     namespace = var.alarm_namespace
-    value     = "1"
+    value     = (var.metric_unauthorizedapicalls == true ? 2 : 1)
   }
 }
 
