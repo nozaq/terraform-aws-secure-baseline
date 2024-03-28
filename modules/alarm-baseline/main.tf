@@ -43,7 +43,7 @@ resource "aws_cloudwatch_log_metric_filter" "unauthorized_api_calls" {
   count = var.unauthorized_api_calls_enabled ? 1 : 0
 
   name           = "UnauthorizedAPICalls"
-  pattern        = "{(($.errorCode = \"*UnauthorizedOperation\") || ($.errorCode = \"AccessDenied*\")) && (($.sourceIPAddress!=\"delivery.logs.amazonaws.com\") && ($.eventName!=\"HeadBucket\"))}"
+  pattern        = var.unauthorized_api_calls_pattern
   log_group_name = var.cloudtrail_log_group_name
 
   metric_transformation {
@@ -76,10 +76,7 @@ resource "aws_cloudwatch_log_metric_filter" "no_mfa_console_signin" {
   count = var.no_mfa_console_signin_enabled ? 1 : 0
 
   name = "NoMFAConsoleSignin"
-  pattern = join(" ", [
-    "{ ($.eventName = \"ConsoleLogin\") && ($.additionalEventData.MFAUsed != \"Yes\")",
-    var.mfa_console_signin_allow_sso ? "&& ($.userIdentity.type = \"IAMUser\") && ($.responseElements.ConsoleLogin = \"Success\") }" : "}",
-  ])
+  pattern = var.no_mfa_console_signin_pattern
   log_group_name = var.cloudtrail_log_group_name
 
   metric_transformation {
@@ -112,7 +109,7 @@ resource "aws_cloudwatch_log_metric_filter" "root_usage" {
   count = var.root_usage_enabled ? 1 : 0
 
   name           = "RootUsage"
-  pattern        = "{ $.userIdentity.type = \"Root\" && $.userIdentity.invokedBy NOT EXISTS && $.eventType != \"AwsServiceEvent\" }"
+  pattern        = var.root_usage_pattern
   log_group_name = var.cloudtrail_log_group_name
 
   metric_transformation {
@@ -145,7 +142,7 @@ resource "aws_cloudwatch_log_metric_filter" "iam_changes" {
   count = var.iam_changes_enabled ? 1 : 0
 
   name           = "IAMChanges"
-  pattern        = "{($.eventName=DeleteGroupPolicy)||($.eventName=DeleteRolePolicy)||($.eventName=DeleteUserPolicy)||($.eventName=PutGroupPolicy)||($.eventName=PutRolePolicy)||($.eventName=PutUserPolicy)||($.eventName=CreatePolicy)||($.eventName=DeletePolicy)||($.eventName=CreatePolicyVersion)||($.eventName=DeletePolicyVersion)||($.eventName=AttachRolePolicy)||($.eventName=DetachRolePolicy)||($.eventName=AttachUserPolicy)||($.eventName=DetachUserPolicy)||($.eventName=AttachGroupPolicy)||($.eventName=DetachGroupPolicy)}"
+  pattern        = var.iam_changes_pattern
   log_group_name = var.cloudtrail_log_group_name
 
   metric_transformation {
@@ -178,7 +175,7 @@ resource "aws_cloudwatch_log_metric_filter" "cloudtrail_cfg_changes" {
   count = var.cloudtrail_cfg_changes_enabled ? 1 : 0
 
   name           = "CloudTrailCfgChanges"
-  pattern        = "{ ($.eventName = CreateTrail) || ($.eventName = UpdateTrail) || ($.eventName = DeleteTrail) || ($.eventName = StartLogging) || ($.eventName = StopLogging) }"
+  pattern        = var.cloudtrail_cfg_changes_pattern
   log_group_name = var.cloudtrail_log_group_name
 
   metric_transformation {
@@ -211,7 +208,7 @@ resource "aws_cloudwatch_log_metric_filter" "console_signin_failures" {
   count = var.console_signin_failures_enabled ? 1 : 0
 
   name           = "ConsoleSigninFailures"
-  pattern        = "{ ($.eventName = ConsoleLogin) && ($.errorMessage = \"Failed authentication\") }"
+  pattern        = var.console_signin_failures_pattern
   log_group_name = var.cloudtrail_log_group_name
 
   metric_transformation {
@@ -244,7 +241,7 @@ resource "aws_cloudwatch_log_metric_filter" "disable_or_delete_cmk" {
   count = var.disable_or_delete_cmk_enabled ? 1 : 0
 
   name           = "DisableOrDeleteCMK"
-  pattern        = "{ ($.eventSource = kms.amazonaws.com) && (($.eventName = DisableKey) || ($.eventName = ScheduleKeyDeletion)) }"
+  pattern        = var.disable_or_delete_cmk_pattern
   log_group_name = var.cloudtrail_log_group_name
 
   metric_transformation {
@@ -277,7 +274,7 @@ resource "aws_cloudwatch_log_metric_filter" "s3_bucket_policy_changes" {
   count = var.s3_bucket_policy_changes_enabled ? 1 : 0
 
   name           = "S3BucketPolicyChanges"
-  pattern        = "{ ($.eventSource = s3.amazonaws.com) && (($.eventName = PutBucketAcl) || ($.eventName = PutBucketPolicy) || ($.eventName = PutBucketCors) || ($.eventName = PutBucketLifecycle) || ($.eventName = PutBucketReplication) || ($.eventName = DeleteBucketPolicy) || ($.eventName = DeleteBucketCors) || ($.eventName = DeleteBucketLifecycle) || ($.eventName = DeleteBucketReplication)) }"
+  pattern        = var.s3_bucket_policy_changes_pattern
   log_group_name = var.cloudtrail_log_group_name
 
   metric_transformation {
@@ -310,7 +307,7 @@ resource "aws_cloudwatch_log_metric_filter" "aws_config_changes" {
   count = var.aws_config_changes_enabled ? 1 : 0
 
   name           = "AWSConfigChanges"
-  pattern        = "{ ($.eventSource = config.amazonaws.com) && (($.eventName=StopConfigurationRecorder)||($.eventName=DeleteDeliveryChannel)||($.eventName=PutDeliveryChannel)||($.eventName=PutConfigurationRecorder)) }"
+  pattern        = var.aws_config_changes_pattern
   log_group_name = var.cloudtrail_log_group_name
 
   metric_transformation {
@@ -343,7 +340,7 @@ resource "aws_cloudwatch_log_metric_filter" "security_group_changes" {
   count = var.security_group_changes_enabled ? 1 : 0
 
   name           = "SecurityGroupChanges"
-  pattern        = "{ ($.eventName = AuthorizeSecurityGroupIngress) || ($.eventName = AuthorizeSecurityGroupEgress) || ($.eventName = RevokeSecurityGroupIngress) || ($.eventName = RevokeSecurityGroupEgress) || ($.eventName = CreateSecurityGroup) || ($.eventName = DeleteSecurityGroup)}"
+  pattern        = var.security_group_changes_pattern
   log_group_name = var.cloudtrail_log_group_name
 
   metric_transformation {
@@ -376,7 +373,7 @@ resource "aws_cloudwatch_log_metric_filter" "nacl_changes" {
   count = var.nacl_changes_enabled ? 1 : 0
 
   name           = "NACLChanges"
-  pattern        = "{ ($.eventName = CreateNetworkAcl) || ($.eventName = CreateNetworkAclEntry) || ($.eventName = DeleteNetworkAcl) || ($.eventName = DeleteNetworkAclEntry) || ($.eventName = ReplaceNetworkAclEntry) || ($.eventName = ReplaceNetworkAclAssociation) }"
+  pattern        = var.nacl_changes_pattern
   log_group_name = var.cloudtrail_log_group_name
 
   metric_transformation {
@@ -409,7 +406,7 @@ resource "aws_cloudwatch_log_metric_filter" "network_gw_changes" {
   count = var.network_gw_changes_enabled ? 1 : 0
 
   name           = "NetworkGWChanges"
-  pattern        = "{ ($.eventName = CreateCustomerGateway) || ($.eventName = DeleteCustomerGateway) || ($.eventName = AttachInternetGateway) || ($.eventName = CreateInternetGateway) || ($.eventName = DeleteInternetGateway) || ($.eventName = DetachInternetGateway) }"
+  pattern        = var.network_gw_changes_pattern
   log_group_name = var.cloudtrail_log_group_name
 
   metric_transformation {
@@ -442,7 +439,7 @@ resource "aws_cloudwatch_log_metric_filter" "route_table_changes" {
   count = var.route_table_changes_enabled ? 1 : 0
 
   name           = "RouteTableChanges"
-  pattern        = "{ ($.eventName = CreateRoute) || ($.eventName = CreateRouteTable) || ($.eventName = ReplaceRoute) || ($.eventName = ReplaceRouteTableAssociation) || ($.eventName = DeleteRouteTable) || ($.eventName = DeleteRoute) || ($.eventName = DisassociateRouteTable) }"
+  pattern        = var.route_table_changes_pattern
   log_group_name = var.cloudtrail_log_group_name
 
   metric_transformation {
@@ -475,7 +472,7 @@ resource "aws_cloudwatch_log_metric_filter" "vpc_changes" {
   count = var.vpc_changes_enabled ? 1 : 0
 
   name           = "VPCChanges"
-  pattern        = "{ ($.eventName = CreateVpc) || ($.eventName = DeleteVpc) || ($.eventName = ModifyVpcAttribute) || ($.eventName = AcceptVpcPeeringConnection) || ($.eventName = CreateVpcPeeringConnection) || ($.eventName = DeleteVpcPeeringConnection) || ($.eventName = RejectVpcPeeringConnection) || ($.eventName = AttachClassicLinkVpc) || ($.eventName = DetachClassicLinkVpc) || ($.eventName = DisableVpcClassicLink) || ($.eventName = EnableVpcClassicLink) }"
+  pattern        = var.vpc_changes_pattern
   log_group_name = var.cloudtrail_log_group_name
 
   metric_transformation {
@@ -508,7 +505,7 @@ resource "aws_cloudwatch_log_metric_filter" "organizations_changes" {
   count = var.organizations_changes_enabled ? 1 : 0
 
   name           = "OrganizationsChanges"
-  pattern        = "{ ($.eventSource = organizations.amazonaws.com) && (($.eventName = \"AcceptHandshake\") || ($.eventName = \"AttachPolicy\") || ($.eventName = \"CreateAccount\") || ($.eventName = \"CreateOrganizationalUnit\") || ($.eventName= \"CreatePolicy\") || ($.eventName = \"DeclineHandshake\") || ($.eventName = \"DeleteOrganization\") || ($.eventName = \"DeleteOrganizationalUnit\") || ($.eventName = \"DeletePolicy\") || ($.eventName = \"DetachPolicy\") || ($.eventName = \"DisablePolicyType\") || ($.eventName = \"EnablePolicyType\") || ($.eventName = \"InviteAccountToOrganization\") || ($.eventName = \"LeaveOrganization\") || ($.eventName = \"MoveAccount\") || ($.eventName = \"RemoveAccountFromOrganization\") || ($.eventName = \"UpdatePolicy\") || ($.eventName =\"UpdateOrganizationalUnit\")) }"
+  pattern        = var.organizations_changes_pattern
   log_group_name = var.cloudtrail_log_group_name
 
   metric_transformation {
