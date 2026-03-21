@@ -32,7 +32,7 @@ locals {
 }
 
 data "aws_iam_policy_document" "recorder_assume_role_policy" {
-  count = var.config_baseline_enabled && var.config_iam_role_arn == "" ? 1 : 0
+  count = var.config_baseline_enabled ? 1 : 0
 
   statement {
     principals {
@@ -44,7 +44,7 @@ data "aws_iam_policy_document" "recorder_assume_role_policy" {
 }
 
 resource "aws_iam_role" "recorder" {
-  count = var.config_baseline_enabled && var.config_iam_role_arn == "" ? 1 : 0
+  count = var.config_baseline_enabled ? 1 : 0
 
   name               = var.config_iam_role_name
   assume_role_policy = data.aws_iam_policy_document.recorder_assume_role_policy[0].json
@@ -56,7 +56,7 @@ resource "aws_iam_role" "recorder" {
 
 # See https://docs.aws.amazon.com/config/latest/developerguide/iamrole-permissions.html
 data "aws_iam_policy_document" "recorder_publish_policy" {
-  count = var.config_baseline_enabled && var.config_iam_role_arn == "" ? 1 : 0
+  count = var.config_baseline_enabled ? 1 : 0
 
   statement {
     actions   = ["s3:GetBucketAcl", "s3:ListBucket"]
@@ -86,7 +86,7 @@ data "aws_iam_policy_document" "recorder_publish_policy" {
 }
 
 resource "aws_iam_role_policy" "recorder_publish_policy" {
-  count = var.config_baseline_enabled && var.config_iam_role_arn == "" ? 1 : 0
+  count = var.config_baseline_enabled ? 1 : 0
 
   name   = var.config_iam_role_policy_name
   role   = one(aws_iam_role.recorder[*].id)
@@ -94,7 +94,7 @@ resource "aws_iam_role_policy" "recorder_publish_policy" {
 }
 
 resource "aws_iam_role_policy_attachment" "recorder_read_policy" {
-  count = var.config_baseline_enabled && var.config_iam_role_arn == "" ? 1 : 0
+  count = var.config_baseline_enabled ? 1 : 0
 
   role       = one(aws_iam_role.recorder[*].id)
   policy_arn = "arn:aws:iam::aws:policy/service-role/AWS_ConfigRole"
