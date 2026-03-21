@@ -271,8 +271,14 @@ variable "config_delivery_frequency" {
   default     = "One_Hour"
 }
 
+variable "config_iam_role_arn" {
+  description = "The ARN of an existing IAM Role for AWS Config to use. When set, the module will not create a custom IAM role. Use this to pass the AWS service-linked role (AWSServiceRoleForConfig) or any pre-existing role."
+  type        = string
+  default     = ""
+}
+
 variable "config_iam_role_name" {
-  description = "The name of the IAM Role which AWS Config will use."
+  description = "The name of the IAM Role which AWS Config will use. Only used when config_iam_role_arn is not set."
   type        = string
   default     = "Config-Recorder"
 }
