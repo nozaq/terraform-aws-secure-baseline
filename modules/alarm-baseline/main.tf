@@ -207,6 +207,39 @@ resource "aws_cloudwatch_metric_alarm" "cloudtrail_cfg_changes" {
   tags = var.tags
 }
 
+resource "aws_cloudwatch_log_metric_filter" "iam_user_console_signin" {
+  count = var.iam_user_console_signin_enabled ? 1 : 0
+
+  name           = "IAMUserConsoleSignin"
+  pattern        = "{ ($.eventName = \"ConsoleLogin\") && ($.userIdentity.type = \"IAMUser\") && ($.responseElements.ConsoleLogin = \"Success\") }"
+  log_group_name = var.cloudtrail_log_group_name
+
+  metric_transformation {
+    name      = "IAMUserConsoleSignin"
+    namespace = var.alarm_namespace
+    value     = "1"
+  }
+}
+
+resource "aws_cloudwatch_metric_alarm" "iam_user_console_signin" {
+  count = var.iam_user_console_signin_enabled ? 1 : 0
+
+  alarm_name                = "IAMUserConsoleSignin"
+  comparison_operator       = "GreaterThanOrEqualToThreshold"
+  evaluation_periods        = "1"
+  metric_name               = aws_cloudwatch_log_metric_filter.iam_user_console_signin[0].id
+  namespace                 = var.alarm_namespace
+  period                    = "300"
+  statistic                 = "Sum"
+  threshold                 = "1"
+  alarm_description         = "Monitoring IAM user console logins provides visibility into the use of long-term credentials. IAM users should be replaced with IAM Identity Center (SSO) access where possible."
+  alarm_actions             = [aws_sns_topic.alarms.arn]
+  treat_missing_data        = "notBreaching"
+  insufficient_data_actions = []
+
+  tags = var.tags
+}
+
 resource "aws_cloudwatch_log_metric_filter" "console_signin_failures" {
   count = var.console_signin_failures_enabled ? 1 : 0
 

@@ -104,6 +104,7 @@ module "alarm_baseline" {
   iam_changes_enabled              = var.iam_changes_enabled
   cloudtrail_cfg_changes_enabled   = var.cloudtrail_cfg_changes_enabled
   console_signin_failures_enabled  = var.console_signin_failures_enabled
+  iam_user_console_signin_enabled  = var.iam_user_console_signin_enabled
   disable_or_delete_cmk_enabled    = var.disable_or_delete_cmk_enabled
   s3_bucket_policy_changes_enabled = var.s3_bucket_policy_changes_enabled
   aws_config_changes_enabled       = var.aws_config_changes_enabled

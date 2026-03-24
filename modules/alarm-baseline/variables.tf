@@ -40,6 +40,12 @@ variable "console_signin_failures_enabled" {
   default     = true
 }
 
+variable "iam_user_console_signin_enabled" {
+  description = "The boolean flag whether the iam_user_console_signin alarm is enabled or not. Alerts on any successful IAM user console login."
+  type        = bool
+  default     = true
+}
+
 variable "disable_or_delete_cmk_enabled" {
   description = "The boolean flag whether the disable_or_delete_cmk alarm is enabled or not. No resources are created when set to false."
   type        = bool
