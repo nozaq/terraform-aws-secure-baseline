@@ -65,6 +65,15 @@ module "ebs_baseline_ca-central-1" {
   }
 }
 
+module "ebs_baseline_ca-west-1" {
+  count  = contains(var.target_regions, "ca-west-1") ? 1 : 0
+  source = "./modules/ebs-baseline"
+
+  providers = {
+    aws = aws.ca-west-1
+  }
+}
+
 module "ebs_baseline_eu-central-1" {
   count  = contains(var.target_regions, "eu-central-1") ? 1 : 0
   source = "./modules/ebs-baseline"

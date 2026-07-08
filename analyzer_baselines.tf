@@ -104,6 +104,20 @@ module "analyzer_baseline_ca-central-1" {
   tags = var.tags
 }
 
+module "analyzer_baseline_ca-west-1" {
+  count  = local.is_analyzer_enabled && contains(var.target_regions, "ca-west-1") ? 1 : 0
+  source = "./modules/analyzer-baseline"
+
+  providers = {
+    aws = aws.ca-west-1
+  }
+
+  analyzer_name   = var.analyzer_name
+  is_organization = local.is_master_account
+
+  tags = var.tags
+}
+
 module "analyzer_baseline_eu-central-1" {
   count  = local.is_analyzer_enabled && contains(var.target_regions, "eu-central-1") ? 1 : 0
   source = "./modules/analyzer-baseline"
