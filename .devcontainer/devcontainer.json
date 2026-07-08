@@ -1,21 +1,37 @@
 {
-	"name": "Terraform",
-	"build": {
-		"dockerfile": "./Dockerfile",
-		"context": "."
-	},
-	"features": {
-		"ghcr.io/devcontainers/features/terraform:1": {
-			"version": "latest",
-			"installTerraformDocs": true
-		}
-	},
-	"customizations": {
-		"vscode": {
-			"extensions": [
-				"EditorConfig.EditorConfig"
-			]
-		}
-	},
-	"postCreateCommand": "pre-commit install"
+  "name": "Terraform",
+  "image": "ghcr.io/bare-devcontainer/terraform:1-trixie",
+  "remoteUser": "dev",
+  "init": true,
+  "mounts": [
+    // Persist the Terraform plugin cache across container rebuilds.
+    {
+      "source": "${devcontainerId}-terraform-plugin-cache",
+      "target": "/home/dev/.terraform.d/plugin-cache",
+      "type": "volume"
+    }
+  ],
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "hashicorp.terraform",
+        "HashiCorp.HCL",
+        "EditorConfig.EditorConfig"
+      ],
+      "settings": {
+        "terraform.languageServer.path": "/usr/local/bin/terraform-ls",
+        "terraform.languageServer.terraform.path": "/usr/local/bin/terraform",
+        "[terraform]": {
+          "editor.defaultFormatter": "hashicorp.terraform",
+          "editor.formatOnSave": true,
+          "editor.formatOnSaveMode": "file"
+        },
+        "[terraform-vars]": {
+          "editor.defaultFormatter": "hashicorp.terraform",
+          "editor.formatOnSave": true,
+          "editor.formatOnSaveMode": "file"
+        }
+      }
+    }
+  }
 }
