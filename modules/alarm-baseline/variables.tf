@@ -124,3 +124,9 @@ variable "tags" {
     "Terraform" = "true"
   }
 }
+
+variable "metric_unauthorizedapicalls" {
+  description = "This is the value of the amount of UnauthorizedAPICalls"
+  type        = bool
+  default     = true
+}
