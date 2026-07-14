@@ -5,8 +5,8 @@
 locals {
   use_external_bucket = var.use_external_audit_log_bucket
 
-  audit_log_bucket_id  = local.use_external_bucket ? data.aws_s3_bucket.external[0].id : module.audit_log_bucket[0].this_bucket.id
-  audit_log_bucket_arn = local.use_external_bucket ? data.aws_s3_bucket.external[0].arn : module.audit_log_bucket[0].this_bucket.arn
+  audit_log_bucket_id  = local.use_external_bucket ? var.audit_log_bucket_id : module.audit_log_bucket[0].this_bucket.id
+  audit_log_bucket_arn = local.use_external_bucket ? var.audit_log_bucket_arn : module.audit_log_bucket[0].this_bucket.arn
 
   audit_log_cloudtrail_destination = join("/", [local.audit_log_bucket_arn, trim(var.cloudtrail_s3_key_prefix, "/")])
   audit_log_config_destination     = join("/", [local.audit_log_bucket_arn, trim(var.config_s3_bucket_key_prefix, "/")])
@@ -14,17 +14,7 @@ locals {
 }
 
 # --------------------------------------------------------------------------------------------------
-# Case 1. Use the external S3 bucket.
-# --------------------------------------------------------------------------------------------------
-
-data "aws_s3_bucket" "external" {
-  count = local.use_external_bucket ? 1 : 0
-
-  bucket = var.audit_log_bucket_name
-}
-
-# --------------------------------------------------------------------------------------------------
-# Case 2. Create a new S3 bucket.
+# If local.use_external_bucket = false, then create a bucket for audit logs
 #
 # Create a S3 bucket to store various audit logs.
 # Bucket policies are derived from the default bucket policy and official AWS documents.
