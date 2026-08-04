@@ -57,6 +57,12 @@ variable "permissions_boundary_arn" {
   default     = ""
 }
 
+variable "cloudtrail_kms_customer_managed" {
+  description = "Whether to use SSE-KMS encryption for CloudTrail logs KMS encryption type. With this variable set false, CloudTrail logs are encrypted with SSE-S3. SSE-S3 is AWS managed and incurs no cost. Note that if SNS is enabled, a customer managed KMS key will be created for that topic regardless of this variable option."
+  type        = bool
+  default     = true
+}
+
 variable "key_deletion_window_in_days" {
   description = "Duration in days after which the key is deleted after destruction of the resource, must be between 7 and 30 days. Defaults to 30 days."
   type        = number
