@@ -7,6 +7,11 @@ output "audit_bucket" {
   value       = one(module.audit_log_bucket[*].this_bucket)
 }
 
+output "audit_bucket_policy" {
+  description = "Bucket policy of the audit logs bucket."
+  value       = one(data.aws_iam_policy_document.audit_log[*])
+}
+
 # --------------------------------------------------------------------------------------------------
 # Outputs from alarm-baseline module.
 # --------------------------------------------------------------------------------------------------
@@ -135,6 +140,15 @@ output "guardduty_detector" {
 output "support_iam_role" {
   description = "The IAM role used for the support user."
   value       = one(module.iam_baseline[*].support_iam_role)
+}
+
+# --------------------------------------------------------------------------------------------------
+# Outputs from secure-bucket module.
+# --------------------------------------------------------------------------------------------------
+
+output "access_log_bucket_policy" {
+  description = "Bucket policy of the access logs bucket of audit logs."
+  value       = one(module.audit_log_bucket[*].log_bucket_policy)
 }
 
 # --------------------------------------------------------------------------------------------------

@@ -115,6 +115,18 @@ variable "use_external_audit_log_bucket" {
   default     = false
 }
 
+variable "use_external_audit_log_bucket_policy" {
+  description = "Whether or not to apply bucket policy onto audit log bucket directly."
+  type        = bool
+  default     = false
+}
+
+variable "use_external_audit_access_log_bucket_policy" {
+  description = "Whether or not to apply bucket policy onto the access logs bucket corresponding to audit log bucket directly."
+  type        = bool
+  default     = false
+}
+
 # --------------------------------------------------------------------------------------------------
 # Variables for iam-baseline module.
 # --------------------------------------------------------------------------------------------------

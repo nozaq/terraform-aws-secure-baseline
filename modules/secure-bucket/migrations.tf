@@ -8,10 +8,13 @@ moved {
   to   = aws_s3_bucket.access_log
 }
 
-moved {
-  from = aws_s3_bucket_policy.access_log_policy[0]
-  to   = aws_s3_bucket_policy.access_log_policy
-}
+# Migrations to 2.2.0-custom
+# Allowing bucket policy to be exported out and not be applied
+
+# moved {
+#   from = aws_s3_bucket_policy.access_log_policy[0]
+#   to   = aws_s3_bucket_policy.access_log_policy
+# }
 
 moved {
   from = aws_s3_bucket_public_access_block.access_log[0]
@@ -27,4 +30,3 @@ moved {
   from = aws_s3_bucket_public_access_block.content[0]
   to   = aws_s3_bucket_public_access_block.content
 }
-

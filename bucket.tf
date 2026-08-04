@@ -39,6 +39,7 @@ module "audit_log_bucket" {
   log_bucket_name                   = var.audit_log_bucket_access_logs_name != "" ? var.audit_log_bucket_access_logs_name : "${var.audit_log_bucket_name}-access-logs"
   lifecycle_glacier_transition_days = var.audit_log_lifecycle_glacier_transition_days
   force_destroy                     = var.audit_log_bucket_force_destroy
+  use_external_log_bucket_policy    = var.use_external_audit_access_log_bucket_policy
 
   tags = var.tags
 
@@ -248,7 +249,7 @@ data "aws_iam_policy_document" "audit_log" {
 }
 
 resource "aws_s3_bucket_policy" "audit_log" {
-  count = local.use_external_bucket ? 0 : 1
+  count = local.use_external_bucket || var.use_external_audit_log_bucket_policy ? 0 : 1
 
   bucket = module.audit_log_bucket[0].this_bucket.id
   policy = data.aws_iam_policy_document.audit_log[0].json

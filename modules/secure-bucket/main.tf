@@ -59,6 +59,8 @@ resource "aws_s3_bucket_lifecycle_configuration" "access_log" {
 }
 
 resource "aws_s3_bucket_policy" "access_log_policy" {
+  count = var.use_external_log_bucket_policy ? 0 : 1
+
   bucket = aws_s3_bucket.access_log.id
   policy = data.aws_iam_policy_document.access_log_policy.json
 

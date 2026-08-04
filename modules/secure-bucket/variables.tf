@@ -33,3 +33,9 @@ variable "bucket_key_enabled" {
   type        = bool
   default     = false
 }
+
+variable "use_external_log_bucket_policy" {
+  description = "Whether or not to apply bucket policy onto log bucket directly."
+  type        = bool
+  default     = false
+}
