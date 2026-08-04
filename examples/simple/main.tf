@@ -21,7 +21,20 @@ resource "aws_iam_user" "admin" {
 }
 
 module "secure_baseline" {
-  source = "../../"
+  # Option 1: Using HTTPS
+  source = "git::https://github.com/YOUR_USERNAME/terraform-aws-secure-baseline.git"
+  
+  # Option 2: Using SSH
+  # source = "git::ssh://git@github.com/YOUR_USERNAME/terraform-aws-secure-baseline.git"
+  
+  # Option 3: Using a specific branch
+  # source = "git::https://github.com/YOUR_USERNAME/terraform-aws-secure-baseline.git?ref=feature-branch"
+  
+  # Option 4: Using a specific tag
+  # source = "git::https://github.com/YOUR_USERNAME/terraform-aws-secure-baseline.git?ref=v1.0.0"
+  
+  # Option 5: Using a specific commit
+  # source = "git::https://github.com/YOUR_USERNAME/terraform-aws-secure-baseline.git?ref=abcd1234"
 
   audit_log_bucket_name           = var.audit_s3_bucket_name
   aws_account_id                  = data.aws_caller_identity.current.account_id
@@ -47,6 +60,8 @@ module "secure_baseline" {
     aws.eu-west-1      = aws.eu-west-1
     aws.eu-west-2      = aws.eu-west-2
     aws.eu-west-3      = aws.eu-west-3
+    aws.il-central-1   = aws.il-central-1
+    aws.me-central-1   = aws.me-central-1
     aws.sa-east-1      = aws.sa-east-1
     aws.us-east-1      = aws.us-east-1
     aws.us-east-2      = aws.us-east-2

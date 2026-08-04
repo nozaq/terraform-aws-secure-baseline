@@ -18,6 +18,14 @@ data "aws_iam_policy_document" "access_log_policy" {
   }
 }
 
+resource "aws_s3_bucket_ownership_controls" "access_log" {
+  bucket = aws_s3_bucket.access_log.id
+
+  rule {
+    object_ownership = "BucketOwnerPreferred"
+  }
+}
+
 resource "aws_s3_bucket" "access_log" {
   bucket        = var.log_bucket_name
   force_destroy = var.force_destroy
@@ -28,6 +36,9 @@ resource "aws_s3_bucket" "access_log" {
 resource "aws_s3_bucket_acl" "access_log" {
   bucket = aws_s3_bucket.access_log.id
   acl    = "log-delivery-write"
+  depends_on = [
+    aws_s3_bucket_ownership_controls.access_log,
+  ]
 }
 
 resource "aws_s3_bucket_server_side_encryption_configuration" "access_log" {
@@ -75,6 +86,14 @@ resource "aws_s3_bucket_public_access_block" "access_log" {
   restrict_public_buckets = true
 }
 
+resource "aws_s3_bucket_ownership_controls" "content" {
+  bucket = aws_s3_bucket.content.id
+
+  rule {
+    object_ownership = "BucketOwnerPreferred"
+  }
+}
+
 resource "aws_s3_bucket" "content" {
   bucket        = var.bucket_name
   force_destroy = var.force_destroy
@@ -89,6 +108,10 @@ resource "aws_s3_bucket" "content" {
 resource "aws_s3_bucket_acl" "content" {
   bucket = aws_s3_bucket.content.id
   acl    = "private"
+
+  depends_on = [
+    aws_s3_bucket_ownership_controls.content,
+  ]
 }
 
 resource "aws_s3_bucket_server_side_encryption_configuration" "content" {

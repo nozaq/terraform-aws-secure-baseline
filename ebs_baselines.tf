@@ -154,3 +154,21 @@ module "ebs_baseline_us-west-2" {
     aws = aws.us-west-2
   }
 }
+
+module "ebs_baseline_il-central-1" {
+  count  = contains(var.target_regions, "il-central-1") ? 1 : 0
+  source = "./modules/ebs-baseline"
+
+  providers = {
+    aws = aws.il-central-1
+  }
+}
+
+module "ebs_baseline_me-central-1" {
+  count  = contains(var.target_regions, "me-central-1") ? 1 : 0
+  source = "./modules/ebs-baseline"
+
+  providers = {
+    aws = aws.me-central-1
+  }
+}

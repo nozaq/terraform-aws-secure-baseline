@@ -88,3 +88,13 @@ provider "aws" {
   alias  = "us-west-2"
 }
 
+provider "aws" {
+  region = "il-central-1"
+  alias  = "il-central-1"
+}
+
+provider "aws" {
+  region = "me-central-1"
+  alias  = "me-central-1"
+}
+

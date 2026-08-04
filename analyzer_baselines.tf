@@ -243,3 +243,31 @@ module "analyzer_baseline_us-west-2" {
 
   tags = var.tags
 }
+
+module "analyzer_baseline_il-central-1" {
+  count  = local.is_analyzer_enabled && contains(var.target_regions, "il-central-1") ? 1 : 0
+  source = "./modules/analyzer-baseline"
+
+  providers = {
+    aws = aws.il-central-1
+  }
+
+  analyzer_name   = var.analyzer_name
+  is_organization = local.is_master_account
+
+  tags = var.tags
+}
+
+module "analyzer_baseline_me-central-1" {
+  count  = local.is_analyzer_enabled && contains(var.target_regions, "me-central-1") ? 1 : 0
+  source = "./modules/analyzer-baseline"
+
+  providers = {
+    aws = aws.me-central-1
+  }
+
+  analyzer_name   = var.analyzer_name
+  is_organization = local.is_master_account
+
+  tags = var.tags
+}

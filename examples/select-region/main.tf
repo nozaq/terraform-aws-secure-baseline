@@ -50,6 +50,8 @@ module "secure_baseline" {
     aws.eu-west-1      = aws.eu-west-1
     aws.eu-west-2      = aws.eu-west-2
     aws.eu-west-3      = aws.eu-west-3
+    aws.il-central-1   = aws.il-central-1
+    aws.me-central-1   = aws.me-central-1
     aws.sa-east-1      = aws.sa-east-1
     aws.us-east-1      = aws.us-east-1
     aws.us-east-2      = aws.us-east-2

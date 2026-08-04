@@ -294,3 +294,37 @@ module "securityhub_baseline_us-west-2" {
   master_account_id                = local.securityhub_master_account_id
   member_accounts                  = local.securityhub_member_accounts
 }
+
+module "securityhub_baseline_il-central-1" {
+  count  = contains(var.target_regions, "il-central-1") && var.securityhub_enabled ? 1 : 0
+  source = "./modules/securityhub-baseline"
+
+  providers = {
+    aws = aws.il-central-1
+  }
+
+  aggregate_findings               = var.region == "il-central-1"
+  enable_cis_standard              = var.securityhub_enable_cis_standard
+  enable_pci_dss_standard          = var.securityhub_enable_pci_dss_standard
+  enable_aws_foundational_standard = var.securityhub_enable_aws_foundational_standard
+  enable_product_arns              = var.securityhub_enable_product_arns
+  master_account_id                = local.securityhub_master_account_id
+  member_accounts                  = local.securityhub_member_accounts
+}
+
+module "securityhub_baseline_me-central-1" {
+  count  = contains(var.target_regions, "me-central-1") && var.securityhub_enabled ? 1 : 0
+  source = "./modules/securityhub-baseline"
+
+  providers = {
+    aws = aws.me-central-1
+  }
+
+  aggregate_findings               = var.region == "me-central-1"
+  enable_cis_standard              = var.securityhub_enable_cis_standard
+  enable_pci_dss_standard          = var.securityhub_enable_pci_dss_standard
+  enable_aws_foundational_standard = var.securityhub_enable_aws_foundational_standard
+  enable_product_arns              = var.securityhub_enable_product_arns
+  master_account_id                = local.securityhub_master_account_id
+  member_accounts                  = local.securityhub_member_accounts
+}
