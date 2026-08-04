@@ -177,6 +177,25 @@ module "vpc_baseline_ap-southeast-2" {
   tags = var.tags
 }
 
+module "vpc_baseline_ap-southeast-3" {
+  count  = var.vpc_enable && contains(var.target_regions, "ap-southeast-3") ? 1 : 0
+  source = "./modules/vpc-baseline"
+
+  providers = {
+    aws = aws.ap-southeast-3
+  }
+
+  enable_flow_logs            = var.vpc_enable_flow_logs
+  flow_logs_destination_type  = var.vpc_flow_logs_destination_type
+  flow_logs_log_group_name    = var.vpc_flow_logs_log_group_name
+  flow_logs_iam_role_arn      = local.flow_logs_to_cw_logs ? aws_iam_role.flow_logs_publisher[0].arn : null
+  flow_logs_retention_in_days = var.vpc_flow_logs_retention_in_days
+  flow_logs_s3_arn            = local.flow_logs_s3_arn
+  flow_logs_s3_key_prefix     = var.vpc_flow_logs_s3_key_prefix
+
+  tags = var.tags
+}
+
 module "vpc_baseline_ca-central-1" {
   count  = var.vpc_enable && contains(var.target_regions, "ca-central-1") ? 1 : 0
   source = "./modules/vpc-baseline"
@@ -278,6 +297,25 @@ module "vpc_baseline_eu-west-3" {
 
   providers = {
     aws = aws.eu-west-3
+  }
+
+  enable_flow_logs            = var.vpc_enable_flow_logs
+  flow_logs_destination_type  = var.vpc_flow_logs_destination_type
+  flow_logs_log_group_name    = var.vpc_flow_logs_log_group_name
+  flow_logs_iam_role_arn      = local.flow_logs_to_cw_logs ? aws_iam_role.flow_logs_publisher[0].arn : null
+  flow_logs_retention_in_days = var.vpc_flow_logs_retention_in_days
+  flow_logs_s3_arn            = local.flow_logs_s3_arn
+  flow_logs_s3_key_prefix     = var.vpc_flow_logs_s3_key_prefix
+
+  tags = var.tags
+}
+
+module "vpc_baseline_me-south-1" {
+  count  = var.vpc_enable && contains(var.target_regions, "me-south-1") ? 1 : 0
+  source = "./modules/vpc-baseline"
+
+  providers = {
+    aws = aws.me-south-1
   }
 
   enable_flow_logs            = var.vpc_enable_flow_logs

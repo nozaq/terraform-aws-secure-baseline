@@ -13,9 +13,9 @@ jobs:
         uses: actions/checkout@v2
       - name: Terraform min/max versions
         id: minMax
-        uses: clowdhaus/terraform-min-max@v1.0.4
+        uses: clowdhaus/terraform-min-max@v1.3.1
       - name: Pre-commit Terraform ${{ steps.minMax.outputs.maxVersion }}
-        uses: clowdhaus/terraform-composite-actions/pre-commit@v1.4.1
+        uses: clowdhaus/terraform-composite-actions/pre-commit@v1.9.0
         with:
           terraform-version: ${{ steps.minMax.outputs.maxVersion }}
           terraform-docs-version: v0.16.0

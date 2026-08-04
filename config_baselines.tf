@@ -6,12 +6,14 @@ locals {
     one(module.config_baseline_ap-south-1[*].config_sns_topic),
     one(module.config_baseline_ap-southeast-1[*].config_sns_topic),
     one(module.config_baseline_ap-southeast-2[*].config_sns_topic),
+    one(module.config_baseline_ap-southeast-3[*].config_sns_topic),
     one(module.config_baseline_ca-central-1[*].config_sns_topic),
     one(module.config_baseline_eu-central-1[*].config_sns_topic),
     one(module.config_baseline_eu-north-1[*].config_sns_topic),
     one(module.config_baseline_eu-west-1[*].config_sns_topic),
     one(module.config_baseline_eu-west-2[*].config_sns_topic),
     one(module.config_baseline_eu-west-3[*].config_sns_topic),
+    one(module.config_baseline_me-south-1[*].config_sns_topic),
     one(module.config_baseline_sa-east-1[*].config_sns_topic),
     one(module.config_baseline_us-east-1[*].config_sns_topic),
     one(module.config_baseline_us-east-2[*].config_sns_topic),
@@ -226,6 +228,27 @@ module "config_baseline_ap-southeast-2" {
   depends_on = [aws_s3_bucket_policy.audit_log]
 }
 
+module "config_baseline_ap-southeast-3" {
+  count  = var.config_baseline_enabled && contains(var.target_regions, "ap-southeast-3") ? 1 : 0
+  source = "./modules/config-baseline"
+
+  providers = {
+    aws = aws.ap-southeast-3
+  }
+
+  iam_role_arn                  = one(aws_iam_role.recorder[*].arn)
+  s3_bucket_name                = local.audit_log_bucket_id
+  s3_key_prefix                 = var.config_s3_bucket_key_prefix
+  delivery_frequency            = var.config_delivery_frequency
+  sns_topic_name                = var.config_sns_topic_name
+  sns_topic_kms_master_key_id   = var.config_sns_topic_kms_master_key_id
+  include_global_resource_types = var.config_global_resources_all_regions ? true : var.region == "ap-southeast-3"
+
+  tags = var.tags
+
+  depends_on = [aws_s3_bucket_policy.audit_log]
+}
+
 module "config_baseline_ca-central-1" {
   count  = var.config_baseline_enabled && contains(var.target_regions, "ca-central-1") ? 1 : 0
   source = "./modules/config-baseline"
@@ -346,6 +369,27 @@ module "config_baseline_eu-west-3" {
   sns_topic_name                = var.config_sns_topic_name
   sns_topic_kms_master_key_id   = var.config_sns_topic_kms_master_key_id
   include_global_resource_types = var.config_global_resources_all_regions ? true : var.region == "eu-west-3"
+
+  tags = var.tags
+
+  depends_on = [aws_s3_bucket_policy.audit_log]
+}
+
+module "config_baseline_me-south-1" {
+  count  = var.config_baseline_enabled && contains(var.target_regions, "me-south-1") ? 1 : 0
+  source = "./modules/config-baseline"
+
+  providers = {
+    aws = aws.me-south-1
+  }
+
+  iam_role_arn                  = one(aws_iam_role.recorder[*].arn)
+  s3_bucket_name                = local.audit_log_bucket_id
+  s3_key_prefix                 = var.config_s3_bucket_key_prefix
+  delivery_frequency            = var.config_delivery_frequency
+  sns_topic_name                = var.config_sns_topic_name
+  sns_topic_kms_master_key_id   = var.config_sns_topic_kms_master_key_id
+  include_global_resource_types = var.config_global_resources_all_regions ? true : var.region == "me-south-1"
 
   tags = var.tags
 
@@ -481,12 +525,14 @@ resource "aws_config_config_rule" "iam_mfa" {
     module.config_baseline_ap-south-1,
     module.config_baseline_ap-southeast-1,
     module.config_baseline_ap-southeast-2,
+    module.config_baseline_ap-southeast-3,
     module.config_baseline_ca-central-1,
     module.config_baseline_eu-central-1,
     module.config_baseline_eu-north-1,
     module.config_baseline_eu-west-1,
     module.config_baseline_eu-west-2,
     module.config_baseline_eu-west-3,
+    module.config_baseline_me-south-1,
     module.config_baseline_sa-east-1,
     module.config_baseline_us-east-1,
     module.config_baseline_us-east-2,
@@ -516,12 +562,14 @@ resource "aws_config_config_rule" "unused_credentials" {
     module.config_baseline_ap-south-1,
     module.config_baseline_ap-southeast-1,
     module.config_baseline_ap-southeast-2,
+    module.config_baseline_ap-southeast-3,
     module.config_baseline_ca-central-1,
     module.config_baseline_eu-central-1,
     module.config_baseline_eu-north-1,
     module.config_baseline_eu-west-1,
     module.config_baseline_eu-west-2,
     module.config_baseline_eu-west-3,
+    module.config_baseline_me-south-1,
     module.config_baseline_sa-east-1,
     module.config_baseline_us-east-1,
     module.config_baseline_us-east-2,
@@ -556,12 +604,14 @@ resource "aws_config_config_rule" "user_no_policies" {
     module.config_baseline_ap-south-1,
     module.config_baseline_ap-southeast-1,
     module.config_baseline_ap-southeast-2,
+    module.config_baseline_ap-southeast-3,
     module.config_baseline_ca-central-1,
     module.config_baseline_eu-central-1,
     module.config_baseline_eu-north-1,
     module.config_baseline_eu-west-1,
     module.config_baseline_eu-west-2,
     module.config_baseline_eu-west-3,
+    module.config_baseline_me-south-1,
     module.config_baseline_sa-east-1,
     module.config_baseline_us-east-1,
     module.config_baseline_us-east-2,
@@ -596,12 +646,14 @@ resource "aws_config_config_rule" "no_policies_with_full_admin_access" {
     module.config_baseline_ap-south-1,
     module.config_baseline_ap-southeast-1,
     module.config_baseline_ap-southeast-2,
+    module.config_baseline_ap-southeast-3,
     module.config_baseline_ca-central-1,
     module.config_baseline_eu-central-1,
     module.config_baseline_eu-north-1,
     module.config_baseline_eu-west-1,
     module.config_baseline_eu-west-2,
     module.config_baseline_eu-west-3,
+    module.config_baseline_me-south-1,
     module.config_baseline_sa-east-1,
     module.config_baseline_us-east-1,
     module.config_baseline_us-east-2,
