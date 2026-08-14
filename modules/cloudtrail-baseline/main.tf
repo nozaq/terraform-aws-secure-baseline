@@ -240,7 +240,12 @@ resource "aws_cloudtrail" "global" {
   kms_key_id                    = aws_kms_key.cloudtrail.arn
   s3_bucket_name                = var.s3_bucket_name
   s3_key_prefix                 = var.s3_key_prefix
-  sns_topic_name                = var.cloudtrail_sns_topic_enabled ? aws_sns_topic.cloudtrail-sns-topic[0].arn : null
+  # Must be the topic *name*, not its ARN: CloudTrail's PutTrail accepts either
+  # form, but DescribeTrails only ever returns the short name, so passing the ARN
+  # here produced a permanent `"<name>" -> "arn:aws:sns:..."` diff on every plan.
+  # Referencing `.name` (rather than the variable) keeps the implicit dependency
+  # on the topic, so creation ordering is unchanged.
+  sns_topic_name = var.cloudtrail_sns_topic_enabled ? aws_sns_topic.cloudtrail-sns-topic[0].name : null
 
   event_selector {
     read_write_type           = "All"
