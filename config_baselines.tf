@@ -95,6 +95,59 @@ resource "aws_iam_role_policy_attachment" "recorder_read_policy" {
 }
 
 # --------------------------------------------------------------------------------------------------
+# Create an IAM Role for AWS SNS to log delivery status in CloudWatch Logs
+# References:
+# - https://docs.aws.amazon.com/sns/latest/dg/sns-topic-attributes.html#topics-attrib
+# - https://aws.amazon.com/premiumsupport/knowledge-center/monitor-sns-texts-cloudwatch/
+# --------------------------------------------------------------------------------------------------
+
+resource "aws_iam_role" "feedback" {
+  count = var.config_baseline_enabled ? 1 : 0
+
+  name               = var.config_sns_feedback_iam_role_name
+  path               = "/"
+  assume_role_policy = data.aws_iam_policy_document.sns_assume_role_policy[0].json
+}
+
+data "aws_iam_policy_document" "sns_assume_role_policy" {
+  count = var.config_baseline_enabled ? 1 : 0
+
+  statement {
+    effect  = "Allow"
+    actions = ["sts:AssumeRole"]
+
+    principals {
+      type        = "Service"
+      identifiers = ["sns.${data.aws_partition.current.dns_suffix}"]
+    }
+  }
+}
+
+resource "aws_iam_role_policy" "feedback_role_policy" {
+  count = var.config_baseline_enabled ? 1 : 0
+
+  name   = var.config_sns_feedback_iam_role_policy_name
+  role   = one(aws_iam_role.feedback[*].id)
+  policy = data.aws_iam_policy_document.feedback_role_policy[0].json
+}
+
+data "aws_iam_policy_document" "feedback_role_policy" {
+  count = var.config_baseline_enabled ? 1 : 0
+
+  statement {
+    effect  = "Allow"
+    actions = [
+      "logs:CreateLogGroup",
+      "logs:CreateLogStream",
+      "logs:PutLogEvents",
+      "logs:PutMetricFilter",
+      "logs:PutRetentionPolicy"
+    ]
+    resources = ["*"]
+  }
+}
+
+# --------------------------------------------------------------------------------------------------
 # AWS Config Baseline
 # Needs to be set up in each region.
 # Global resource types are only recorded in the region specified by var.region.
@@ -115,6 +168,7 @@ module "config_baseline_ap-northeast-1" {
   sns_topic_name                = var.config_sns_topic_name
   sns_topic_kms_master_key_id   = var.config_sns_topic_kms_master_key_id
   include_global_resource_types = var.config_global_resources_all_regions ? true : var.region == "ap-northeast-1"
+  sns_feedback_iam_role         = one(aws_iam_role.feedback[*].arn)
 
   tags = var.tags
 
@@ -136,6 +190,7 @@ module "config_baseline_ap-northeast-2" {
   sns_topic_name                = var.config_sns_topic_name
   sns_topic_kms_master_key_id   = var.config_sns_topic_kms_master_key_id
   include_global_resource_types = var.config_global_resources_all_regions ? true : var.region == "ap-northeast-2"
+  sns_feedback_iam_role         = one(aws_iam_role.feedback[*].arn)
 
   tags = var.tags
 
@@ -157,6 +212,7 @@ module "config_baseline_ap-northeast-3" {
   sns_topic_name                = var.config_sns_topic_name
   sns_topic_kms_master_key_id   = var.config_sns_topic_kms_master_key_id
   include_global_resource_types = var.config_global_resources_all_regions ? true : var.region == "ap-northeast-3"
+  sns_feedback_iam_role         = one(aws_iam_role.feedback[*].arn)
 
   tags = var.tags
 
@@ -178,6 +234,7 @@ module "config_baseline_ap-south-1" {
   sns_topic_name                = var.config_sns_topic_name
   sns_topic_kms_master_key_id   = var.config_sns_topic_kms_master_key_id
   include_global_resource_types = var.config_global_resources_all_regions ? true : var.region == "ap-south-1"
+  sns_feedback_iam_role         = one(aws_iam_role.feedback[*].arn)
 
   tags = var.tags
 
@@ -199,6 +256,7 @@ module "config_baseline_ap-southeast-1" {
   sns_topic_name                = var.config_sns_topic_name
   sns_topic_kms_master_key_id   = var.config_sns_topic_kms_master_key_id
   include_global_resource_types = var.config_global_resources_all_regions ? true : var.region == "ap-southeast-1"
+  sns_feedback_iam_role         = one(aws_iam_role.feedback[*].arn)
 
   tags = var.tags
 
@@ -220,6 +278,7 @@ module "config_baseline_ap-southeast-2" {
   sns_topic_name                = var.config_sns_topic_name
   sns_topic_kms_master_key_id   = var.config_sns_topic_kms_master_key_id
   include_global_resource_types = var.config_global_resources_all_regions ? true : var.region == "ap-southeast-2"
+  sns_feedback_iam_role         = one(aws_iam_role.feedback[*].arn)
 
   tags = var.tags
 
@@ -241,6 +300,7 @@ module "config_baseline_ca-central-1" {
   sns_topic_name                = var.config_sns_topic_name
   sns_topic_kms_master_key_id   = var.config_sns_topic_kms_master_key_id
   include_global_resource_types = var.config_global_resources_all_regions ? true : var.region == "ca-central-1"
+  sns_feedback_iam_role         = one(aws_iam_role.feedback[*].arn)
 
   tags = var.tags
 
@@ -262,6 +322,7 @@ module "config_baseline_eu-central-1" {
   sns_topic_name                = var.config_sns_topic_name
   sns_topic_kms_master_key_id   = var.config_sns_topic_kms_master_key_id
   include_global_resource_types = var.config_global_resources_all_regions ? true : var.region == "eu-central-1"
+  sns_feedback_iam_role         = one(aws_iam_role.feedback[*].arn)
 
   tags = var.tags
 
@@ -283,6 +344,7 @@ module "config_baseline_eu-north-1" {
   sns_topic_name                = var.config_sns_topic_name
   sns_topic_kms_master_key_id   = var.config_sns_topic_kms_master_key_id
   include_global_resource_types = var.config_global_resources_all_regions ? true : var.region == "eu-north-1"
+  sns_feedback_iam_role         = one(aws_iam_role.feedback[*].arn)
 
   tags = var.tags
 
@@ -304,6 +366,7 @@ module "config_baseline_eu-west-1" {
   sns_topic_name                = var.config_sns_topic_name
   sns_topic_kms_master_key_id   = var.config_sns_topic_kms_master_key_id
   include_global_resource_types = var.config_global_resources_all_regions ? true : var.region == "eu-west-1"
+  sns_feedback_iam_role         = one(aws_iam_role.feedback[*].arn)
 
   tags = var.tags
 
@@ -325,6 +388,7 @@ module "config_baseline_eu-west-2" {
   sns_topic_name                = var.config_sns_topic_name
   sns_topic_kms_master_key_id   = var.config_sns_topic_kms_master_key_id
   include_global_resource_types = var.config_global_resources_all_regions ? true : var.region == "eu-west-2"
+  sns_feedback_iam_role         = one(aws_iam_role.feedback[*].arn)
 
   tags = var.tags
 
@@ -346,6 +410,7 @@ module "config_baseline_eu-west-3" {
   sns_topic_name                = var.config_sns_topic_name
   sns_topic_kms_master_key_id   = var.config_sns_topic_kms_master_key_id
   include_global_resource_types = var.config_global_resources_all_regions ? true : var.region == "eu-west-3"
+  sns_feedback_iam_role         = one(aws_iam_role.feedback[*].arn)
 
   tags = var.tags
 
@@ -367,6 +432,7 @@ module "config_baseline_sa-east-1" {
   sns_topic_name                = var.config_sns_topic_name
   sns_topic_kms_master_key_id   = var.config_sns_topic_kms_master_key_id
   include_global_resource_types = var.config_global_resources_all_regions ? true : var.region == "sa-east-1"
+  sns_feedback_iam_role         = one(aws_iam_role.feedback[*].arn)
 
   tags = var.tags
 
@@ -388,6 +454,7 @@ module "config_baseline_us-east-1" {
   sns_topic_name                = var.config_sns_topic_name
   sns_topic_kms_master_key_id   = var.config_sns_topic_kms_master_key_id
   include_global_resource_types = var.config_global_resources_all_regions ? true : var.region == "us-east-1"
+  sns_feedback_iam_role         = one(aws_iam_role.feedback[*].arn)
 
   tags = var.tags
 
@@ -409,6 +476,7 @@ module "config_baseline_us-east-2" {
   sns_topic_name                = var.config_sns_topic_name
   sns_topic_kms_master_key_id   = var.config_sns_topic_kms_master_key_id
   include_global_resource_types = var.config_global_resources_all_regions ? true : var.region == "us-east-2"
+  sns_feedback_iam_role         = one(aws_iam_role.feedback[*].arn)
 
   tags = var.tags
 
@@ -430,6 +498,7 @@ module "config_baseline_us-west-1" {
   sns_topic_name                = var.config_sns_topic_name
   sns_topic_kms_master_key_id   = var.config_sns_topic_kms_master_key_id
   include_global_resource_types = var.config_global_resources_all_regions ? true : var.region == "us-west-1"
+  sns_feedback_iam_role         = one(aws_iam_role.feedback[*].arn)
 
   tags = var.tags
 
@@ -451,6 +520,7 @@ module "config_baseline_us-west-2" {
   sns_topic_name                = var.config_sns_topic_name
   sns_topic_kms_master_key_id   = var.config_sns_topic_kms_master_key_id
   include_global_resource_types = var.config_global_resources_all_regions ? true : var.region == "us-west-2"
+  sns_feedback_iam_role         = one(aws_iam_role.feedback[*].arn)
 
   tags = var.tags
 

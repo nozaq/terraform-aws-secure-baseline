@@ -8,6 +8,21 @@ data "aws_region" "current" {}
 resource "aws_sns_topic" "config" {
   name              = var.sns_topic_name
   kms_master_key_id = var.sns_topic_kms_master_key_id
+  application_failure_feedback_role_arn    = var.sns_feedback_iam_role
+  application_success_feedback_role_arn    = var.sns_feedback_iam_role
+  application_success_feedback_sample_rate = var.sns_feedback_sample_rate
+  lambda_failure_feedback_role_arn         = var.sns_feedback_iam_role
+  lambda_success_feedback_role_arn         = var.sns_feedback_iam_role
+  lambda_success_feedback_sample_rate      = var.sns_feedback_sample_rate
+  http_failure_feedback_role_arn           = var.sns_feedback_iam_role
+  http_success_feedback_role_arn           = var.sns_feedback_iam_role
+  http_success_feedback_sample_rate        = var.sns_feedback_sample_rate
+  sqs_failure_feedback_role_arn            = var.sns_feedback_iam_role
+  sqs_success_feedback_role_arn            = var.sns_feedback_iam_role
+  sqs_success_feedback_sample_rate         = var.sns_feedback_sample_rate
+  firehose_failure_feedback_role_arn       = var.sns_feedback_iam_role
+  firehose_success_feedback_role_arn       = var.sns_feedback_iam_role
+  firehose_success_feedback_sample_rate    = var.sns_feedback_sample_rate
 
   tags = var.tags
 }
